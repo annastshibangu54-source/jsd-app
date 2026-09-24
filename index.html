@@ -20,24 +20,38 @@
         <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
         <!-- Main Stylesheet -->
-        <link href="/css/style.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
 
-        <style>
-            /* Empêche TOUTES les images du site d'être géantes */
-            img {
-                max-width: 100% !important;
-                height: auto !important;
-            }
+        
 
-            /* Restreint spécifiquement la taille du logo dans l'en-tête */
-            .navbar-brand img, 
-            .navbar img, 
-            header img {
-                max-height: 60px !important;
-                width: auto !important;
-                object-fit: contain;
-            }
-        </style>
+            <!-- 2. Correction directe des styles pour la couleur et les images sur Render -->
+<style>
+    /* Force le titre "Jeunesse Sociale pour le Développement" en Bleu JSD */
+    .header .carousel-content h2,
+    .carousel-content h2 {
+        color: #4F84C4 !important;
+        font-size: 45px !important;
+        font-weight: 700 !important;
+    }
+
+    /* Force toutes les images à ne jamais dépasser de leur conteneur */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* Ajuste la hauteur maximale du logo */
+    .navbar-brand img, 
+    .navbar img, 
+    header img {
+        max-height: 55px !important;
+        width: auto !important;
+        object-fit: contain;
+    }
+</style>
+
+
+
     </head>
 
     <body>
