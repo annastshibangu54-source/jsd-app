@@ -48,8 +48,6 @@ h6 {
     margin-top: 100px;
 }
 
-
-
 /**************************************/
 /********** Back to Top CSS ***********/
 /**************************************/
@@ -72,8 +70,6 @@ h6 {
 .back-to-top i {
     color: #ffffff;
 }
-
-
 
 /**************************************/
 /************** Nav CSS ***************/
@@ -170,8 +166,6 @@ h6 {
     }
 }
 
-
-
 /**************************************/
 /************* Header CSS *************/
 /**************************************/
@@ -241,8 +235,6 @@ h6 {
     background: #888888;
 }
 
-
-
 /**************************************/
 /******** Section Header CSS **********/
 /**************************************/
@@ -280,8 +272,6 @@ h6 {
     text-align: center;
     margin: 0;
 }
-
-
 
 /**************************************/
 /********* About + Single CSS *********/
@@ -346,8 +336,6 @@ h6 {
     background: #4F84C4;
 }
 
-
-
 /**************************************/
 /************ Services CSS ************/
 /**************************************/
@@ -363,115 +351,6 @@ h6 {
     text-align: center;
     margin-bottom: 30px;
 }
-
-
-Private Sub UserForm_Initialize()
-    ' Chargement des listes déroulantes
-    Me.CboStatut.List = Array("Nouveau", "Ancien")
-    Me.CboCategorie.List = Array("Fondateur", "Effectif", "Sympathisant", "D'Honneur")
-End Sub
-
-Private Sub BtnEnregistrer_Click()
-    Dim ws As Worksheet
-    Dim lastRow As Long
-    
-    If Me.TxtNom.Value = "" Then
-        MsgBox "Veuillez saisir  le nom complet.", vbExclamation, "JSD - Validation"
-        Exit Sub
-    End If
-    
-    Set ws = ThisWorkbook.Sheets("Membres")
-    lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row + 1
-    
-    ' Insertion des données
-    ws.Cells(lastRow, 1).Value = lastRow - 1 ' ID automatique
-    ws.Cells(lastRow, 2).Value = UCase(Me.TxtNom.Value)
-    ws.Cells(lastRow, 3).Value = Me.CboStatut.Value
-    ws.Cells(lastRow, 4).Value = Me.CboCategorie.Value
-    ws.Cells(lastRow, 5).Value = Date
-    
-    ' Formatage des bordures
-    ws.Range(ws.Cells(lastRow, 1), ws.Cells(lastRow, 5)).Borders.LineStyle = xlContinuous
-    
-    MsgBox "Membre enregistré avec succès !", vbInformation, "JSD - Confirmation"
-    
-    ' Réinitialisation du formulaire
-    Me.TxtNom.Value = ""
-    Me.CboStatut.ListIndex = -1
-    Me.CboCategorie.ListIndex = -1
-End Sub
-
-
-
-Fin
-
-
-Private Sub UserForm_Initialize()
-    Me.CboType.List = Array("Événement", "Formation")
-End Sub
-
-Private Sub BtnAjouter_Click()
-    Dim ws As Worksheet
-    Dim lastRow As Long
-    
-    If Me.TxtTitre.Value = "" Or Me.TxtDate.Value = "" Then
-        MsgBox "Veuillez remplir le titre et la date.", vbExclamation, "JSD - Validation"
-        Exit Sub
-    End If
-    
-    Set ws = ThisWorkbook.Sheets("Evenements & Formations")
-    lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row + 1
-    
-    ws.Cells(lastRow, 1).Value = lastRow - 1
-    ws.Cells(lastRow, 2).Value = Me.TxtTitre.Value
-    ws.Cells(lastRow, 3).Value = Me.CboType.Value
-    ws.Cells(lastRow, 4).Value = Me.TxtDate.Value
-    ws.Cells(lastRow, 5).Value = "Planifié"
-    
-    ws.Range(ws.Cells(lastRow, 1), ws.Cells(lastRow, 5)).Borders.LineStyle = xlContinuous
-    
-    MsgBox "Événement / Formation ajouté au calendrier !", vbInformation, "JSD - Confirmation"
-    
-    Me.TxtTitre.Value = ""
-    Me.TxtDate.Value = ""
-    Me.CboType.ListIndex = -1
-End Sub
-
-
-Fin
-
-
-Sub OuvrirFormulaireMembre()
-    UserForm_Membre.Show
-End Sub
-
-Sub OuvrirFormulaireEvenement()
-    UserForm_Evenement.Show
-End Sub
-
-Sub NavigationTableauDeBord()
-    ThisWorkbook.Sheets("Tableau de Bord").Activate
-End Sub
-
-Sub NavigationMembres()
-    ThisWorkbook.Sheets("Membres").Activate
-End Sub
-
-Sub NavigationCA()
-    ThisWorkbook.Sheets("Conseil Administration").Activate
-End Sub
-
-Sub NavigationConseilleres()
-    ThisWorkbook.Sheets("Conseil Consultatif").Activate
-End Sub
-
-Sub NavigationEvenements()
-    ThisWorkbook.Sheets("Evenements & Formations").Activate
-End Sub
-
-
-Fin
-
 
 .service .service-icon {
     position: relative;
@@ -506,7 +385,13 @@ Fin
     margin: 0;
 }
 
-
+.img-service {
+    width: 250px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
 
 /**************************************/
 /********* Call To Action CSS *********/
@@ -549,8 +434,6 @@ Fin
     color: #ffffff;
     background: #353535;
 }
-
-
 
 /**************************************/
 /************* Pricing CSS ************/
@@ -683,8 +566,6 @@ Fin
     color:#ffffff;
 }
 
-
-
 /**************************************/
 /*********** Our Skills CSS ***********/
 /**************************************/
@@ -732,8 +613,6 @@ Fin
     border-radius: 0;
 }
 
-
-
 /**************************************/
 /************ Counters CSS ************/
 /**************************************/
@@ -765,8 +644,6 @@ Fin
     color: #ffffff;
 }
 
-
-
 /**************************************/
 /************ Portfolio CSS ***********/
 /**************************************/
@@ -785,7 +662,6 @@ Fin
     position: relative;
     background: #000000;
     overflow: hidden;
-    
 }
 
 .portfolio .portfolio-item .link-preview,
@@ -861,8 +737,6 @@ Fin
     text-transform: uppercase;
 }
 
-
-
 /**************************************/
 /************** Team CSS **************/
 /**************************************/
@@ -881,7 +755,6 @@ Fin
     position: relative;
     background: #000000;
     overflow: hidden;
-    
 }
 
 .team .team-item .team-social {
@@ -946,8 +819,6 @@ Fin
     font-weight: 300;
     text-transform: uppercase;
 }
-
-
 
 /**************************************/
 /*********** Testimonials CSS *********/
@@ -1021,8 +892,6 @@ Fin
     }
 }
 
-
-
 /**************************************/
 /************* Clients CSS ************/
 /**************************************/
@@ -1064,8 +933,6 @@ Fin
 .clients .owl-dot.active {
     background-color: #4F84C4;
 }
-
-
 
 /**************************************/
 /************* Contact CSS ************/
@@ -1125,8 +992,6 @@ Fin
     height: 375px;
     margin-bottom: -7px;
 }
-
-
 
 /**************************************/
 /************* Footer CSS *************/
@@ -1269,25 +1134,4 @@ Fin
     .footer .copyright {
         text-align: left;
     }
-}
-
-.service .service-icon {
-    position: relative;
-    width: 100%;
-    padding: 30px 15px;
-    background: #4F84C4;
-}
-
-.service .service-icon i {
-    font-size: 90px;
-    line-height: 0;
-    color: #ffffff;
-}
-
-.img-service {
-    width: 250px;          /* Ajustez cette valeur selon vos besoins */
-    height: 300px;         /* Doit être identique à width pour un carré */
-    border-radius: 50%;   /* Pour rendre la photo ronde, comme une icône */
-    object-fit: cover;    /* Pour que l'image ne soit pas déformée */
-    margin-bottom: 15px;  /* Espace avec le texte en dessous */
 }
