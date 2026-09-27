@@ -890,86 +890,11 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             </div>
         </div>
         <!-- Clients End -->
-        
-        <!-- SECTION INSCRIPTION ET TABLEAU DE SOURCING MEMBRES JSD -->
-<section class="py-4">
-  <div class="container-fluid px-4">
-    
-    <!-- Formulaire d'inscription -->
-    <div class="card mb-4 shadow-sm border-0">
-      <div class="card-header bg-primary text-white font-weight-bold">
-        <i class="icon ion-md-person-add me-2"></i> Formulaire d'Enregistrement d'un Membre
-      </div>
-      <div class="card-body">
-        <form id="formulaireInscription" onsubmit="enregistrerMembre(event)">
-          <div class="row g-3">
-            <div class="col-md-4">
-              <label class="form-label font-weight-bold">Nom & Prénom</label>
-              <input type="text" id="nomMembre" class="form-control" placeholder="Ex: Jean Mukendi" required>
-            </div>
-            <div class="col-md-4">
-              <label class="form-label font-weight-bold">Contact (Téléphone / WhatsApp)</label>
-              <input type="text" id="contactMembre" class="form-control" placeholder="+243 ..." required>
-            </div>
-            <div class="col-md-4">
-              <label class="form-label font-weight-bold">Commune / Ville</label>
-              <input type="text" id="localisationMembre" class="form-control" placeholder="Ex: Bandalungwa, Kinshasa">
-            </div>
-            <div class="col-md-4 mt-3">
-              <label class="form-label font-weight-bold">Statut / Catégorie</label>
-              <select id="statutMembre" class="form-select">
-                <option value="Membre">Membre</option>
-                <option value="Président">Président</option>
-                <option value="Conseiller">Conseiller</option>
-                <option value="Cadre">Cadre</option>
-              </select>
-            </div>
-            <div class="col-md-8 mt-3 d-flex align-items-end justify-content-end">
-              <button type="submit" class="btn btn-primary px-4 py-2">
-                <i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer dans la base de données
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <!-- Tableau d'affichage dynamique des membres -->
-    <div class="card shadow-sm border-0">
-      <div class="card-header bg-dark text-white font-weight-bold">
-        <i class="icon ion-md-people me-2"></i> Liste des Membres Enregistrés
-      </div>
-      <div class="card-body p-0">
-        <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0">
-            <thead class="table-light">
-              <tr>
-                <th>Matricule</th>
-                <th>Nom & Prénom</th>
-                <th>Contact</th>
-                <th>Localisation</th>
-                <th>Statut</th>
-                <th>Date d'adhésion</th>
-                <th class="text-center">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="corpsTableauMembres">
-              <!-- Les lignes s'ajouteront automatiquement ici via Firebase -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- SCRIPT FIREBASE FIRESTORE EN TEMPS RÉEL -->
+        <!-- SCRIPT FIREBASE COMPLET (SANS DOUBLONS) -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  // Configuration Firebase officielle JSD
   const firebaseConfig = {
     apiKey: "AIzaSyBlGSwEPk6CM4A07SeqmZeuaFxUWMRlESI",
     authDomain: "jeunesse-social-pour-le-dvelop.firebaseapp.com",
@@ -983,14 +908,17 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // 1. Fonction d'enregistrement du membre dans la collection "membres"
+  let enEnregistrement = false;
+
+  // 1. Fonction d'enregistrement unique
   window.enregistrerMembre = async function(event) {
     if (event) event.preventDefault();
+    if (enEnregistrement) return;
 
-    const nom = document.getElementById("nomMembre").value.trim();
-    const contact = document.getElementById("contactMembre").value.trim();
-    const localisation = document.getElementById("localisationMembre").value.trim() || "Kinshasa, RDC";
-    const statut = document.getElementById("statutMembre").value;
+    const nom = document.getElementById("nomMembre") ? document.getElementById("nomMembre").value.trim() : "";
+    const contact = document.getElementById("contactMembre") ? document.getElementById("contactMembre").value.trim() : "";
+    const localisation = document.getElementById("localisationMembre") ? document.getElementById("localisationMembre").value.trim() : "Kinshasa, RDC";
+    const statut = document.getElementById("statutMembre") ? document.getElementById("statutMembre").value : "Membre";
 
     if (!nom || !contact) {
       alert("Veuillez remplir au moins le nom et le contact.");
@@ -998,29 +926,33 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
 
     try {
+      enEnregistrement = true;
       await addDoc(collection(db, "membres"), {
         nom: nom,
         contact: contact,
-        localisation: localisation,
+        localisation: localisation || "Kinshasa, RDC",
         statut: statut,
         dateAdhesion: new Date().toLocaleDateString('fr-FR')
       });
 
-      alert("Enregistrement réussi dans la base de données !");
-      document.getElementById("formulaireInscription").reset();
+      alert("Inscription réussie dans la base de données !");
+      const form = document.getElementById("formulaireInscription");
+      if (form) form.reset();
 
     } catch (error) {
       console.error("Erreur Firebase : ", error);
-      alert("Erreur lors de l'enregistrement : " + error.message);
+      alert("Erreur lors de l'inscription : " + error.message);
+    } finally {
+      enEnregistrement = false;
     }
   };
 
-  // 2. Synchronisation en temps réel avec le tableau HTML
+  // 2. Affichage en temps réel dans le tableau
   onSnapshot(collection(db, "membres"), (snapshot) => {
-    const tbody = document.getElementById("corpsTableauMembres");
+    const tbody = document.querySelector("table tbody");
     if (!tbody) return;
 
-    tbody.innerHTML = ""; // Vider le tableau pour tout réafficher proprement
+    tbody.innerHTML = ""; // Empêche les doublons à l'affichage
 
     snapshot.docs.forEach((doc) => {
       const data = doc.data();
@@ -1051,6 +983,8 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     });
   });
 </script>
+
+
 
 
 
