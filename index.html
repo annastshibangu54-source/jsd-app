@@ -1250,11 +1250,12 @@ function modifierMembre(matricule) {
   });
 </script>
 
-     <!-- SCRIPT FIREBASE COMPLET (SANS DOUBLONS) -->
+    <!-- SCRIPT FIREBASE COMPLET : ENREGISTREMENT, MODIFICATION LIBRE ET SUPPRESSION PRÉSIDENTIELLE -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+  // Configuration Firebase officielle JSD
   const firebaseConfig = {
     apiKey: "AIzaSyBlGSwEPk6CM4A07SeqmZeuaFxUWMRlESI",
     authDomain: "jeunesse-social-pour-le-dvelop.firebaseapp.com",
@@ -1270,11 +1271,15 @@ function modifierMembre(matricule) {
 
   let enEnregistrement = false;
 
-  // 1. Fonction d'enregistrement unique
+  // 1. CODE SECRET PRÉSIDENTIEL POUR LA SUPPRESSION EXCLUSIVE
+  const CODE_SECRET_PRESIDENT = "JSD2026";
+
+  // 2. ENREGISTREMENT OU MISE À JOUR D'UN MEMBRE (SANS DOUBLON)
   window.enregistrerMembre = async function(event) {
     if (event) event.preventDefault();
     if (enEnregistrement) return;
 
+    const idEncours = document.getElementById("formulaireInscription").getAttribute("data-id-edition");
     const nom = document.getElementById("nomMembre") ? document.getElementById("nomMembre").value.trim() : "";
     const contact = document.getElementById("contactMembre") ? document.getElementById("contactMembre").value.trim() : "";
     const localisation = document.getElementById("localisationMembre") ? document.getElementById("localisationMembre").value.trim() : "Kinshasa, RDC";
@@ -1287,40 +1292,103 @@ function modifierMembre(matricule) {
 
     try {
       enEnregistrement = true;
-      await addDoc(collection(db, "membres"), {
-        nom: nom,
-        contact: contact,
-        localisation: localisation || "Kinshasa, RDC",
-        statut: statut,
-        dateAdhesion: new Date().toLocaleDateString('fr-FR')
-      });
 
-      alert("Inscription réussie dans la base de données !");
+      if (idEncours) {
+        // Mode Modification : met à jour le membre existant
+        await updateDoc(doc(db, "membres", idEncours), {
+          nom: nom,
+          contact: contact,
+          localisation: localisation || "Kinshasa, RDC",
+          statut: statut
+        });
+        alert("Modifications enregistrées avec succès !");
+        document.getElementById("formulaireInscription").removeAttribute("data-id-edition");
+        const btnSubmit = document.querySelector("#formulaireInscription button[type='submit']");
+        if (btnSubmit) btnSubmit.innerHTML = '<i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer';
+      } else {
+        // Mode Nouvel Enregistrement
+        await addDoc(collection(db, "membres"), {
+          nom: nom,
+          contact: contact,
+          localisation: localisation || "Kinshasa, RDC",
+          statut: statut,
+          dateAdhesion: new Date().toLocaleDateString('fr-FR')
+        });
+        alert("Inscription réussie dans la base de données !");
+      }
+
       const form = document.getElementById("formulaireInscription");
       if (form) form.reset();
 
     } catch (error) {
       console.error("Erreur Firebase : ", error);
-      alert("Erreur lors de l'inscription : " + error.message);
+      alert("Erreur lors de l'opération : " + error.message);
     } finally {
       enEnregistrement = false;
     }
   };
 
-  // 2. Affichage en temps réel dans le tableau
+  // 3. FONCTION DE MODIFICATION (Accessible à toute personne effectuant la saisie)
+  window.chargerMembrePourModification = function(idDoc, nom, contact, localisation, statut) {
+    document.getElementById("nomMembre").value = nom || "";
+    document.getElementById("contactMembre").value = contact || "";
+    document.getElementById("localisationMembre").value = localisation || "";
+    document.getElementById("statutMembre").value = statut || "Membre";
+
+    const form = document.getElementById("formulaireInscription");
+    form.setAttribute("data-id-edition", idDoc);
+
+    const btnSubmit = form.querySelector("button[type='submit']");
+    if (btnSubmit) {
+      btnSubmit.innerHTML = '<i class="icon ion-md-save me-1"></i> Mettre à jour le membre';
+    }
+
+    // Remonter doucement vers le formulaire
+    form.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // 4. FONCTION DE SUPPRESSION (Réservée exclusivement au Président)
+  window.supprimerMembre = async function(idMembre, nomMembre) {
+    const motDePasse = prompt(`ATTENTION : Suppression de "${nomMembre}".\nSeul le Président peut effectuer cette action.\nVeuillez entrer le code secret :`);
+
+    if (motDePasse === null) return; // Annulation
+
+    if (motDePasse === CODE_SECRET_PRESIDENT) {
+      if (confirm(`Êtes-vous sûr de vouloir supprimer définitivement le membre : ${nomMembre} ?`)) {
+        try {
+          await deleteDoc(doc(db, "membres", idMembre));
+          alert("Membre supprimé avec succès.");
+        } catch (error) {
+          console.error("Erreur de suppression : ", error);
+          alert("Erreur lors de la suppression : " + error.message);
+        }
+      }
+    } else {
+      alert("Accès refusé ! Vous n'avez pas l'autorisation de supprimer un membre.");
+    }
+  };
+
+  // 5. AFFICHAGE ET SYNCHRONISATION DU TABLEAU EN TEMPS RÉEL
   onSnapshot(collection(db, "membres"), (snapshot) => {
-    const tbody = document.querySelector("table tbody");
+    const tbody = document.getElementById("corpsTableauMembres");
     if (!tbody) return;
 
-    tbody.innerHTML = ""; // Empêche les doublons à l'affichage
+    tbody.innerHTML = ""; // Vider pour éviter les doublons à l'affichage
 
-    snapshot.docs.forEach((doc) => {
-      const data = doc.data();
-      const matriculeAuto = "JSD-2026-" + doc.id.substring(0, 4).toUpperCase();
+    snapshot.docs.forEach((docSnap) => {
+      const data = docSnap.data();
+      const idDoc = docSnap.id;
+      const matriculeAuto = "JSD-2026-" + idDoc.substring(0, 4).toUpperCase();
       
       let badgeClass = "bg-info text-white";
       if (data.statut === "Président") badgeClass = "bg-success text-white";
       if (data.statut === "Conseiller") badgeClass = "bg-primary text-white";
+
+      // Échappement des caractères pour éviter les erreurs JavaScript
+      const nomEchappe = (data.nom || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+      const contactEchappe = (data.contact || '').replace(/'/g, "\\'");
+      const locEchappe = (data.localisation || '').replace(/'/g, "\\'");
+      const statutEchappe = (data.statut || '').replace(/'/g, "\\'");
 
       const newRow = document.createElement("tr");
       newRow.innerHTML = `
@@ -1331,11 +1399,16 @@ function modifierMembre(matricule) {
         <td><span class="badge ${badgeClass} px-2 py-1">${data.statut || 'Membre'}</span></td>
         <td>${data.dateAdhesion || '-'}</td>
         <td class="text-center">
-          <button type="button" class="btn btn-sm btn-outline-primary me-1">
-            <i class="icon ion-md-eye"></i>
+          <!-- Bouton Modifier libre d'accès -->
+          <button type="button" class="btn btn-sm btn-outline-warning me-1" title="Modifier" 
+            onclick="chargerMembrePourModification('${idDoc}', '${nomEchappe}', '${contactEchappe}', '${locEchappe}', '${statutEchappe}')">
+            <i class="icon ion-md-create"></i> Modifier
           </button>
-          <button type="button" class="btn btn-sm btn-outline-warning">
-            <i class="icon ion-md-create"></i>
+          
+          <!-- Bouton Supprimer réservé au Président -->
+          <button type="button" class="btn btn-sm btn-outline-danger" title="Supprimer" 
+            onclick="supprimerMembre('${idDoc}', '${nomEchappe}')">
+            <i class="icon ion-md-trash"></i> Supprimer
           </button>
         </td>
       `;
@@ -1343,6 +1416,8 @@ function modifierMembre(matricule) {
     });
   });
 </script>
+
+
    
 
     </body>
