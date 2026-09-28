@@ -890,103 +890,59 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             </div>
         </div>
         <!-- Clients End -->
-        <!-- SCRIPT FIREBASE COMPLET (SANS DOUBLONS) -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBlGSwEPk6CM4A07SeqmZeuaFxUWMRlESI",
-    authDomain: "jeunesse-social-pour-le-dvelop.firebaseapp.com",
-    projectId: "jeunesse-social-pour-le-dvelop",
-    storageBucket: "jeunesse-social-pour-le-dvelop.firebasestorage.app",
-    messagingSenderId: "728224479628",
-    appId: "1:728224479628:web:c43406a998d184d3a63ea9",
-    measurementId: "G-F81CFLLD55"
-  };
+<div class="table-responsive">
+    <table class="table table-hover align-middle">
+        <thead class="thead-light">
+            <tr>
+                <th>Matricule</th>
+                <th>Nom & Prénom</th>
+                <th>Contact</th>
+                <th>Localisation</th>
+                <th>Statut</th>
+                <th>Date d'Adhésion</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Ligne 1 : Président -->
+            <tr>
+                <td><strong>JSD-2026-001</strong></td>
+                <td>Mike TSHIBANGU KALOMBO</td>
+                <td>+243 906819993</td>
+                <td>Kinshasa, RDC</td>
+                <td><span class="badge badge-success px-2 py-1">Président</span></td>
+                <td>06/09/2026</td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-sm btn-outline-primary me-1" onclick="voirMembre('JSD-2026-001')">
+                        <i class="icon ion-md-eye" style="pointer-events: none;"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-warning" onclick="modifierMembre('JSD-2026-001')">
+                        <i class="icon ion-md-create" style="pointer-events: none;"></i>
+                    </button>
+                </td>
+            </tr>
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  let enEnregistrement = false;
-
-  // 1. Fonction d'enregistrement unique
-  window.enregistrerMembre = async function(event) {
-    if (event) event.preventDefault();
-    if (enEnregistrement) return;
-
-    const nom = document.getElementById("nomMembre") ? document.getElementById("nomMembre").value.trim() : "";
-    const contact = document.getElementById("contactMembre") ? document.getElementById("contactMembre").value.trim() : "";
-    const localisation = document.getElementById("localisationMembre") ? document.getElementById("localisationMembre").value.trim() : "Kinshasa, RDC";
-    const statut = document.getElementById("statutMembre") ? document.getElementById("statutMembre").value : "Membre";
-
-    if (!nom || !contact) {
-      alert("Veuillez remplir au moins le nom et le contact.");
-      return;
-    }
-
-    try {
-      enEnregistrement = true;
-      await addDoc(collection(db, "membres"), {
-        nom: nom,
-        contact: contact,
-        localisation: localisation || "Kinshasa, RDC",
-        statut: statut,
-        dateAdhesion: new Date().toLocaleDateString('fr-FR')
-      });
-
-      alert("Inscription réussie dans la base de données !");
-      const form = document.getElementById("formulaireInscription");
-      if (form) form.reset();
-
-    } catch (error) {
-      console.error("Erreur Firebase : ", error);
-      alert("Erreur lors de l'inscription : " + error.message);
-    } finally {
-      enEnregistrement = false;
-    }
-  };
-
-  // 2. Affichage en temps réel dans le tableau
-  onSnapshot(collection(db, "membres"), (snapshot) => {
-    const tbody = document.querySelector("table tbody");
-    if (!tbody) return;
-
-    tbody.innerHTML = ""; // Empêche les doublons à l'affichage
-
-    snapshot.docs.forEach((doc) => {
-      const data = doc.data();
-      const matriculeAuto = "JSD-2026-" + doc.id.substring(0, 4).toUpperCase();
-      
-      let badgeClass = "bg-info text-white";
-      if (data.statut === "Président") badgeClass = "bg-success text-white";
-      if (data.statut === "Conseiller") badgeClass = "bg-primary text-white";
-
-      const newRow = document.createElement("tr");
-      newRow.innerHTML = `
-        <td><strong>${matriculeAuto}</strong></td>
-        <td>${data.nom || '-'}</td>
-        <td>${data.contact || '-'}</td>
-        <td>${data.localisation || '-'}</td>
-        <td><span class="badge ${badgeClass} px-2 py-1">${data.statut || 'Membre'}</span></td>
-        <td>${data.dateAdhesion || '-'}</td>
-        <td class="text-center">
-          <button type="button" class="btn btn-sm btn-outline-primary me-1">
-            <i class="icon ion-md-eye"></i>
-          </button>
-          <button type="button" class="btn btn-sm btn-outline-warning">
-            <i class="icon ion-md-create"></i>
-          </button>
-        </td>
-      `;
-      tbody.appendChild(newRow);
-    });
-  });
-</script>
-
-
-
-
+            <!-- Ligne 2 : Conseiller -->
+            <tr>
+                <td><strong>JSD-2026-002</strong></td>
+                <td>SANTA TANGANIKA USENI</td>
+                <td>+243 ...</td>
+                <td>Kinshasa, RDC</td>
+                <td><span class="badge badge-primary px-2 py-1">Conseiller</span></td>
+                <td>06/09/2026</td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-sm btn-outline-primary me-1" onclick="voirMembre('JSD-2026-002')">
+                        <i class="icon ion-md-eye" style="pointer-events: none;"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-warning" onclick="modifierMembre('JSD-2026-002')">
+                        <i class="icon ion-md-create" style="pointer-events: none;"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 
         <!-- Section Conversation Protégée Start -->
@@ -1357,7 +1313,100 @@ function modifierMembre(matricule) {
   });
 </script>
 
-        
+     <!-- SCRIPT FIREBASE COMPLET (SANS DOUBLONS) -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBlGSwEPk6CM4A07SeqmZeuaFxUWMRlESI",
+    authDomain: "jeunesse-social-pour-le-dvelop.firebaseapp.com",
+    projectId: "jeunesse-social-pour-le-dvelop",
+    storageBucket: "jeunesse-social-pour-le-dvelop.firebasestorage.app",
+    messagingSenderId: "728224479628",
+    appId: "1:728224479628:web:c43406a998d184d3a63ea9",
+    measurementId: "G-F81CFLLD55"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  let enEnregistrement = false;
+
+  // 1. Fonction d'enregistrement unique
+  window.enregistrerMembre = async function(event) {
+    if (event) event.preventDefault();
+    if (enEnregistrement) return;
+
+    const nom = document.getElementById("nomMembre") ? document.getElementById("nomMembre").value.trim() : "";
+    const contact = document.getElementById("contactMembre") ? document.getElementById("contactMembre").value.trim() : "";
+    const localisation = document.getElementById("localisationMembre") ? document.getElementById("localisationMembre").value.trim() : "Kinshasa, RDC";
+    const statut = document.getElementById("statutMembre") ? document.getElementById("statutMembre").value : "Membre";
+
+    if (!nom || !contact) {
+      alert("Veuillez remplir au moins le nom et le contact.");
+      return;
+    }
+
+    try {
+      enEnregistrement = true;
+      await addDoc(collection(db, "membres"), {
+        nom: nom,
+        contact: contact,
+        localisation: localisation || "Kinshasa, RDC",
+        statut: statut,
+        dateAdhesion: new Date().toLocaleDateString('fr-FR')
+      });
+
+      alert("Inscription réussie dans la base de données !");
+      const form = document.getElementById("formulaireInscription");
+      if (form) form.reset();
+
+    } catch (error) {
+      console.error("Erreur Firebase : ", error);
+      alert("Erreur lors de l'inscription : " + error.message);
+    } finally {
+      enEnregistrement = false;
+    }
+  };
+
+  // 2. Affichage en temps réel dans le tableau
+  onSnapshot(collection(db, "membres"), (snapshot) => {
+    const tbody = document.querySelector("table tbody");
+    if (!tbody) return;
+
+    tbody.innerHTML = ""; // Empêche les doublons à l'affichage
+
+    snapshot.docs.forEach((doc) => {
+      const data = doc.data();
+      const matriculeAuto = "JSD-2026-" + doc.id.substring(0, 4).toUpperCase();
+      
+      let badgeClass = "bg-info text-white";
+      if (data.statut === "Président") badgeClass = "bg-success text-white";
+      if (data.statut === "Conseiller") badgeClass = "bg-primary text-white";
+
+      const newRow = document.createElement("tr");
+      newRow.innerHTML = `
+        <td><strong>${matriculeAuto}</strong></td>
+        <td>${data.nom || '-'}</td>
+        <td>${data.contact || '-'}</td>
+        <td>${data.localisation || '-'}</td>
+        <td><span class="badge ${badgeClass} px-2 py-1">${data.statut || 'Membre'}</span></td>
+        <td>${data.dateAdhesion || '-'}</td>
+        <td class="text-center">
+          <button type="button" class="btn btn-sm btn-outline-primary me-1">
+            <i class="icon ion-md-eye"></i>
+          </button>
+          <button type="button" class="btn btn-sm btn-outline-warning">
+            <i class="icon ion-md-create"></i>
+          </button>
+        </td>
+      `;
+      tbody.appendChild(newRow);
+    });
+  });
+</script>
+   
 
     </body>
 </html>
