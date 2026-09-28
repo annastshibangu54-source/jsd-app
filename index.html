@@ -1567,20 +1567,59 @@ import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot
     }
   };
 
-  // 3. Déconnexion
-  window.deconnexionMessagerie = function() {
-    membreChatSession = null;
-    estModePresidentChat = false;
-    conversationActiveMembreId = null;
+  // Connexion unifiée : Membres (Nom + Matricule) / Président (Code secret dans le Matricule)
+window.connexionMessagerie = async function() {
+  const nomSaisi = document.getElementById("chatNom") ? document.getElementById("chatNom").value.trim() : "";
+  const matriculeSaisi = document.getElementById("chatMatricule") ? document.getElementById("chatMatricule").value.trim().toUpperCase() : "";
 
-    if (unsubscribeMessagesMembre) unsubscribeMessagesMembre();
-    if (unsubscribeMessagesPresident) unsubscribeMessagesPresident();
+  if (!matriculeSaisi) {
+    alert("Veuillez remplir le champ matricule.");
+    return;
+  }
 
-    document.getElementById("blocConnexionChat").style.display = "block";
-    document.getElementById("blocDiscussionChat").style.display = "none";
-    document.getElementById("badgeStatutConnexion").innerText = "Non connecté";
-    document.getElementById("badgeStatutConnexion").className = "badge bg-light text-dark";
-  };
+  // 1. DÉTECTION ACCÈS PRÉSIDENT (Si vous saisissez ADMIN2026 dans le champ Matricule)
+  if (matriculeSaisi === "ADMIN2026") {
+    estModePresidentChat = true;
+    membreChatSession = { id: "president", nom: "Président JSD", matricule: "PRESIDENT" };
+    ouvrirEspaceDiscussionPresident();
+    return;
+  }
+
+  // 2. ACCÈS MEMBRE ORDINAIRE (Nécessite Nom ET Matricule)
+  if (!nomSaisi) {
+    alert("Veuillez saisir votre Nom et votre Matricule pour accéder au chat.");
+    return;
+  }
+
+  try {
+    const snapshotMembres = await getDocs(collection(db, "membres"));
+    let membreTrouve = null;
+
+    snapshotMembres.forEach((docSnap) => {
+      const data = docSnap.data();
+      const docId = docSnap.id;
+      const matriculeAuto = "JSD-2026-" + docId.substring(0, 4).toUpperCase();
+      const nomData = (data.nom || "").trim().toLowerCase();
+
+      if ((nomData === nomSaisi.toLowerCase() || nomData.includes(nomSaisi.toLowerCase())) && matriculeAuto === matriculeSaisi) {
+        membreTrouve = { id: docId, nom: data.nom, matricule: matriculeAuto };
+      }
+    });
+
+    if (membreTrouve) {
+      membreChatSession = membreTrouve;
+      estModePresidentChat = false;
+      ouvrirEspaceDiscussionMembre();
+    } else {
+      alert("Accès refusé ! Le Nom ou le Matricule est incorrect.");
+    }
+  } catch (err) {
+    console.error("Erreur d'accès :", err);
+    alert("Erreur lors de la vérification des identifiants.");
+  }
+};
+
+
 
   // 4. Ouverture espace Membre
   function ouvrirEspaceDiscussionMembre() {
