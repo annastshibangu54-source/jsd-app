@@ -891,60 +891,55 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         </div>
         <!-- Clients End -->
 
-<div class="table-responsive">
-    <table class="table table-hover align-middle">
-        <thead class="thead-light">
-            <tr>
-                <th>Matricule</th>
-                <th>Nom & Prénom</th>
-                <th>Contact</th>
-                <th>Localisation</th>
-                <th>Statut</th>
-                <th>Date d'Adhésion</th>
-                <th class="text-center">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Ligne 1 : Président -->
-            <tr>
-                <td><strong>JSD-2026-001</strong></td>
-                <td>Mike TSHIBANGU KALOMBO</td>
-                <td>+243 906819993</td>
-                <td>Kinshasa, RDC</td>
-                <td><span class="badge badge-success px-2 py-1">Président</span></td>
-                <td>06/09/2026</td>
-                <td class="text-center">
-                    <button type="button" class="btn btn-sm btn-outline-primary me-1" onclick="voirMembre('JSD-2026-001')">
-                        <i class="icon ion-md-eye" style="pointer-events: none;"></i>
-                    </button>
-                    <button type="button" class="btn btn-sm btn-outline-warning" onclick="modifierMembre('JSD-2026-001')">
-                        <i class="icon ion-md-create" style="pointer-events: none;"></i>
-                    </button>
-                </td>
-            </tr>
+<!-- FORMULAIRE D'ENREGISTREMENT DES MEMBRES JSD -->
+<div class="card mb-4 shadow-sm border-0">
+  <div class="card-header bg-primary text-white font-weight-bold">
+    <i class="icon ion-md-person-add me-2"></i> Formulaire d'Enregistrement d'un Membre
+  </div>
+  <div class="card-body">
+    <form id="formulaireInscription" onsubmit="enregistrerMembre(event)">
+      <div class="row g-3">
+        
+        <!-- Champ 1 : Nom & Prénom -->
+        <div class="col-md-4">
+          <label class="form-label font-weight-bold">Nom & Prénom</label>
+          <input type="text" id="nomMembre" class="form-control" placeholder="Ex: Jean Mukendi" required>
+        </div>
 
-            <!-- Ligne 2 : Conseiller -->
-            <tr>
-                <td><strong>JSD-2026-002</strong></td>
-                <td>SANTA TANGANIKA USENI</td>
-                <td>+243 ...</td>
-                <td>Kinshasa, RDC</td>
-                <td><span class="badge badge-primary px-2 py-1">Conseiller</span></td>
-                <td>06/09/2026</td>
-                <td class="text-center">
-                    <button type="button" class="btn btn-sm btn-outline-primary me-1" onclick="voirMembre('JSD-2026-002')">
-                        <i class="icon ion-md-eye" style="pointer-events: none;"></i>
-                    </button>
-                    <button type="button" class="btn btn-sm btn-outline-warning" onclick="modifierMembre('JSD-2026-002')">
-                        <i class="icon ion-md-create" style="pointer-events: none;"></i>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <!-- Champ 2 : Contact (Téléphone / WhatsApp) -->
+        <div class="col-md-4">
+          <label class="form-label font-weight-bold">Contact (Téléphone / WhatsApp)</label>
+          <input type="text" id="contactMembre" class="form-control" placeholder="+243 ..." required>
+        </div>
+
+        <!-- Champ 3 : Commune / Ville -->
+        <div class="col-md-4">
+          <label class="form-label font-weight-bold">Commune / Ville</label>
+          <input type="text" id="localisationMembre" class="form-control" placeholder="Ex: Bandalungwa, Kinshasa">
+        </div>
+
+        <!-- Champ 4 : Statut / Catégorie -->
+        <div class="col-md-4 mt-3">
+          <label class="form-label font-weight-bold">Statut / Catégorie</label>
+          <select id="statutMembre" class="form-select">
+            <option value="Membre">Membre</option>
+            <option value="Président">Président</option>
+            <option value="Conseiller">Conseiller</option>
+            <option value="Cadre">Cadre</option>
+          </select>
+        </div>
+
+        <!-- Bouton de soumission unique avec type="submit" -->
+        <div class="col-md-8 mt-3 d-flex align-items-end justify-content-end">
+          <button type="submit" class="btn btn-primary px-4 py-2">
+            <i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer
+          </button>
+        </div>
+
+      </div>
+    </form>
+  </div>
 </div>
-
-
 
 
         <!-- Section Conversation Protégée Start -->
