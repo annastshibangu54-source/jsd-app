@@ -891,137 +891,77 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         </div>
         <!-- Clients End -->
 
-<!-- FORMULAIRE D'ENREGISTREMENT DES MEMBRES JSD -->
-<div class="card mb-4 shadow-sm border-0">
-  <div class="card-header bg-primary text-white font-weight-bold">
-    <i class="icon ion-md-person-add me-2"></i> Formulaire d'Enregistrement d'un Membre
+<!-- FORMULAIRE ET TABLEAU D'ENREGISTREMENT MEMBRES JSD -->
+<div class="container py-4">
+
+  <!-- Formulaire d'enregistrement -->
+  <div class="card mb-4 shadow-sm border-0">
+    <div class="card-header bg-primary text-white font-weight-bold">
+      <i class="icon ion-md-person-add me-2"></i> Formulaire d'Enregistrement d'un Membre
+    </div>
+    <div class="card-body">
+      <form id="formulaireInscription" onsubmit="enregistrerMembre(event)">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label font-weight-bold">Nom & Prénom</label>
+            <input type="text" id="nomMembre" class="form-control" placeholder="Ex: Jean Mukendi" required>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label font-weight-bold">Contact (Téléphone / WhatsApp)</label>
+            <input type="text" id="contactMembre" class="form-control" placeholder="+243 ..." required>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label font-weight-bold">Commune / Ville</label>
+            <input type="text" id="localisationMembre" class="form-control" placeholder="Ex: Bandalungwa, Kinshasa">
+          </div>
+          <div class="col-md-4 mt-3">
+            <label class="form-label font-weight-bold">Statut / Catégorie</label>
+            <select id="statutMembre" class="form-select">
+              <option value="Membre">Membre</option>
+              <option value="Président">Président</option>
+              <option value="Conseiller">Conseiller</option>
+              <option value="Cadre">Cadre</option>
+            </select>
+          </div>
+          <div class="col-md-8 mt-3 d-flex align-items-end justify-content-end">
+            <button type="submit" class="btn btn-primary px-4 py-2">
+              <i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
-  <div class="card-body">
-    <form id="formulaireInscription" onsubmit="enregistrerMembre(event)">
-      <div class="row g-3">
-        
-        <!-- Champ 1 : Nom & Prénom -->
-        <div class="col-md-4">
-          <label class="form-label font-weight-bold">Nom & Prénom</label>
-          <input type="text" id="nomMembre" class="form-control" placeholder="Ex: Jean Mukendi" required>
-        </div>
 
-        <!-- Champ 2 : Contact (Téléphone / WhatsApp) -->
-        <div class="col-md-4">
-          <label class="form-label font-weight-bold">Contact (Téléphone / WhatsApp)</label>
-          <input type="text" id="contactMembre" class="form-control" placeholder="+243 ..." required>
-        </div>
-
-        <!-- Champ 3 : Commune / Ville -->
-        <div class="col-md-4">
-          <label class="form-label font-weight-bold">Commune / Ville</label>
-          <input type="text" id="localisationMembre" class="form-control" placeholder="Ex: Bandalungwa, Kinshasa">
-        </div>
-
-        <!-- Champ 4 : Statut / Catégorie -->
-        <div class="col-md-4 mt-3">
-          <label class="form-label font-weight-bold">Statut / Catégorie</label>
-          <select id="statutMembre" class="form-select">
-            <option value="Membre">Membre</option>
-            <option value="Président">Président</option>
-            <option value="Conseiller">Conseiller</option>
-            <option value="Cadre">Cadre</option>
-          </select>
-        </div>
-
-        <!-- Bouton de soumission unique avec type="submit" -->
-        <div class="col-md-8 mt-3 d-flex align-items-end justify-content-end">
-          <button type="submit" class="btn btn-primary px-4 py-2">
-            <i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer
-          </button>
-        </div>
-
+  <!-- Tableau d'affichage dynamique -->
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-dark text-white font-weight-bold">
+      <i class="icon ion-md-people me-2"></i> Liste des Membres Enregistrés
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>Matricule</th>
+              <th>Nom & Prénom</th>
+              <th>Contact</th>
+              <th>Localisation</th>
+              <th>Statut</th>
+              <th>Date d'adhésion</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="corpsTableauMembres">
+            <!-- Les membres enregistrés dans Firebase s'afficheront ici -->
+          </tbody>
+        </table>
       </div>
-    </form>
+    </div>
   </div>
+
 </div>
 
-
-        <!-- Section Conversation Protégée Start -->
-        <div class="private-chat section-padding" id="chat-president" style="padding: 60px 0; background-color: #ffffff;">
-            <div class="container">
-                <div class="section-header text-center mb-5">
-                    <h2>Espace d'Échange Confidentiel</h2>
-                    <p>Canal de communication directe et sécurisé entre les membres et le Président de la JSD</p>
-                </div>
-
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <!-- Étape 1 : Authentification / Code d'accès -->
-                        <div class="card shadow border-0 mb-4" id="chatAuthCard">
-                            <div class="card-header bg-danger text-white text-center py-3">
-                                <h5 class="mb-0 text-white"><i class="ion-md-lock"></i> Accès Réserve & Sécurisé</h5>
-                            </div>
-                            <div class="card-body p-4 text-center">
-                                <p class="text-muted">Veuillez vous identifier avec votre matricule membre et votre code PIN d'accès pour ouvrir votre session de messagerie avec la Présidence.</p>
-                                <form id="chatAuthForm" class="form-inline justify-content-center mt-3">
-                                    <div class="form-group mb-2 mr-2">
-                                        <input type="text" class="form-control" id="chatMatricule" placeholder="Matricule (ex: JSD-2026-001)" required>
-                                    </div>
-                                    <div class="form-group mb-2 mr-2">
-                                        <input type="password" class="form-control" id="chatPin" placeholder="TSHIS001" required>
-                                    </div>
-                                    <button type="button" onclick="unlockChat()" class="btn btn-danger mb-2 px-4"><i class="ion-md-key"></i> Déverrouiller</button>
-                                </form>
-                            </div>
-                        </div>
-
-                        <!-- Étape 2 : Interface de Chat (Masquée par défaut) -->
-                        <div class="card shadow border-0 d-none" id="chatBoxCard">
-                            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3">
-                                <div class="d-flex align-items-center">
-                                    <i class="ion-md-person-circle text-success mr-2" style="font-size: 1.8rem;"></i>
-                                    <div>
-                                        <h6 class="mb-0 text-white">Conversation Directe — Présidence JSD</h6>
-                                        <small class="text-muted"><i class="ion-md-checkmark-circle text-success"></i> Session Chiffrée & Active</small>
-                                    </div>
-                                </div>
-                                <button class="btn btn-sm btn-outline-light" onclick="lockChat()"><i class="ion-md-log-out"></i> Quitter</button>
-                            </div>
-                            
-                            <!-- Fenêtre de défilement des messages -->
-                            <div class="card-body p-4" id="chatMessages" style="height: 380px; overflow-y: auto; background-color: #f4f6f9;">
-                                <!-- Message reçu du Président -->
-                                <div class="d-flex flex-row justify-content-start mb-3">
-                                    <div class="p-3 bg-white border rounded shadow-sm" style="max-width: 75%;">
-                                        <p class="small text-danger mb-1 font-weight-bold">Président Mike TSHIBANGU</p>
-                                        <p class="mb-0 text-dark" style="font-size: 0.95rem;">Bonjour et bienvenue dans votre espace réservé. Comment puis-je vous assister aujourd'hui dans vos démarches au sein de la JSD ?</p>
-                                        <span class="small text-muted d-block text-right mt-1">10:15 AM</span>
-                                    </div>
-                                </div>
-
-                                <!-- Message envoyé par le Membre -->
-                                <div class="d-flex flex-row justify-content-end mb-3">
-                                    <div class="p-3 bg-primary text-white rounded shadow-sm" style="max-width: 75%;">
-                                        <p class="small text-white-50 mb-1 font-weight-bold">Vous (Membre)</p>
-                                        <p class="mb-0" style="font-size: 0.95rem;">Bonjour M. le Président, je souhaite soumettre un rapport sur le projet de formation en informatique pour mon district.</p>
-                                        <span class="small text-white-50 d-block text-right mt-1">10:18 AM</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Champ d'envoi de message -->
-                            <div class="card-footer bg-white p-3">
-                                <form id="sendMessageForm" onsubmit="event.preventDefault(); sendChatMessage();">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="chatInputMessage" placeholder="Écrivez votre message confidentiel ici..." required>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-danger" type="submit"><i class="ion-md-send"></i> Envoyer</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- Script minimal de gestion d'accès et d'envoi -->
         <script>
