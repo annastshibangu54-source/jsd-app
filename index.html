@@ -1033,7 +1033,99 @@ function modifierMembre(matricule) {
 </script>
 
 
-        <!-- Section Conversation Protégée End -->
+       <!-- SECTION MESSAGERIE PRIVÉE : MEMBRES <-> PRÉSIDENT -->
+<div class="card shadow-sm border-0 my-5" id="sectionMessagerie">
+  <div class="card-header bg-primary text-white font-weight-bold d-flex justify-content-between align-items-center">
+    <span><i class="icon ion-md-chatboxes me-2"></i> Messagerie Directe avec le Président</span>
+    <span id="badgeStatutConnexion" class="badge bg-light text-dark">Non connecté</span>
+  </div>
+  <div class="card-body">
+
+    <!-- ÉTAPE 1 : FORMULAIRE D'AUTHENTIFICATION ET CONNEXION -->
+    <div id="blocConnexionChat" class="p-3 bg-light rounded border">
+      <h6 class="fw-bold mb-3"><i class="icon ion-md-lock me-1"></i> Identifiez-vous pour accéder à votre espace de discussion :</h6>
+      <div class="row g-2 align-items-center">
+        <div class="col-md-5">
+          <input type="text" id="chatNom" class="form-control" placeholder="Votre Nom & Prénom enregistré" required>
+        </div>
+        <div class="col-md-4">
+          <input type="text" id="chatMatricule" class="form-control" placeholder="Votre Matricule (ex: JSD-2026-43IC)" required>
+        </div>
+        <div class="col-md-3">
+          <button type="button" class="btn btn-primary w-100" onclick="connexionMessagerie()">
+            <i class="icon ion-md-key me-1"></i> Accéder au Chat
+          </button>
+        </div>
+      </div>
+      <div class="mt-2 text-end">
+        <small><a href="javascript:void(0)" class="text-secondary" onclick="connexionPresidentChat()">[Accès Président]</a></small>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 2 : INTERFACE DE DISCUSSION (Initiale caché) -->
+    <div id="blocDiscussionChat" class="mt-4" style="display: none;">
+      
+      <!-- Vue membre ordinaire : Uniquement sa discussion avec le président -->
+      <div id="vueDiscussionMembre">
+        <div class="alert alert-info py-2 d-flex justify-content-between align-items-center">
+          <small>Espace privé sécurisé de : <strong id="libelleMembreConnecte"></strong></small>
+          <button type="button" class="btn btn-sm btn-outline-secondary" onclick="deconnexionMessagerie()">Déconnexion</button>
+        </div>
+        
+        <div id="boiteMessagesMembre" class="border rounded p-3 mb-3 bg-white" style="height: 320px; overflow-y: auto;">
+          <!-- Les messages du membre et les réponses du président s'affichent ici -->
+        </div>
+
+        <form id="formEnvoyerMessageMembre" onsubmit="envoyerMessageMembre(event)">
+          <div class="input-group">
+            <input type="text" id="champMessageMembre" class="form-control" placeholder="Écrivez votre message au Président ici..." required>
+            <button class="btn btn-primary" type="submit">
+              <i class="icon ion-md-send me-1"></i> Envoyer
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Vue Président : Liste de toutes les discussions privées des membres -->
+      <div id="vueDiscussionPresident" style="display: none;">
+        <div class="alert alert-success py-2 d-flex justify-content-between align-items-center">
+          <small><i class="icon ion-md-shield me-1"></i> <strong>Espace d'Administration Présidentielle</strong></small>
+          <button type="button" class="btn btn-sm btn-outline-secondary" onclick="deconnexionMessagerie()">Déconnexion</button>
+        </div>
+
+        <div class="row">
+          <!-- Colonne gauche : Liste des membres ayant envoyé des messages -->
+          <div class="col-md-4 border-end">
+            <h6 class="fw-bold border-bottom pb-2">Conversations des Membres</h6>
+            <div id="listeConversationsMembres" class="list-group list-group-flush" style="max-height: 380px; overflow-y: auto;">
+              <!-- La liste des membres avec messages apparaîtra ici -->
+            </div>
+          </div>
+
+          <!-- Colonne droite : Fil de discussion avec le membre sélectionné -->
+          <div class="col-md-8">
+            <h6 class="fw-bold border-bottom pb-2" id="titreDiscussionActive">Sélectionnez un membre pour lire sa conversation</h6>
+            <div id="boiteMessagesPresident" class="border rounded p-3 mb-3 bg-white" style="height: 300px; overflow-y: auto;">
+              <p class="text-muted text-center my-5">Cliquez sur un membre à gauche pour afficher la discussion.</p>
+            </div>
+
+            <form id="formEnvoyerReponsePresident" onsubmit="envoyerReponsePresident(event)" style="display: none;">
+              <div class="input-group">
+                <input type="text" id="champReponsePresident" class="form-control" placeholder="Répondre à ce membre..." required>
+                <button class="btn btn-success" type="submit">
+                  <i class="icon ion-md-send me-1"></i> Répondre
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
 
         <!-- Contact Start -->
         <div class="contact">
@@ -1165,8 +1257,8 @@ function modifierMembre(matricule) {
         <script src="js/main.js"></script>
         <!-- Integration Firebase Firestore pour la JSD -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, where, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
   // Configuration Firebase exacte de la JSD
   const firebaseConfig = {
@@ -1415,6 +1507,288 @@ function modifierMembre(matricule) {
       tbody.appendChild(newRow);
     });
   });
+
+    // ==========================================
+  // MODULE MESSAGERIE PRIVÉE MEMBRE <-> PRÉSIDENT
+  // ==========================================
+
+  let membreChatSession = null;
+  let estModePresidentChat = false;
+  let conversationActiveMembreId = null;
+  let unsubscribeMessagesMembre = null;
+  let unsubscribeMessagesPresident = null;
+
+  // 1. Authentification d'un Membre
+  window.connexionMessagerie = async function() {
+    const nomSaisi = document.getElementById("chatNom").value.trim();
+    const matriculeSaisi = document.getElementById("chatMatricule").value.trim().toUpperCase();
+
+    if (!nomSaisi || !matriculeSaisi) {
+      alert("Veuillez saisir votre nom et votre matricule.");
+      return;
+    }
+
+    try {
+      const snapshotMembres = await getDocs(collection(db, "membres"));
+      let membreTrouve = null;
+
+      snapshotMembres.forEach((docSnap) => {
+        const data = docSnap.data();
+        const docId = docSnap.id;
+        const matriculeAuto = "JSD-2026-" + docId.substring(0, 4).toUpperCase();
+
+        if (data.nom && data.nom.toLowerCase() === nomSaisi.toLowerCase() && matriculeAuto === matriculeSaisi) {
+          membreTrouve = { id: docId, nom: data.nom, matricule: matriculeAuto };
+        }
+      });
+
+      if (membreTrouve) {
+        membreChatSession = membreTrouve;
+        estModePresidentChat = false;
+        ouvrirEspaceDiscussionMembre();
+      } else {
+        alert("Accès refusé ! Le nom et le matricule ne correspondent à aucun membre enregistré.");
+      }
+    } catch (err) {
+      console.error("Erreur d'authentification : ", err);
+      alert("Erreur lors de la connexion au chat.");
+    }
+  };
+
+  // 2. Accès spécial pour le Président
+  window.connexionPresidentChat = function() {
+    const codeSaisi = prompt("Saisissez le code secret du Président pour accéder à l'administration du chat :");
+    if (codeSaisi === CODE_SECRET_PRESIDENT) {
+      estModePresidentChat = true;
+      membreChatSession = { nom: "Président JSD", matricule: "PRESIDENT" };
+      ouvrirEspaceDiscussionPresident();
+    } else if (codeSaisi !== null) {
+      alert("Code secret incorrect !");
+    }
+  };
+
+  // 3. Déconnexion
+  window.deconnexionMessagerie = function() {
+    membreChatSession = null;
+    estModePresidentChat = false;
+    conversationActiveMembreId = null;
+
+    if (unsubscribeMessagesMembre) unsubscribeMessagesMembre();
+    if (unsubscribeMessagesPresident) unsubscribeMessagesPresident();
+
+    document.getElementById("blocConnexionChat").style.display = "block";
+    document.getElementById("blocDiscussionChat").style.display = "none";
+    document.getElementById("badgeStatutConnexion").innerText = "Non connecté";
+    document.getElementById("badgeStatutConnexion").className = "badge bg-light text-dark";
+  };
+
+  // 4. Ouverture espace Membre
+  function ouvrirEspaceDiscussionMembre() {
+    document.getElementById("blocConnexionChat").style.display = "none";
+    document.getElementById("blocDiscussionChat").style.display = "block";
+    document.getElementById("vueDiscussionMembre").style.display = "block";
+    document.getElementById("vueDiscussionPresident").style.display = "none";
+
+    document.getElementById("libelleMembreConnecte").innerText = `${membreChatSession.nom} (${membreChatSession.matricule})`;
+    document.getElementById("badgeStatutConnexion").innerText = "Membre Connecté";
+    document.getElementById("badgeStatutConnexion").className = "badge bg-success text-white";
+
+    ecouterMessagesMembre(membreChatSession.id);
+  }
+
+  // 5. Ouverture espace Président
+  function ouvrirEspaceDiscussionPresident() {
+    document.getElementById("blocConnexionChat").style.display = "none";
+    document.getElementById("blocDiscussionChat").style.display = "block";
+    document.getElementById("vueDiscussionMembre").style.display = "none";
+    document.getElementById("vueDiscussionPresident").style.display = "block";
+
+    document.getElementById("badgeStatutConnexion").innerText = "Président (Admin)";
+    document.getElementById("badgeStatutConnexion").className = "badge bg-danger text-white";
+
+    chargerListeConversationsPresident();
+  }
+
+  // 6. Écoute des messages côté Membre
+  function ecouterMessagesMembre(membreId) {
+    const q = query(
+      collection(db, "messages"),
+      where("membreId", "==", membreId)
+    );
+
+    if (unsubscribeMessagesMembre) unsubscribeMessagesMembre();
+
+    unsubscribeMessagesMembre = onSnapshot(q, (snapshot) => {
+      const boite = document.getElementById("boiteMessagesMembre");
+      boite.innerHTML = "";
+
+      let messages = [];
+      snapshot.forEach(docSnap => {
+        messages.push({ id: docSnap.id, ...docSnap.data() });
+      });
+
+      // Tri par horodatage
+      messages.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+
+      if (messages.length === 0) {
+        boite.innerHTML = `<p class="text-muted text-center my-4">Aucun message pour le moment. Écrivez au Président ci-dessous.</p>`;
+        return;
+      }
+
+      messages.forEach((msg) => {
+        const estMoi = msg.expediteur === "membre";
+        const divMsg = document.createElement("div");
+        divMsg.className = `d-flex mb-2 ${estMoi ? 'justify-content-end' : 'justify-content-start'}`;
+        divMsg.innerHTML = `
+          <div class="p-2 px-3 rounded ${estMoi ? 'bg-primary text-white' : 'bg-light text-dark border'}" style="max-width: 75%;">
+            <small class="d-block fw-bold" style="font-size: 0.75rem;">${estMoi ? 'Vous' : 'Président JSD'}</small>
+            <span>${msg.texte}</span>
+            <small class="d-block text-end mt-1 ${estMoi ? 'text-white-50' : 'text-muted'}" style="font-size: 0.65rem;">${msg.heure || ''}</small>
+          </div>
+        `;
+        boite.appendChild(divMsg);
+      });
+
+      boite.scrollTop = boite.scrollHeight;
+    });
+  }
+
+  // 7. Envoi message par un Membre
+  window.envoyerMessageMembre = async function(e) {
+    e.preventDefault();
+    const input = document.getElementById("champMessageMembre");
+    const texte = input.value.trim();
+
+    if (!texte || !membreChatSession) return;
+
+    try {
+      await addDoc(collection(db, "messages"), {
+        membreId: membreChatSession.id,
+        nomMembre: membreChatSession.nom,
+        matriculeMembre: membreChatSession.matricule,
+        expediteur: "membre",
+        texte: texte,
+        timestamp: Date.now(),
+        heure: new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+      });
+      input.value = "";
+    } catch (err) {
+      console.error("Erreur d'envoi du message : ", err);
+      alert("Impossible d'envoyer le message.");
+    }
+  };
+
+  // 8. Charger la liste des conversations pour le Président
+  function chargerListeConversationsPresident() {
+    onSnapshot(collection(db, "messages"), (snapshot) => {
+      const conteneurListe = document.getElementById("listeConversationsMembres");
+      conteneurListe.innerHTML = "";
+
+      let conversationsMap = {};
+
+      snapshot.forEach(docSnap => {
+        const data = docSnap.data();
+        if (!conversationsMap[data.membreId]) {
+          conversationsMap[data.membreId] = {
+            membreId: data.membreId,
+            nomMembre: data.nomMembre,
+            matriculeMembre: data.matriculeMembre,
+            dernierTimestamp: data.timestamp || 0
+          };
+        } else if ((data.timestamp || 0) > conversationsMap[data.membreId].dernierTimestamp) {
+          conversationsMap[data.membreId].dernierTimestamp = data.timestamp || 0;
+        }
+      });
+
+      const listeTries = Object.values(conversationsMap).sort((a, b) => b.dernierTimestamp - a.dernierTimestamp);
+
+      if (listeTries.length === 0) {
+        conteneurListe.innerHTML = `<p class="text-muted p-2 text-center">Aucun message de membre reçu.</p>`;
+        return;
+      }
+
+      listeTries.forEach(conv => {
+        const item = document.createElement("a");
+        item.href = "javascript:void(0)";
+        item.className = `list-group-item list-group-item-action ${conversationActiveMembreId === conv.membreId ? 'active' : ''}`;
+        item.innerHTML = `
+          <div class="fw-bold">${conv.nomMembre}</div>
+          <small class="${conversationActiveMembreId === conv.membreId ? 'text-white-50' : 'text-muted'}">${conv.matriculeMembre}</small>
+        `;
+        item.onclick = () => selectionnerConversationPresident(conv.membreId, conv.nomMembre, conv.matriculeMembre);
+        conteneurListe.appendChild(item);
+      });
+    });
+  }
+
+  // 9. Sélectionner une discussion par le Président
+  function selectionnerConversationPresident(membreId, nomMembre, matriculeMembre) {
+    conversationActiveMembreId = membreId;
+    document.getElementById("titreDiscussionActive").innerText = `Discussion avec : ${nomMembre} (${matriculeMembre})`;
+    document.getElementById("formEnvoyerReponsePresident").style.display = "flex";
+
+    chargerListeConversationsPresident(); // Actualiser le focus visuel sur la liste
+
+    const q = query(
+      collection(db, "messages"),
+      where("membreId", "==", membreId)
+    );
+
+    if (unsubscribeMessagesPresident) unsubscribeMessagesPresident();
+
+    unsubscribeMessagesPresident = onSnapshot(q, (snapshot) => {
+      const boite = document.getElementById("boiteMessagesPresident");
+      boite.innerHTML = "";
+
+      let messages = [];
+      snapshot.forEach(docSnap => {
+        messages.push({ id: docSnap.id, ...docSnap.data() });
+      });
+
+      messages.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+
+      messages.forEach((msg) => {
+        const estPresident = msg.expediteur === "president";
+        const divMsg = document.createElement("div");
+        divMsg.className = `d-flex mb-2 ${estPresident ? 'justify-content-end' : 'justify-content-start'}`;
+        divMsg.innerHTML = `
+          <div class="p-2 px-3 rounded ${estPresident ? 'bg-success text-white' : 'bg-light text-dark border'}" style="max-width: 75%;">
+            <small class="d-block fw-bold" style="font-size: 0.75rem;">${estPresident ? 'Vous (Président)' : nomMembre}</small>
+            <span>${msg.texte}</span>
+            <small class="d-block text-end mt-1 ${estPresident ? 'text-white-50' : 'text-muted'}" style="font-size: 0.65rem;">${msg.heure || ''}</small>
+          </div>
+        `;
+        boite.appendChild(divMsg);
+      });
+
+      boite.scrollTop = boite.scrollHeight;
+    });
+  }
+
+  // 10. Envoi de la réponse par le Président
+  window.envoyerReponsePresident = async function(e) {
+    e.preventDefault();
+    const input = document.getElementById("champReponsePresident");
+    const texte = input.value.trim();
+
+    if (!texte || !conversationActiveMembreId) return;
+
+    try {
+      await addDoc(collection(db, "messages"), {
+        membreId: conversationActiveMembreId,
+        expediteur: "president",
+        texte: texte,
+        timestamp: Date.now(),
+        heure: new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+      });
+      input.value = "";
+    } catch (err) {
+      console.error("Erreur lors de l'envoi de la réponse : ", err);
+      alert("Impossible d'envoyer la réponse.");
+    }
+  };
+
+
 </script>
 
 
