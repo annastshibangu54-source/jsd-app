@@ -966,11 +966,45 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 </div>
 
         
-<!-- SECTION ÉVÉNEMENTS JSD -->
-<section class="container my-5">
-  <h3 class="fw-bold text-primary mb-3">📅 Événements & Activités à venir</h3>
-  <div id="events-widget-container"></div>
-</section>
+<!-- Formulaire de publication -->
+<div id="formulairePublicatEvent" class="card shadow-sm p-4 mb-4 border-primary" style="display: none;">
+  <h5 class="fw-bold text-primary mb-3">Publier un nouvel événement</h5>
+  <div class="row g-3">
+    <div class="col-md-6">
+      <label class="form-label font-weight-bold">Titre de l'événement</label>
+      <input type="text" id="evTitre" class="form-control" placeholder="ex: Conférence Annuelle">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label font-weight-bold">Affiche / Image (Depuis appareil)</label>
+      <input type="file" id="evFichierImage" class="form-control" accept="image/*">
+    </div>
+
+    <!-- NOUVEAU : Champ Texte / Légende pour l'image -->
+    <div class="col-12">
+      <label class="form-label font-weight-bold">Texte d'accompagnement (Description de l'affiche)</label>
+      <textarea id="evDescription" class="form-control" rows="2" placeholder="Saisissez un message ou une légende sous/sur l'image..."></textarea>
+    </div>
+
+    <div class="col-md-4">
+      <label class="form-label font-weight-bold">Date</label>
+      <input type="text" id="evDate" class="form-control" placeholder="ex: 12 Novembre 2026">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label font-weight-bold">Lieu</label>
+      <input type="text" id="evLieu" class="form-control" placeholder="ex: Siège JSD / Kinshasa">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label font-weight-bold">Nombre de places</label>
+      <input type="number" id="evPlaces" class="form-control" value="50">
+    </div>
+    <div class="col-12 text-end mt-3">
+      <button class="btn btn-secondary me-2" onclick="toggleFormulaireEvenement()">Annuler</button>
+      <button class="btn btn-success fw-bold" onclick="publierNouvelEvenement()">Publier l'événement</button>
+    </div>
+  </div>
+</div>
+
+
 
 
         <!-- Script minimal de gestion d'accès et d'envoi -->
@@ -1876,53 +1910,105 @@ window.connexionMessagerie = async function() {
   // Lancement automatique des notifications au chargement
   initialiserNotifications();
 
-// ==========================================
-  // MODULE 2 : ESPACE ÉVÉNEMENTS & INSCRIPTIONS
-  // ==========================================
+  // Publier l'événement avec description et image locale
+  window.publierNouvelEvenement = async function() {
+    const titre = document.getElementById("evTitre").value.trim();
+    const description = document.getElementById("evDescription").value.trim();
+    const date = document.getElementById("evDate").value.trim();
+    const lieu = document.getElementById("evLieu").value.trim();
+    const places = parseInt(document.getElementById("evPlaces").value);
+    const fileInput = document.getElementById("evFichierImage");
 
-  // Liste des événements (modifiable selon vos besoins)
-  const listeEvenements = [
-    { id: 101, titre: "Atelier de Formation Jeunesse", date: "15 Octobre 2026", lieu: "Siège JSD / Kinshasa", places: 30 },
-    { id: 102, titre: "Assemblée Générale Ordinaire", date: "05 Novembre 2026", lieu: "Grande Salle YMCA", places: 50 }
-  ];
+    if (!titre || !date || !lieu) {
+      alert("Veuillez remplir au moins le titre, la date et le lieu.");
+      return;
+    }
 
-  function afficherEvenements() {
-    const conteneur = document.getElementById("events-widget-container");
-    if (!conteneur) return;
+    let imageUrl = "https://via.placeholder.com/400x200?text=JSD+Evenement";
 
-    conteneur.innerHTML = `
-      <div class="row g-3">
-        ${listeEvenements.map(ev => `
-          <div class="col-md-6">
-            <div class="card h-100 shadow-sm border-0 rounded-3">
-              <div class="card-body">
-                <h5 class="card-title text-primary fw-bold">${ev.titre}</h5>
-                <p class="card-text mb-1">📅 <strong>Date :</strong> ${ev.date}</p>
-                <p class="card-text mb-1">📍 <strong>Lieu :</strong> ${ev.lieu}</p>
-                <p class="card-text mb-3">👥 <strong>Places restantes :</strong> <span id="places-${ev.id}" class="badge bg-success">${ev.places}</span></p>
-                <button class="btn btn-primary w-100 fw-bold" onclick="inscrireEvenement(${ev.id})">S'inscrire à l'activité</button>
-              </div>
-            </div>
-          </div>
-        `).join('')}
-      </div>
-    `;
-  }
+    if (fileInput.files && fileInput.files[0]) {
+      const file = fileInput.files[0];
+      imageUrl = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(file);
+      });
+    }
 
-  // Fonction d'inscription à un événement
-  window.inscrireEvenement = function(eventId) {
-    const ev = listeEvenements.find(e => e.id === eventId);
-    if (ev && ev.places > 0) {
-      ev.places--;
-      document.getElementById(`places-${eventId}`).textContent = ev.places;
-      alert(`Votre inscription à "${ev.titre}" a bien été enregistrée !`);
-    } else {
-      alert("Désolé, il n'y a plus de places disponibles pour cet événement.");
+    try {
+      await addDoc(collection(db, "evenements"), {
+        titre: titre,
+        description: description || "",
+        imageUrl: imageUrl,
+        date: date,
+        lieu: lieu,
+        places: places || 0,
+        createdAt: new Date()
+      });
+
+      alert("🎉 Événement publié avec succès !");
+      document.getElementById("formulairePublicatEvent").style.display = "none";
+      
+      // Réinitialisation
+      document.getElementById("evTitre").value = "";
+      document.getElementById("evDescription").value = "";
+      document.getElementById("evDate").value = "";
+      document.getElementById("evLieu").value = "";
+      fileInput.value = "";
+    } catch (e) {
+      console.error("Erreur de publication :", e);
+      alert("Erreur lors de la publication de l'événement.");
     }
   };
 
-  // Lancement automatique au chargement
-  afficherEvenements();
+  // Affichage dynamique des cartes d'événements avec le texte en dessous de l'image
+  function ecouterEvenementsFirebase() {
+    const conteneur = document.getElementById("events-widget-container");
+    if (!conteneur) return;
+
+    onSnapshot(collection(db, "evenements"), (snapshot) => {
+      if (snapshot.empty) {
+        conteneur.innerHTML = `<p class="text-muted text-center">Aucun événement prévu pour le moment.</p>`;
+        return;
+      }
+
+      let htmlContent = `<div class="row g-4">`;
+      snapshot.forEach((docSnap) => {
+        const ev = docSnap.data();
+        const evId = docSnap.id;
+
+        htmlContent += `
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+              <!-- Titre -->
+              <div class="card-header bg-primary text-white font-weight-bold">
+                <h5 class="mb-0 fs-6">${ev.titre}</h5>
+              </div>
+
+              <!-- Image choisie sur l'appareil -->
+              <img src="${ev.imageUrl}" class="card-img-top" alt="${ev.titre}" style="max-height: 220px; object-fit: cover;">
+              
+              <div class="card-body d-flex flex-column">
+                <!-- Texte/Légende en dessous de l'image -->
+                ${ev.description ? `<p class="card-text text-secondary small italic mb-3 border-start border-3 border-primary ps-2">${ev.description}</p>` : ''}
+                
+                <p class="card-text mb-1"><small class="text-muted">📅 Date :</small> <strong>${ev.date}</strong></p>
+                <p class="card-text mb-2"><small class="text-muted">📍 Lieu :</small> <strong>${ev.lieu}</strong></p>
+                
+                <div class="mt-auto pt-2">
+                  <p class="card-text mb-2">👥 Places restantes : <span id="places-${evId}" class="badge bg-success">${ev.places}</span></p>
+                  <button class="btn btn-primary w-100 fw-bold" onclick="inscrireEvenementDynamique('${evId}', ${ev.places})">S'inscrire</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      htmlContent += `</div>`;
+      conteneur.innerHTML = htmlContent;
+    });
+  }
+
 
 
 </script>
