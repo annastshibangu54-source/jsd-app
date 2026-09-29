@@ -163,6 +163,9 @@
             </div>
         </div>
         <!-- Nav End -->
+        
+<!-- BANNIÈRE DE NOTIFICATIONS -->
+<div id="notif-widget-container" class="my-3 d-flex justify-content-end me-3"></div>
 
         <!-- Header Start-->
         <div class="header">
@@ -961,6 +964,13 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   </div>
 
 </div>
+
+        
+<!-- SECTION ÉVÉNEMENTS JSD -->
+<section class="container my-5">
+  <h3 class="fw-bold text-primary mb-3">📅 Événements & Activités à venir</h3>
+  <div id="events-widget-container"></div>
+</section>
 
 
         <!-- Script minimal de gestion d'accès et d'envoi -->
@@ -1826,6 +1836,93 @@ window.connexionMessagerie = async function() {
       alert("Impossible d'envoyer la réponse.");
     }
   };
+
+    // ==========================================
+  // MODULE 1 : NOTIFICATIONS EN TEMPS RÉEL
+  // ==========================================
+  
+  // Exemple de notifications (vous pourrez plus tard les relier à Firebase)
+  const listeNotifications = [
+    { id: 1, titre: "📢 Annonce JSD", message: "Bienvenue sur notre nouvelle plateforme officielle !" },
+    { id: 2, titre: "💬 Messagerie", message: "Vous pouvez désormais échanger en privé avec le Président." }
+  ];
+
+  function initialiserNotifications() {
+    const conteneur = document.getElementById("notif-widget-container");
+    if (!conteneur) return;
+
+    const nombreNonLues = listeNotifications.length;
+
+    conteneur.innerHTML = `
+      <div class="dropdown">
+        <button class="btn btn-outline-primary position-relative dropdown-toggle" type="button" id="btnNotif" data-bs-toggle="dropdown" aria-expanded="false">
+          🔔 Notifications
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="badgeCountNotif">
+            ${nombreNonLues}
+          </span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end p-2 shadow-sm" style="width: 300px; max-height: 300px; overflow-y: auto;" aria-labelledby="btnNotif" id="listeMenuNotif">
+          ${listeNotifications.map(n => `
+            <li class="p-2 border-bottom">
+              <strong class="d-block text-primary" style="font-size: 0.85rem;">${n.titre}</strong>
+              <small class="text-dark">${n.message}</small>
+            </li>
+          `).join('')}
+        </ul>
+      </div>
+    `;
+  }
+
+  // Lancement automatique des notifications au chargement
+  initialiserNotifications();
+
+// ==========================================
+  // MODULE 2 : ESPACE ÉVÉNEMENTS & INSCRIPTIONS
+  // ==========================================
+
+  // Liste des événements (modifiable selon vos besoins)
+  const listeEvenements = [
+    { id: 101, titre: "Atelier de Formation Jeunesse", date: "15 Octobre 2026", lieu: "Siège JSD / Kinshasa", places: 30 },
+    { id: 102, titre: "Assemblée Générale Ordinaire", date: "05 Novembre 2026", lieu: "Grande Salle YMCA", places: 50 }
+  ];
+
+  function afficherEvenements() {
+    const conteneur = document.getElementById("events-widget-container");
+    if (!conteneur) return;
+
+    conteneur.innerHTML = `
+      <div class="row g-3">
+        ${listeEvenements.map(ev => `
+          <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-0 rounded-3">
+              <div class="card-body">
+                <h5 class="card-title text-primary fw-bold">${ev.titre}</h5>
+                <p class="card-text mb-1">📅 <strong>Date :</strong> ${ev.date}</p>
+                <p class="card-text mb-1">📍 <strong>Lieu :</strong> ${ev.lieu}</p>
+                <p class="card-text mb-3">👥 <strong>Places restantes :</strong> <span id="places-${ev.id}" class="badge bg-success">${ev.places}</span></p>
+                <button class="btn btn-primary w-100 fw-bold" onclick="inscrireEvenement(${ev.id})">S'inscrire à l'activité</button>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  // Fonction d'inscription à un événement
+  window.inscrireEvenement = function(eventId) {
+    const ev = listeEvenements.find(e => e.id === eventId);
+    if (ev && ev.places > 0) {
+      ev.places--;
+      document.getElementById(`places-${eventId}`).textContent = ev.places;
+      alert(`Votre inscription à "${ev.titre}" a bien été enregistrée !`);
+    } else {
+      alert("Désolé, il n'y a plus de places disponibles pour cet événement.");
+    }
+  };
+
+  // Lancement automatique au chargement
+  afficherEvenements();
 
 
 </script>
