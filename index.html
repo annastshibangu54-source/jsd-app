@@ -2094,13 +2094,22 @@ window.connexionMessagerie = async function() {
     }
   };
 
-    try {
-  // Attendre que tout le HTML soit chargé avant de lancer le script document. addEventListener("DOMContentLoaded", ()=> {
-  ecouterEvenementsFirebase();});
+        try {
+      const docRef = doc(db, "evenements", eventId);
+      await updateDoc(docRef, {
+        places: placesActuelles - 1
+      });
+      alert(`Félicitations ${nomMembre}, votre place a été réservée !`);
+    } catch (e) {
+      console.error("Erreur d'inscription :", e);
+      alert("Erreur lors de la réservation.");
+    }
+  };
 
-
-
-
+  // 5. Attendre le chargement complet de la page avant d'exécuter l'écouteur
+  document.addEventListener("DOMContentLoaded", () => {
+    ecouterEvenementsFirebase();
+  });
 </script>
 
     </body>
