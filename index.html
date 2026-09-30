@@ -2094,8 +2094,9 @@ window.connexionMessagerie = async function() {
     }
   };
 
-  // TRÈS IMPORTANT : Lancer l'écoute automatique au chargement
-  ecouterEvenementsFirebase();
+    try {
+  // Attendre que tout le HTML soit chargé avant de lancer le script document. addEventListener("DOMContentLoaded", ()=> {
+  ecouterEvenementsFirebase();});
 
 
 
