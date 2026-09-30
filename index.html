@@ -22,11 +22,7 @@
         <!-- Main Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
 
-        
-
-            <!-- 2. Correction directe des styles pour la couleur et les images sur Render -->
-
-
+        <!-- 2. Correction directe des styles pour la couleur et les images sur Render -->
         <style>
     /* 1. Titre principal et bouton du carrousel */
     .header .carousel-content h2,
@@ -106,25 +102,22 @@
         line-height: 36px !important;
         margin-right: 4px !important;
     }
-            /* Rend le contenu du carrousel et le bouton cliquables au premier plan */
-.carousel-content {
-    position: relative !important;
-    z-index: 9999 !important;
-    pointer-events: auto !important;
-}
+    
+    /* Rend le contenu du carrousel et le bouton cliquables au premier plan */
+    .carousel-content {
+        position: relative !important;
+        z-index: 9999 !important;
+        pointer-events: auto !important;
+    }
 
-.carousel-content .btn,
-.carousel-content a {
-    position: relative !important;
-    z-index: 10000 !important;
-    pointer-events: auto !important;
-    cursor: pointer !important;
-}
-
-
+    .carousel-content .btn,
+    .carousel-content a {
+        position: relative !important;
+        z-index: 10000 !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+    }
 </style>
-
-
     </head>
 
     <body>
@@ -164,9 +157,23 @@
         </div>
         <!-- Nav End -->
         
-<!-- BANNIÈRE DE NOTIFICATIONS -->
-<div id="notif-widget-container" class="my-3 d-flex justify-content-end me-3"></div>
-<div id="events-widget-container"></div>
+        <!-- BANNIÈRE DE NOTIFICATIONS -->
+        <div class="container mt-3">
+            <div class="d-flex justify-content-end align-items-center">
+                <div id="notif-widget-container"></div>
+            </div>
+        </div>
+
+        <!-- SECTION ÉVÉNEMENTS (IMAGE ET TEXTE) -->
+        <div class="container my-4">
+            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+                <h3 class="fw-bold text-primary mb-0"><i class="icon ion-md-calendar me-2"></i> Événements & Activités</h3>
+                <button class="btn btn-sm btn-outline-primary fw-bold" onclick="toggleFormulaireEvenement()">+ Publier une activité</button>
+            </div>
+            
+            <!-- Conteneur d'affichage dynamique des événements -->
+            <div id="events-widget-container"></div>
+        </div>
 
         <!-- Header Start-->
         <div class="header">
@@ -177,7 +184,6 @@
                     <li data-target="#header-slider" data-slide-to="1"></li>
                     <li data-target="#header-slider" data-slide-to="2"></li>
                 </ul>
-                
 
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -188,10 +194,7 @@
                                     <h2>"JSD"</h2>
                                     <p>Franchise Pureté Dévouement</p>
                                      <button type="button" class="btn" style="position: relative; z-index: 10000; cursor: pointer;" onclick="window.location.assign('about.html'); ">En savoir plus</button>
-                                   
                                 </div>
-
-
                             </div>
                             <div class="col-md-6">
                                 <div class="carousel-img">
@@ -262,35 +265,14 @@
                         <div class="about-content">
                             <h2>Bienvenue à la JSD</h2>
                             <p>
-                                Nous, jeunes congolais, animés par la volonté et le souci du
-développement, conscients de la responsabilité qui est la nôtre
-d’améliorer et de contribuer à l’organisation de la vie juvénile
-sur toute l’étendue du territoire national en partageant nos
-expériences et nos peines, en vue de s’imprégner de l’esprit du
-travail et du progrès social en marquant notre temps, époque
-et génération par un esprit et un sens d’initiative voués à
-l’épanouissement ;
-Mus par la volonté de promouvoir les objectifs du
-développement dans le respect total des valeurs humaines, des
-normes et lois de notre pays, la République Démocratique du
-Congo, de combattre les fléaux et maux qui rongent
-l’épanouissement de la jeunesse congolaise, notamment le
-chômage, la mégestion, l’analphabétisme, la délinquance, les
-avortements criminels et les naissances précoces… ;
-Convaincus du rôle que nous sommes appelés à jouer dans la
-société, d’intégrer la jeunesse congolaise dans des initiatives et
-processus de développement communautaire durable ;
-Convaincus de notre idéal de faire des jeunes et par les jeunes
-des acteurs actifs de développement de la nation par la
-participation efficace et totale au processus de reconstruction
-nationale ;
-Considérant que le meilleur procédé à poursuivre pour
-atteindre tous ces objectifs, réside dans l’unité de nos efforts et
-le travail ;
-Jeunesse Sociale pour le Développement Page 2
+                                Nous, jeunes congolais, animés par la volonté et le souci du développement, conscients de la responsabilité qui est la nôtre d’améliorer et de contribuer à l’organisation de la vie juvénile sur toute l’étendue du territoire national en partageant nos expériences et nos peines, en vue de s’imprégner de l’esprit du travail et du progrès social en marquant notre temps, époque et génération par un esprit et un sens d’initiative voués à l’épanouissement ;
+Mus par la volonté de promouvoir les objectifs du développement dans le respect total des valeurs humaines, des normes et lois de notre pays, la République Démocratique du Congo, de combattre les fléaux et maux qui rongent l’épanouissement de la jeunesse congolaise, notamment le chômage, la mégestion, l’analphabétisme, la délinquance, les avortements criminels et les naissances précoces… ;
+Convaincus du rôle que nous sommes appelés à jouer dans la société, d’intégrer la jeunesse congolaise dans des initiatives et processus de développement communautaire durable ;
+Convaincus de notre idéal de faire des jeunes et par les jeunes des acteurs actifs de développement de la nation par la participation efficace et totale au processus de reconstruction nationale ;
+Considérant que le meilleur procédé à poursuivre pour atteindre tous ces objectifs, réside dans l’unité de nos efforts et le travail ;
 Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse Sociale pour le Développement » en sigle JSD, une ONGD/ASBL poursuivant des objectifs nobles de promouvoir, sur l’ensemble du territoire national, l’épanouissement de la jeunesse sans distinction aucune.
                             </p>
-                            <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important; position: relative; z-index: 99999;" onclick="window. location. href='contact.html';"> Nous contacter</Button>
+                            <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important; position: relative; z-index: 99999;" onclick="window.location.href='contact.html';"> Nous contacter</button>
                         </div>
                     </div>
                 </div>
@@ -316,7 +298,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                                 <p>Depuis 2021 jusqu'à ce jour, l'équipe dirigeante et les membres fondateurs poursuivent sans relâche cet engagement commun. Au fil des années, la JSD s'est dotée d'un cadre juridique et organisationnel solide, structuré autour d'organes de gouvernance clairs (Assemblée Générale, Conseil d'Administration et bureau exécutif) et de textes fondateurs garantissant sa transparence et sa pérennité.</p>
                                 <p>Aujourd'hui, l'organisation continue de développer des initiatives concrètes axées sur l'éducation, la formation professionnelle, la lutte contre l'analphabétisme et la délinquance juvénile, tout en promouvant l'entrepreneuriat et l'auto-prise en charge des jeunes Congolais.</p>
                             </div>
-                            <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important; position: relative; z-index: 99999;" onclick="window. location. href='portfolio.html';"> Nos porteffeuilles</Button>
+                            <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important; position: relative; z-index: 99999;" onclick="window.location.href='portfolio.html';"> Nos porteffeuilles</button>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -337,7 +319,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                                 <p>4.Développement durable et citoyenneté: </p> 
                                 <p>-Organiser des initiatives communautaires, des projets de travail à impact social et des activités culturelles et sportives. </p>
                             </div>
-                             <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important; position: relative; z-index: 99999;" onclick="window. location. href='skill.html';"> Nos compétences</Button>
+                             <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important; position: relative; z-index: 99999;" onclick="window.location.href='skill.html';"> Nos compétences</button>
                         </div>
                     </div>
                 </div>
@@ -439,7 +421,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             </div>
                             <div class="service-detail">
                                 <h4><a href="">orientation et accompagnement social:</a></h4>
-                                <p>Ecoute, conseil et assistance pour l'insertion social des jeunes vulnérables ou en quête  de repères professionnels.</p>
+                                <p>Ecoute, conseil et assistance pour l'insertion social des jeunes vulnérables ou en quête de repères professionnels.</p>
                             </div>
                         </div>
                     </div>
@@ -966,62 +948,57 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
 </div>
 
-    <!-- Formulaire de publication -->
-<div id="formulairePublicatEvent" class="card shadow-sm p-4 mb-4 border-primary" style="display: none;">
-  <h5 class="fw-bold text-primary mb-3">Publier un nouvel événement</h5>
-  <div class="row g-3">
-    <div class="col-md-6">
-      <label class="form-label font-weight-bold">Titre de l'événement</label>
-      <input type="text" id="evTitre" class="form-control" placeholder="ex: Conférence Annuelle">
-    </div>
-    <div class="col-md-6">
-      <label class="form-label font-weight-bold">Affiche / Image (Depuis appareil)</label>
-      <input type="file" id="evFichierImage" class="form-control" accept="image/*">
-    </div>
+<!-- Formulaire de publication d'événement -->
+<div class="container">
+  <div id="formulairePublicatEvent" class="card shadow-sm p-4 mb-4 border-primary" style="display: none;">
+    <h5 class="fw-bold text-primary mb-3">Publier un nouvel événement</h5>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label font-weight-bold">Titre de l'événement</label>
+        <input type="text" id="evTitre" class="form-control" placeholder="ex: Conférence Annuelle">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label font-weight-bold">Affiche / Image (Depuis appareil)</label>
+        <input type="file" id="evFichierImage" class="form-control" accept="image/*">
+      </div>
 
-    <!-- NOUVEAU : Champ Texte / Légende pour l'image -->
-    <div class="col-12">
-      <label class="form-label font-weight-bold">Texte d'accompagnement (Description de l'affiche)</label>
-      <textarea id="evDescription" class="form-control" rows="2" placeholder="Saisissez un message ou une légende sous/sur l'image..."></textarea>
-    </div>
+      <div class="col-12">
+        <label class="form-label font-weight-bold">Texte d'accompagnement (Description de l'affiche)</label>
+        <textarea id="evDescription" class="form-control" rows="2" placeholder="Saisissez un message ou une légende sous/sur l'image..."></textarea>
+      </div>
 
-    <div class="col-md-4">
-      <label class="form-label font-weight-bold">Date</label>
-      <input type="text" id="evDate" class="form-control" placeholder="ex: 12 Novembre 2026">
-    </div>
-    <div class="col-md-4">
-      <label class="form-label font-weight-bold">Lieu</label>
-      <input type="text" id="evLieu" class="form-control" placeholder="ex: Siège JSD / Kinshasa">
-    </div>
-    <div class="col-md-4">
-      <label class="form-label font-weight-bold">Nombre de places</label>
-      <input type="number" id="evPlaces" class="form-control" value="50">
-    </div>
-    <div class="col-12 text-end mt-3">
-      <button class="btn btn-secondary me-2" onclick="toggleFormulaireEvenement()">Annuler</button>
-      <button class="btn btn-success fw-bold" onclick="publierNouvelEvenement()">Publier l'événement</button>
+      <div class="col-md-4">
+        <label class="form-label font-weight-bold">Date</label>
+        <input type="text" id="evDate" class="form-control" placeholder="ex: 12 Novembre 2026">
+      </div>
+      <div class="col-md-4">
+        <label class="form-label font-weight-bold">Lieu</label>
+        <input type="text" id="evLieu" class="form-control" placeholder="ex: Siège JSD / Kinshasa">
+      </div>
+      <div class="col-md-4">
+        <label class="form-label font-weight-bold">Nombre de places</label>
+        <input type="number" id="evPlaces" class="form-control" value="50">
+      </div>
+      <div class="col-12 text-end mt-3">
+        <button class="btn btn-secondary me-2" onclick="toggleFormulaireEvenement()">Annuler</button>
+        <button class="btn btn-success fw-bold" onclick="publierNouvelEvenement()">Publier l'événement</button>
+      </div>
     </div>
   </div>
 </div>
-    
 
-        <!-- Script minimal de gestion d'accès et d'envoi -->
-        <script>
+<!-- Script minimal de gestion d'accès et d'envoi -->
+<script>
     function unlockChat() {
         var mat = document.getElementById('chatMatricule').value.trim();
         var pin = document.getElementById('chatPin').value.trim();
 
         if (mat !== "" && pin !== "") {
-            // 1. Sauvegarder le membre actuellement connecté
             localStorage.setItem('jsd_current_user', mat);
-
-            // 2. Réinitialiser la boîte de messages pour effacer la conversation précédente
             var chatBox = document.getElementById('chatMessages');
             if (chatBox) {
                 chatBox.innerHTML = ''; 
             }
-
-            // 3. Masquer la carte d'authentification et afficher le chat
             document.getElementById('chatAuthCard').classList.add('d-none');
             document.getElementById('chatBoxCard').classList.remove('d-none');
         } else {
@@ -1030,7 +1007,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
 
     function lockChat() {
-        // Déconnexion : Effacer les identifiants et réinitialiser la vue
         localStorage.removeItem('jsd_current_user');
         document.getElementById('chatBoxCard').classList.add('d-none');
         document.getElementById('chatAuthCard').classList.remove('d-none');
@@ -1059,23 +1035,17 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             chatBox.scrollTop = chatBox.scrollHeight;
         }
     }
-            // Fonction pour afficher les détails du membre
-function voirMembre(matricule) {
-    alert("Consultation de la fiche du membre : " + matricule);
-    // Ici, vous pouvez ouvrir une fenêtre modale avec les informations complètes du membre
-}
 
-// Fonction pour ouvrir le formulaire de modification
-function modifierMembre(matricule) {
-    alert("Modification du membre : " + matricule);
-    // Ici, vous pouvez remplir automatiquement un formulaire avec les données du membre à modifier
-}
+    function voirMembre(matricule) {
+        alert("Consultation de la fiche du membre : " + matricule);
+    }
 
-
+    function modifierMembre(matricule) {
+        alert("Modification du membre : " + matricule);
+    }
 </script>
 
-
-       <!-- SECTION MESSAGERIE PRIVÉE : MEMBRES <-> PRÉSIDENT -->
+<!-- SECTION MESSAGERIE PRIVÉE : MEMBRES <-> PRÉSIDENT -->
 <div class="card shadow-sm border-0 my-5" id="sectionMessagerie">
   <div class="card-header bg-primary text-white font-weight-bold d-flex justify-content-between align-items-center">
     <span><i class="icon ion-md-chatboxes me-2"></i> Messagerie Directe avec le Président</span>
@@ -1088,7 +1058,7 @@ function modifierMembre(matricule) {
       <h6 class="fw-bold mb-3"><i class="icon ion-md-lock me-1"></i> Identifiez-vous pour accéder à votre espace de discussion :</h6>
       <div class="row g-2 align-items-center">
         <div class="col-md-5">
-          <input type="text" id="chatNom" class="form-control" placeholder="Votre Nom & Prénom enregistré" required>
+          <input type="text" id="chatNom" class="form-control" placeholder="Votre Nom & Prénom enregistré">
         </div>
         <div class="col-md-4">
           <input type="text" id="chatMatricule" class="form-control" placeholder="Votre Matricule (ex: JSD-2026-43IC)" required>
@@ -1104,18 +1074,17 @@ function modifierMembre(matricule) {
       </div>
     </div>
 
-    <!-- ÉTAPE 2 : INTERFACE DE DISCUSSION (Initiale caché) -->
+    <!-- ÉTAPE 2 : INTERFACE DE DISCUSSION -->
     <div id="blocDiscussionChat" class="mt-4" style="display: none;">
       
-      <!-- Vue membre ordinaire : Uniquement sa discussion avec le président -->
+      <!-- Vue membre ordinaire -->
       <div id="vueDiscussionMembre">
         <div class="alert alert-info py-2 d-flex justify-content-between align-items-center">
           <small>Espace privé sécurisé de : <strong id="libelleMembreConnecte"></strong></small>
-          <button type="button" class="btn btn-sm btn-outline-secondary" onclick="deconnexionMessagerie()">Déconnexion</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.reload()">Déconnexion</button>
         </div>
         
         <div id="boiteMessagesMembre" class="border rounded p-3 mb-3 bg-white" style="height: 320px; overflow-y: auto;">
-          <!-- Les messages du membre et les réponses du président s'affichent ici -->
         </div>
 
         <form id="formEnvoyerMessageMembre" onsubmit="envoyerMessageMembre(event)">
@@ -1128,23 +1097,20 @@ function modifierMembre(matricule) {
         </form>
       </div>
 
-      <!-- Vue Président : Liste de toutes les discussions privées des membres -->
+      <!-- Vue Président -->
       <div id="vueDiscussionPresident" style="display: none;">
         <div class="alert alert-success py-2 d-flex justify-content-between align-items-center">
           <small><i class="icon ion-md-shield me-1"></i> <strong>Espace d'Administration Présidentielle</strong></small>
-          <button type="button" class="btn btn-sm btn-outline-secondary" onclick="deconnexionMessagerie()">Déconnexion</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.reload()">Déconnexion</button>
         </div>
 
         <div class="row">
-          <!-- Colonne gauche : Liste des membres ayant envoyé des messages -->
           <div class="col-md-4 border-end">
             <h6 class="fw-bold border-bottom pb-2">Conversations des Membres</h6>
             <div id="listeConversationsMembres" class="list-group list-group-flush" style="max-height: 380px; overflow-y: auto;">
-              <!-- La liste des membres avec messages apparaîtra ici -->
             </div>
           </div>
 
-          <!-- Colonne droite : Fil de discussion avec le membre sélectionné -->
           <div class="col-md-8">
             <h6 class="fw-bold border-bottom pb-2" id="titreDiscussionActive">Sélectionnez un membre pour lire sa conversation</h6>
             <div id="boiteMessagesPresident" class="border rounded p-3 mb-3 bg-white" style="height: 300px; overflow-y: auto;">
@@ -1167,7 +1133,6 @@ function modifierMembre(matricule) {
 
   </div>
 </div>
-
 
         <!-- Contact Start -->
         <div class="contact">
@@ -1260,9 +1225,9 @@ function modifierMembre(matricule) {
 
                         <div class="col-lg-3 col-md-6 footer-newsletter">
                             <h4>Inscrivez-Vous !!!</h4>
-                            <p>"Abonnez-Vous à notre bulletin d'information pour recevoir toutes nos actualités, nos prochains évenements, nos opportunités des formation et su ivre l'impact de nos actions sur le terrain".</p>
+                            <p>"Abonnez-Vous à notre bulletin d'information pour recevoir toutes nos actualités, nos prochains évenements, nos opportunités des formation et suivre l'impact de nos actions sur le terrain".</p>
                             <form action="" method="post">
-                                <input type="email" name="email" placeholder="jeunessesocial52@gmail.com" required><input type="submit"  value="S'inscrire">
+                                <input type="email" name="email" placeholder="jeunessesocial52@gmail.com" required><input type="submit" value="S'inscrire">
                             </form>
                         </div>
 
@@ -1297,94 +1262,8 @@ function modifierMembre(matricule) {
 
         <!-- Main Javascript -->
         <script src="js/main.js"></script>
-        <!-- Integration Firebase Firestore pour la JSD -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, where, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  // Configuration Firebase exacte de la JSD
-  const firebaseConfig = {
-    apiKey: "AIzaSyBlGSwEPk6CM4A07SeqmZeuaFxUWMRlESI",
-    authDomain: "jeunesse-social-pour-le-dvelop.firebaseapp.com",
-    projectId: "jeunesse-social-pour-le-dvelop",
-    storageBucket: "jeunesse-social-pour-le-dvelop.firebasestorage.app",
-    messagingSenderId: "728224479628",
-    appId: "1:728224479628:web:c43406a998d184d3a63ea9",
-    measurementId: "G-F81CFLLD55"
-  };
-
-  // Initialisation de Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // 1. Fonction pour enregistrer un nouveau membre depuis le formulaire
-  window.enregistrerMembre = async function(event) {
-    if (event) event.preventDefault();
-
-    const nom = document.getElementById("nomMembre") ? document.getElementById("nomMembre").value : "";
-    const contact = document.getElementById("contactMembre") ? document.getElementById("contactMembre").value : "";
-    const localisation = document.getElementById("localisationMembre") ? document.getElementById("localisationMembre").value : "";
-    const statut = document.getElementById("statutMembre") ? document.getElementById("statutMembre").value : "Membre";
-
-    if (!nom || !contact) {
-      alert("Veuillez remplir au moins le nom et le contact.");
-      return;
-    }
-
-    try {
-      await addDoc(collection(db, "membres"), {
-        nom: nom,
-        contact: contact,
-        localisation: localisation || "Kinshasa, RDC",
-        statut: statut,
-        dateAdhesion: new Date().toLocaleDateString('fr-FR')
-      });
-
-      alert("Inscription réussie ! Vous êtes enregistré dans la base de données de la JSD.");
-      
-      const form = document.getElementById("formulaireInscription");
-      if (form) form.reset();
-
-    } catch (error) {
-      console.error("Erreur lors de l'enregistrement : ", error);
-      alert("Erreur lors de l'inscription : " + error.message);
-    }
-  };
-
-  // 2. Affichage automatique en temps réel des membres dans le tableau
-  onSnapshot(collection(db, "membres"), (snapshot) => {
-    const tbody = document.querySelector("table tbody");
-    if (!tbody) return;
-
-    snapshot.docChanges().forEach((change) => {
-      if (change.type === "added") {
-        const data = change.doc.data();
-        const matriculeAuto = "JSD-2026-" + change.doc.id.substring(0, 4).toUpperCase();
-        
-        const newRow = document.createElement("tr");
-        newRow.innerHTML = `
-          <td><strong>${matriculeAuto}</strong></td>
-          <td>${data.nom}</td>
-          <td>${data.contact}</td>
-          <td>${data.localisation}</td>
-          <td><span class="badge badge-info px-2 py-1">${data.statut}</span></td>
-          <td>${data.dateAdhesion}</td>
-          <td class="text-center">
-            <button type="button" class="btn btn-sm btn-outline-primary me-1" onclick="voirMembre('${matriculeAuto}')">
-              <i class="icon ion-md-eye" style="pointer-events: none;"></i>
-            </button>
-            <button type="button" class="btn btn-sm btn-outline-warning" onclick="modifierMembre('${matriculeAuto}')">
-              <i class="icon ion-md-create" style="pointer-events: none;"></i>
-            </button>
-          </td>
-        `;
-        tbody.appendChild(newRow);
-      }
-    });
-  });
-</script>
-
-    <!-- SCRIPT FIREBASE COMPLET : ENREGISTREMENT, MODIFICATION LIBRE ET SUPPRESSION PRÉSIDENTIELLE -->
+        <!-- SCRIPT FIREBASE UNIQUE ET NETTOYÉ -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -1404,16 +1283,15 @@ import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot
   const db = getFirestore(app);
 
   let enEnregistrement = false;
-
-  // 1. CODE SECRET PRÉSIDENTIEL POUR LA SUPPRESSION EXCLUSIVE
   const CODE_SECRET_PRESIDENT = "JSD2026";
 
-  // 2. ENREGISTREMENT OU MISE À JOUR D'UN MEMBRE (SANS DOUBLON)
+  // 1. ENREGISTREMENT ET MODIFICATION DES MEMBRES
   window.enregistrerMembre = async function(event) {
     if (event) event.preventDefault();
     if (enEnregistrement) return;
 
-    const idEncours = document.getElementById("formulaireInscription").getAttribute("data-id-edition");
+    const form = document.getElementById("formulaireInscription");
+    const idEncours = form ? form.getAttribute("data-id-edition") : null;
     const nom = document.getElementById("nomMembre") ? document.getElementById("nomMembre").value.trim() : "";
     const contact = document.getElementById("contactMembre") ? document.getElementById("contactMembre").value.trim() : "";
     const localisation = document.getElementById("localisationMembre") ? document.getElementById("localisationMembre").value.trim() : "Kinshasa, RDC";
@@ -1428,7 +1306,6 @@ import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot
       enEnregistrement = true;
 
       if (idEncours) {
-        // Mode Modification : met à jour le membre existant
         await updateDoc(doc(db, "membres", idEncours), {
           nom: nom,
           contact: contact,
@@ -1436,11 +1313,10 @@ import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot
           statut: statut
         });
         alert("Modifications enregistrées avec succès !");
-        document.getElementById("formulaireInscription").removeAttribute("data-id-edition");
-        const btnSubmit = document.querySelector("#formulaireInscription button[type='submit']");
+        form.removeAttribute("data-id-edition");
+        const btnSubmit = form.querySelector("button[type='submit']");
         if (btnSubmit) btnSubmit.innerHTML = '<i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer';
       } else {
-        // Mode Nouvel Enregistrement
         await addDoc(collection(db, "membres"), {
           nom: nom,
           contact: contact,
@@ -1451,7 +1327,6 @@ import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot
         alert("Inscription réussie dans la base de données !");
       }
 
-      const form = document.getElementById("formulaireInscription");
       if (form) form.reset();
 
     } catch (error) {
@@ -1462,7 +1337,6 @@ import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot
     }
   };
 
-  // 3. FONCTION DE MODIFICATION (Accessible à toute personne effectuant la saisie)
   window.chargerMembrePourModification = function(idDoc, nom, contact, localisation, statut) {
     document.getElementById("nomMembre").value = nom || "";
     document.getElementById("contactMembre").value = contact || "";
@@ -1477,15 +1351,13 @@ import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot
       btnSubmit.innerHTML = '<i class="icon ion-md-save me-1"></i> Mettre à jour le membre';
     }
 
-    // Remonter doucement vers le formulaire
     form.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // 4. FONCTION DE SUPPRESSION (Réservée exclusivement au Président)
   window.supprimerMembre = async function(idMembre, nomMembre) {
     const motDePasse = prompt(`ATTENTION : Suppression de "${nomMembre}".\nSeul le Président peut effectuer cette action.\nVeuillez entrer le code secret :`);
 
-    if (motDePasse === null) return; // Annulation
+    if (motDePasse === null) return;
 
     if (motDePasse === CODE_SECRET_PRESIDENT) {
       if (confirm(`Êtes-vous sûr de vouloir supprimer définitivement le membre : ${nomMembre} ?`)) {
@@ -1502,12 +1374,12 @@ import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot
     }
   };
 
-  // 5. AFFICHAGE ET SYNCHRONISATION DU TABLEAU EN TEMPS RÉEL
+  // AFFICHAGE DES MEMBRES EN TEMPS RÉEL
   onSnapshot(collection(db, "membres"), (snapshot) => {
     const tbody = document.getElementById("corpsTableauMembres");
     if (!tbody) return;
 
-    tbody.innerHTML = ""; // Vider pour éviter les doublons à l'affichage
+    tbody.innerHTML = "";
 
     snapshot.docs.forEach((docSnap) => {
       const data = docSnap.data();
@@ -1518,7 +1390,6 @@ import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot
       if (data.statut === "Président") badgeClass = "bg-success text-white";
       if (data.statut === "Conseiller") badgeClass = "bg-primary text-white";
 
-      // Échappement des caractères pour éviter les erreurs JavaScript
       const nomEchappe = (data.nom || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
       const contactEchappe = (data.contact || '').replace(/'/g, "\\'");
       const locEchappe = (data.localisation || '').replace(/'/g, "\\'");
@@ -1533,13 +1404,11 @@ import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot
         <td><span class="badge ${badgeClass} px-2 py-1">${data.statut || 'Membre'}</span></td>
         <td>${data.dateAdhesion || '-'}</td>
         <td class="text-center">
-          <!-- Bouton Modifier libre d'accès -->
           <button type="button" class="btn btn-sm btn-outline-warning me-1" title="Modifier" 
             onclick="chargerMembrePourModification('${idDoc}', '${nomEchappe}', '${contactEchappe}', '${locEchappe}', '${statutEchappe}')">
             <i class="icon ion-md-create"></i> Modifier
           </button>
           
-          <!-- Bouton Supprimer réservé au Président -->
           <button type="button" class="btn btn-sm btn-outline-danger" title="Supprimer" 
             onclick="supprimerMembre('${idDoc}', '${nomEchappe}')">
             <i class="icon ion-md-trash"></i> Supprimer
@@ -1550,23 +1419,31 @@ import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot
     });
   });
 
-    // ==========================================
-  // MODULE MESSAGERIE PRIVÉE MEMBRE <-> PRÉSIDENT
-  // ==========================================
-
+  // 2. MESSAGERIE PRIVÉE
   let membreChatSession = null;
   let estModePresidentChat = false;
   let conversationActiveMembreId = null;
   let unsubscribeMessagesMembre = null;
   let unsubscribeMessagesPresident = null;
 
-  // 1. Authentification d'un Membre
   window.connexionMessagerie = async function() {
-    const nomSaisi = document.getElementById("chatNom").value.trim();
-    const matriculeSaisi = document.getElementById("chatMatricule").value.trim().toUpperCase();
+    const nomSaisi = document.getElementById("chatNom") ? document.getElementById("chatNom").value.trim() : "";
+    const matriculeSaisi = document.getElementById("chatMatricule") ? document.getElementById("chatMatricule").value.trim().toUpperCase() : "";
 
-    if (!nomSaisi || !matriculeSaisi) {
-      alert("Veuillez saisir votre nom et votre matricule.");
+    if (!matriculeSaisi) {
+      alert("Veuillez remplir le champ matricule.");
+      return;
+    }
+
+    if (matriculeSaisi === "ADMIN2026" || matriculeSaisi === CODE_SECRET_PRESIDENT) {
+      estModePresidentChat = true;
+      membreChatSession = { id: "president", nom: "Président JSD", matricule: "PRESIDENT" };
+      ouvrirEspaceDiscussionPresident();
+      return;
+    }
+
+    if (!nomSaisi) {
+      alert("Veuillez saisir votre Nom et votre Matricule pour accéder au chat.");
       return;
     }
 
@@ -1578,8 +1455,9 @@ import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot
         const data = docSnap.data();
         const docId = docSnap.id;
         const matriculeAuto = "JSD-2026-" + docId.substring(0, 4).toUpperCase();
+        const nomData = (data.nom || "").trim().toLowerCase();
 
-        if (data.nom && data.nom.toLowerCase() === nomSaisi.toLowerCase() && matriculeAuto === matriculeSaisi) {
+        if ((nomData === nomSaisi.toLowerCase() || nomData.includes(nomSaisi.toLowerCase())) && matriculeAuto === matriculeSaisi) {
           membreTrouve = { id: docId, nom: data.nom, matricule: matriculeAuto };
         }
       });
@@ -1589,18 +1467,17 @@ import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot
         estModePresidentChat = false;
         ouvrirEspaceDiscussionMembre();
       } else {
-        alert("Accès refusé ! Le nom et le matricule ne correspondent à aucun membre enregistré.");
+        alert("Accès refusé ! Le Nom ou le Matricule est incorrect.");
       }
     } catch (err) {
-      console.error("Erreur d'authentification : ", err);
-      alert("Erreur lors de la connexion au chat.");
+      console.error("Erreur d'accès :", err);
+      alert("Erreur lors de la vérification des identifiants.");
     }
   };
 
-  // 2. Accès spécial pour le Président
   window.connexionPresidentChat = function() {
     const codeSaisi = prompt("Saisissez le code secret du Président pour accéder à l'administration du chat :");
-    if (codeSaisi === CODE_SECRET_PRESIDENT) {
+    if (codeSaisi === CODE_SECRET_PRESIDENT || codeSaisi === "ADMIN2026") {
       estModePresidentChat = true;
       membreChatSession = { nom: "Président JSD", matricule: "PRESIDENT" };
       ouvrirEspaceDiscussionPresident();
@@ -1609,61 +1486,6 @@ import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot
     }
   };
 
-  // Connexion unifiée : Membres (Nom + Matricule) / Président (Code secret dans le Matricule)
-window.connexionMessagerie = async function() {
-  const nomSaisi = document.getElementById("chatNom") ? document.getElementById("chatNom").value.trim() : "";
-  const matriculeSaisi = document.getElementById("chatMatricule") ? document.getElementById("chatMatricule").value.trim().toUpperCase() : "";
-
-  if (!matriculeSaisi) {
-    alert("Veuillez remplir le champ matricule.");
-    return;
-  }
-
-  // 1. DÉTECTION ACCÈS PRÉSIDENT (Si vous saisissez ADMIN2026 dans le champ Matricule)
-  if (matriculeSaisi === "ADMIN2026") {
-    estModePresidentChat = true;
-    membreChatSession = { id: "president", nom: "Président JSD", matricule: "PRESIDENT" };
-    ouvrirEspaceDiscussionPresident();
-    return;
-  }
-
-  // 2. ACCÈS MEMBRE ORDINAIRE (Nécessite Nom ET Matricule)
-  if (!nomSaisi) {
-    alert("Veuillez saisir votre Nom et votre Matricule pour accéder au chat.");
-    return;
-  }
-
-  try {
-    const snapshotMembres = await getDocs(collection(db, "membres"));
-    let membreTrouve = null;
-
-    snapshotMembres.forEach((docSnap) => {
-      const data = docSnap.data();
-      const docId = docSnap.id;
-      const matriculeAuto = "JSD-2026-" + docId.substring(0, 4).toUpperCase();
-      const nomData = (data.nom || "").trim().toLowerCase();
-
-      if ((nomData === nomSaisi.toLowerCase() || nomData.includes(nomSaisi.toLowerCase())) && matriculeAuto === matriculeSaisi) {
-        membreTrouve = { id: docId, nom: data.nom, matricule: matriculeAuto };
-      }
-    });
-
-    if (membreTrouve) {
-      membreChatSession = membreTrouve;
-      estModePresidentChat = false;
-      ouvrirEspaceDiscussionMembre();
-    } else {
-      alert("Accès refusé ! Le Nom ou le Matricule est incorrect.");
-    }
-  } catch (err) {
-    console.error("Erreur d'accès :", err);
-    alert("Erreur lors de la vérification des identifiants.");
-  }
-};
-
-
-
-  // 4. Ouverture espace Membre
   function ouvrirEspaceDiscussionMembre() {
     document.getElementById("blocConnexionChat").style.display = "none";
     document.getElementById("blocDiscussionChat").style.display = "block";
@@ -1677,7 +1499,6 @@ window.connexionMessagerie = async function() {
     ecouterMessagesMembre(membreChatSession.id);
   }
 
-  // 5. Ouverture espace Président
   function ouvrirEspaceDiscussionPresident() {
     document.getElementById("blocConnexionChat").style.display = "none";
     document.getElementById("blocDiscussionChat").style.display = "block";
@@ -1690,7 +1511,6 @@ window.connexionMessagerie = async function() {
     chargerListeConversationsPresident();
   }
 
-  // 6. Écoute des messages côté Membre
   function ecouterMessagesMembre(membreId) {
     const q = query(
       collection(db, "messages"),
@@ -1708,7 +1528,6 @@ window.connexionMessagerie = async function() {
         messages.push({ id: docSnap.id, ...docSnap.data() });
       });
 
-      // Tri par horodatage
       messages.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
 
       if (messages.length === 0) {
@@ -1734,7 +1553,6 @@ window.connexionMessagerie = async function() {
     });
   }
 
-  // 7. Envoi message par un Membre
   window.envoyerMessageMembre = async function(e) {
     e.preventDefault();
     const input = document.getElementById("champMessageMembre");
@@ -1759,10 +1577,10 @@ window.connexionMessagerie = async function() {
     }
   };
 
-  // 8. Charger la liste des conversations pour le Président
   function chargerListeConversationsPresident() {
     onSnapshot(collection(db, "messages"), (snapshot) => {
       const conteneurListe = document.getElementById("listeConversationsMembres");
+      if (!conteneurListe) return;
       conteneurListe.innerHTML = "";
 
       let conversationsMap = {};
@@ -1802,13 +1620,12 @@ window.connexionMessagerie = async function() {
     });
   }
 
-  // 9. Sélectionner une discussion par le Président
   function selectionnerConversationPresident(membreId, nomMembre, matriculeMembre) {
     conversationActiveMembreId = membreId;
     document.getElementById("titreDiscussionActive").innerText = `Discussion avec : ${nomMembre} (${matriculeMembre})`;
     document.getElementById("formEnvoyerReponsePresident").style.display = "flex";
 
-    chargerListeConversationsPresident(); // Actualiser le focus visuel sur la liste
+    chargerListeConversationsPresident();
 
     const q = query(
       collection(db, "messages"),
@@ -1846,7 +1663,6 @@ window.connexionMessagerie = async function() {
     });
   }
 
-  // 10. Envoi de la réponse par le Président
   window.envoyerReponsePresident = async function(e) {
     e.preventDefault();
     const input = document.getElementById("champReponsePresident");
@@ -1869,11 +1685,7 @@ window.connexionMessagerie = async function() {
     }
   };
 
-    // ==========================================
-  // MODULE 1 : NOTIFICATIONS EN TEMPS RÉEL
-  // ==========================================
-  
-  // Exemple de notifications (vous pourrez plus tard les relier à Firebase)
+  // 3. MODULE NOTIFICATIONS
   const listeNotifications = [
     { id: 1, titre: "📢 Annonce JSD", message: "Bienvenue sur notre nouvelle plateforme officielle !" },
     { id: 2, titre: "💬 Messagerie", message: "Vous pouvez désormais échanger en privé avec le Président." }
@@ -1887,90 +1699,37 @@ window.connexionMessagerie = async function() {
 
     conteneur.innerHTML = `
       <div class="dropdown">
-        <button class="btn btn-outline-primary position-relative dropdown-toggle" type="button" id="btnNotif" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-outline-primary position-relative dropdown-toggle" type="button" id="btnNotif" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           🔔 Notifications
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="badgeCountNotif">
+          <span class="badge badge-danger position-absolute" style="top: -5px; right: -5px;">
             ${nombreNonLues}
           </span>
         </button>
-        <ul class="dropdown-menu dropdown-menu-end p-2 shadow-sm" style="width: 300px; max-height: 300px; overflow-y: auto;" aria-labelledby="btnNotif" id="listeMenuNotif">
+        <div class="dropdown-menu dropdown-menu-right p-2 shadow" style="width: 300px; max-height: 300px; overflow-y: auto;" aria-labelledby="btnNotif">
           ${listeNotifications.map(n => `
-            <li class="p-2 border-bottom">
+            <div class="p-2 border-bottom">
               <strong class="d-block text-primary" style="font-size: 0.85rem;">${n.titre}</strong>
               <small class="text-dark">${n.message}</small>
-            </li>
+            </div>
           `).join('')}
-        </ul>
+        </div>
       </div>
     `;
   }
 
-  // Lancement automatique des notifications au chargement
-  initialiserNotifications();
-
-  // Publier l'événement avec description et image locale
-  window.publierNouvelEvenement = async function() {
-    const titre = document.getElementById("evTitre").value.trim();
-    const description = document.getElementById("evDescription").value.trim();
-    const date = document.getElementById("evDate").value.trim();
-    const lieu = document.getElementById("evLieu").value.trim();
-    const places = parseInt(document.getElementById("evPlaces").value);
-    const fileInput = document.getElementById("evFichierImage");
-
-    if (!titre || !date || !lieu) {
-      alert("Veuillez remplir au moins le titre, la date et le lieu.");
-      return;
-    }
-
-    let imageUrl = "https://via.placeholder.com/400x200?text=JSD+Evenement";
-
-    if (fileInput.files && fileInput.files[0]) {
-      const file = fileInput.files[0];
-      imageUrl = await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result);
-        reader.readAsDataURL(file);
-      });
-    }
-
-    try {
-      await addDoc(collection(db, "evenements"), {
-        titre: titre,
-        description: description || "",
-        imageUrl: imageUrl,
-        date: date,
-        lieu: lieu,
-        places: places || 0,
-        createdAt: new Date()
-      });
-
-      alert("🎉 Événement publié avec succès !");
-      document.getElementById("formulairePublicatEvent").style.display = "none";
-      
-      // Réinitialisation
-      document.getElementById("evTitre").value = "";
-      document.getElementById("evDescription").value = "";
-      document.getElementById("evDate").value = "";
-      document.getElementById("evLieu").value = "";
-      fileInput.value = "";
-    } catch (e) {
-      console.error("Erreur de publication :", e);
-      alert("Erreur lors de la publication de l'événement.");
-    }
-  };
-
-   // 1. Afficher / Masquer le formulaire
+  // 4. MODULE ÉVÉNEMENTS (IMAGE ET TEXTE)
   window.toggleFormulaireEvenement = function() {
     const codeAdmin = prompt("Saisissez le code d'administration (Président) :");
-    if (codeAdmin === "ADMIN2026" || codeAdmin === "JSD2026") {
+    if (codeAdmin === "ADMIN2026" || codeAdmin === CODE_SECRET_PRESIDENT) {
       const form = document.getElementById("formulairePublicatEvent");
-      form.style.display = (form.style.display === "none") ? "block" : "none";
-    } else {
+      if (form) {
+        form.style.display = (form.style.display === "none" || form.style.display === "") ? "block" : "none";
+      }
+    } else if (codeAdmin !== null) {
       alert("Accès refusé ! Seul le Président peut publier des événements.");
     }
   };
 
-  // 2. Enregistrer l'événement dans Firebase
   window.publierNouvelEvenement = async function() {
     const titre = document.getElementById("evTitre").value.trim();
     const description = document.getElementById("evDescription").value.trim();
@@ -1986,7 +1745,7 @@ window.connexionMessagerie = async function() {
 
     let imageUrl = "https://via.placeholder.com/400x200?text=JSD+Evenement";
 
-    if (fileInput.files && fileInput.files[0]) {
+    if (fileInput && fileInput.files && fileInput.files[0]) {
       const file = fileInput.files[0];
       imageUrl = await new Promise((resolve) => {
         const reader = new FileReader();
@@ -2002,32 +1761,27 @@ window.connexionMessagerie = async function() {
         imageUrl: imageUrl,
         date: date,
         lieu: lieu,
-        places: places || 0,
+        places: isNaN(places) ? 0 : places,
         createdAt: new Date()
       });
 
       alert("🎉 Événement publié avec succès !");
       document.getElementById("formulairePublicatEvent").style.display = "none";
       
-      // Réinitialisation
       document.getElementById("evTitre").value = "";
       document.getElementById("evDescription").value = "";
       document.getElementById("evDate").value = "";
       document.getElementById("evLieu").value = "";
-      fileInput.value = "";
+      if (fileInput) fileInput.value = "";
     } catch (e) {
       console.error("Erreur de publication :", e);
       alert("Erreur lors de la publication : " + e.message);
     }
   };
 
-  // 3. Lire et afficher les événements en temps réel
   function ecouterEvenementsFirebase() {
     const conteneur = document.getElementById("events-widget-container");
-    if (!conteneur) {
-      console.error("Erreur : L'élément avec l'ID 'events-widget-container' n'a pas été trouvé dans le HTML.");
-      return;
-    }
+    if (!conteneur) return;
 
     onSnapshot(collection(db, "evenements"), (snapshot) => {
       if (snapshot.empty) {
@@ -2035,29 +1789,29 @@ window.connexionMessagerie = async function() {
         return;
       }
 
-      let htmlContent = `<div class="row g-4">`;
+      let htmlContent = `<div class="row">`;
       snapshot.forEach((docSnap) => {
         const ev = docSnap.data();
         const evId = docSnap.id;
 
         htmlContent += `
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0 rounded overflow-hidden">
               <div class="card-header bg-primary text-white font-weight-bold">
-                <h5 class="mb-0 fs-6">${ev.titre}</h5>
+                <h5 class="mb-0 text-white" style="font-size: 1.1rem;">${ev.titre}</h5>
               </div>
 
               <img src="${ev.imageUrl}" class="card-img-top" alt="${ev.titre}" style="max-height: 220px; object-fit: cover;">
               
               <div class="card-body d-flex flex-column">
-                ${ev.description ? `<p class="card-text text-secondary small mb-3 border-start border-3 border-primary ps-2">${ev.description}</p>` : ''}
+                ${ev.description ? `<p class="card-text text-secondary small mb-3 border-left pl-2 style="border-left: 3px solid #007bff;">${ev.description}</p>` : ''}
                 
                 <p class="card-text mb-1"><small class="text-muted">📅 Date :</small> <strong>${ev.date}</strong></p>
                 <p class="card-text mb-2"><small class="text-muted">📍 Lieu :</small> <strong>${ev.lieu}</strong></p>
                 
                 <div class="mt-auto pt-2">
-                  <p class="card-text mb-2">👥 Places restantes : <span id="places-${evId}" class="badge bg-success">${ev.places}</span></p>
-                  <button class="btn btn-primary w-100 fw-bold" onclick="inscrireEvenementDynamique('${evId}', ${ev.places})">S'inscrire</button>
+                  <p class="card-text mb-2">👥 Places restantes : <span id="places-${evId}" class="badge badge-success">${ev.places}</span></p>
+                  <button class="btn btn-primary btn-block font-weight-bold" onclick="inscrireEvenementDynamique('${evId}', ${ev.places})">S'inscrire</button>
                 </div>
               </div>
             </div>
@@ -2072,7 +1826,6 @@ window.connexionMessagerie = async function() {
     });
   }
 
-  // 4. Inscription dynamique
   window.inscrireEvenementDynamique = async function(eventId, placesActuelles) {
     if (placesActuelles <= 0) {
       alert("Désolé, cet événement est déjà complet !");
@@ -2094,22 +1847,9 @@ window.connexionMessagerie = async function() {
     }
   };
 
-        try {
-      const docRef = doc(db, "evenements", eventId);
-      await updateDoc(docRef, {
-        places: placesActuelles - 1
-      });
-      alert(`Félicitations ${nomMembre}, votre place a été réservée !`);
-    } catch (e) {
-      console.error("Erreur d'inscription :", e);
-      alert("Erreur lors de la réservation.");
-    }
-  };
-
-  // 5. Attendre le chargement complet de la page avant d'exécuter l'écouteur
-  document.addEventListener("DOMContentLoaded", () => {
-    ecouterEvenementsFirebase();
-  });
+  // EXECUTION AU CHARGEMENT
+  initialiserNotifications();
+  ecouterEvenementsFirebase();
 </script>
 
     </body>
