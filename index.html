@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="Fr">
     <head>
@@ -1697,6 +1698,13 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
     const nombreNonLues = listeNotifications.length;
 
+    let htmlItems = listeNotifications.map(notif => `
+      <a class="dropdown-item p-2 border-bottom" href="#">
+        <strong>${notif.titre}</strong><br>
+        <small class="text-muted">${notif.message}</small>
+      </a>
+    `).join("");
+
     conteneur.innerHTML = `
       <div class="dropdown">
         <button class="btn btn-outline-primary position-relative dropdown-toggle" type="button" id="btnNotif" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -1705,153 +1713,14 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             ${nombreNonLues}
           </span>
         </button>
-        <div class="dropdown-menu dropdown-menu-right p-2 shadow" style="width: 300px; max-height: 300px; overflow-y: auto;" aria-labelledby="btnNotif">
-          ${listeNotifications.map(n => `
-            <div class="p-2 border-bottom">
-              <strong class="d-block text-primary" style="font-size: 0.85rem;">${n.titre}</strong>
-              <small class="text-dark">${n.message}</small>
-            </div>
-          `).join('')}
+        <div class="dropdown-menu dropdown-menu-right p-2 shadow" aria-labelledby="btnNotif" style="width: 280px; max-height: 300px; overflow-y: auto;">
+          ${htmlItems}
         </div>
       </div>
     `;
   }
 
-  // 4. MODULE ÉVÉNEMENTS (IMAGE ET TEXTE)
-  window.toggleFormulaireEvenement = function() {
-    const codeAdmin = prompt("Saisissez le code d'administration (Président) :");
-    if (codeAdmin === "ADMIN2026" || codeAdmin === CODE_SECRET_PRESIDENT) {
-      const form = document.getElementById("formulairePublicatEvent");
-      if (form) {
-        form.style.display = (form.style.display === "none" || form.style.display === "") ? "block" : "none";
-      }
-    } else if (codeAdmin !== null) {
-      alert("Accès refusé ! Seul le Président peut publier des événements.");
-    }
-  };
-
-  window.publierNouvelEvenement = async function() {
-    const titre = document.getElementById("evTitre").value.trim();
-    const description = document.getElementById("evDescription").value.trim();
-    const date = document.getElementById("evDate").value.trim();
-    const lieu = document.getElementById("evLieu").value.trim();
-    const places = parseInt(document.getElementById("evPlaces").value);
-    const fileInput = document.getElementById("evFichierImage");
-
-    if (!titre || !date || !lieu) {
-      alert("Veuillez remplir au moins le titre, la date et le lieu.");
-      return;
-    }
-
-    let imageUrl = "https://via.placeholder.com/400x200?text=JSD+Evenement";
-
-    if (fileInput && fileInput.files && fileInput.files[0]) {
-      const file = fileInput.files[0];
-      imageUrl = await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result);
-        reader.readAsDataURL(file);
-      });
-    }
-
-    try {
-      await addDoc(collection(db, "evenements"), {
-        titre: titre,
-        description: description || "",
-        imageUrl: imageUrl,
-        date: date,
-        lieu: lieu,
-        places: isNaN(places) ? 0 : places,
-        createdAt: new Date()
-      });
-
-      alert("🎉 Événement publié avec succès !");
-      document.getElementById("formulairePublicatEvent").style.display = "none";
-      
-      document.getElementById("evTitre").value = "";
-      document.getElementById("evDescription").value = "";
-      document.getElementById("evDate").value = "";
-      document.getElementById("evLieu").value = "";
-      if (fileInput) fileInput.value = "";
-    } catch (e) {
-      console.error("Erreur de publication :", e);
-      alert("Erreur lors de la publication : " + e.message);
-    }
-  };
-
-  function ecouterEvenementsFirebase() {
-    const conteneur = document.getElementById("events-widget-container");
-    if (!conteneur) return;
-
-    onSnapshot(collection(db, "evenements"), (snapshot) => {
-      if (snapshot.empty) {
-        conteneur.innerHTML = `<p class="text-muted text-center py-4">Aucun événement publié pour le moment. Cliquez sur <strong>+ Publier une activité</strong> pour en créer un.</p>`;
-        return;
-      }
-
-      let htmlContent = `<div class="row">`;
-      snapshot.forEach((docSnap) => {
-        const ev = docSnap.data();
-        const evId = docSnap.id;
-
-        htmlContent += `
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card h-100 shadow-sm border-0 rounded overflow-hidden">
-              <div class="card-header bg-primary text-white font-weight-bold">
-                <h5 class="mb-0 text-white" style="font-size: 1.1rem;">${ev.titre}</h5>
-              </div>
-
-              <img src="${ev.imageUrl}" class="card-img-top" alt="${ev.titre}" style="max-height: 220px; object-fit: cover;">
-              
-              <div class="card-body d-flex flex-column">
-                ${ev.description ? `<p class="card-text text-secondary small mb-3 border-left pl-2 style="border-left: 3px solid #007bff;">${ev.description}</p>` : ''}
-                
-                <p class="card-text mb-1"><small class="text-muted">📅 Date :</small> <strong>${ev.date}</strong></p>
-                <p class="card-text mb-2"><small class="text-muted">📍 Lieu :</small> <strong>${ev.lieu}</strong></p>
-                
-                <div class="mt-auto pt-2">
-                  <p class="card-text mb-2">👥 Places restantes : <span id="places-${evId}" class="badge badge-success">${ev.places}</span></p>
-                  <button class="btn btn-primary btn-block font-weight-bold" onclick="inscrireEvenementDynamique('${evId}', ${ev.places})">S'inscrire</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-      });
-      htmlContent += `</div>`;
-      conteneur.innerHTML = htmlContent;
-    }, (error) => {
-      console.error("Erreur de lecture Firebase :", error);
-      conteneur.innerHTML = `<p class="text-danger text-center">Erreur lors du chargement des événements.</p>`;
-    });
-  }
-
-  window.inscrireEvenementDynamique = async function(eventId, placesActuelles) {
-    if (placesActuelles <= 0) {
-      alert("Désolé, cet événement est déjà complet !");
-      return;
-    }
-
-    const nomMembre = prompt("Entrez votre Nom pour confirmer votre inscription :");
-    if (!nomMembre) return;
-
-    try {
-      const docRef = doc(db, "evenements", eventId);
-      await updateDoc(docRef, {
-        places: placesActuelles - 1
-      });
-      alert(`Félicitations ${nomMembre}, votre place a été réservée !`);
-    } catch (e) {
-      console.error("Erreur d'inscription :", e);
-      alert("Erreur lors de la réservation.");
-    }
-  };
-
-  // EXECUTION AU CHARGEMENT
-  initialiserNotifications();
-  ecouterEvenementsFirebase();
+  document.addEventListener("DOMContentLoaded", initialiserNotifications);
 </script>
-
     </body>
 </html>
-
