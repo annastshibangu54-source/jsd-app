@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="Fr">
     <head>
         <meta charset="utf-8">
         <title>Jeunesse Sociale pour le Développement</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="JSD" name="JSD-RDC">
         <meta content="JSD" name="JSD-RDC">
 
         <!-- Favicon -->
@@ -23,102 +21,98 @@
         <!-- Main Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
 
-        <!-- 2. Correction directe des styles pour la couleur et les images sur Render -->
+        <!-- Styles personnalisés -->
         <style>
-    /* 1. Titre principal et bouton du carrousel */
-    .header .carousel-content h2,
-    .carousel-content h2 {
-        color: #4F84C4 !important;
-        font-size: 42px !important;
-        font-weight: 700 !important;
-    }
+            .header .carousel-content h2,
+            .carousel-content h2 {
+                color: #4F84C4 !important;
+                font-size: 42px !important;
+                font-weight: 700 !important;
+            }
 
-    .header .carousel-content .btn,
-    .carousel-content a.btn {
-        background-color: #4F84C4 !important;
-        color: #ffffff !important;
-        border: none !important;
-        padding: 10px 25px !important;
-    }
+            .header .carousel-content .btn,
+            .carousel-content a.btn {
+                background-color: #4F84C4 !important;
+                color: #ffffff !important;
+                border: none !important;
+                padding: 10px 25px !important;
+            }
 
-    /* 2. Images et logo */
-    img {
-        max-width: 100% !important;
-        height: auto !important;
-    }
+            img {
+                max-width: 100% !important;
+                height: auto !important;
+            }
 
-    .navbar-brand img {
-        max-height: 50px !important;
-        width: auto !important;
-    }
+            .navbar-brand img {
+                max-height: 50px !important;
+                width: auto !important;
+            }
 
-    /* 3. CORRECTION DU FOOTER (PIED DE PAGE NOIR ET STYLISÉ) */
-    .footer {
-        background: #000000 !important;
-        color: #ffffff !important;
-        padding: 0 0 30px 0 !important;
-    }
+            .footer {
+                background: #000000 !important;
+                color: #ffffff !important;
+                padding: 0 0 30px 0 !important;
+            }
 
-    .footer .footer-top {
-        background: #222222 !important;
-        padding: 60px 0 30px 0 !important;
-    }
+            .footer .footer-top {
+                background: #222222 !important;
+                padding: 60px 0 30px 0 !important;
+            }
 
-    .footer h4 {
-        color: #ffffff !important;
-        font-size: 16px !important;
-        font-weight: 700 !important;
-        text-transform: uppercase !important;
-        border-bottom: 2px solid #ffffff !important;
-        padding-bottom: 10px !important;
-        margin-bottom: 20px !important;
-    }
+            .footer h4 {
+                color: #ffffff !important;
+                font-size: 16px !important;
+                font-weight: 700 !important;
+                text-transform: uppercase !important;
+                border-bottom: 2px solid #ffffff !important;
+                padding-bottom: 10px !important;
+                margin-bottom: 20px !important;
+            }
 
-    .footer p, 
-    .footer a, 
-    .footer li,
-    .footer div,
-    .footer .copyright,
-    .footer .credit {
-        color: #ffffff !important;
-    }
+            .footer p, 
+            .footer a, 
+            .footer li,
+            .footer div,
+            .footer .copyright,
+            .footer .credit {
+                color: #ffffff !important;
+            }
 
-    .footer .footer-links ul {
-        list-style: none !important;
-        padding: 0 !important;
-    }
+            .footer .footer-links ul {
+                list-style: none !important;
+                padding: 0 !important;
+            }
 
-    .footer .footer-links ul li {
-        border-bottom: 1px solid #333333 !important;
-        padding: 7px 0 !important;
-    }
+            .footer .footer-links ul li {
+                border-bottom: 1px solid #333333 !important;
+                padding: 7px 0 !important;
+            }
 
-    .footer .social-links a {
-        display: inline-block !important;
-        background: #ffffff !important;
-        color: #4F84C4 !important;
-        width: 36px !important;
-        height: 36px !important;
-        text-align: center !important;
-        line-height: 36px !important;
-        margin-right: 4px !important;
-    }
-    
-    /* Rend le contenu du carrousel et le bouton cliquables au premier plan */
-    .carousel-content {
-        position: relative !important;
-        z-index: 9999 !important;
-        pointer-events: auto !important;
-    }
+            .footer .social-links a {
+                display: inline-block !important;
+                background: #ffffff !important;
+                color: #4F84C4 !important;
+                width: 36px !important;
+                height: 36px !important;
+                text-align: center !important;
+                line-height: 36px !important;
+                margin-right: 4px !important;
+            }
 
-    .carousel-content .btn,
-    .carousel-content a {
-        position: relative !important;
-        z-index: 10000 !important;
-        pointer-events: auto !important;
-        cursor: pointer !important;
-    }
-</style>
+            .carousel-content {
+                position: relative !important;
+                z-index: 9999 !important;
+                pointer-events: auto !important;
+            }
+
+            .carousel-content .btn,
+            .carousel-content a {
+                position: relative !important;
+                z-index: 10000 !important;
+                pointer-events: auto !important;
+                cursor: pointer !important;
+            }
+        </style>
     </head>
 
     <body>
@@ -165,21 +159,19 @@
             </div>
         </div>
 
-        <!-- SECTION ÉVÉNEMENTS (IMAGE ET TEXTE) -->
+        <!-- SECTION ÉVÉNEMENTS -->
         <div class="container my-4">
             <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                 <h3 class="fw-bold text-primary mb-0"><i class="icon ion-md-calendar me-2"></i> Événements & Activités</h3>
                 <button class="btn btn-sm btn-outline-primary fw-bold" onclick="toggleFormulaireEvenement()">+ Publier une activité</button>
             </div>
             
-            <!-- Conteneur d'affichage dynamique des événements -->
             <div id="events-widget-container"></div>
         </div>
 
         <!-- Header Start-->
         <div class="header">
             <div id="header-slider" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
                 <ul class="carousel-indicators">
                     <li data-target="#header-slider" data-slide-to="0" class="active"></li>
                     <li data-target="#header-slider" data-slide-to="1"></li>
@@ -194,7 +186,7 @@
                                     <h2>Jeunesse Sociale pour le Développement</h2>
                                     <h2>"JSD"</h2>
                                     <p>Franchise Pureté Dévouement</p>
-                                     <button type="button" class="btn" style="position: relative; z-index: 10000; cursor: pointer;" onclick="window.location.assign('about.html'); ">En savoir plus</button>
+                                     <button type="button" class="btn" onclick="window.location.assign('about.html');">En savoir plus</button>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -210,7 +202,7 @@
                                 <div class="carousel-content">
                                      <h2>Jeunesse Sociale pour le Développement</h2>
                                     <p>Franchise Pureté Dévouement</p>
-                                    <button type="button" class="btn" style="position: relative; z-index: 10000; cursor: pointer;" onclick="window.location.assign('about.html'); ">En savoir plus</button>
+                                    <button type="button" class="btn" onclick="window.location.assign('about.html');">En savoir plus</button>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -226,7 +218,7 @@
                                 <div class="carousel-content">
                                     <h2>Jeunesse Sociale pour le Développement</h2>
                                     <p>Franchise Pureté Dévouement</p>
-                                   <button type="button" class="btn" style="position: relative; z-index: 10000; cursor: pointer;" onclick="window.location.assign('about.html'); ">En savoir plus</button>
+                                   <button type="button" class="btn" onclick="window.location.assign('about.html');">En savoir plus</button>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -253,9 +245,7 @@
             <div class="container">
                 <div class="section-header">
                     <h2>Competance Travail</h2>
-                    <p>
-                        L'avenir est une compétence que l'on construi au présent.
-                    </p>
+                    <p>L'avenir est une compétence que l'on construit au présent.</p>
                 </div>
                 
                 <div class="row align-items-center">
@@ -266,14 +256,9 @@
                         <div class="about-content">
                             <h2>Bienvenue à la JSD</h2>
                             <p>
-                                Nous, jeunes congolais, animés par la volonté et le souci du développement, conscients de la responsabilité qui est la nôtre d’améliorer et de contribuer à l’organisation de la vie juvénile sur toute l’étendue du territoire national en partageant nos expériences et nos peines, en vue de s’imprégner de l’esprit du travail et du progrès social en marquant notre temps, époque et génération par un esprit et un sens d’initiative voués à l’épanouissement ;
-Mus par la volonté de promouvoir les objectifs du développement dans le respect total des valeurs humaines, des normes et lois de notre pays, la République Démocratique du Congo, de combattre les fléaux et maux qui rongent l’épanouissement de la jeunesse congolaise, notamment le chômage, la mégestion, l’analphabétisme, la délinquance, les avortements criminels et les naissances précoces… ;
-Convaincus du rôle que nous sommes appelés à jouer dans la société, d’intégrer la jeunesse congolaise dans des initiatives et processus de développement communautaire durable ;
-Convaincus de notre idéal de faire des jeunes et par les jeunes des acteurs actifs de développement de la nation par la participation efficace et totale au processus de reconstruction nationale ;
-Considérant que le meilleur procédé à poursuivre pour atteindre tous ces objectifs, réside dans l’unité de nos efforts et le travail ;
-Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse Sociale pour le Développement » en sigle JSD, une ONGD/ASBL poursuivant des objectifs nobles de promouvoir, sur l’ensemble du territoire national, l’épanouissement de la jeunesse sans distinction aucune.
+                                Nous, jeunes congolais, animés par la volonté et le souci du développement, conscients de la responsabilité qui est la nôtre d’améliorer et de contribuer à l’organisation de la vie juvénile sur toute l’étendue du territoire national...
                             </p>
-                            <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important; position: relative; z-index: 99999;" onclick="window.location.href='contact.html';"> Nous contacter</button>
+                            <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important;" onclick="window.location.href='contact.html';"> Nous contacter</button>
                         </div>
                     </div>
                 </div>
@@ -287,19 +272,14 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             <h2>Notre Histoire</h2>
                             <div>
                                 <p>HISTORIQUE DE LA JEUNESSE SOCIALE POUR LE DÉVELOPPEMENT (JSD)</p>
-                                <p>La Jeunesse Sociale pour le Développement (JSD) est une organisation non gouvernementale de développement (ONGD / ASBL) de droit congolais, née d'une prise de conscience face aux multiples défis socio-économiques auxquels est confrontée la jeunesse en République Démocratique du Congo, notamment l'oisiveté, le chômage et le manque d'opportunités d'encadrement professionnel.</p>
+                                <p>La Jeunesse Sociale pour le Développement (JSD) est une organisation non gouvernementale de développement (ONGD / ASBL) de droit congolais...</p>
                                 <h3>La Genèse et la Vision (2021)</h3>
-                                <p>L'histoire de l'organisation commence en 2021, portée par l'initiative de deux figures clés engagées pour l'épanouissement communautaire et l'autonomisation des jeunes:</p>
                                 <h4>1. Mike TSHIBANGU KALOMBO,</h4> 
-                                <p>en tant que Visionnaire et Fondateur, a conçu les orientations stratégiques et les valeurs cardinales de l'organisation:</p> 
-                                <p>-l'unité, la solidarité, le travail et la reconstruction nationale.</p>
+                                <p>Visionnaire et Fondateur.</p>
                                 <h4>2. SANTA TANGANIKA USENI,</h4> 
-                                <p>en tant que Co-fondateur, a adhéré dès le premier jour à cette vision et a activement œuvré à la structuration, à l'orientation et à la concrétisation des initiatives du mouvement.</p>
-                                <h5>-Parcours et Consolidation (De 2021 à nos jours)</h5>
-                                <p>Depuis 2021 jusqu'à ce jour, l'équipe dirigeante et les membres fondateurs poursuivent sans relâche cet engagement commun. Au fil des années, la JSD s'est dotée d'un cadre juridique et organisationnel solide, structuré autour d'organes de gouvernance clairs (Assemblée Générale, Conseil d'Administration et bureau exécutif) et de textes fondateurs garantissant sa transparence et sa pérennité.</p>
-                                <p>Aujourd'hui, l'organisation continue de développer des initiatives concrètes axées sur l'éducation, la formation professionnelle, la lutte contre l'analphabétisme et la délinquance juvénile, tout en promouvant l'entrepreneuriat et l'auto-prise en charge des jeunes Congolais.</p>
+                                <p>Co-fondateur.</p>
                             </div>
-                            <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important; position: relative; z-index: 99999;" onclick="window.location.href='portfolio.html';"> Nos porteffeuilles</button>
+                            <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important;" onclick="window.location.href='portfolio.html';"> Nos porteffeuilles</button>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -309,18 +289,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                         <div class="about-content">
                             <h2>Notre Objectif</h2>
                             <div>
-                                <p>La Jeunesse Sociale pour le Développement (JSD) est une organisation non gouvernementale de développement (ONGD / ASBL) qui vise à promouvoir l'épanouissement des jeunes congolais par l'unité, la solidarité et le travail.</p>
-                                <p>Voici les grands axes et objectifs principaux de l’organisation:</p>
-                                <p>1. Épanouissement et leadership de la jeunesse: </p> 
-                                <p>-Rassembler et encadrer les jeunes pour renforcer leur rôle dans le développement local et la reconstruction nationale; </p>
-                                <p>2. Lutte contre le chômage et la précarité: </p> 
-                                <p>-Promouvoir l'auto-prise en charge, la formation professionnelle et la création d'opportunités d'emploi; </p>
-                                <p>3. Éducation et réinsertion sociale: </p> 
-                                <p>-Lutter contre l'analphabétisme, l'oisiveté et la délinquance juvenile; </p>
-                                <p>4.Développement durable et citoyenneté: </p> 
-                                <p>-Organiser des initiatives communautaires, des projets de travail à impact social et des activités culturelles et sportives. </p>
+                                <p>La Jeunesse Sociale pour le Développement (JSD) vise à promouvoir l'épanouissement des jeunes congolais par l'unité, la solidarité et le travail.</p>
                             </div>
-                             <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important; position: relative; z-index: 99999;" onclick="window.location.href='skill.html';"> Nos compétences</button>
+                            <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important;" onclick="window.location.href='skill.html';"> Nos compétences</button>
                         </div>
                     </div>
                 </div>
@@ -328,821 +299,293 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         </div>
         <!-- About End -->
 
-        <!-- Service Start -->
-        <div class="service">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Services</h2>
-                    <p>
-                        L'avenir est une compétence que l'on construi au présent 
-                    </p>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="service-item">
-                            <div class="service-icon">
-                                <img src="img/S1.jpg" alt="photo" class="img-service">
-                            </div>
-                            <div class="service-detail">
-                                <h4><a href="">Formation Professionnelles et Renforcement des Capacités:</a></h4>
-                                <p>Ateliers d'apprentissage de métiers, formations pratiques et programmes visant l'autonomisation et l'insertion professionnelles des jeunes.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="service-item">
-                            <div class="service-icon">
-                                <img src="img/S2.jpg" alt="photo" class="img-service">
-                            </div>
-                            <div class="service-detail">
-                                <h4><a href="">Projets d'entrepreneuriat et d'auto-prise en charge :</a></h4>
-                                <p>Accompagnement de projets communautaire et soutien aux initiaves entrepreneuriales pour crées des opportunités économiques locales.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="service-item">
-                            <div class="service-icon">
-                               <img src="img/S3.jpg" alt="photo" class="img-service">
-                            </div>
-                            <div class="service-detail">
-                                <h4><a href="">Education et Alphabétisation:</a></h4>
-                                <p>Initiatives de sensibilisation et programmes éducatifs visant à réduire l'analphabétisme et à promouvoir la citoyenneté responsable.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="service-item">
-                            <div class="service-icon">
-                            <img src="img/S4.jpg" alt="photo" class="img-service">
-                            </div>
-                            <div class="service-detail">
-                                <h4><a href="">Activités Socioculturelles et Sportives:</a></h4>
-                                <p>Organisation d'événements de cohésion, d'activités culturelles et de rencontres sportives pour encadrer la Jeunesse et renforcer les liens communautaires.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="service-item">
-                            <div class="service-icon">
-                                <img src="img/S5.jpg" alt="photo" class="img-service">
-                            </div>
-                            <div class="service-detail">
-                                <h4><a href="">Projets Multiservices et de développement durable:</a></h4>
-                                <p>Actions communautaires à impacte social pour répondre aux besoins locaux et favoriser l'autonomie financièr de la structure et de ses membres.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="service-item">
-                            <div class="service-icon">
-                             <img src="img/S6.jpg" alt="photo" class="img-service">
-                            </div>
-                            <div class="service-detail">
-                                <h4><a href="">Sensibilisation et Santé communnautaire:</a></h4>
-                                <p>Campagnes d'information sur la santé préventive, la salubrité publique et la lutte contre les fléaux sociaux touchant la jeunesse.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="service-item">
-                            <div class="service-icon">
-                               <img src="img/S7.jpg" alt="photo" class="img-service">
-                            </div>
-                            <div class="service-detail">
-                                <h4><a href="">Encadrement civique et leadership youth:</a></h4>
-                                <p>Ateliers d'initiation au leadership, au civisme et à la gestion associative pour former des acteurs du chagement.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="service-item">
-                            <div class="service-icon">
-                                <img src="img/S8.jpg" alt="photo" class="img-service">
-                            </div>
-                            <div class="service-detail">
-                                <h4><a href="">orientation et accompagnement social:</a></h4>
-                                <p>Ecoute, conseil et assistance pour l'insertion social des jeunes vulnérables ou en quête de repères professionnels.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- FORMULAIRE COMPLET D'ENREGISTREMENT ET GESTION CONFIDENTIELLE DES MEMBRES JSD -->
+        <div class="container py-4" id="sectionEnregistrementMembres">
+
+          <!-- 1. FORMULAIRE D'ENREGISTREMENT -->
+          <div class="card mb-4 shadow-sm border-0">
+            <div class="card-header bg-primary text-white font-weight-bold">
+              <i class="icon ion-md-person-add me-2"></i> Formulaire d'Enregistrement Complet d'un Membre
             </div>
-        </div>
-        <!-- Service End -->
+            <div class="card-body">
+              <form id="formulaireInscription" onsubmit="enregistrerMembre(event)">
+                <div class="row g-3">
+                  <!-- Identité de base -->
+                  <div class="col-md-4">
+                    <label class="form-label font-weight-bold">Nom <span class="text-danger">*</span></label>
+                    <input type="text" id="nomMembre" class="form-control" placeholder="Ex: TSHIBANGU" required>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label font-weight-bold">Postnom</label>
+                    <input type="text" id="postnomMembre" class="form-control" placeholder="Ex: KALOMBO">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label font-weight-bold">Prénom <span class="text-danger">*</span></label>
+                    <input type="text" id="prenomMembre" class="form-control" placeholder="Ex: Mike" required>
+                  </div>
 
-        <!-- Call To Action Start -->
-        <div class="call-to-action">
-            <div class="container text-center">
-                <div class="section-header">
-                    <h2>Appel à l'Action</h2>
-                    <p>
-                        Balisés aujourd'hui pour une meuilleur navigation demain 
-                    </p>
+                  <!-- Genre & Date d'Adhésion -->
+                  <div class="col-md-3 mt-3">
+                    <label class="form-label font-weight-bold">Sexe <span class="text-danger">*</span></label>
+                    <select id="sexeMembre" class="form-control" required>
+                      <option value="">Sélectionner...</option>
+                      <option value="M">Masculin (M)</option>
+                      <option value="F">Féminin (F)</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3 mt-3">
+                    <label class="form-label font-weight-bold">Date d'adhésion</label>
+                    <input type="date" id="dateAdhesionMembre" class="form-control">
+                  </div>
+                  <div class="col-md-3 mt-3">
+                    <label class="form-label font-weight-bold">Téléphone / WhatsApp <span class="text-danger">*</span></label>
+                    <input type="text" id="contactMembre" class="form-control" placeholder="+243 ..." required>
+                  </div>
+                  <div class="col-md-3 mt-3">
+                    <label class="form-label font-weight-bold">Nationalité</label>
+                    <input type="text" id="nationaliteMembre" class="form-control" value="Congolaise">
+                  </div>
+
+                  <!-- Origine & Informations socio-professionnelles -->
+                  <div class="col-md-4 mt-3">
+                    <label class="form-label font-weight-bold">Province d'origine <span class="text-danger">*</span></label>
+                    <select id="provinceOrigineMembre" class="form-control" required>
+                      <option value="">Sélectionner la province...</option>
+                      <option value="Bas-Uele">Bas-Uele</option>
+                      <option value="Équateur">Équateur</option>
+                      <option value="Haut-Lomami">Haut-Lomami</option>
+                      <option value="Haut-Katanga">Haut-Katanga</option>
+                      <option value="Haut-Uele">Haut-Uele</option>
+                      <option value="Ituri">Ituri</option>
+                      <option value="Kasaï">Kasaï</option>
+                      <option value="Kasaï-Central">Kasaï-Central</option>
+                      <option value="Kasaï-Oriental">Kasaï-Oriental</option>
+                      <option value="Kinshasa">Kinshasa</option>
+                      <option value="Congo-Central">Congo-Central</option>
+                      <option value="Kwango">Kwango</option>
+                      <option value="Kwilu">Kwilu</option>
+                      <option value="Lomami">Lomami</option>
+                      <option value="Lualaba">Lualaba</option>
+                      <option value="Mai-Ndombe">Mai-Ndombe</option>
+                      <option value="Maniema">Maniema</option>
+                      <option value="Mongala">Mongala</option>
+                      <option value="Nord-Kivu">Nord-Kivu</option>
+                      <option value="Nord-Ubangi">Nord-Ubangi</option>
+                      <option value="Sankuru">Sankuru</option>
+                      <option value="Sud-Kivu">Sud-Kivu</option>
+                      <option value="Sud-Ubangi">Sud-Ubangi</option>
+                      <option value="Tanganyika">Tanganyika</option>
+                      <option value="Tshopo">Tshopo</option>
+                      <option value="Tshuapa">Tshuapa</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 mt-3">
+                    <label class="form-label font-weight-bold">Niveau d'études</label>
+                    <select id="niveauEtudesMembre" class="form-control">
+                      <option value="Non précisé">Sélectionner...</option>
+                      <option value="Primaire">Primaire</option>
+                      <option value="Secondaire / Diplômé">Secondaire / Diplômé</option>
+                      <option value="Gradué / Licence (Bac+3/5)">Gradué / Licence (Bac+3/5)</option>
+                      <option value="Master / Doctorat">Master / Doctorat</option>
+                      <option value="Autre">Autre</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 mt-3">
+                    <label class="form-label font-weight-bold">État civil</label>
+                    <select id="etatCivilMembre" class="form-control">
+                      <option value="Célibataire">Célibataire</option>
+                      <option value="Marié(e)">Marié(e)</option>
+                      <option value="Divorcé(e)">Divorcé(e)</option>
+                      <option value="Veuf(ve)">Veuf(ve)</option>
+                    </select>
+                  </div>
+
+                  <!-- Profession & Statut au sein de l'organisation -->
+                  <div class="col-md-6 mt-3">
+                    <label class="form-label font-weight-bold">Profession</label>
+                    <input type="text" id="professionMembre" class="form-control" placeholder="Ex: Informaticien, Enseignant, Commerçant...">
+                  </div>
+                  <div class="col-md-6 mt-3">
+                    <label class="form-label font-weight-bold">Statut / Fonction à la JSD</label>
+                    <select id="statutMembre" class="form-control">
+                      <option value="Membre">Membre</option>
+                      <option value="Président">Président</option>
+                      <option value="Conseiller">Conseiller</option>
+                      <option value="Cadre">Cadre</option>
+                      <option value="Secrétaire Général">Secrétaire Général</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12 mt-4 text-end">
+                    <button type="submit" class="btn btn-primary px-5 py-2 fw-bold">
+                      <i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer le Membre
+                    </button>
+                  </div>
                 </div>
-                <a class="btn" href="#">Call To Action</a>
-            </div>
-        </div>
-        <!-- Call To Action End -->
-
-        <!--Pricing start-->
-        <div class="pricing">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Nos Tarifs</h2>
-                    <p>
-                        Syllabus !!! 
-                    </p>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="price-content">
-                            <div class="price-plan">
-                                <i class="ion-md-home"></i>
-                                <p class="price-title">Metier</p>
-                                <h2 class="price-amount"><span>$</span>15<span>.2</span><span> / usd</span></h2>
-                            </div>
-                            <ul class="price-details">
-                                <li><i class="ion-md-checkmark"></i><strong>Brucollage</strong> et <strong>Transformation</strong></li>
-                                <li><i class="ion-md-checkmark"></i><strong>Orientation professionnel</strong></li>                             
-                                <li><i class="ion-md-close"></i><strong>Brevet</strong> Avant la formation</li>                
-                            </ul>
-                            <a href="#" class="btn mian-btn price-btn">Acheter maintenant !!!</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="price-content features-price">
-                            <div class="price-plan">
-                                <i class="ion-md-star"></i>
-                                <p class="price-title">Formation Pro</p>
-                                <h2 class="price-amount"><span>$</span>19<span>.9</span><span> / usd</span></h2>
-                            </div>
-                            <ul class="price-details">
-                                <li><i class="ion-md-checkmark"></i><strong>Managemene</strong> et <strong>leadership</strong></li>
-                                <li><i class="ion-md-checkmark"></i><strong>Competance Travail</strong></li>
-                                <li><i class="ion-md-checkmark"></i><strong>Propriétè envirronemental</strong> Salibrité</li>
-                            </ul>
-                            <a href="#" class="btn mian-btn price-btn features-price-btn">Acheter maintenant !!!</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="price-content">
-                            <div class="price-plan">
-                                <i class="ion-md-gift"></i>
-                                <p class="price-title">Informatique</p>
-                                <h2 class="price-amount"><span>$</span>29<span>.99</span><span> / m</span></h2>
-                            </div>
-                            <ul class="price-details">
-                                <li><i class="ion-md-checkmark"></i><strong>HTML5</strong> et <strong>CSS3</strong></li>
-                                <li><i class="ion-md-checkmark"></i><strong>Programmation</strong></li>                            
-                                <li><i class="ion-md-checkmark"></i><strong>Bureautique</strong> et VBA</li>
-                            </ul>
-                            <a href="#" class="btn mian-btn price-btn">Acheter maintenant !!!</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Pricing End-->
-
-        <!-- Skills Start-->
-        <div class="skills">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Nos Compétences</h2>
-                    <p>
-                        Toujours près à : 
-                    </p>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="skill-item">
-                            <h3>Développer vos Compétences</h3>
-                            <div class="skill-name">
-                                <p>Formations</p><p>85%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            
-                            <div class="skill-name">
-                                <p>Encadrement</p><p>95%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            
-                            <div class="skill-name">
-                                <p>Orientation</p><p>80%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="skill-item">
-                            <h3>leadership</h3>
-                            <div class="skill-name">
-                                <p>Etres Chef</p><p>90%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            
-                            <div class="skill-name">
-                                <p>Dirgent</p><p>85%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            
-                            <div class="skill-name">
-                                <p>Visionaire</p><p>95%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Skills End-->
-        
-        <!-- Counters Start-->
-        <div class="counters">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-6 text-center">
-                        <i class="ion-md-person"></i>
-                        <h2 data-toggle="counter-up">10</h2>
-                        <p>Nos Staffs</p>
-                    </div>
-
-                    <div class="col-lg-3 col-6 text-center">
-                        <i class="ion-md-people"></i>
-                        <h2 data-toggle="counter-up">80</h2>
-                        <p>Nos Clients</p>
-                    </div>
-
-                    <div class="col-lg-3 col-6 text-center">
-                        <i class="ion-md-checkmark"></i>
-                        <h2 data-toggle="counter-up">30</h2>
-                        <p>Projets complet</p>
-                    </div>
-
-                    <div class="col-lg-3 col-6 text-center">
-                        <i class="ion-md-trending-up"></i>
-                        <h2 data-toggle="counter-up">10</h2>
-                        <p>Projects en marche</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Counters End-->
-
-        <!-- Portfolio Start -->
-        <div class="portfolio">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Nos Porteffeuilles</h2>
-                    <p>
-                        Choisir ce qui vous convient 
-                    </p>
-                </div>
-
-                <div class="row portfolio-container">
-                    <div class="col-lg-4 col-md-6 portfolio-item">
-                        <div class="portfolio-img">
-                            <img src="img/S1.jpg" class="img-fluid" alt="Portfolio">
-                            <a href="img/S1.jpg" data-lightbox="portfolio" data-title="Lorem ipsum dolor" class="link-preview" title="Preview"><i class="ion-md-eye"></i></a>
-                            <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
-                        </div>
-
-                        <div class="portfolio-info">
-                            <h3>Formation à 100$</h3>
-                            <p>Experiences</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item">
-                        <div class="portfolio-img">
-                            <img src="img/S2.jpg" class="img-fluid" alt="Portfolio">
-                            <a href="img/S2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Nulla ullamcorper pharetra" title="Preview"><i class="ion-md-eye"></i></a>
-                            <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
-                        </div>
-
-                        <div class="portfolio-info">
-                            <h3>Entrepreneuriat</h3>
-                            <p>expériences</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item">
-                        <div class="portfolio-img">
-                            <img src="img/S3.jpg" class="img-fluid" alt="Portfolio">
-                            <a href="img/S3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Phasellus eget dictum" title="Preview"><i class="ion-md-eye"></i></a>
-                            <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
-                        </div>
-
-                        <div class="portfolio-info">
-                            <h3>Education</h3>
-                            <p>Experiences</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item">
-                        <div class="portfolio-img">
-                            <img src="img/S4.jpg" class="img-fluid" alt="Portfolio">
-                            <a href="img/S4.jpg" data-lightbox="portfolio" data-title="Lorem ipsum dolor" class="link-preview" title="Preview"><i class="ion-md-eye"></i></a>
-                            <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
-                        </div>
-
-                        <div class="portfolio-info">
-                            <h3>Sport</h3>
-                            <p>Expériences</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item">
-                        <div class="portfolio-img">
-                            <img src="img/S5.jpg" class="img-fluid" alt="Portfolio">
-                            <a href="img/S5.jpg" class="link-preview" data-lightbox="portfolio" data-title="Nulla ullamcorper pharetra" title="Preview"><i class="ion-md-eye"></i></a>
-                            <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
-                        </div>
-
-                        <div class="portfolio-info">
-                            <h3>Orientation</h3>
-                            <p>Expériences</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item">
-                        <div class="portfolio-img">
-                            <img src="img/S6.jpg" class="img-fluid" alt="Portfolio">
-                            <a href="img/S6.jpg" class="link-preview" data-lightbox="portfolio" data-title="Phasellus eget dictum" title="Preview"><i class="ion-md-eye"></i></a>
-                            <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
-                        </div>
-
-                        <div class="portfolio-info">
-                            <h3>Sensibilisé</h3>
-                            <p>Experiences</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio End -->
-        
-        <!-- Team Start -->
-        <div class="team">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Notre Equipe</h2>
-                    <p>
-                        Commité directeur de la JSD 
-                    </p>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6 team-item">
-                        <div class="team-img">
-                            <img src="img/JSD13.jpg" class="img-fluid" alt="Team Member">
-                            <div class="team-social">
-                                <a href="#"><i class="ion-logo-twitter"></i></a>
-                                <a href="https://www.facebook.com/annas.tshibangu" target="_blank" rel="noopener noreferrer"><i class="ion-logo-facebook"></i> </a>
-                                <a href="#"><i class="ion-logo-linkedin"></i></a>
-                                <a href="#"><i class="ion-logo-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="team-info">
-                            <h3>Mike TSHIBANGU</h3>
-                            <p>Présindent</p>
-                            <p>Ir en Science informatique</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-sm-6 team-item">
-                        <div class="team-img">
-                            <img src="img/JSD 8.jpg" class="img-fluid" alt="Team Member">
-                            <div class="team-social">
-                                <a href="#"><i class="ion-logo-twitter"></i></a>
-                                <a href="#"><i class="ion-logo-facebook"></i></a>
-                                <a href="#"><i class="ion-logo-linkedin"></i></a>
-                                <a href="#"><i class="ion-logo-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="team-info">
-                            <h3>SANTA Useini</h3>
-                            <p>Conseilier</p>
-                            <p>Inspecteur du Travail</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-sm-6 team-item">
-                        <div class="team-img">
-                            <img src="img/JSD12.jpg" class="img-fluid" alt="Team Member">
-                            <div class="team-social">
-                                <a href="#"><i class="ion-logo-twitter"></i></a>
-                                <a href="#"><i class="ion-logo-facebook"></i></a>
-                                <a href="#"><i class="ion-logo-linkedin"></i></a>
-                                <a href="#"><i class="ion-logo-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="team-info">
-                            <h3>Moussa SHIMBUDIKA Jerome</h3>
-                            <p>Secretaire Générale</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-sm-6 team-item">
-                        <div class="team-img">
-                            <img src="img/JSD 9.jpg" class="img-fluid" alt="Team Member">
-                            <div class="team-social">
-                                <a href="#"><i class="ion-logo-twitter"></i></a>
-                                <a href="#"><i class="ion-logo-facebook"></i></a>
-                                <a href="#"><i class="ion-logo-linkedin"></i></a>
-                                <a href="#"><i class="ion-logo-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="team-info">
-                            <h3>Trésor TSHIBANGU</h3>
-                            <p>Ir en Energie</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Team End -->
-
-        <!-- Testimonials Start -->
-        <div class="testimonials">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Avis ou Critiques</h2>
-                    <p>
-                        Votres choix notre priotités 
-                    </p>
-                </div>
-
-                <div class="owl-carousel testimonials-carousel">
-                    <div class="testimonial-item row align-items-center">
-                        <div class="testimonial-img">
-                            <img src="img/testimonial-1.jpg" alt="Testimonial image">
-                        </div>
-                        <div class="testimonial-text">
-                            <h3>Anna M. Brzezinski</h3>
-                            <h4>businesswoman</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel
-                            </p>
-                        </div>
-                    </div>
-                    <div class="testimonial-item row align-items-center">
-                        <div class="testimonial-img">
-                            <img src="img/testimonial-2.jpg" alt="Testimonial image">
-                        </div>
-                        <div class="testimonial-text">
-                            <h3>Shirley H. Lee</h3>
-                            <h4>businesswoman</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel
-                            </p>
-                        </div>
-                    </div>
-                    <div class="testimonial-item row align-items-center">
-                        <div class="testimonial-img">
-                            <img src="img/testimonial-3.jpg" alt="Testimonial image">
-                        </div>
-                        <div class="testimonial-text">
-                            <h3>Kerry E. Thomas</h3>
-                            <h4>businesswoman</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel
-                            </p>
-                        </div>
-                    </div>
-                    <div class="testimonial-item row align-items-center">
-                        <div class="testimonial-img">
-                            <img src="img/testimonial-4.jpg" alt="Testimonial image">
-                        </div>
-                        <div class="testimonial-text">
-                            <h3>Kerry E. Thomas</h3>
-                            <h4>businesswoman</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel
-                            </p>
-                        </div>
-                    </div>
-                    <div class="testimonial-item row align-items-center">
-                        <div class="testimonial-img">
-                            <img src="img/testimonial-5.jpg" alt="Testimonial image">
-                        </div>
-                        <div class="testimonial-text">
-                            <h3>Kerry E. Thomas</h3>
-                            <h4>businesswoman</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Testimonials End -->
-        
-        <!-- Clients Start -->
-        <div class="clients">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Nos Partenaires</h2>
-                    <p>
-                        Toujourqs près à servir  
-                    </p>
-                </div>
-
-                <div class="owl-carousel clients-carousel">
-                    <img src="img/logo.jpg" alt="Client Logo">
-                    <img src="img/client-2.jpg" alt="Client Logo">
-                    <img src="img/client-3.jpg" alt="Client Logo">
-                    <img src="img/client-4.jpg" alt="Client Logo">
-                    <img src="img/client-5.jpg" alt="Client Logo">
-                    <img src="img/client-6.jpg" alt="Client Logo">
-                    <img src="img/client-7.jpg" alt="Client Logo">
-                    <img src="img/client-8.jpg" alt="Client Logo">
-                </div>
-
-            </div>
-        </div>
-        <!-- Clients End -->
-
-<!-- FORMULAIRE ET TABLEAU D'ENREGISTREMENT MEMBRES JSD -->
-<div class="container py-4">
-
-  <!-- Formulaire d'enregistrement -->
-  <div class="card mb-4 shadow-sm border-0">
-    <div class="card-header bg-primary text-white font-weight-bold">
-      <i class="icon ion-md-person-add me-2"></i> Formulaire d'Enregistrement d'un Membre
-    </div>
-    <div class="card-body">
-      <form id="formulaireInscription" onsubmit="enregistrerMembre(event)">
-        <div class="row g-3">
-          <div class="col-md-4">
-            <label class="form-label font-weight-bold">Nom & Prénom</label>
-            <input type="text" id="nomMembre" class="form-control" placeholder="Ex: Jean Mukendi" required>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label font-weight-bold">Contact (Téléphone / WhatsApp)</label>
-            <input type="text" id="contactMembre" class="form-control" placeholder="+243 ..." required>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label font-weight-bold">Commune / Ville</label>
-            <input type="text" id="localisationMembre" class="form-control" placeholder="Ex: Bandalungwa, Kinshasa">
-          </div>
-          <div class="col-md-4 mt-3">
-            <label class="form-label font-weight-bold">Statut / Catégorie</label>
-            <select id="statutMembre" class="form-select">
-              <option value="Membre">Membre</option>
-              <option value="Président">Président</option>
-              <option value="Conseiller">Conseiller</option>
-              <option value="Cadre">Cadre</option>
-            </select>
-          </div>
-          <div class="col-md-8 mt-3 d-flex align-items-end justify-content-end">
-            <button type="submit" class="btn btn-primary px-4 py-2">
-              <i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Tableau d'affichage dynamique -->
-  <div class="card shadow-sm border-0">
-    <div class="card-header bg-dark text-white font-weight-bold">
-      <i class="icon ion-md-people me-2"></i> Liste des Membres Enregistrés
-    </div>
-    <div class="card-body p-0">
-      <div class="table-responsive">
-        <table class="table table-hover align-middle mb-0">
-          <thead class="table-light">
-            <tr>
-              <th>Matricule</th>
-              <th>Nom & Prénom</th>
-              <th>Contact</th>
-              <th>Localisation</th>
-              <th>Statut</th>
-              <th>Date d'adhésion</th>
-              <th class="text-center">Actions</th>
-            </tr>
-          </thead>
-          <tbody id="corpsTableauMembres">
-            <!-- Les membres enregistrés dans Firebase s'afficheront ici -->
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- Formulaire de publication d'événement -->
-<div class="container">
-  <div id="formulairePublicatEvent" class="card shadow-sm p-4 mb-4 border-primary" style="display: none;">
-    <h5 class="fw-bold text-primary mb-3">Publier un nouvel événement</h5>
-    <div class="row g-3">
-      <div class="col-md-6">
-        <label class="form-label font-weight-bold">Titre de l'événement</label>
-        <input type="text" id="evTitre" class="form-control" placeholder="ex: Conférence Annuelle">
-      </div>
-      <div class="col-md-6">
-        <label class="form-label font-weight-bold">Affiche / Image (Depuis appareil)</label>
-        <input type="file" id="evFichierImage" class="form-control" accept="image/*">
-      </div>
-
-      <div class="col-12">
-        <label class="form-label font-weight-bold">Texte d'accompagnement (Description de l'affiche)</label>
-        <textarea id="evDescription" class="form-control" rows="2" placeholder="Saisissez un message ou une légende sous/sur l'image..."></textarea>
-      </div>
-
-      <div class="col-md-4">
-        <label class="form-label font-weight-bold">Date</label>
-        <input type="text" id="evDate" class="form-control" placeholder="ex: 12 Novembre 2026">
-      </div>
-      <div class="col-md-4">
-        <label class="form-label font-weight-bold">Lieu</label>
-        <input type="text" id="evLieu" class="form-control" placeholder="ex: Siège JSD / Kinshasa">
-      </div>
-      <div class="col-md-4">
-        <label class="form-label font-weight-bold">Nombre de places</label>
-        <input type="number" id="evPlaces" class="form-control" value="50">
-      </div>
-      <div class="col-12 text-end mt-3">
-        <button class="btn btn-secondary me-2" onclick="toggleFormulaireEvenement()">Annuler</button>
-        <button class="btn btn-success fw-bold" onclick="publierNouvelEvenement()">Publier l'événement</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Script minimal de gestion d'accès et d'envoi -->
-<script>
-    function unlockChat() {
-        var mat = document.getElementById('chatMatricule').value.trim();
-        var pin = document.getElementById('chatPin').value.trim();
-
-        if (mat !== "" && pin !== "") {
-            localStorage.setItem('jsd_current_user', mat);
-            var chatBox = document.getElementById('chatMessages');
-            if (chatBox) {
-                chatBox.innerHTML = ''; 
-            }
-            document.getElementById('chatAuthCard').classList.add('d-none');
-            document.getElementById('chatBoxCard').classList.remove('d-none');
-        } else {
-            alert('Veuillez saisir votre matricule et votre code PIN.');
-        }
-    }
-
-    function lockChat() {
-        localStorage.removeItem('jsd_current_user');
-        document.getElementById('chatBoxCard').classList.add('d-none');
-        document.getElementById('chatAuthCard').classList.remove('d-none');
-        document.getElementById('chatMatricule').value = '';
-        document.getElementById('chatPin').value = '';
-        
-        var chatBox = document.getElementById('chatMessages');
-        if (chatBox) {
-            chatBox.innerHTML = '';
-        }
-    }
-
-    function sendChatMessage() {
-        var input = document.getElementById('chatInputMessage');
-        var text = input.value.trim();
-        var currentUser = localStorage.getItem('jsd_current_user') || 'Membre';
-
-        if (text !== "") {
-            var chatBox = document.getElementById('chatMessages');
-            var msgDiv = document.createElement('div');
-            msgDiv.className = 'd-flex flex-row justify-content-end mb-2';
-            msgDiv.innerHTML = '<div class="p-2 me-2 border 0 rounded-3 bg-primary text-white"><b>' + currentUser + ':</b> ' + text + '</div>';
-            
-            chatBox.appendChild(msgDiv);
-            input.value = '';
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-    }
-
-    function voirMembre(matricule) {
-        alert("Consultation de la fiche du membre : " + matricule);
-    }
-
-    function modifierMembre(matricule) {
-        alert("Modification du membre : " + matricule);
-    }
-</script>
-
-<!-- SECTION MESSAGERIE PRIVÉE : MEMBRES <-> PRÉSIDENT -->
-<div class="card shadow-sm border-0 my-5" id="sectionMessagerie">
-  <div class="card-header bg-primary text-white font-weight-bold d-flex justify-content-between align-items-center">
-    <span><i class="icon ion-md-chatboxes me-2"></i> Messagerie Directe avec le Président</span>
-    <span id="badgeStatutConnexion" class="badge bg-light text-dark">Non connecté</span>
-  </div>
-  <div class="card-body">
-
-    <!-- ÉTAPE 1 : FORMULAIRE D'AUTHENTIFICATION ET CONNEXION -->
-    <div id="blocConnexionChat" class="p-3 bg-light rounded border">
-      <h6 class="fw-bold mb-3"><i class="icon ion-md-lock me-1"></i> Identifiez-vous pour accéder à votre espace de discussion :</h6>
-      <div class="row g-2 align-items-center">
-        <div class="col-md-5">
-          <input type="text" id="chatNom" class="form-control" placeholder="Votre Nom & Prénom enregistré">
-        </div>
-        <div class="col-md-4">
-          <input type="text" id="chatMatricule" class="form-control" placeholder="Votre Matricule (ex: JSD-2026-43IC)" required>
-        </div>
-        <div class="col-md-3">
-          <button type="button" class="btn btn-primary w-100" onclick="connexionMessagerie()">
-            <i class="icon ion-md-key me-1"></i> Accéder au Chat
-          </button>
-        </div>
-      </div>
-      <div class="mt-2 text-end">
-        <small><a href="javascript:void(0)" class="text-secondary" onclick="connexionPresidentChat()">[Accès Président]</a></small>
-      </div>
-    </div>
-
-    <!-- ÉTAPE 2 : INTERFACE DE DISCUSSION -->
-    <div id="blocDiscussionChat" class="mt-4" style="display: none;">
-      
-      <!-- Vue membre ordinaire -->
-      <div id="vueDiscussionMembre">
-        <div class="alert alert-info py-2 d-flex justify-content-between align-items-center">
-          <small>Espace privé sécurisé de : <strong id="libelleMembreConnecte"></strong></small>
-          <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.reload()">Déconnexion</button>
-        </div>
-        
-        <div id="boiteMessagesMembre" class="border rounded p-3 mb-3 bg-white" style="height: 320px; overflow-y: auto;">
-        </div>
-
-        <form id="formEnvoyerMessageMembre" onsubmit="envoyerMessageMembre(event)">
-          <div class="input-group">
-            <input type="text" id="champMessageMembre" class="form-control" placeholder="Écrivez votre message au Président ici..." required>
-            <button class="btn btn-primary" type="submit">
-              <i class="icon ion-md-send me-1"></i> Envoyer
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!-- Vue Président -->
-      <div id="vueDiscussionPresident" style="display: none;">
-        <div class="alert alert-success py-2 d-flex justify-content-between align-items-center">
-          <small><i class="icon ion-md-shield me-1"></i> <strong>Espace d'Administration Présidentielle</strong></small>
-          <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.reload()">Déconnexion</button>
-        </div>
-
-        <div class="row">
-          <div class="col-md-4 border-end">
-            <h6 class="fw-bold border-bottom pb-2">Conversations des Membres</h6>
-            <div id="listeConversationsMembres" class="list-group list-group-flush" style="max-height: 380px; overflow-y: auto;">
+              </form>
             </div>
           </div>
 
-          <div class="col-md-8">
-            <h6 class="fw-bold border-bottom pb-2" id="titreDiscussionActive">Sélectionnez un membre pour lire sa conversation</h6>
-            <div id="boiteMessagesPresident" class="border rounded p-3 mb-3 bg-white" style="height: 300px; overflow-y: auto;">
-              <p class="text-muted text-center my-5">Cliquez sur un membre à gauche pour afficher la discussion.</p>
+          <!-- 2. ESPACE DE RECHERCHE PERSONNELLE POUR LES MEMBRES SIMPLES (Accès Confidentiel) -->
+          <div class="card mb-4 shadow-sm border-info">
+            <div class="card-header bg-info text-white font-weight-bold">
+              <i class="icon ion-md-search me-2"></i> Espace Membre : Consulter ma fiche personnelle
             </div>
-
-            <form id="formEnvoyerReponsePresident" onsubmit="envoyerReponsePresident(event)" style="display: none;">
-              <div class="input-group">
-                <input type="text" id="champReponsePresident" class="form-control" placeholder="Répondre à ce membre..." required>
-                <button class="btn btn-success" type="submit">
-                  <i class="icon ion-md-send me-1"></i> Répondre
-                </button>
+            <div class="card-body">
+              <p class="text-muted small">Conformément aux règles de confidentialité, la liste globale des membres est restreinte. Saisissez votre Matricule officiel ci-dessous pour afficher uniquement vos informations personnelles.</p>
+              <div class="row g-2 align-items-center">
+                <div class="col-md-8">
+                  <input type="text" id="rechercheMatriculeMembre" class="form-control" placeholder="Saisissez votre Matricule (ex: JSD-2026-43IC)">
+                </div>
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-info text-white w-100 fw-bold" onclick="consulterFicheMembrePerso()">
+                    <i class="icon ion-md-eye me-1"></i> Afficher ma fiche
+                  </button>
+                </div>
               </div>
-            </form>
+
+              <!-- Zone d'affichage de la fiche individuelle du membre -->
+              <div id="zoneFicheMembreIndividuelle" class="mt-4" style="display: none;"></div>
+            </div>
           </div>
+
+          <!-- 3. ACCÈS PRÉSIDENTIEL POUR DÉVERROUILLER LA LISTE COMPLÈTE -->
+          <div class="card shadow-sm border-dark">
+            <div class="card-header bg-dark text-white font-weight-bold d-flex justify-content-between align-items-center">
+              <span><i class="icon ion-md-lock me-2"></i> Répertoire Général des Membres (Réservé au Président)</span>
+              <button type="button" id="btnDevorrouillerPresident" class="btn btn-sm btn-outline-warning fw-bold" onclick="deverrouillerAccesPresident()">
+                <i class="icon ion-md-key me-1"></i> Accès Président
+              </button>
+            </div>
+            
+            <div class="card-body p-0">
+              <!-- Message d'accès restreint par défaut -->
+              <div id="messageAccesRestreint" class="p-4 text-center">
+                <i class="icon ion-md-shield text-secondary display-4 d-block mb-2"></i>
+                <h5 class="text-secondary fw-bold">Liste globale masquée</h5>
+                <p class="text-muted mb-0">Par mesure de confidentialité, la liste complète des membres est accessible uniquement par le Président muni du code d'accès.</p>
+              </div>
+
+              <!-- Tableau d'affichage dynamique réservé au Président -->
+              <div id="conteneurTableauPresident" class="table-responsive" style="display: none;">
+                <table class="table table-hover table-striped align-middle mb-0">
+                  <thead class="table-dark">
+                    <tr style="font-size: 0.85rem;">
+                      <th>Matricule</th>
+                      <th>Nom complet</th>
+                      <th>Sexe</th>
+                      <th>Téléphone</th>
+                      <th>Province d'Origine</th>
+                      <th>Profession</th>
+                      <th>Niveau D.</th>
+                      <th>Statut</th>
+                      <th>Date Adhésion</th>
+                      <th class="text-center">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="corpsTableauMembres">
+                    <!-- Les membres enregistrés dans Firebase s'afficheront ici en mode Président -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
         </div>
-      </div>
 
-    </div>
+        <!-- SECTION MESSAGERIE PRIVÉE : MEMBRES <-> PRÉSIDENT -->
+        <div class="container my-5">
+            <div class="card shadow-sm border-0" id="sectionMessagerie">
+              <div class="card-header bg-primary text-white font-weight-bold d-flex justify-content-between align-items-center">
+                <span><i class="icon ion-md-chatboxes me-2"></i> Messagerie Directe avec le Président</span>
+                <span id="badgeStatutConnexion" class="badge bg-light text-dark">Non connecté</span>
+              </div>
+              <div class="card-body">
 
-  </div>
-</div>
+                <!-- ÉTAPE 1 : CONNEXION -->
+                <div id="blocConnexionChat" class="p-3 bg-light rounded border">
+                  <h6 class="fw-bold mb-3"><i class="icon ion-md-lock me-1"></i> Identifiez-vous pour accéder à votre espace de discussion :</h6>
+                  <div class="row g-2 align-items-center">
+                    <div class="col-md-5">
+                      <input type="text" id="chatNom" class="form-control" placeholder="Votre Nom & Prénom">
+                    </div>
+                    <div class="col-md-4">
+                      <input type="text" id="chatMatricule" class="form-control" placeholder="Votre Matricule (ex: JSD-2026-43IC)">
+                    </div>
+                    <div class="col-md-3">
+                      <button type="button" class="btn btn-primary w-100" onclick="connexionMessagerie()">
+                        <i class="icon ion-md-key me-1"></i> Accéder au Chat
+                      </button>
+                    </div>
+                  </div>
+                  <div class="mt-2 text-end">
+                    <small><a href="javascript:void(0)" class="text-secondary" onclick="connexionPresidentChat()">[Accès Président]</a></small>
+                  </div>
+                </div>
+
+                <!-- ÉTAPE 2 : DISCUSSION -->
+                <div id="blocDiscussionChat" class="mt-4" style="display: none;">
+                  <!-- Vue membre -->
+                  <div id="vueDiscussionMembre">
+                    <div class="alert alert-info py-2 d-flex justify-content-between align-items-center">
+                      <small>Espace privé sécurisé de : <strong id="libelleMembreConnecte"></strong></small>
+                      <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.reload()">Déconnexion</button>
+                    </div>
+                    
+                    <div id="boiteMessagesMembre" class="border rounded p-3 mb-3 bg-white" style="height: 320px; overflow-y: auto;"></div>
+
+                    <form id="formEnvoyerMessageMembre" onsubmit="envoyerMessageMembre(event)">
+                      <div class="input-group">
+                        <input type="text" id="champMessageMembre" class="form-control" placeholder="Écrivez votre message au Président ici..." required>
+                        <button class="btn btn-primary" type="submit">
+                          <i class="icon ion-md-send me-1"></i> Envoyer
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+
+                  <!-- Vue Président -->
+                  <div id="vueDiscussionPresident" style="display: none;">
+                    <div class="alert alert-success py-2 d-flex justify-content-between align-items-center">
+                      <small><i class="icon ion-md-shield me-1"></i> <strong>Espace d'Administration Présidentielle</strong></small>
+                      <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.reload()">Déconnexion</button>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4 border-end">
+                        <h6 class="fw-bold border-bottom pb-2">Conversations des Membres</h6>
+                        <div id="listeConversationsMembres" class="list-group list-group-flush" style="max-height: 380px; overflow-y: auto;"></div>
+                      </div>
+
+                      <div class="col-md-8">
+                        <h6 class="fw-bold border-bottom pb-2" id="titreDiscussionActive">Sélectionnez un membre pour lire sa conversation</h6>
+                        <div id="boiteMessagesPresident" class="border rounded p-3 mb-3 bg-white" style="height: 300px; overflow-y: auto;">
+                          <p class="text-muted text-center my-5">Cliquez sur un membre à gauche pour afficher la discussion.</p>
+                        </div>
+
+                        <form id="formEnvoyerReponsePresident" onsubmit="envoyerReponsePresident(event)" style="display: none;">
+                          <div class="input-group">
+                            <input type="text" id="champReponsePresident" class="form-control" placeholder="Répondre à ce membre..." required>
+                            <button class="btn btn-success" type="submit">
+                              <i class="icon ion-md-send me-1"></i> Répondre
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+        </div>
 
         <!-- Contact Start -->
         <div class="contact">
             <div class="container">
                 <div class="section-header">
                     <h2>Contact </h2>
-                    <p>
-                        Veuillez-nous contactez ici SVP !!! 
-                    </p>
+                    <p>Veuillez-nous contacter ici SVP !!!</p>
                 </div>
 
                 <div class="row">
@@ -1158,12 +601,12 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Subject" />
+                                    <input type="text" class="form-control" placeholder="Sujet" />
                                 </div>
                                 <div class="form-group">
                                     <textarea class="form-control" rows="5" placeholder="Message"></textarea>
                                 </div>
-                                <div><button class="btn" type="submit">Envoyer de Message</button></div>
+                                <div><button class="btn" type="submit">Envoyer le Message</button></div>
                             </form>
                         </div>
                     </div>
@@ -1219,14 +662,13 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                                 <a href="https://www.facebook.com/profile.php?id=61558188776060" target="_blank" rel="noopener noreferrer"><i class="ion-logo-facebook"></i></a>
                                 <a href="#"><i class="ion-logo-linkedin"></i></a>
                                 <a href="#"><i class="ion-logo-instagram"></i></a>
-                                <a href="#"><i class="ion-logo-googleplus"></i></a>
                             </div>
 
                         </div>
 
                         <div class="col-lg-3 col-md-6 footer-newsletter">
                             <h4>Inscrivez-Vous !!!</h4>
-                            <p>"Abonnez-Vous à notre bulletin d'information pour recevoir toutes nos actualités, nos prochains évenements, nos opportunités des formation et suivre l'impact de nos actions sur le terrain".</p>
+                            <p>"Abonnez-Vous à notre bulletin d'information pour recevoir toutes nos actualités, nos prochains évenements..."</p>
                             <form action="" method="post">
                                 <input type="email" name="email" placeholder="jeunessesocial52@gmail.com" required><input type="submit" value="S'inscrire">
                             </form>
@@ -1239,7 +681,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-6 copyright">
-                        Président &copy; Mike TSHIBANGU 2026 <a href="">Notre Sit JSD</a>. Tout droit reservé à la JSD
+                        Président &copy; Mike TSHIBANGU 2026 <a href="">Notre Site JSD</a>. Tout droit réservé à la JSD
                     </div>
                     <div class="col-md-6 credit">
                         JSD <a href="https://htmlcodex.com">HTML Codex</a>
@@ -1264,7 +706,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         <!-- Main Javascript -->
         <script src="js/main.js"></script>
 
-        <!-- SCRIPT FIREBASE UNIQUE ET NETTOYÉ -->
+        <!-- SCRIPT FIREBASE COMPLET ET STRUCTURÉ -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -1284,143 +726,251 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   const db = getFirestore(app);
 
   let enEnregistrement = false;
+  let modePresidentActive = false;
   const CODE_SECRET_PRESIDENT = "JSD2026";
 
-  // 1. ENREGISTREMENT ET MODIFICATION DES MEMBRES
+  // 1. ENREGISTREMENT COMPLET DES MEMBRES AVEC TOUS LES CHAMPS DEMANDÉS
   window.enregistrerMembre = async function(event) {
     if (event) event.preventDefault();
     if (enEnregistrement) return;
 
     const form = document.getElementById("formulaireInscription");
     const idEncours = form ? form.getAttribute("data-id-edition") : null;
-    const nom = document.getElementById("nomMembre") ? document.getElementById("nomMembre").value.trim() : "";
-    const contact = document.getElementById("contactMembre") ? document.getElementById("contactMembre").value.trim() : "";
-    const localisation = document.getElementById("localisationMembre") ? document.getElementById("localisationMembre").value.trim() : "Kinshasa, RDC";
-    const statut = document.getElementById("statutMembre") ? document.getElementById("statutMembre").value : "Membre";
 
-    if (!nom || !contact) {
-      alert("Veuillez remplir au moins le nom et le contact.");
+    // Récupération de l'ensemble des champs
+    const nom = document.getElementById("nomMembre").value.trim();
+    const postnom = document.getElementById("postnomMembre").value.trim();
+    const prenom = document.getElementById("prenomMembre").value.trim();
+    const sexe = document.getElementById("sexeMembre").value;
+    const dateAdhesion = document.getElementById("dateAdhesionMembre").value || new Date().toLocaleDateString('fr-FR');
+    const contact = document.getElementById("contactMembre").value.trim();
+    const nationalite = document.getElementById("nationaliteMembre").value.trim() || "Congolaise";
+    const provinceOrigine = document.getElementById("provinceOrigineMembre").value;
+    const niveauEtudes = document.getElementById("niveauEtudesMembre").value;
+    const etatCivil = document.getElementById("etatCivilMembre").value;
+    const profession = document.getElementById("professionMembre").value.trim();
+    const statut = document.getElementById("statutMembre").value;
+
+    if (!nom || !prenom || !sexe || !contact || !provinceOrigine) {
+      alert("Veuillez remplir au moins le Nom, Prénom, Sexe, Téléphone et la Province d'origine.");
       return;
     }
+
+    const membreData = {
+      nom: nom,
+      postnom: postnom,
+      prenom: prenom,
+      sexe: sexe,
+      dateAdhesion: dateAdhesion,
+      contact: contact,
+      nationalite: nationalite,
+      provinceOrigine: provinceOrigine,
+      niveauEtudes: niveauEtudes,
+      etatCivil: etatCivil,
+      profession: profession || "Non spécifiée",
+      statut: statut
+    };
 
     try {
       enEnregistrement = true;
 
       if (idEncours) {
-        await updateDoc(doc(db, "membres", idEncours), {
-          nom: nom,
-          contact: contact,
-          localisation: localisation || "Kinshasa, RDC",
-          statut: statut
-        });
-        alert("Modifications enregistrées avec succès !");
+        await updateDoc(doc(db, "membres", idEncours), membreData);
+        alert("Fiche membre mise à jour avec succès !");
         form.removeAttribute("data-id-edition");
         const btnSubmit = form.querySelector("button[type='submit']");
-        if (btnSubmit) btnSubmit.innerHTML = '<i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer';
+        if (btnSubmit) btnSubmit.innerHTML = '<i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer le Membre';
       } else {
-        await addDoc(collection(db, "membres"), {
-          nom: nom,
-          contact: contact,
-          localisation: localisation || "Kinshasa, RDC",
-          statut: statut,
-          dateAdhesion: new Date().toLocaleDateString('fr-FR')
-        });
-        alert("Inscription réussie dans la base de données !");
+        await addDoc(collection(db, "membres"), membreData);
+        alert("Nouveau membre enregistré avec succès dans la base de données !");
       }
 
       if (form) form.reset();
 
     } catch (error) {
       console.error("Erreur Firebase : ", error);
-      alert("Erreur lors de l'opération : " + error.message);
+      alert("Erreur lors de l'enregistrement : " + error.message);
     } finally {
       enEnregistrement = false;
     }
   };
 
-  window.chargerMembrePourModification = function(idDoc, nom, contact, localisation, statut) {
-    document.getElementById("nomMembre").value = nom || "";
-    document.getElementById("contactMembre").value = contact || "";
-    document.getElementById("localisationMembre").value = localisation || "";
-    document.getElementById("statutMembre").value = statut || "Membre";
-
-    const form = document.getElementById("formulaireInscription");
-    form.setAttribute("data-id-edition", idDoc);
-
-    const btnSubmit = form.querySelector("button[type='submit']");
-    if (btnSubmit) {
-      btnSubmit.innerHTML = '<i class="icon ion-md-save me-1"></i> Mettre à jour le membre';
+  // 2. DÉVERROUILLAGE SÉCURISÉ POUR LE PRÉSIDENT
+  window.deverrouillerAccesPresident = function() {
+    if (modePresidentActive) {
+      alert("Le mode Président est déjà actif.");
+      return;
     }
 
-    form.scrollIntoView({ behavior: 'smooth' });
+    const meSaisirCode = prompt("ACCÈS RESTREINT PRÉSIDENT\nVeuillez saisir le code secret du Président :");
+    if (meSaisirCode === CODE_SECRET_PRESIDENT || meSaisirCode === "ADMIN2026") {
+      modePresidentActive = true;
+      document.getElementById("messageAccesRestreint").style.display = "none";
+      document.getElementById("conteneurTableauPresident").style.display = "block";
+      document.getElementById("btnDevorrouillerPresident").className = "btn btn-sm btn-success fw-bold";
+      document.getElementById("btnDevorrouillerPresident").innerHTML = '<i class="icon ion-md-checkmark-circle me-1"></i> Mode Président Actif';
+      
+      ecouterMembresModePresident();
+    } else if (meSaisirCode !== null) {
+      alert("Code secret incorrect ! Seul le Président peut consulter la liste générale.");
+    }
+  };
+
+  // 3. ÉCOUTE DE LA LISTE GÉNÉRALE (RÉSERVÉE AU PRÉSIDENT)
+  function ecouterMembresModePresident() {
+    onSnapshot(collection(db, "membres"), (snapshot) => {
+      const tbody = document.getElementById("corpsTableauMembres");
+      if (!tbody) return;
+
+      tbody.innerHTML = "";
+
+      snapshot.docs.forEach((docSnap) => {
+        const data = docSnap.data();
+        const idDoc = docSnap.id;
+        const matriculeAuto = "JSD-2026-" + idDoc.substring(0, 4).toUpperCase();
+        
+        let badgeClass = "bg-info text-white";
+        if (data.statut === "Président") badgeClass = "bg-success text-white";
+        if (data.statut === "Conseiller") badgeClass = "bg-primary text-white";
+
+        const nomComplet = `${data.nom || ''} ${data.postnom || ''} ${data.prenom || ''}`.trim();
+
+        const newRow = document.createElement("tr");
+        newRow.innerHTML = `
+          <td><strong>${matriculeAuto}</strong></td>
+          <td>${nomComplet}</td>
+          <td><span class="badge bg-secondary">${data.sexe || '-'}</span></td>
+          <td>${data.contact || '-'}</td>
+          <td>${data.provinceOrigine || '-'}</td>
+          <td>${data.profession || '-'}</td>
+          <td><small>${data.niveauEtudes || '-'}</small></td>
+          <td><span class="badge ${badgeClass} px-2 py-1">${data.statut || 'Membre'}</span></td>
+          <td><small>${data.dateAdhesion || '-'}</small></td>
+          <td class="text-center">
+            <button type="button" class="btn btn-sm btn-outline-warning me-1" title="Modifier" 
+              onclick="chargerMembrePourModification('${idDoc}')">
+              <i class="icon ion-md-create"></i>
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-danger" title="Supprimer" 
+              onclick="supprimerMembre('${idDoc}', '${nomComplet.replace(/'/g, "\\'")}')">
+              <i class="icon ion-md-trash"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(newRow);
+      });
+    });
+  }
+
+  // 4. CONSULTATION DE SA PROPRE FICHE PAR LE MEMBRE SIMPLE
+  window.consulterFicheMembrePerso = async function() {
+    const matSaisi = document.getElementById("rechercheMatriculeMembre").value.trim().toUpperCase();
+    const zoneIndiv = document.getElementById("zoneFicheMembreIndividuelle");
+
+    if (!matSaisi) {
+      alert("Veuillez saisir votre matricule.");
+      return;
+    }
+
+    try {
+      const snapshotMembres = await getDocs(collection(db, "membres"));
+      let membreTrouve = null;
+
+      snapshotMembres.forEach((docSnap) => {
+        const idDoc = docSnap.id;
+        const matCalculated = "JSD-2026-" + idDoc.substring(0, 4).toUpperCase();
+        if (matCalculated === matSaisi) {
+          membreTrouve = { id: idDoc, ...docSnap.data(), matricule: matCalculated };
+        }
+      });
+
+      if (membreTrouve) {
+        zoneIndiv.style.display = "block";
+        zoneIndiv.innerHTML = `
+          <div class="card border-primary">
+            <div class="card-header bg-primary text-white font-weight-bold">
+              Fiche Personnelle du Membre : ${membreTrouve.nom} ${membreTrouve.postnom || ''} ${membreTrouve.prenom} (${membreTrouve.matricule})
+            </div>
+            <div class="card-body">
+              <div class="row g-3">
+                <div class="col-md-4"><strong>Matricule :</strong> ${membreTrouve.matricule}</div>
+                <div class="col-md-4"><strong>Sexe :</strong> ${membreTrouve.sexe || 'M'}</div>
+                <div class="col-md-4"><strong>Date d'adhésion :</strong> ${membreTrouve.dateAdhesion || '-'}</div>
+                <div class="col-md-4"><strong>Contact :</strong> ${membreTrouve.contact}</div>
+                <div class="col-md-4"><strong>Nationalité :</strong> ${membreTrouve.nationalite || 'Congolaise'}</div>
+                <div class="col-md-4"><strong>Province d'origine :</strong> ${membreTrouve.provinceOrigine}</div>
+                <div class="col-md-4"><strong>Niveau d'études :</strong> ${membreTrouve.niveauEtudes}</div>
+                <div class="col-md-4"><strong>État civil :</strong> ${membreTrouve.etatCivil}</div>
+                <div class="col-md-4"><strong>Profession :</strong> ${membreTrouve.profession}</div>
+                <div class="col-md-12 mt-2"><strong>Statut JSD :</strong> <span class="badge bg-success">${membreTrouve.statut}</span></div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else {
+        zoneIndiv.style.display = "block";
+        zoneIndiv.innerHTML = `<div class="alert alert-warning mb-0">Aucun membre trouvé avec le matricule "${matSaisi}". Veuillez vérifier votre saisie.</div>`;
+      }
+
+    } catch (error) {
+      console.error("Erreur de recherche :", error);
+      alert("Erreur lors de la récupération de votre fiche.");
+    }
+  };
+
+  window.chargerMembrePourModification = async function(idDoc) {
+    try {
+      const snapshotMembres = await getDocs(collection(db, "membres"));
+      snapshotMembres.forEach((docSnap) => {
+        if (docSnap.id === idDoc) {
+          const d = docSnap.data();
+          document.getElementById("nomMembre").value = d.nom || "";
+          document.getElementById("postnomMembre").value = d.postnom || "";
+          document.getElementById("prenomMembre").value = d.prenom || "";
+          document.getElementById("sexeMembre").value = d.sexe || "M";
+          document.getElementById("dateAdhesionMembre").value = d.dateAdhesion || "";
+          document.getElementById("contactMembre").value = d.contact || "";
+          document.getElementById("nationaliteMembre").value = d.nationalite || "Congolaise";
+          document.getElementById("provinceOrigineMembre").value = d.provinceOrigine || "";
+          document.getElementById("niveauEtudesMembre").value = d.niveauEtudes || "";
+          document.getElementById("etatCivilMembre").value = d.etatCivil || "Célibataire";
+          document.getElementById("professionMembre").value = d.profession || "";
+          document.getElementById("statutMembre").value = d.statut || "Membre";
+
+          const form = document.getElementById("formulaireInscription");
+          form.setAttribute("data-id-edition", idDoc);
+
+          const btnSubmit = form.querySelector("button[type='submit']");
+          if (btnSubmit) {
+            btnSubmit.innerHTML = '<i class="icon ion-md-save me-1"></i> Mettre à jour la fiche du membre';
+          }
+
+          form.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   window.supprimerMembre = async function(idMembre, nomMembre) {
-    const motDePasse = prompt(`ATTENTION : Suppression de "${nomMembre}".\nSeul le Président peut effectuer cette action.\nVeuillez entrer le code secret :`);
+    if (!modePresidentActive) {
+      alert("Seul le Président peut effectuer cette action.");
+      return;
+    }
 
-    if (motDePasse === null) return;
-
-    if (motDePasse === CODE_SECRET_PRESIDENT) {
-      if (confirm(`Êtes-vous sûr de vouloir supprimer définitivement le membre : ${nomMembre} ?`)) {
-        try {
-          await deleteDoc(doc(db, "membres", idMembre));
-          alert("Membre supprimé avec succès.");
-        } catch (error) {
-          console.error("Erreur de suppression : ", error);
-          alert("Erreur lors de la suppression : " + error.message);
-        }
+    if (confirm(`Êtes-vous sûr de vouloir supprimer définitivement le membre : ${nomMembre} ?`)) {
+      try {
+        await deleteDoc(doc(db, "membres", idMembre));
+        alert("Membre supprimé avec succès.");
+      } catch (error) {
+        console.error("Erreur de suppression : ", error);
+        alert("Erreur lors de la suppression : " + error.message);
       }
-    } else {
-      alert("Accès refusé ! Vous n'avez pas l'autorisation de supprimer un membre.");
     }
   };
 
-  // AFFICHAGE DES MEMBRES EN TEMPS RÉEL
-  onSnapshot(collection(db, "membres"), (snapshot) => {
-    const tbody = document.getElementById("corpsTableauMembres");
-    if (!tbody) return;
-
-    tbody.innerHTML = "";
-
-    snapshot.docs.forEach((docSnap) => {
-      const data = docSnap.data();
-      const idDoc = docSnap.id;
-      const matriculeAuto = "JSD-2026-" + idDoc.substring(0, 4).toUpperCase();
-      
-      let badgeClass = "bg-info text-white";
-      if (data.statut === "Président") badgeClass = "bg-success text-white";
-      if (data.statut === "Conseiller") badgeClass = "bg-primary text-white";
-
-      const nomEchappe = (data.nom || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
-      const contactEchappe = (data.contact || '').replace(/'/g, "\\'");
-      const locEchappe = (data.localisation || '').replace(/'/g, "\\'");
-      const statutEchappe = (data.statut || '').replace(/'/g, "\\'");
-
-      const newRow = document.createElement("tr");
-      newRow.innerHTML = `
-        <td><strong>${matriculeAuto}</strong></td>
-        <td>${data.nom || '-'}</td>
-        <td>${data.contact || '-'}</td>
-        <td>${data.localisation || '-'}</td>
-        <td><span class="badge ${badgeClass} px-2 py-1">${data.statut || 'Membre'}</span></td>
-        <td>${data.dateAdhesion || '-'}</td>
-        <td class="text-center">
-          <button type="button" class="btn btn-sm btn-outline-warning me-1" title="Modifier" 
-            onclick="chargerMembrePourModification('${idDoc}', '${nomEchappe}', '${contactEchappe}', '${locEchappe}', '${statutEchappe}')">
-            <i class="icon ion-md-create"></i> Modifier
-          </button>
-          
-          <button type="button" class="btn btn-sm btn-outline-danger" title="Supprimer" 
-            onclick="supprimerMembre('${idDoc}', '${nomEchappe}')">
-            <i class="icon ion-md-trash"></i> Supprimer
-          </button>
-        </td>
-      `;
-      tbody.appendChild(newRow);
-    });
-  });
-
-  // 2. MESSAGERIE PRIVÉE
+  // 5. MESSAGERIE PRIVÉE ET NOTIFICATIONS
   let membreChatSession = null;
   let estModePresidentChat = false;
   let conversationActiveMembreId = null;
@@ -1443,11 +993,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       return;
     }
 
-    if (!nomSaisi) {
-      alert("Veuillez saisir votre Nom et votre Matricule pour accéder au chat.");
-      return;
-    }
-
     try {
       const snapshotMembres = await getDocs(collection(db, "membres"));
       let membreTrouve = null;
@@ -1456,10 +1001,8 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         const data = docSnap.data();
         const docId = docSnap.id;
         const matriculeAuto = "JSD-2026-" + docId.substring(0, 4).toUpperCase();
-        const nomData = (data.nom || "").trim().toLowerCase();
-
-        if ((nomData === nomSaisi.toLowerCase() || nomData.includes(nomSaisi.toLowerCase())) && matriculeAuto === matriculeSaisi) {
-          membreTrouve = { id: docId, nom: data.nom, matricule: matriculeAuto };
+        if (matriculeAuto === matriculeSaisi) {
+          membreTrouve = { id: docId, nom: `${data.nom} ${data.prenom}`, matricule: matriculeAuto };
         }
       });
 
@@ -1468,7 +1011,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         estModePresidentChat = false;
         ouvrirEspaceDiscussionMembre();
       } else {
-        alert("Accès refusé ! Le Nom ou le Matricule est incorrect.");
+        alert("Accès refusé ! Matricule introuvable.");
       }
     } catch (err) {
       console.error("Erreur d'accès :", err);
@@ -1477,7 +1020,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   };
 
   window.connexionPresidentChat = function() {
-    const codeSaisi = prompt("Saisissez le code secret du Président pour accéder à l'administration du chat :");
+    const codeSaisi = prompt("Saisissez le code secret du Président :");
     if (codeSaisi === CODE_SECRET_PRESIDENT || codeSaisi === "ADMIN2026") {
       estModePresidentChat = true;
       membreChatSession = { nom: "Président JSD", matricule: "PRESIDENT" };
@@ -1603,7 +1146,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       const listeTries = Object.values(conversationsMap).sort((a, b) => b.dernierTimestamp - a.dernierTimestamp);
 
       if (listeTries.length === 0) {
-        conteneurListe.innerHTML = `<p class="text-muted p-2 text-center">Aucun message de membre reçu.</p>`;
+        conteneurListe.innerHTML = `<p class="text-muted p-2 text-center">Aucun message reçu.</p>`;
         return;
       }
 
@@ -1625,8 +1168,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     conversationActiveMembreId = membreId;
     document.getElementById("titreDiscussionActive").innerText = `Discussion avec : ${nomMembre} (${matriculeMembre})`;
     document.getElementById("formEnvoyerReponsePresident").style.display = "flex";
-
-    chargerListeConversationsPresident();
 
     const q = query(
       collection(db, "messages"),
@@ -1686,7 +1227,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // 3. MODULE NOTIFICATIONS
+  // NOTIFICATIONS
   const listeNotifications = [
     { id: 1, titre: "📢 Annonce JSD", message: "Bienvenue sur notre nouvelle plateforme officielle !" },
     { id: 2, titre: "💬 Messagerie", message: "Vous pouvez désormais échanger en privé avec le Président." }
