@@ -1,1267 +1,460 @@
 <!DOCTYPE html>
-<html lang="Fr">
-    <head>
-        <meta charset="utf-8">
-        <title>Jeunesse Sociale pour le Développement</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="JSD" name="JSD-RDC">
-
-        <!-- Favicon -->
-        <link href="img/favicon.ico" rel="icon">
-
-        <!-- Google Font -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet"> 
-
-        <!-- Libraries CSS -->
-        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
-        <!-- Main Stylesheet -->
-        <link href="css/style.css" rel="stylesheet">
-
-        <!-- Styles personnalisés -->
-        <style>
-            .header .carousel-content h2,
-            .carousel-content h2 {
-                color: #4F84C4 !important;
-                font-size: 42px !important;
-                font-weight: 700 !important;
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeunesse Sociale pour le Développement (JSD)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBlue: '#0056b3',
+                        brandGreen: '#28a745',
+                        brandYellow: '#ffc107',
+                        brandDark: '#1a252f'
+                    }
+                }
             }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
-            .header .carousel-content .btn,
-            .carousel-content a.btn {
-                background-color: #4F84C4 !important;
-                color: #ffffff !important;
-                border: none !important;
-                padding: 10px 25px !important;
-            }
-
-            img {
-                max-width: 100% !important;
-                height: auto !important;
-            }
-
-            .navbar-brand img {
-                max-height: 50px !important;
-                width: auto !important;
-            }
-
-            .footer {
-                background: #000000 !important;
-                color: #ffffff !important;
-                padding: 0 0 30px 0 !important;
-            }
-
-            .footer .footer-top {
-                background: #222222 !important;
-                padding: 60px 0 30px 0 !important;
-            }
-
-            .footer h4 {
-                color: #ffffff !important;
-                font-size: 16px !important;
-                font-weight: 700 !important;
-                text-transform: uppercase !important;
-                border-bottom: 2px solid #ffffff !important;
-                padding-bottom: 10px !important;
-                margin-bottom: 20px !important;
-            }
-
-            .footer p, 
-            .footer a, 
-            .footer li,
-            .footer div,
-            .footer .copyright,
-            .footer .credit {
-                color: #ffffff !important;
-            }
-
-            .footer .footer-links ul {
-                list-style: none !important;
-                padding: 0 !important;
-            }
-
-            .footer .footer-links ul li {
-                border-bottom: 1px solid #333333 !important;
-                padding: 7px 0 !important;
-            }
-
-            .footer .social-links a {
-                display: inline-block !important;
-                background: #ffffff !important;
-                color: #4F84C4 !important;
-                width: 36px !important;
-                height: 36px !important;
-                text-align: center !important;
-                line-height: 36px !important;
-                margin-right: 4px !important;
-            }
-
-            .carousel-content {
-                position: relative !important;
-                z-index: 9999 !important;
-                pointer-events: auto !important;
-            }
-
-            .carousel-content .btn,
-            .carousel-content a {
-                position: relative !important;
-                z-index: 10000 !important;
-                pointer-events: auto !important;
-                cursor: pointer !important;
-            }
-        </style>
-    </head>
-
-    <body>
-        <!-- Nav Start -->
-        <div id="nav">
-            <div class="container-fluid">
-                <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-                    <a href="index.html" class="navbar-brand">
-                        <img src="img/logo.jpg" alt="JSD" style="max-height: 50px; width: auto;">
-                    </a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav ml-auto">
-                            <a href="index.html" class="nav-item nav-link active">Accueil</a>
-                            <a href="about.html" class="nav-item nav-link">Apropos</a>
-                            <a href="service.html" class="nav-item nav-link">Services</a>
-                            <a href="portfolio.html" class="nav-item nav-link">Porteffeuilles</a>
-                            <a href="pricing.html" class="nav-item nav-link">Tarifs</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu">
-                                    <a href="skill.html" class="dropdown-item">compétences</a>
-                                    <a href="team.html" class="dropdown-item">Nos Members</a>
-                                    <a href="review.html" class="dropdown-item">Avis</a>
-                                    <a href="client.html" class="dropdown-item">Clients</a>
-                                    <a href="single.html" class="dropdown-item">Page Unique</a>
-                                </div>
-                            </div>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <!-- Nav End -->
-        
-        <!-- BANNIÈRE DE NOTIFICATIONS -->
-        <div class="container mt-3">
-            <div class="d-flex justify-content-end align-items-center">
-                <div id="notif-widget-container"></div>
-            </div>
-        </div>
-
-        <!-- SECTION ÉVÉNEMENTS -->
-        <div class="container my-4">
-            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-                <h3 class="fw-bold text-primary mb-0"><i class="icon ion-md-calendar me-2"></i> Événements & Activités</h3>
-                <button class="btn btn-sm btn-outline-primary fw-bold" onclick="toggleFormulaireEvenement()">+ Publier une activité</button>
-            </div>
-            
-            <div id="events-widget-container"></div>
-        </div>
-
-        <!-- Header Start-->
-        <div class="header">
-            <div id="header-slider" class="carousel slide" data-ride="carousel">
-                <ul class="carousel-indicators">
-                    <li data-target="#header-slider" data-slide-to="0" class="active"></li>
-                    <li data-target="#header-slider" data-slide-to="1"></li>
-                    <li data-target="#header-slider" data-slide-to="2"></li>
-                </ul>
-
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row align-items-center">
-                            <div class="col-md-6">
-                                <div class="carousel-content">
-                                    <h2>Jeunesse Sociale pour le Développement</h2>
-                                    <h2>"JSD"</h2>
-                                    <p>Franchise Pureté Dévouement</p>
-                                     <button type="button" class="btn" onclick="window.location.assign('about.html');">En savoir plus</button>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="carousel-img">
-                                    <img src="img/JSD16.jpg" alt="Image">
-                                </div>
-                            </div>
-                        </div>   
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row align-items-center">
-                            <div class="col-md-6">
-                                <div class="carousel-content">
-                                     <h2>Jeunesse Sociale pour le Développement</h2>
-                                    <p>Franchise Pureté Dévouement</p>
-                                    <button type="button" class="btn" onclick="window.location.assign('about.html');">En savoir plus</button>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="carousel-img">
-                                    <img src="img/logo.jpg" alt="Image">
-                                </div>
-                            </div>
-                        </div>   
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row align-items-center">
-                            <div class="col-md-6">
-                                <div class="carousel-content">
-                                    <h2>Jeunesse Sociale pour le Développement</h2>
-                                    <p>Franchise Pureté Dévouement</p>
-                                   <button type="button" class="btn" onclick="window.location.assign('about.html');">En savoir plus</button>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="carousel-img">
-                                    <img src="img/JSD2.jpg" alt="Images">
-                                </div>
-                            </div>
-                        </div>   
-                    </div>
-                </div>
-
-                <a class="carousel-control-prev" href="#header-slider" data-slide="prev">
-                    <i class="ion-ios-arrow-back"></i>
-                </a>
-                <a class="carousel-control-next" href="#header-slider" data-slide="next">
-                    <i class="ion-ios-arrow-forward"></i>
-                </a>
-            </div>
-        </div>
-        <!-- Header End-->
-
-        <!-- About Start-->
-        <div class="about">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Competance Travail</h2>
-                    <p>L'avenir est une compétence que l'on construit au présent.</p>
-                </div>
+    <!-- HEADER / NAVIGATION -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
                 
-                <div class="row align-items-center">
-                    <div class="col-md-12">
-                        <div class="about-img">
-                            <img src="img/JSD11.jpg" alt="" class="img-fluid">
-                        </div>
-                        <div class="about-content">
-                            <h2>Bienvenue à la JSD</h2>
-                            <p>
-                                Nous, jeunes congolais, animés par la volonté et le souci du développement, conscients de la responsabilité qui est la nôtre d’améliorer et de contribuer à l’organisation de la vie juvénile sur toute l’étendue du territoire national...
-                            </p>
-                            <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important;" onclick="window.location.href='contact.html';"> Nous contacter</button>
-                        </div>
+                <!-- LOGO ET NOM ASBL -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-brandBlue text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg border-2 border-brandYellow">
+                        JSD
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-brandBlue tracking-wide block leading-none">JSD ASBL</span>
+                        <span class="text-xs text-gray-500 font-medium">Jeunesse Sociale pour le Développement</span>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="about-img">
-                            <img src="img/JSD20.jpg" alt="" class="img-fluid">
-                        </div>
-                        <div class="about-content">
-                            <h2>Notre Histoire</h2>
-                            <div>
-                                <p>HISTORIQUE DE LA JEUNESSE SOCIALE POUR LE DÉVELOPPEMENT (JSD)</p>
-                                <p>La Jeunesse Sociale pour le Développement (JSD) est une organisation non gouvernementale de développement (ONGD / ASBL) de droit congolais...</p>
-                                <h3>La Genèse et la Vision (2021)</h3>
-                                <h4>1. Mike TSHIBANGU KALOMBO,</h4> 
-                                <p>Visionnaire et Fondateur.</p>
-                                <h4>2. SANTA TANGANIKA USENI,</h4> 
-                                <p>Co-fondateur.</p>
-                            </div>
-                            <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important;" onclick="window.location.href='portfolio.html';"> Nos porteffeuilles</button>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="about-img">
-                            <img src="img/JSD21.jpg" alt="" class="img-fluid">
-                        </div>
-                        <div class="about-content">
-                            <h2>Notre Objectif</h2>
-                            <div>
-                                <p>La Jeunesse Sociale pour le Développement (JSD) vise à promouvoir l'épanouissement des jeunes congolais par l'unité, la solidarité et le travail.</p>
-                            </div>
-                            <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important;" onclick="window.location.href='skill.html';"> Nos compétences</button>
-                        </div>
-                    </div>
+                <!-- NAVIGATION DESKTOP -->
+                <nav class="hidden md:flex space-x-8 text-sm font-semibold">
+                    <a href="#accueil" class="text-brandBlue hover:text-brandGreen transition">Accueil</a>
+                    <a href="#apropos" class="text-gray-600 hover:text-brandBlue transition">À propos</a>
+                    <a href="#objectifs" class="text-gray-600 hover:text-brandBlue transition">Objectifs</a>
+                    <a href="#axes" class="text-gray-600 hover:text-brandBlue transition">Axes d'intervention</a>
+                    <a href="#organes" class="text-gray-600 hover:text-brandBlue transition">Organes</a>
+                    <a href="#adhesion" class="text-gray-600 hover:text-brandBlue transition">Adhésion</a>
+                    <a href="#contact" class="text-gray-600 hover:text-brandBlue transition">Contact</a>
+                </nav>
+
+                <!-- BOUTON S'ENGAGER (CTA) -->
+                <div class="hidden md:flex items-center">
+                    <a href="#adhesion" class="bg-brandGreen text-white px-5 py-2.5 rounded-full font-semibold shadow-md hover:bg-green-600 transition flex items-center space-x-2">
+                        <i class="fas font-solid fa-hand-holding-heart"></i>
+                        <span>Rejoindre la JSD</span>
+                    </a>
                 </div>
-            </div>
-        </div>
-        <!-- About End -->
 
-        <!-- FORMULAIRE COMPLET D'ENREGISTREMENT ET GESTION CONFIDENTIELLE DES MEMBRES JSD -->
-        <div class="container py-4" id="sectionEnregistrementMembres">
-
-          <!-- 1. FORMULAIRE D'ENREGISTREMENT -->
-          <div class="card mb-4 shadow-sm border-0">
-            <div class="card-header bg-primary text-white font-weight-bold">
-              <i class="icon ion-md-person-add me-2"></i> Formulaire d'Enregistrement Complet d'un Membre
-            </div>
-            <div class="card-body">
-              <form id="formulaireInscription" onsubmit="enregistrerMembre(event)">
-                <div class="row g-3">
-                  <!-- Identité de base -->
-                  <div class="col-md-4">
-                    <label class="form-label font-weight-bold">Nom <span class="text-danger">*</span></label>
-                    <input type="text" id="nomMembre" class="form-control" placeholder="Ex: TSHIBANGU" required>
-                  </div>
-                  <div class="col-md-4">
-                    <label class="form-label font-weight-bold">Postnom</label>
-                    <input type="text" id="postnomMembre" class="form-control" placeholder="Ex: KALOMBO">
-                  </div>
-                  <div class="col-md-4">
-                    <label class="form-label font-weight-bold">Prénom <span class="text-danger">*</span></label>
-                    <input type="text" id="prenomMembre" class="form-control" placeholder="Ex: Mike" required>
-                  </div>
-
-                  <!-- Genre & Date d'Adhésion -->
-                  <div class="col-md-3 mt-3">
-                    <label class="form-label font-weight-bold">Sexe <span class="text-danger">*</span></label>
-                    <select id="sexeMembre" class="form-control" required>
-                      <option value="">Sélectionner...</option>
-                      <option value="M">Masculin (M)</option>
-                      <option value="F">Féminin (F)</option>
-                    </select>
-                  </div>
-                  <div class="col-md-3 mt-3">
-                    <label class="form-label font-weight-bold">Date d'adhésion</label>
-                    <input type="date" id="dateAdhesionMembre" class="form-control">
-                  </div>
-                  <div class="col-md-3 mt-3">
-                    <label class="form-label font-weight-bold">Téléphone / WhatsApp <span class="text-danger">*</span></label>
-                    <input type="text" id="contactMembre" class="form-control" placeholder="+243 ..." required>
-                  </div>
-                  <div class="col-md-3 mt-3">
-                    <label class="form-label font-weight-bold">Nationalité</label>
-                    <input type="text" id="nationaliteMembre" class="form-control" value="Congolaise">
-                  </div>
-
-                  <!-- Origine & Informations socio-professionnelles -->
-                  <div class="col-md-4 mt-3">
-                    <label class="form-label font-weight-bold">Province d'origine <span class="text-danger">*</span></label>
-                    <select id="provinceOrigineMembre" class="form-control" required>
-                      <option value="">Sélectionner la province...</option>
-                      <option value="Bas-Uele">Bas-Uele</option>
-                      <option value="Équateur">Équateur</option>
-                      <option value="Haut-Lomami">Haut-Lomami</option>
-                      <option value="Haut-Katanga">Haut-Katanga</option>
-                      <option value="Haut-Uele">Haut-Uele</option>
-                      <option value="Ituri">Ituri</option>
-                      <option value="Kasaï">Kasaï</option>
-                      <option value="Kasaï-Central">Kasaï-Central</option>
-                      <option value="Kasaï-Oriental">Kasaï-Oriental</option>
-                      <option value="Kinshasa">Kinshasa</option>
-                      <option value="Congo-Central">Congo-Central</option>
-                      <option value="Kwango">Kwango</option>
-                      <option value="Kwilu">Kwilu</option>
-                      <option value="Lomami">Lomami</option>
-                      <option value="Lualaba">Lualaba</option>
-                      <option value="Mai-Ndombe">Mai-Ndombe</option>
-                      <option value="Maniema">Maniema</option>
-                      <option value="Mongala">Mongala</option>
-                      <option value="Nord-Kivu">Nord-Kivu</option>
-                      <option value="Nord-Ubangi">Nord-Ubangi</option>
-                      <option value="Sankuru">Sankuru</option>
-                      <option value="Sud-Kivu">Sud-Kivu</option>
-                      <option value="Sud-Ubangi">Sud-Ubangi</option>
-                      <option value="Tanganyika">Tanganyika</option>
-                      <option value="Tshopo">Tshopo</option>
-                      <option value="Tshuapa">Tshuapa</option>
-                    </select>
-                  </div>
-                  <div class="col-md-4 mt-3">
-                    <label class="form-label font-weight-bold">Niveau d'études</label>
-                    <select id="niveauEtudesMembre" class="form-control">
-                      <option value="Non précisé">Sélectionner...</option>
-                      <option value="Primaire">Primaire</option>
-                      <option value="Secondaire / Diplômé">Secondaire / Diplômé</option>
-                      <option value="Gradué / Licence (Bac+3/5)">Gradué / Licence (Bac+3/5)</option>
-                      <option value="Master / Doctorat">Master / Doctorat</option>
-                      <option value="Autre">Autre</option>
-                    </select>
-                  </div>
-                  <div class="col-md-4 mt-3">
-                    <label class="form-label font-weight-bold">État civil</label>
-                    <select id="etatCivilMembre" class="form-control">
-                      <option value="Célibataire">Célibataire</option>
-                      <option value="Marié(e)">Marié(e)</option>
-                      <option value="Divorcé(e)">Divorcé(e)</option>
-                      <option value="Veuf(ve)">Veuf(ve)</option>
-                    </select>
-                  </div>
-
-                  <!-- Profession & Statut au sein de l'organisation -->
-                  <div class="col-md-6 mt-3">
-                    <label class="form-label font-weight-bold">Profession</label>
-                    <input type="text" id="professionMembre" class="form-control" placeholder="Ex: Informaticien, Enseignant, Commerçant...">
-                  </div>
-                  <div class="col-md-6 mt-3">
-                    <label class="form-label font-weight-bold">Statut / Fonction à la JSD</label>
-                    <select id="statutMembre" class="form-control">
-                      <option value="Membre">Membre</option>
-                      <option value="Président">Président</option>
-                      <option value="Conseiller">Conseiller</option>
-                      <option value="Cadre">Cadre</option>
-                      <option value="Secrétaire Général">Secrétaire Général</option>
-                    </select>
-                  </div>
-
-                  <div class="col-12 mt-4 text-end">
-                    <button type="submit" class="btn btn-primary px-5 py-2 fw-bold">
-                      <i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer le Membre
+                <!-- BOUTON MENU MOBILE -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-600 hover:text-brandBlue focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
                     </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-
-          <!-- 2. ESPACE DE RECHERCHE PERSONNELLE POUR LES MEMBRES SIMPLES (Accès Confidentiel) -->
-          <div class="card mb-4 shadow-sm border-info">
-            <div class="card-header bg-info text-white font-weight-bold">
-              <i class="icon ion-md-search me-2"></i> Espace Membre : Consulter ma fiche personnelle
-            </div>
-            <div class="card-body">
-              <p class="text-muted small">Conformément aux règles de confidentialité, la liste globale des membres est restreinte. Saisissez votre Matricule officiel ci-dessous pour afficher uniquement vos informations personnelles.</p>
-              <div class="row g-2 align-items-center">
-                <div class="col-md-8">
-                  <input type="text" id="rechercheMatriculeMembre" class="form-control" placeholder="Saisissez votre Matricule (ex: JSD-2026-43IC)">
-                </div>
-                <div class="col-md-4">
-                  <button type="button" class="btn btn-info text-white w-100 fw-bold" onclick="consulterFicheMembrePerso()">
-                    <i class="icon ion-md-eye me-1"></i> Afficher ma fiche
-                  </button>
-                </div>
-              </div>
-
-              <!-- Zone d'affichage de la fiche individuelle du membre -->
-              <div id="zoneFicheMembreIndividuelle" class="mt-4" style="display: none;"></div>
-            </div>
-          </div>
-
-          <!-- 3. ACCÈS PRÉSIDENTIEL POUR DÉVERROUILLER LA LISTE COMPLÈTE -->
-          <div class="card shadow-sm border-dark">
-            <div class="card-header bg-dark text-white font-weight-bold d-flex justify-content-between align-items-center">
-              <span><i class="icon ion-md-lock me-2"></i> Répertoire Général des Membres (Réservé au Président)</span>
-              <button type="button" id="btnDevorrouillerPresident" class="btn btn-sm btn-outline-warning fw-bold" onclick="deverrouillerAccesPresident()">
-                <i class="icon ion-md-key me-1"></i> Accès Président
-              </button>
-            </div>
-            
-            <div class="card-body p-0">
-              <!-- Message d'accès restreint par défaut -->
-              <div id="messageAccesRestreint" class="p-4 text-center">
-                <i class="icon ion-md-shield text-secondary display-4 d-block mb-2"></i>
-                <h5 class="text-secondary fw-bold">Liste globale masquée</h5>
-                <p class="text-muted mb-0">Par mesure de confidentialité, la liste complète des membres est accessible uniquement par le Président muni du code d'accès.</p>
-              </div>
-
-              <!-- Tableau d'affichage dynamique réservé au Président -->
-              <div id="conteneurTableauPresident" class="table-responsive" style="display: none;">
-                <table class="table table-hover table-striped align-middle mb-0">
-                  <thead class="table-dark">
-                    <tr style="font-size: 0.85rem;">
-                      <th>Matricule</th>
-                      <th>Nom complet</th>
-                      <th>Sexe</th>
-                      <th>Téléphone</th>
-                      <th>Province d'Origine</th>
-                      <th>Profession</th>
-                      <th>Niveau D.</th>
-                      <th>Statut</th>
-                      <th>Date Adhésion</th>
-                      <th class="text-center">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody id="corpsTableauMembres">
-                    <!-- Les membres enregistrés dans Firebase s'afficheront ici en mode Président -->
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- SECTION MESSAGERIE PRIVÉE : MEMBRES <-> PRÉSIDENT -->
-        <div class="container my-5">
-            <div class="card shadow-sm border-0" id="sectionMessagerie">
-              <div class="card-header bg-primary text-white font-weight-bold d-flex justify-content-between align-items-center">
-                <span><i class="icon ion-md-chatboxes me-2"></i> Messagerie Directe avec le Président</span>
-                <span id="badgeStatutConnexion" class="badge bg-light text-dark">Non connecté</span>
-              </div>
-              <div class="card-body">
-
-                <!-- ÉTAPE 1 : CONNEXION -->
-                <div id="blocConnexionChat" class="p-3 bg-light rounded border">
-                  <h6 class="fw-bold mb-3"><i class="icon ion-md-lock me-1"></i> Identifiez-vous pour accéder à votre espace de discussion :</h6>
-                  <div class="row g-2 align-items-center">
-                    <div class="col-md-5">
-                      <input type="text" id="chatNom" class="form-control" placeholder="Votre Nom & Prénom">
-                    </div>
-                    <div class="col-md-4">
-                      <input type="text" id="chatMatricule" class="form-control" placeholder="Votre Matricule (ex: JSD-2026-43IC)">
-                    </div>
-                    <div class="col-md-3">
-                      <button type="button" class="btn btn-primary w-100" onclick="connexionMessagerie()">
-                        <i class="icon ion-md-key me-1"></i> Accéder au Chat
-                      </button>
-                    </div>
-                  </div>
-                  <div class="mt-2 text-end">
-                    <small><a href="javascript:void(0)" class="text-secondary" onclick="connexionPresidentChat()">[Accès Président]</a></small>
-                  </div>
                 </div>
 
-                <!-- ÉTAPE 2 : DISCUSSION -->
-                <div id="blocDiscussionChat" class="mt-4" style="display: none;">
-                  <!-- Vue membre -->
-                  <div id="vueDiscussionMembre">
-                    <div class="alert alert-info py-2 d-flex justify-content-between align-items-center">
-                      <small>Espace privé sécurisé de : <strong id="libelleMembreConnecte"></strong></small>
-                      <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.reload()">Déconnexion</button>
-                    </div>
-                    
-                    <div id="boiteMessagesMembre" class="border rounded p-3 mb-3 bg-white" style="height: 320px; overflow-y: auto;"></div>
-
-                    <form id="formEnvoyerMessageMembre" onsubmit="envoyerMessageMembre(event)">
-                      <div class="input-group">
-                        <input type="text" id="champMessageMembre" class="form-control" placeholder="Écrivez votre message au Président ici..." required>
-                        <button class="btn btn-primary" type="submit">
-                          <i class="icon ion-md-send me-1"></i> Envoyer
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-
-                  <!-- Vue Président -->
-                  <div id="vueDiscussionPresident" style="display: none;">
-                    <div class="alert alert-success py-2 d-flex justify-content-between align-items-center">
-                      <small><i class="icon ion-md-shield me-1"></i> <strong>Espace d'Administration Présidentielle</strong></small>
-                      <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.reload()">Déconnexion</button>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-4 border-end">
-                        <h6 class="fw-bold border-bottom pb-2">Conversations des Membres</h6>
-                        <div id="listeConversationsMembres" class="list-group list-group-flush" style="max-height: 380px; overflow-y: auto;"></div>
-                      </div>
-
-                      <div class="col-md-8">
-                        <h6 class="fw-bold border-bottom pb-2" id="titreDiscussionActive">Sélectionnez un membre pour lire sa conversation</h6>
-                        <div id="boiteMessagesPresident" class="border rounded p-3 mb-3 bg-white" style="height: 300px; overflow-y: auto;">
-                          <p class="text-muted text-center my-5">Cliquez sur un membre à gauche pour afficher la discussion.</p>
-                        </div>
-
-                        <form id="formEnvoyerReponsePresident" onsubmit="envoyerReponsePresident(event)" style="display: none;">
-                          <div class="input-group">
-                            <input type="text" id="champReponsePresident" class="form-control" placeholder="Répondre à ce membre..." required>
-                            <button class="btn btn-success" type="submit">
-                              <i class="icon ion-md-send me-1"></i> Répondre
-                            </button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
             </div>
         </div>
 
-        <!-- Contact Start -->
-        <div class="contact">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Contact </h2>
-                    <p>Veuillez-nous contacter ici SVP !!!</p>
+        <!-- MENU MOBILE -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-4 space-y-3">
+            <a href="#accueil" class="block text-brandBlue font-semibold">Accueil</a>
+            <a href="#apropos" class="block text-gray-600 hover:text-brandBlue">À propos</a>
+            <a href="#objectifs" class="block text-gray-600 hover:text-brandBlue">Objectifs</a>
+            <a href="#axes" class="block text-gray-600 hover:text-brandBlue">Axes d'intervention</a>
+            <a href="#organes" class="block text-gray-600 hover:text-brandBlue">Organes</a>
+            <a href="#adhesion" class="block text-gray-600 hover:text-brandBlue">Adhésion</a>
+            <a href="#contact" class="block text-gray-600 hover:text-brandBlue">Contact</a>
+            <a href="#adhesion" class="block text-center bg-brandGreen text-white px-4 py-2 rounded-full font-semibold">Rejoindre la JSD</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+
+        <!-- HERO SECTION -->
+        <section id="accueil" class="relative bg-gradient-to-r from-brandBlue to-blue-900 text-white py-20 lg:py-28">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 space-y-6 text-center md:text-left">
+                    <div class="inline-block bg-brandYellow text-brandDark px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                        Engagés pour le progrès social
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+                        Mobiliser la jeunesse pour un développement durable et solidaire
+                    </h1>
+                    <p class="text-blue-100 text-base sm:text-lg">
+                        La Jeunesse Sociale pour le Développement (JSD) oeuvre pour l'autonomisation des jeunes, le progrès social et l'épanouissement des communautés.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-3 sm:space-y-0 sm:space-x-4 pt-2">
+                        <a href="#adhesion" class="w-full sm:w-auto bg-brandGreen text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-green-600 transition text-center">
+                            Devenir Membre
+                        </a>
+                        <a href="#apropos" class="w-full sm:w-auto bg-white/10 border border-white/30 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/20 transition text-center">
+                            En savoir plus
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-5/12 mt-12 md:mt-0 flex justify-center">
+                    <div class="relative w-72 h-72 sm:w-80 sm:h-80 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-2xl flex flex-col items-center justify-center text-center">
+                        <div class="w-24 h-24 bg-white text-brandBlue rounded-full flex items-center justify-center text-4xl font-bold shadow-md mb-4 border-4 border-brandYellow">
+                            JSD
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Unissons nos forces</h3>
+                        <p class="text-xs text-blue-200 mt-2">Pour une jeunesse consciente, formée, responsable et actrice du changement positif.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION À PROPOS -->
+        <section id="apropos" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-brandBlue text-sm font-bold uppercase tracking-widest">Qui sommes-nous ?</h2>
+                    <p class="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-2">À propos de la JSD</p>
+                    <div class="w-16 h-1 bg-brandYellow mx-auto mt-3 rounded-full"></div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form">
-                            <form class="contactForm">
-                                <div class="form-row">
-                                    <div class="form-group col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Votre Nom" />
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <input type="email" class="form-control" placeholder="Votre Email" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Sujet" />
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control" rows="5" placeholder="Message"></textarea>
-                                </div>
-                                <div><button class="btn" type="submit">Envoyer le Message</button></div>
-                            </form>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    <div class="space-y-4 text-gray-600 leading-relaxed">
+                        <p>
+                            La <strong>Jeunesse Sociale pour le Développement (JSD)</strong> est une organisation sans but lucratif (ASBL) regroupant des jeunes engagés désireux de participer activement au développement socio-économique et culturel de leurs communautés.
+                        </p>
+                        <p>
+                            Convaincus que la jeunesse constitue le levier principal de toute transformation sociale durable, nous mettons en place des projets concret axés sur la formation, l'entrepreneuriat, l'entraide sociale et le civisme.
+                        </p>
+                        <div class="pt-4 border-t border-gray-100 grid grid-cols-2 gap-4 text-center">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <span class="block text-2xl font-bold text-brandBlue">Vision</span>
+                                <span class="text-xs text-gray-500">Une jeunesse dynamique, autonome et responsable.</span>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <span class="block text-2xl font-bold text-brandGreen">Mission</span>
+                                <span class="text-xs text-gray-500">Former, encadrer et soutenir les initiatives de développement.</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="map">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26361250.667320687!2d-113.75533773453304!3d36.24128894212527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited%20States!5e0!3m2!1sen!2sbd!4v1574923227698!5m2!1sen!2sbd" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+
+                    <!-- CARTE VALEURS -->
+                    <div class="bg-gradient-to-br from-gray-50 to-blue-50 p-8 rounded-2xl border border-gray-100 shadow-sm">
+                        <h3 class="text-xl font-bold text-brandDark mb-6 flex items-center space-x-2">
+                            <i class="fas fa-star text-brandYellow"></i>
+                            <span>Nos Valeurs Fondamentales</span>
+                        </h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-brandGreen mt-1"></i>
+                                <div>
+                                    <strong class="text-gray-900">Solidarité :</strong> Entraide et soutien mutuel au sein de la communauté.
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-brandGreen mt-1"></i>
+                                <div>
+                                    <strong class="text-gray-900">Engagement :</strong> Dévouement volontaire pour la cause sociale.
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-brandGreen mt-1"></i>
+                                <div>
+                                    <strong class="text-gray-900">Inclusion :</strong> Ouverture à tous les jeunes sans distinction.
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-brandGreen mt-1"></i>
+                                <div>
+                                    <strong class="text-gray-900">Excellence & Éthique :</strong> Transparence et rigueur dans nos actions.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION OBJECTIFS -->
+        <section id="objectifs" class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-brandBlue text-sm font-bold uppercase tracking-widest">Nos Buts</h2>
+                    <p class="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-2">Objectifs de la JSD</p>
+                    <div class="w-16 h-1 bg-brandGreen mx-auto mt-3 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Objectif 1 -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col items-center text-center">
+                        <div class="w-14 h-14 bg-blue-100 text-brandBlue rounded-full flex items-center justify-center text-2xl mb-4">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Formation & Capacité</h3>
+                        <p class="text-gray-600 text-sm">
+                            Renforcer les compétences techniques, professionnelles et civiques des jeunes pour faciliter leur insertion socio-professionnelle.
+                        </p>
+                    </div>
+
+                    <!-- Objectif 2 -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col items-center text-center">
+                        <div class="w-14 h-14 bg-green-100 text-brandGreen rounded-full flex items-center justify-center text-2xl mb-4">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Entrepreneuriat Jeune</h3>
+                        <p class="text-gray-600 text-sm">
+                            Encourager et accompagner les initiatives entrepreneuriales communautaires portées par la jeunesse.
+                        </p>
+                    </div>
+
+                    <!-- Objectif 3 -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100 flex flex-col items-center text-center">
+                        <div class="w-14 h-14 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-2xl mb-4">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Action Sociale</h3>
+                        <p class="text-gray-600 text-sm">
+                            Organiser des actions de solidarité au profit des personnes vulnérables et promouvoir le bien-être communautaire.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION AXES D'INTERVENTION -->
+        <section id="axes" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-brandBlue text-sm font-bold uppercase tracking-widest">Domaines d'action</h2>
+                    <p class="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-2">Axes d'Intervention</p>
+                    <div class="w-16 h-1 bg-brandYellow mx-auto mt-3 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="p-6 bg-gray-50 rounded-xl border border-gray-100 hover:border-brandBlue transition">
+                        <i class="fas fa-book-reader text-3xl text-brandBlue mb-3"></i>
+                        <h4 class="font-bold text-gray-900 mb-1">Éducation & Culture</h4>
+                        <p class="text-xs text-gray-600">Promotion de l'instruction, ateliers culturels et éducation à la citoyenneté.</p>
+                    </div>
+
+                    <div class="p-6 bg-gray-50 rounded-xl border border-gray-100 hover:border-brandGreen transition">
+                        <i class="fas fa-leaf text-3xl text-brandGreen mb-3"></i>
+                        <h4 class="font-bold text-gray-900 mb-1">Environnement</h4>
+                        <p class="text-xs text-gray-600">Sensibilisation à l'assainissement, reboisement et développement durable.</p>
+                    </div>
+
+                    <div class="p-6 bg-gray-50 rounded-xl border border-gray-100 hover:border-brandYellow transition">
+                        <i class="fas fa-heartbeat text-3xl text-yellow-500 mb-3"></i>
+                        <h4 class="font-bold text-gray-900 mb-1">Santé & Prévention</h4>
+                        <p class="text-xs text-gray-600">Campagnes de sensibilisation sanitaire et promotion des bonnes pratiques d'hygiène.</p>
+                    </div>
+
+                    <div class="p-6 bg-gray-50 rounded-xl border border-gray-100 hover:border-brandBlue transition">
+                        <i class="fas fa-laptop-code text-3xl text-brandBlue mb-3"></i>
+                        <h4 class="font-bold text-gray-900 mb-1">Nouvelles Technologies</h4>
+                        <p class="text-xs text-gray-600">Initiation aux outils numériques et réduction de la fracture digitale chez les jeunes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION ORGANES DE GESTION -->
+        <section id="organes" class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-brandBlue text-sm font-bold uppercase tracking-widest">Structure administrative</h2>
+                    <p class="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-2">Organes de la JSD</p>
+                    <div class="w-16 h-1 bg-brandBlue mx-auto mt-3 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-xl border-t-4 border-brandBlue shadow-sm">
+                        <div class="text-brandBlue font-bold text-lg mb-2 flex items-center justify-between">
+                            <span>1. Assemblée Générale</span>
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm">Organe suprême de décision réunissant l'ensemble des membres effectifs de l'ASBL.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border-t-4 border-brandGreen shadow-sm">
+                        <div class="text-brandGreen font-bold text-lg mb-2 flex items-center justify-between">
+                            <span>2. Comité Exécutif</span>
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm">Organe de gestion quotidienne de l'association, chargé de la mise en œuvre des décisions et projets.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl border-t-4 border-brandYellow shadow-sm">
+                        <div class="text-yellow-600 font-bold text-lg mb-2 flex items-center justify-between">
+                            <span>3. Commission de Contrôle</span>
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm">Organe chargé de la vérification de la gestion financière et du respect des statuts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION ADHÉSION -->
+        <section id="adhesion" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-gradient-to-r from-brandBlue to-blue-800 text-white rounded-2xl p-8 sm:p-12 shadow-xl">
+                    <div class="max-w-3xl mx-auto text-center space-y-6">
+                        <h2 class="text-2xl sm:text-3xl font-extrabold">Rejoignez la Jeunesse Sociale pour le Développement</h2>
+                        <p class="text-blue-100 text-sm sm:text-base">
+                            Vous êtes un jeune motivé ? Vous souhaitez mettre vos compétences au service de la communauté ? Devenez membre effectif ou sympathisant dès aujourd'hui.
+                        </p>
+                        <div class="pt-4 flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
+                            <a href="#contact" class="bg-brandGreen text-white px-8 py-3 rounded-full font-bold hover:bg-green-600 transition shadow-md">
+                                Remplir la demande d'adhésion
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Contact End -->
+        </section>
 
-        <!-- Footer Start -->
-        <div class="footer">
-            <div class="footer-top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 footer-links">
-                            <h4>Apropos de Nous</h4>
-                            <ul>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="#">Accueil</a></li>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="#">Apropos</a></li>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="#">Nos services</a></li>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="#">Conditions générales d'utilisation </a></li>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="#">Politique de confidentialité</a></li>
-                            </ul>
-                        </div>
+        <!-- SECTION CONTACT -->
+        <section id="contact" class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-brandBlue text-sm font-bold uppercase tracking-widest">Restons en contact</h2>
+                    <p class="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-2">Contactez-nous</p>
+                    <div class="w-16 h-1 bg-brandYellow mx-auto mt-3 rounded-full"></div>
+                </div>
 
-                        <div class="col-lg-3 col-md-6 footer-links">
-                            <h4>Lien Utiles</h4>
-                            <ul>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="#">Notre Statut & Règlement Intérieur</a></li>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="#">Faire un Don/ Devenir membre</a></li>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="#">Nos Projets & Activités</a></li>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="#">Rapports d'activités</a></li>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="#">Rejoindre le réseau/ Bénévolat</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 footer-contact">
-                            <h4>Contact Us</h4>
-                            <p>
-                                112 Siegè RDC<br>
-                                Kinshasa, BANDALUNGWA<br>
-                                RD Congo <br>
-                                <strong>Phone:</strong> +243 906819993<br>
-                                <strong>Email:</strong> Jeunessesocial52@gmail.com<br>
-                            </p>
-
-                            <div class="social-links">
-                                <a href="#"><i class="ion-logo-twitter"></i></a>
-                                <a href="https://www.facebook.com/profile.php?id=61558188776060" target="_blank" rel="noopener noreferrer"><i class="ion-logo-facebook"></i></a>
-                                <a href="#"><i class="ion-logo-linkedin"></i></a>
-                                <a href="#"><i class="ion-logo-instagram"></i></a>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <!-- Informations de contact -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-gray-900">Nos Coordonnées</h3>
+                        <p class="text-gray-600 text-sm">Pour toute question, proposition de partenariat ou demande d'information, n'hésitez pas à nous joindre.</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 bg-blue-100 text-brandBlue rounded-full flex items-center justify-center shrink-0">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-gray-900 text-sm">Siège Social :</strong>
+                                    <span class="text-gray-600 text-sm">Kinshasa, République Démocratique du Congo</span>
+                                </div>
                             </div>
 
-                        </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 bg-green-100 text-brandGreen rounded-full flex items-center justify-center shrink-0">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-gray-900 text-sm">Email :</strong>
+                                    <span class="text-gray-600 text-sm">contact@jsd-asbl.org</span>
+                                </div>
+                            </div>
 
-                        <div class="col-lg-3 col-md-6 footer-newsletter">
-                            <h4>Inscrivez-Vous !!!</h4>
-                            <p>"Abonnez-Vous à notre bulletin d'information pour recevoir toutes nos actualités, nos prochains évenements..."</p>
-                            <form action="" method="post">
-                                <input type="email" name="email" placeholder="jeunessesocial52@gmail.com" required><input type="submit" value="S'inscrire">
-                            </form>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center shrink-0">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-gray-900 text-sm">Téléphone :</strong>
+                                    <span class="text-gray-600 text-sm">+243 000 000 000</span>
+                                </div>
+                            </div>
                         </div>
+                    </div>
 
+                    <!-- Formulaire de contact simplifié -->
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-gray-100">
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Nom complet</label>
+                                <input type="text" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-brandBlue text-sm" placeholder="Votre nom">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Adresse Email</label>
+                                <input type="email" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-brandBlue text-sm" placeholder="Votre email">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Message</label>
+                                <textarea rows="4" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-brandBlue text-sm" placeholder="Votre message..."></textarea>
+                            </div>
+                            <button type="button" class="w-full bg-brandBlue text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                                Envoyer le message
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-6 copyright">
-                        Président &copy; Mike TSHIBANGU 2026 <a href="">Notre Site JSD</a>. Tout droit réservé à la JSD
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brandDark text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-brandBlue text-white rounded-full flex items-center justify-center font-bold border border-brandYellow">
+                        JSD
                     </div>
-                    <div class="col-md-6 credit">
-                        JSD <a href="https://htmlcodex.com">HTML Codex</a>
-                    </div>
+                    <span class="text-lg font-bold text-white">JSD ASBL</span>
+                </div>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    Jeunesse Sociale pour le Développement (JSD). Organisation engagée pour l'épanouissement et l'autonomisation des jeunes.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-white text-sm font-bold mb-4 uppercase tracking-wider">Liens Rapides</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#accueil" class="hover:text-white transition">Accueil</a></li>
+                    <li><a href="#apropos" class="hover:text-white transition">À propos</a></li>
+                    <li><a href="#objectifs" class="hover:text-white transition">Nos Objectifs</a></li>
+                    <li><a href="#adhesion" class="hover:text-white transition">Rejoindre l'ASBL</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white text-sm font-bold mb-4 uppercase tracking-wider">Suivez-nous</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-brandBlue transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-brandBlue transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-brandBlue transition"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
+
         </div>
-        <!-- Footer End -->
 
-        <a href="#" class="back-to-top"><i class="ion-ios-arrow-up"></i></a>
-
-        <!-- Libraries JS -->
-        <script src="lib/jquery/jquery.min.js"></script>
-        <script src="lib/jquery/jquery-migrate.min.js"></script>
-        <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/counterup/counterup.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/lightbox/js/lightbox.min.js"></script>
-
-        <!-- Main Javascript -->
-        <script src="js/main.js"></script>
-
-        <!-- SCRIPT FIREBASE COMPLET ET STRUCTURÉ -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-  // Configuration Firebase officielle JSD
-  const firebaseConfig = {
-    apiKey: "AIzaSyBlGSwEPk6CM4A07SeqmZeuaFxUWMRlESI",
-    authDomain: "jeunesse-social-pour-le-dvelop.firebaseapp.com",
-    projectId: "jeunesse-social-pour-le-dvelop",
-    storageBucket: "jeunesse-social-pour-le-dvelop.firebasestorage.app",
-    messagingSenderId: "728224479628",
-    appId: "1:728224479628:web:c43406a998d184d3a63ea9",
-    measurementId: "G-F81CFLLD55"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  let enEnregistrement = false;
-  let modePresidentActive = false;
-  const CODE_SECRET_PRESIDENT = "JSD2026";
-
-  // 1. ENREGISTREMENT COMPLET DES MEMBRES AVEC TOUS LES CHAMPS DEMANDÉS
-  window.enregistrerMembre = async function(event) {
-    if (event) event.preventDefault();
-    if (enEnregistrement) return;
-
-    const form = document.getElementById("formulaireInscription");
-    const idEncours = form ? form.getAttribute("data-id-edition") : null;
-
-    // Récupération de l'ensemble des champs
-    const nom = document.getElementById("nomMembre").value.trim();
-    const postnom = document.getElementById("postnomMembre").value.trim();
-    const prenom = document.getElementById("prenomMembre").value.trim();
-    const sexe = document.getElementById("sexeMembre").value;
-    const dateAdhesion = document.getElementById("dateAdhesionMembre").value || new Date().toLocaleDateString('fr-FR');
-    const contact = document.getElementById("contactMembre").value.trim();
-    const nationalite = document.getElementById("nationaliteMembre").value.trim() || "Congolaise";
-    const provinceOrigine = document.getElementById("provinceOrigineMembre").value;
-    const niveauEtudes = document.getElementById("niveauEtudesMembre").value;
-    const etatCivil = document.getElementById("etatCivilMembre").value;
-    const profession = document.getElementById("professionMembre").value.trim();
-    const statut = document.getElementById("statutMembre").value;
-
-    if (!nom || !prenom || !sexe || !contact || !provinceOrigine) {
-      alert("Veuillez remplir au moins le Nom, Prénom, Sexe, Téléphone et la Province d'origine.");
-      return;
-    }
-
-    const membreData = {
-      nom: nom,
-      postnom: postnom,
-      prenom: prenom,
-      sexe: sexe,
-      dateAdhesion: dateAdhesion,
-      contact: contact,
-      nationalite: nationalite,
-      provinceOrigine: provinceOrigine,
-      niveauEtudes: niveauEtudes,
-      etatCivil: etatCivil,
-      profession: profession || "Non spécifiée",
-      statut: statut
-    };
-
-    try {
-      enEnregistrement = true;
-
-      if (idEncours) {
-        await updateDoc(doc(db, "membres", idEncours), membreData);
-        alert("Fiche membre mise à jour avec succès !");
-        form.removeAttribute("data-id-edition");
-        const btnSubmit = form.querySelector("button[type='submit']");
-        if (btnSubmit) btnSubmit.innerHTML = '<i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer le Membre';
-      } else {
-        await addDoc(collection(db, "membres"), membreData);
-        alert("Nouveau membre enregistré avec succès dans la base de données !");
-      }
-
-      if (form) form.reset();
-
-    } catch (error) {
-      console.error("Erreur Firebase : ", error);
-      alert("Erreur lors de l'enregistrement : " + error.message);
-    } finally {
-      enEnregistrement = false;
-    }
-  };
-
-  // 2. DÉVERROUILLAGE SÉCURISÉ POUR LE PRÉSIDENT
-  window.deverrouillerAccesPresident = function() {
-    if (modePresidentActive) {
-      alert("Le mode Président est déjà actif.");
-      return;
-    }
-
-    const meSaisirCode = prompt("ACCÈS RESTREINT PRÉSIDENT\nVeuillez saisir le code secret du Président :");
-    if (meSaisirCode === CODE_SECRET_PRESIDENT || meSaisirCode === "ADMIN2026") {
-      modePresidentActive = true;
-      document.getElementById("messageAccesRestreint").style.display = "none";
-      document.getElementById("conteneurTableauPresident").style.display = "block";
-      document.getElementById("btnDevorrouillerPresident").className = "btn btn-sm btn-success fw-bold";
-      document.getElementById("btnDevorrouillerPresident").innerHTML = '<i class="icon ion-md-checkmark-circle me-1"></i> Mode Président Actif';
-      
-      ecouterMembresModePresident();
-    } else if (meSaisirCode !== null) {
-      alert("Code secret incorrect ! Seul le Président peut consulter la liste générale.");
-    }
-  };
-
-  // 3. ÉCOUTE DE LA LISTE GÉNÉRALE (RÉSERVÉE AU PRÉSIDENT)
-  function ecouterMembresModePresident() {
-    onSnapshot(collection(db, "membres"), (snapshot) => {
-      const tbody = document.getElementById("corpsTableauMembres");
-      if (!tbody) return;
-
-      tbody.innerHTML = "";
-
-      snapshot.docs.forEach((docSnap) => {
-        const data = docSnap.data();
-        const idDoc = docSnap.id;
-        const matriculeAuto = "JSD-2026-" + idDoc.substring(0, 4).toUpperCase();
-        
-        let badgeClass = "bg-info text-white";
-        if (data.statut === "Président") badgeClass = "bg-success text-white";
-        if (data.statut === "Conseiller") badgeClass = "bg-primary text-white";
-
-        const nomComplet = `${data.nom || ''} ${data.postnom || ''} ${data.prenom || ''}`.trim();
-
-        const newRow = document.createElement("tr");
-        newRow.innerHTML = `
-          <td><strong>${matriculeAuto}</strong></td>
-          <td>${nomComplet}</td>
-          <td><span class="badge bg-secondary">${data.sexe || '-'}</span></td>
-          <td>${data.contact || '-'}</td>
-          <td>${data.provinceOrigine || '-'}</td>
-          <td>${data.profession || '-'}</td>
-          <td><small>${data.niveauEtudes || '-'}</small></td>
-          <td><span class="badge ${badgeClass} px-2 py-1">${data.statut || 'Membre'}</span></td>
-          <td><small>${data.dateAdhesion || '-'}</small></td>
-          <td class="text-center">
-            <button type="button" class="btn btn-sm btn-outline-warning me-1" title="Modifier" 
-              onclick="chargerMembrePourModification('${idDoc}')">
-              <i class="icon ion-md-create"></i>
-            </button>
-            <button type="button" class="btn btn-sm btn-outline-danger" title="Supprimer" 
-              onclick="supprimerMembre('${idDoc}', '${nomComplet.replace(/'/g, "\\'")}')">
-              <i class="icon ion-md-trash"></i>
-            </button>
-          </td>
-        `;
-        tbody.appendChild(newRow);
-      });
-    });
-  }
-
-  // 4. CONSULTATION DE SA PROPRE FICHE PAR LE MEMBRE SIMPLE
-  window.consulterFicheMembrePerso = async function() {
-    const matSaisi = document.getElementById("rechercheMatriculeMembre").value.trim().toUpperCase();
-    const zoneIndiv = document.getElementById("zoneFicheMembreIndividuelle");
-
-    if (!matSaisi) {
-      alert("Veuillez saisir votre matricule.");
-      return;
-    }
-
-    try {
-      const snapshotMembres = await getDocs(collection(db, "membres"));
-      let membreTrouve = null;
-
-      snapshotMembres.forEach((docSnap) => {
-        const idDoc = docSnap.id;
-        const matCalculated = "JSD-2026-" + idDoc.substring(0, 4).toUpperCase();
-        if (matCalculated === matSaisi) {
-          membreTrouve = { id: idDoc, ...docSnap.data(), matricule: matCalculated };
-        }
-      });
-
-      if (membreTrouve) {
-        zoneIndiv.style.display = "block";
-        zoneIndiv.innerHTML = `
-          <div class="card border-primary">
-            <div class="card-header bg-primary text-white font-weight-bold">
-              Fiche Personnelle du Membre : ${membreTrouve.nom} ${membreTrouve.postnom || ''} ${membreTrouve.prenom} (${membreTrouve.matricule})
-            </div>
-            <div class="card-body">
-              <div class="row g-3">
-                <div class="col-md-4"><strong>Matricule :</strong> ${membreTrouve.matricule}</div>
-                <div class="col-md-4"><strong>Sexe :</strong> ${membreTrouve.sexe || 'M'}</div>
-                <div class="col-md-4"><strong>Date d'adhésion :</strong> ${membreTrouve.dateAdhesion || '-'}</div>
-                <div class="col-md-4"><strong>Contact :</strong> ${membreTrouve.contact}</div>
-                <div class="col-md-4"><strong>Nationalité :</strong> ${membreTrouve.nationalite || 'Congolaise'}</div>
-                <div class="col-md-4"><strong>Province d'origine :</strong> ${membreTrouve.provinceOrigine}</div>
-                <div class="col-md-4"><strong>Niveau d'études :</strong> ${membreTrouve.niveauEtudes}</div>
-                <div class="col-md-4"><strong>État civil :</strong> ${membreTrouve.etatCivil}</div>
-                <div class="col-md-4"><strong>Profession :</strong> ${membreTrouve.profession}</div>
-                <div class="col-md-12 mt-2"><strong>Statut JSD :</strong> <span class="badge bg-success">${membreTrouve.statut}</span></div>
-              </div>
-            </div>
-          </div>
-        `;
-      } else {
-        zoneIndiv.style.display = "block";
-        zoneIndiv.innerHTML = `<div class="alert alert-warning mb-0">Aucun membre trouvé avec le matricule "${matSaisi}". Veuillez vérifier votre saisie.</div>`;
-      }
-
-    } catch (error) {
-      console.error("Erreur de recherche :", error);
-      alert("Erreur lors de la récupération de votre fiche.");
-    }
-  };
-
-  window.chargerMembrePourModification = async function(idDoc) {
-    try {
-      const snapshotMembres = await getDocs(collection(db, "membres"));
-      snapshotMembres.forEach((docSnap) => {
-        if (docSnap.id === idDoc) {
-          const d = docSnap.data();
-          document.getElementById("nomMembre").value = d.nom || "";
-          document.getElementById("postnomMembre").value = d.postnom || "";
-          document.getElementById("prenomMembre").value = d.prenom || "";
-          document.getElementById("sexeMembre").value = d.sexe || "M";
-          document.getElementById("dateAdhesionMembre").value = d.dateAdhesion || "";
-          document.getElementById("contactMembre").value = d.contact || "";
-          document.getElementById("nationaliteMembre").value = d.nationalite || "Congolaise";
-          document.getElementById("provinceOrigineMembre").value = d.provinceOrigine || "";
-          document.getElementById("niveauEtudesMembre").value = d.niveauEtudes || "";
-          document.getElementById("etatCivilMembre").value = d.etatCivil || "Célibataire";
-          document.getElementById("professionMembre").value = d.profession || "";
-          document.getElementById("statutMembre").value = d.statut || "Membre";
-
-          const form = document.getElementById("formulaireInscription");
-          form.setAttribute("data-id-edition", idDoc);
-
-          const btnSubmit = form.querySelector("button[type='submit']");
-          if (btnSubmit) {
-            btnSubmit.innerHTML = '<i class="icon ion-md-save me-1"></i> Mettre à jour la fiche du membre';
-          }
-
-          form.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  window.supprimerMembre = async function(idMembre, nomMembre) {
-    if (!modePresidentActive) {
-      alert("Seul le Président peut effectuer cette action.");
-      return;
-    }
-
-    if (confirm(`Êtes-vous sûr de vouloir supprimer définitivement le membre : ${nomMembre} ?`)) {
-      try {
-        await deleteDoc(doc(db, "membres", idMembre));
-        alert("Membre supprimé avec succès.");
-      } catch (error) {
-        console.error("Erreur de suppression : ", error);
-        alert("Erreur lors de la suppression : " + error.message);
-      }
-    }
-  };
-
-  // 5. MESSAGERIE PRIVÉE ET NOTIFICATIONS
-  let membreChatSession = null;
-  let estModePresidentChat = false;
-  let conversationActiveMembreId = null;
-  let unsubscribeMessagesMembre = null;
-  let unsubscribeMessagesPresident = null;
-
-  window.connexionMessagerie = async function() {
-    const nomSaisi = document.getElementById("chatNom") ? document.getElementById("chatNom").value.trim() : "";
-    const matriculeSaisi = document.getElementById("chatMatricule") ? document.getElementById("chatMatricule").value.trim().toUpperCase() : "";
-
-    if (!matriculeSaisi) {
-      alert("Veuillez remplir le champ matricule.");
-      return;
-    }
-
-    if (matriculeSaisi === "ADMIN2026" || matriculeSaisi === CODE_SECRET_PRESIDENT) {
-      estModePresidentChat = true;
-      membreChatSession = { id: "president", nom: "Président JSD", matricule: "PRESIDENT" };
-      ouvrirEspaceDiscussionPresident();
-      return;
-    }
-
-    try {
-      const snapshotMembres = await getDocs(collection(db, "membres"));
-      let membreTrouve = null;
-
-      snapshotMembres.forEach((docSnap) => {
-        const data = docSnap.data();
-        const docId = docSnap.id;
-        const matriculeAuto = "JSD-2026-" + docId.substring(0, 4).toUpperCase();
-        if (matriculeAuto === matriculeSaisi) {
-          membreTrouve = { id: docId, nom: `${data.nom} ${data.prenom}`, matricule: matriculeAuto };
-        }
-      });
-
-      if (membreTrouve) {
-        membreChatSession = membreTrouve;
-        estModePresidentChat = false;
-        ouvrirEspaceDiscussionMembre();
-      } else {
-        alert("Accès refusé ! Matricule introuvable.");
-      }
-    } catch (err) {
-      console.error("Erreur d'accès :", err);
-      alert("Erreur lors de la vérification des identifiants.");
-    }
-  };
-
-  window.connexionPresidentChat = function() {
-    const codeSaisi = prompt("Saisissez le code secret du Président :");
-    if (codeSaisi === CODE_SECRET_PRESIDENT || codeSaisi === "ADMIN2026") {
-      estModePresidentChat = true;
-      membreChatSession = { nom: "Président JSD", matricule: "PRESIDENT" };
-      ouvrirEspaceDiscussionPresident();
-    } else if (codeSaisi !== null) {
-      alert("Code secret incorrect !");
-    }
-  };
-
-  function ouvrirEspaceDiscussionMembre() {
-    document.getElementById("blocConnexionChat").style.display = "none";
-    document.getElementById("blocDiscussionChat").style.display = "block";
-    document.getElementById("vueDiscussionMembre").style.display = "block";
-    document.getElementById("vueDiscussionPresident").style.display = "none";
-
-    document.getElementById("libelleMembreConnecte").innerText = `${membreChatSession.nom} (${membreChatSession.matricule})`;
-    document.getElementById("badgeStatutConnexion").innerText = "Membre Connecté";
-    document.getElementById("badgeStatutConnexion").className = "badge bg-success text-white";
-
-    ecouterMessagesMembre(membreChatSession.id);
-  }
-
-  function ouvrirEspaceDiscussionPresident() {
-    document.getElementById("blocConnexionChat").style.display = "none";
-    document.getElementById("blocDiscussionChat").style.display = "block";
-    document.getElementById("vueDiscussionMembre").style.display = "none";
-    document.getElementById("vueDiscussionPresident").style.display = "block";
-
-    document.getElementById("badgeStatutConnexion").innerText = "Président (Admin)";
-    document.getElementById("badgeStatutConnexion").className = "badge bg-danger text-white";
-
-    chargerListeConversationsPresident();
-  }
-
-  function ecouterMessagesMembre(membreId) {
-    const q = query(
-      collection(db, "messages"),
-      where("membreId", "==", membreId)
-    );
-
-    if (unsubscribeMessagesMembre) unsubscribeMessagesMembre();
-
-    unsubscribeMessagesMembre = onSnapshot(q, (snapshot) => {
-      const boite = document.getElementById("boiteMessagesMembre");
-      boite.innerHTML = "";
-
-      let messages = [];
-      snapshot.forEach(docSnap => {
-        messages.push({ id: docSnap.id, ...docSnap.data() });
-      });
-
-      messages.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
-
-      if (messages.length === 0) {
-        boite.innerHTML = `<p class="text-muted text-center my-4">Aucun message pour le moment. Écrivez au Président ci-dessous.</p>`;
-        return;
-      }
-
-      messages.forEach((msg) => {
-        const estMoi = msg.expediteur === "membre";
-        const divMsg = document.createElement("div");
-        divMsg.className = `d-flex mb-2 ${estMoi ? 'justify-content-end' : 'justify-content-start'}`;
-        divMsg.innerHTML = `
-          <div class="p-2 px-3 rounded ${estMoi ? 'bg-primary text-white' : 'bg-light text-dark border'}" style="max-width: 75%;">
-            <small class="d-block fw-bold" style="font-size: 0.75rem;">${estMoi ? 'Vous' : 'Président JSD'}</small>
-            <span>${msg.texte}</span>
-            <small class="d-block text-end mt-1 ${estMoi ? 'text-white-50' : 'text-muted'}" style="font-size: 0.65rem;">${msg.heure || ''}</small>
-          </div>
-        `;
-        boite.appendChild(divMsg);
-      });
-
-      boite.scrollTop = boite.scrollHeight;
-    });
-  }
-
-  window.envoyerMessageMembre = async function(e) {
-    e.preventDefault();
-    const input = document.getElementById("champMessageMembre");
-    const texte = input.value.trim();
-
-    if (!texte || !membreChatSession) return;
-
-    try {
-      await addDoc(collection(db, "messages"), {
-        membreId: membreChatSession.id,
-        nomMembre: membreChatSession.nom,
-        matriculeMembre: membreChatSession.matricule,
-        expediteur: "membre",
-        texte: texte,
-        timestamp: Date.now(),
-        heure: new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
-      });
-      input.value = "";
-    } catch (err) {
-      console.error("Erreur d'envoi du message : ", err);
-      alert("Impossible d'envoyer le message.");
-    }
-  };
-
-  function chargerListeConversationsPresident() {
-    onSnapshot(collection(db, "messages"), (snapshot) => {
-      const conteneurListe = document.getElementById("listeConversationsMembres");
-      if (!conteneurListe) return;
-      conteneurListe.innerHTML = "";
-
-      let conversationsMap = {};
-
-      snapshot.forEach(docSnap => {
-        const data = docSnap.data();
-        if (!conversationsMap[data.membreId]) {
-          conversationsMap[data.membreId] = {
-            membreId: data.membreId,
-            nomMembre: data.nomMembre,
-            matriculeMembre: data.matriculeMembre,
-            dernierTimestamp: data.timestamp || 0
-          };
-        } else if ((data.timestamp || 0) > conversationsMap[data.membreId].dernierTimestamp) {
-          conversationsMap[data.membreId].dernierTimestamp = data.timestamp || 0;
-        }
-      });
-
-      const listeTries = Object.values(conversationsMap).sort((a, b) => b.dernierTimestamp - a.dernierTimestamp);
-
-      if (listeTries.length === 0) {
-        conteneurListe.innerHTML = `<p class="text-muted p-2 text-center">Aucun message reçu.</p>`;
-        return;
-      }
-
-      listeTries.forEach(conv => {
-        const item = document.createElement("a");
-        item.href = "javascript:void(0)";
-        item.className = `list-group-item list-group-item-action ${conversationActiveMembreId === conv.membreId ? 'active' : ''}`;
-        item.innerHTML = `
-          <div class="fw-bold">${conv.nomMembre}</div>
-          <small class="${conversationActiveMembreId === conv.membreId ? 'text-white-50' : 'text-muted'}">${conv.matriculeMembre}</small>
-        `;
-        item.onclick = () => selectionnerConversationPresident(conv.membreId, conv.nomMembre, conv.matriculeMembre);
-        conteneurListe.appendChild(item);
-      });
-    });
-  }
-
-  function selectionnerConversationPresident(membreId, nomMembre, matriculeMembre) {
-    conversationActiveMembreId = membreId;
-    document.getElementById("titreDiscussionActive").innerText = `Discussion avec : ${nomMembre} (${matriculeMembre})`;
-    document.getElementById("formEnvoyerReponsePresident").style.display = "flex";
-
-    const q = query(
-      collection(db, "messages"),
-      where("membreId", "==", membreId)
-    );
-
-    if (unsubscribeMessagesPresident) unsubscribeMessagesPresident();
-
-    unsubscribeMessagesPresident = onSnapshot(q, (snapshot) => {
-      const boite = document.getElementById("boiteMessagesPresident");
-      boite.innerHTML = "";
-
-      let messages = [];
-      snapshot.forEach(docSnap => {
-        messages.push({ id: docSnap.id, ...docSnap.data() });
-      });
-
-      messages.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
-
-      messages.forEach((msg) => {
-        const estPresident = msg.expediteur === "president";
-        const divMsg = document.createElement("div");
-        divMsg.className = `d-flex mb-2 ${estPresident ? 'justify-content-end' : 'justify-content-start'}`;
-        divMsg.innerHTML = `
-          <div class="p-2 px-3 rounded ${estPresident ? 'bg-success text-white' : 'bg-light text-dark border'}" style="max-width: 75%;">
-            <small class="d-block fw-bold" style="font-size: 0.75rem;">${estPresident ? 'Vous (Président)' : nomMembre}</small>
-            <span>${msg.texte}</span>
-            <small class="d-block text-end mt-1 ${estPresident ? 'text-white-50' : 'text-muted'}" style="font-size: 0.65rem;">${msg.heure || ''}</small>
-          </div>
-        `;
-        boite.appendChild(divMsg);
-      });
-
-      boite.scrollTop = boite.scrollHeight;
-    });
-  }
-
-  window.envoyerReponsePresident = async function(e) {
-    e.preventDefault();
-    const input = document.getElementById("champReponsePresident");
-    const texte = input.value.trim();
-
-    if (!texte || !conversationActiveMembreId) return;
-
-    try {
-      await addDoc(collection(db, "messages"), {
-        membreId: conversationActiveMembreId,
-        expediteur: "president",
-        texte: texte,
-        timestamp: Date.now(),
-        heure: new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
-      });
-      input.value = "";
-    } catch (err) {
-      console.error("Erreur lors de l'envoi de la réponse : ", err);
-      alert("Impossible d'envoyer la réponse.");
-    }
-  };
-
-  // NOTIFICATIONS
-  const listeNotifications = [
-    { id: 1, titre: "📢 Annonce JSD", message: "Bienvenue sur notre nouvelle plateforme officielle !" },
-    { id: 2, titre: "💬 Messagerie", message: "Vous pouvez désormais échanger en privé avec le Président." }
-  ];
-
-  function initialiserNotifications() {
-    const conteneur = document.getElementById("notif-widget-container");
-    if (!conteneur) return;
-
-    const nombreNonLues = listeNotifications.length;
-
-    let htmlItems = listeNotifications.map(notif => `
-      <a class="dropdown-item p-2 border-bottom" href="#">
-        <strong>${notif.titre}</strong><br>
-        <small class="text-muted">${notif.message}</small>
-      </a>
-    `).join("");
-
-    conteneur.innerHTML = `
-      <div class="dropdown">
-        <button class="btn btn-outline-primary position-relative dropdown-toggle" type="button" id="btnNotif" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          🔔 Notifications
-          <span class="badge badge-danger position-absolute" style="top: -5px; right: -5px;">
-            ${nombreNonLues}
-          </span>
-        </button>
-        <div class="dropdown-menu dropdown-menu-right p-2 shadow" aria-labelledby="btnNotif" style="width: 280px; max-height: 300px; overflow-y: auto;">
-          ${htmlItems}
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-gray-800 text-center text-xs text-gray-500">
+            &copy; 2026 Jeunesse Sociale pour le Développement (JSD ASBL). Tous droits réservés.
         </div>
-      </div>
-    `;
-  }
+    </footer>
 
-  document.addEventListener("DOMContentLoaded", initialiserNotifications);
-</script>
-    </body>
+    <!-- SCRIPT MENU MOBILE -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
 </html>
