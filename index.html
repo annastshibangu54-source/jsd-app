@@ -1081,7 +1081,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     </div>
   </div>
 
-  <!-- SECTION COTISATIONS (NOUVELLE SECTION INTÉGRÉE) -->
+  <!-- SECTION COTISATIONS (NOUVELLE SECTION INTÉGRÉE AVEC PAIEMENT M-PESA) -->
   <div class="card shadow-sm border-0 mb-4">
     <div class="card-header bg-success text-white font-weight-bold">
       <i class="icon ion-md-cash me-2"></i> Gestion des Cotisations (Membres Simples & D'Honneur)
@@ -1089,7 +1089,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     <div class="card-body">
       <form id="formCotisation" onsubmit="enregistrerCotisation(event)">
         <div class="row g-3">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label font-weight-bold">Matricule / Nom du Membre</label>
             <input type="text" id="cotisationMembre" class="form-control" placeholder="Ex: JSD-2026-43IC ou Mike" required>
           </div>
@@ -1100,15 +1100,32 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
               <option value="Membre d'Honneur">Membre d'Honneur</option>
             </select>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-2">
             <label class="form-label font-weight-bold">Montant ($ USD ou FC)</label>
             <input type="number" id="cotisationMontant" class="form-control" placeholder="Ex: 10" required>
+          </div>
+          <div class="col-md-2">
+            <label class="form-label font-weight-bold">Mode de Paiement</label>
+            <select id="cotisationModePaiement" class="form-select" onchange="gestionAffichageMPesa()">
+              <option value="Cash / Présentiel">Cash / Présentiel</option>
+              <option value="M-Pesa">M-Pesa (+243 836315788)</option>
+            </select>
           </div>
           <div class="col-md-2 d-flex align-items-end">
             <button type="submit" class="btn btn-success w-100 fw-bold">
               <i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer
             </button>
           </div>
+        </div>
+
+        <!-- Consigne explicite pour le paiement M-Pesa -->
+        <div id="blocAideMPesa" class="alert alert-warning mt-3 p-2 text-dark" style="display: none;">
+          <small>
+            <i class="icon ion-md-information-circle me-1"></i>
+            <strong>Paiement Mobile M-Pesa :</strong> Effectuez votre transfert au numéro <strong>+243 836315788</strong> (Nom : JSD). 
+            Indiquez la référence ou l'ID de la transaction M-Pesa ci-dessous si disponible :
+          </small>
+          <input type="text" id="cotisationRefMPesa" class="form-control form-control-sm mt-1" placeholder="Exemple de référence M-Pesa : 9X87YZA123">
         </div>
       </form>
 
@@ -1133,6 +1150,8 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                 <th>Membre</th>
                 <th>Catégorie</th>
                 <th>Montant</th>
+                <th>Mode de paiement</th>
+                <th>Référence / Transaction</th>
                 <th>Date de paiement</th>
               </tr>
             </thead>
@@ -1241,6 +1260,14 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
     function modifierMembre(matricule) {
         alert("Modification du membre : " + matricule);
+    }
+
+    function gestionAffichageMPesa() {
+        var mode = document.getElementById('cotisationModePaiement').value;
+        var bloc = document.getElementById('blocAideMPesa');
+        if (bloc) {
+            bloc.style.display = (mode === 'M-Pesa') ? 'block' : 'none';
+        }
     }
 
     // Fonction universelle d'impression d'une zone HTML spécifique (Compatibilité maximale Mobiles, Android, iOS, PC, Imprimantes Wi-Fi/Bluetooth)
@@ -1572,7 +1599,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // MODO PRÉSIDENT/ADMIN (SÉCURITÉ & DÉVERROUILLAGE RESSERRÉ SUR ann@s0852)
+  // MODO PRÉSIDENT/ADMIN (SÉCURITÉ & DÉVERROUILLAGE EXCLUSIF AVEC ann@s0852)
   window.deverrouillerTableauPresident = function() {
     const code = prompt("Veuillez saisir le code secret du Président :");
     if (code === CODE_SECRET_PRESIDENT) {
@@ -2007,7 +2034,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   const listeNotifications = [
     { id: 1, titre: "📢 Annonce JSD", message: "Bienvenue sur notre nouvelle plateforme officielle !" },
     { id: 2, titre: "💬 Messagerie", message: "Vous pouvez désormais échanger en privé avec le Président." },
-    { id: 3, titre: "💳 Cotisations", message: "Module de cotisations en ligne disponible pour tous les membres." }
+    { id: 3, titre: "💳 Cotisations M-Pesa", message: "Payez vos cotisations par M-Pesa au +243 836315788 !" }
   ];
 
   function initialiserNotifications() {
@@ -2140,12 +2167,15 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     });
   });
 
-  // 5. MODULE DE COTISATIONS (MEMBRES SIMPLES & MEMBRES D'HONNEUR)
+  // 5. MODULE DE COTISATIONS (CASH ET PAIEMENT M-PESA +243 836315788)
   window.enregistrerCotisation = async function(e) {
     e.preventDefault();
     const membre = document.getElementById("cotisationMembre").value.trim();
     const typeMembre = document.getElementById("cotisationTypeMembre").value;
     const montant = document.getElementById("cotisationMontant").value.trim();
+    const modePaiement = document.getElementById("cotisationModePaiement").value;
+    const refMPesaInput = document.getElementById("cotisationRefMPesa");
+    const refMPesa = refMPesaInput ? refMPesaInput.value.trim() : "";
 
     if (!membre || !montant) {
       alert("Veuillez indiquer le nom ou matricule du membre et le montant.");
@@ -2153,23 +2183,30 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
 
     try {
-      await addDoc(collection(db, "cotisations"), {
+      const cotisationData = {
         membre: membre,
         typeMembre: typeMembre,
         montant: montant,
+        modePaiement: modePaiement,
+        referenceTransaction: modePaiement === "M-Pesa" ? (refMPesa || "M-Pesa (+243 836315788)") : "Encaissement direct",
         date: new Date().toLocaleDateString('fr-FR'),
         timestamp: Date.now()
-      });
+      };
 
-      alert(`Cotisation enregistrée avec succès pour ${membre} (${montant} $) !`);
+      await addDoc(collection(db, "cotisations"), cotisationData);
+
+      alert(`Cotisation enregistrée avec succès pour ${membre} (${montant} $) via ${modePaiement} !`);
       document.getElementById("formCotisation").reset();
+      const blocAide = document.getElementById("blocAideMPesa");
+      if (blocAide) blocAide.style.display = "none";
+
     } catch (err) {
       console.error("Erreur lors de l'enregistrement de la cotisation : ", err);
-      alert("Erreur d'enregistrement de la cotisation.");
+      alert("Erreur d'enregistrement de la cotisation : " + err.message);
     }
   };
 
-  // ÉCOUTE EN TEMPS RÉEL DES COTISATIONS DANS FIREBASE
+  // ÉCOUTE EN TEMPS RÉEL DES COTISATIONS DANS FIREBASE AVEC AFFICHAGE DU MODE ET DE LA RÉFÉRENCE DE PAIEMENT
   onSnapshot(collection(db, "cotisations"), (snapshot) => {
     const tbody = document.getElementById("corpsTableauCotisations");
     if (!tbody) return;
@@ -2184,17 +2221,21 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     listCotisations.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
 
     if (listCotisations.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="4" class="text-center text-muted py-3">Aucune cotisation enregistrée.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-3">Aucune cotisation enregistrée.</td></tr>`;
       return;
     }
 
     listCotisations.forEach(c => {
       let badgeColor = c.typeMembre === "Membre d'Honneur" ? "bg-warning text-dark" : "bg-info text-white";
+      let badgeMode = c.modePaiement === "M-Pesa" ? "bg-success text-white" : "bg-secondary text-white";
+
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td><strong>${c.membre}</strong></td>
         <td><span class="badge ${badgeColor}">${c.typeMembre}</span></td>
         <td><strong class="text-success">${c.montant} $</strong></td>
+        <td><span class="badge ${badgeMode}">${c.modePaiement || 'Cash'}</span></td>
+        <td><small class="text-muted">${c.referenceTransaction || '-'}</small></td>
         <td>${c.date}</td>
       `;
       tbody.appendChild(tr);
