@@ -1602,7 +1602,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   // MODO PRÉSIDENT/ADMIN (SÉCURITÉ & DÉVERROUILLAGE EXCLUSIF AVEC ann@s0852)
   window.deverrouillerTableauPresident = function() {
     const code = prompt("Veuillez saisir le code secret du Président :");
-    if (code === CODE_SECRET_PRESIDENT) {
+    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
       document.getElementById("conteneurTableauGeneral").style.display = "block";
       document.getElementById("btnImprimerListeMembres").style.display = "inline-block";
       alert("Accès Président autorisé. La liste générale des membres est maintenant accessible.");
@@ -1614,7 +1614,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   // DÉVERROUILLAGE SÉCURISÉ DE L'HISTORIQUE DES COTISATIONS POUR LE PRÉSIDENT (EXCLUSIVEMENT VIA ann@s0852)
   window.deverrouillerCotisationsPresident = function() {
     const code = prompt("Veuillez saisir le code secret du Président pour consulter les cotisations :");
-    if (code === CODE_SECRET_PRESIDENT) {
+    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
       document.getElementById("conteneurHistoriqueCotisations").style.display = "block";
       alert("Accès autorisé. Historique des cotisations déverrouillé.");
     } else if (code !== null) {
@@ -1701,7 +1701,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
     if (motDePasse === null) return;
 
-    if (motDePasse === CODE_SECRET_PRESIDENT) {
+    if (motDePasse && motDePasse.trim() === CODE_SECRET_PRESIDENT) {
       if (confirm(`Êtes-vous sûr de vouloir supprimer définitivement le membre : ${nomMembre} ?`)) {
         try {
           await deleteDoc(doc(db, "membres", idMembre));
@@ -1773,19 +1773,22 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
   window.connexionMessagerie = async function() {
     const nomSaisi = document.getElementById("chatNom") ? document.getElementById("chatNom").value.trim() : "";
-    const matriculeSaisi = document.getElementById("chatMatricule") ? document.getElementById("chatMatricule").value.trim().toUpperCase() : "";
+    const champMat = document.getElementById("chatMatricule");
+    const matBrut = champMat ? champMat.value.trim() : "";
 
-    if (!matriculeSaisi) {
+    if (!matBrut) {
       alert("Veuillez remplir le champ matricule.");
       return;
     }
 
-    if (matriculeSaisi === CODE_SECRET_PRESIDENT) {
+    if (matBrut === CODE_SECRET_PRESIDENT) {
       estModePresidentChat = true;
       membreChatSession = { id: "president", nom: "Président JSD", matricule: "PRESIDENT" };
       ouvrirEspaceDiscussionPresident();
       return;
     }
+
+    const matriculeSaisi = matBrut.toUpperCase();
 
     if (!nomSaisi) {
       alert("Veuillez saisir votre Nom et votre Matricule pour accéder au chat.");
@@ -1822,7 +1825,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
   window.connexionPresidentChat = function() {
     const codeSaisi = prompt("Saisissez le code secret du Président pour accéder à l'administration du chat :");
-    if (codeSaisi === CODE_SECRET_PRESIDENT) {
+    if (codeSaisi && codeSaisi.trim() === CODE_SECRET_PRESIDENT) {
       estModePresidentChat = true;
       membreChatSession = { nom: "Président JSD", matricule: "PRESIDENT" };
       ouvrirEspaceDiscussionPresident();
