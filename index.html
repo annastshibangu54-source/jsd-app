@@ -118,21 +118,25 @@
         cursor: pointer !important;
     }
 
-    /* Styles spécifiques pour l'impression de documents */
+    /* Styles spécifiques pour l'impression de documents (Mobiles & PC) */
     @media print {
         body * {
-            visibility: hidden;
+            visibility: hidden !important;
         }
-        .printable-area, .printable-area * {
-            visibility: visible;
+        .is-printing, .is-printing * {
+            visibility: visible !important;
         }
-        .printable-area {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
+        .is-printing {
+            position: absolute !important;
+            left: 0 !important;
+            top: 0 !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 10px !important;
+            background: #ffffff !important;
+            color: #000000 !important;
         }
-        .no-print {
+        .no-print, button, .btn {
             display: none !important;
         }
     }
@@ -1239,25 +1243,25 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         alert("Modification du membre : " + matricule);
     }
 
-    // Fonction universelle d'impression d'une zone HTML spécifique
+    // Fonction universelle d'impression d'une zone HTML spécifique (Compatibilité maximale Mobiles, Android, iOS, PC, Imprimantes Wi-Fi/Bluetooth)
     function imprimerSection(elementId, titreDoc) {
         var element = document.getElementById(elementId);
         if (!element) return;
         
-        var fenetreImpression = window.open('', '_blank', 'height=600,width=800');
-        fenetreImpression.document.write('<html><head><title>' + (titreDoc || 'Impression JSD') + '</title>');
-        fenetreImpression.document.write('<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">');
-        fenetreImpression.document.write('<style>body{padding:20px; font-family:sans-serif;} .no-print{display:none !important;}</style>');
-        fenetreImpression.document.write('</head><body>');
-        fenetreImpression.document.write('<div class="text-center mb-4"><h3>Jeunesse Sociale pour le Développement (JSD)</h3><p class="text-muted">' + (titreDoc || '') + '</p></div>');
-        fenetreImpression.document.write(element.innerHTML);
-        fenetreImpression.document.write('</body></html>');
-        fenetreImpression.document.close();
-        fenetreImpression.focus();
+        // Méthode principale multi-plateforme via application directe de classe d'impression
+        element.classList.add('is-printing');
+        
+        // Ajout temporaire d'un en-tête pour le document imprimé
+        var enteteImpression = document.createElement('div');
+        enteteImpression.className = 'text-center mb-4 is-printing';
+        enteteImpression.innerHTML = '<h3>Jeunesse Sociale pour le Développement (JSD)</h3><p class="text-muted">' + (titreDoc || '') + '</p><hr>';
+        element.insertBefore(enteteImpression, element.firstChild);
+
         setTimeout(function() {
-            fenetreImpression.print();
-            fenetreImpression.close();
-        }, 500);
+            window.print();
+            element.removeChild(enteteImpression);
+            element.classList.remove('is-printing');
+        }, 300);
     }
 </script>
 
@@ -1568,26 +1572,26 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // MODO PRÉSIDENT/ADMIN (SÉCURITÉ & DÉVERROUILLAGE)
+  // MODO PRÉSIDENT/ADMIN (SÉCURITÉ & DÉVERROUILLAGE RESSERRÉ SUR ann@s0852)
   window.deverrouillerTableauPresident = function() {
     const code = prompt("Veuillez saisir le code secret du Président :");
     if (code === CODE_SECRET_PRESIDENT) {
       document.getElementById("conteneurTableauGeneral").style.display = "block";
       document.getElementById("btnImprimerListeMembres").style.display = "inline-block";
-      alert("Accès Président autorisé. Le tableau complet est maintenant déverrouillé.");
+      alert("Accès Président autorisé. La liste générale des membres est maintenant accessible.");
     } else if (code !== null) {
-      alert("Code secret incorrect !");
+      alert("Accès refusé ! Code secret incorrect.");
     }
   };
 
-  // DÉVERROUILLAGE SÉCURISÉ DE L'HISTORIQUE DES COTISATIONS POUR LE PRÉSIDENT
+  // DÉVERROUILLAGE SÉCURISÉ DE L'HISTORIQUE DES COTISATIONS POUR LE PRÉSIDENT (EXCLUSIVEMENT VIA ann@s0852)
   window.deverrouillerCotisationsPresident = function() {
     const code = prompt("Veuillez saisir le code secret du Président pour consulter les cotisations :");
     if (code === CODE_SECRET_PRESIDENT) {
       document.getElementById("conteneurHistoriqueCotisations").style.display = "block";
       alert("Accès autorisé. Historique des cotisations déverrouillé.");
     } else if (code !== null) {
-      alert("Code secret incorrect !");
+      alert("Accès refusé ! Code secret incorrect.");
     }
   };
 
@@ -1749,7 +1753,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       return;
     }
 
-    if (matriculeSaisi === "ADMIN2026" || matriculeSaisi === CODE_SECRET_PRESIDENT) {
+    if (matriculeSaisi === CODE_SECRET_PRESIDENT) {
       estModePresidentChat = true;
       membreChatSession = { id: "president", nom: "Président JSD", matricule: "PRESIDENT" };
       ouvrirEspaceDiscussionPresident();
@@ -1791,7 +1795,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
   window.connexionPresidentChat = function() {
     const codeSaisi = prompt("Saisissez le code secret du Président pour accéder à l'administration du chat :");
-    if (codeSaisi === CODE_SECRET_PRESIDENT || codeSaisi === "ADMIN2026") {
+    if (codeSaisi === CODE_SECRET_PRESIDENT) {
       estModePresidentChat = true;
       membreChatSession = { nom: "Président JSD", matricule: "PRESIDENT" };
       ouvrirEspaceDiscussionPresident();
