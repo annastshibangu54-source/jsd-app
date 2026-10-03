@@ -117,6 +117,25 @@
         pointer-events: auto !important;
         cursor: pointer !important;
     }
+
+    /* Styles spécifiques pour l'impression de documents */
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        .printable-area, .printable-area * {
+            visibility: visible;
+        }
+        .printable-area {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+        .no-print {
+            display: none !important;
+        }
+    }
 </style>
     </head>
 
@@ -1025,13 +1044,18 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   <div class="card shadow-sm border-0 mb-4">
     <div class="card-header bg-dark text-white font-weight-bold d-flex justify-content-between align-items-center">
       <span><i class="icon ion-md-lock me-2"></i> Administration : Liste Générale des Membres</span>
-      <button class="btn btn-sm btn-outline-light" onclick="deverrouillerTableauPresident()">
-        <i class="icon ion-md-key me-1"></i> Mode Président
-      </button>
+      <div>
+        <button class="btn btn-sm btn-outline-light me-2" id="btnImprimerListeMembres" style="display: none;" onclick="imprimerSection('zoneImpressionMembres', 'Liste des Membres - JSD')">
+          <i class="icon ion-md-print me-1"></i> Imprimer la Liste
+        </button>
+        <button class="btn btn-sm btn-outline-light" onclick="deverrouillerTableauPresident()">
+          <i class="icon ion-md-key me-1"></i> Mode Président
+        </button>
+      </div>
     </div>
     <!-- Tableau masqué par défaut par sécurité -->
     <div class="card-body p-0" id="conteneurTableauGeneral" style="display: none;">
-      <div class="table-responsive">
+      <div class="table-responsive" id="zoneImpressionMembres">
         <table class="table table-hover align-middle mb-0">
           <thead class="table-light">
             <tr>
@@ -1042,7 +1066,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
               <th>Province</th>
               <th>Statut</th>
               <th>Date d'adhésion</th>
-              <th class="text-center">Actions</th>
+              <th class="text-center no-print">Actions</th>
             </tr>
           </thead>
           <tbody id="corpsTableauMembres">
@@ -1084,21 +1108,35 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         </div>
       </form>
 
-      <h6 class="fw-bold mt-4 border-bottom pb-2">Historique des Cotisations Reçues</h6>
-      <div class="table-responsive">
-        <table class="table table-sm table-hover align-middle mb-0">
-          <thead class="table-light">
-            <tr>
-              <th>Membre</th>
-              <th>Catégorie</th>
-              <th>Montant</th>
-              <th>Date de paiement</th>
-            </tr>
-          </thead>
-          <tbody id="corpsTableauCotisations">
-            <!-- Historique dynamique des cotisations -->
-          </tbody>
-        </table>
+      <div class="d-flex justify-content-between align-items-center mt-4 border-bottom pb-2">
+        <h6 class="fw-bold mb-0">Historique des Cotisations Reçues</h6>
+        <button class="btn btn-sm btn-outline-success" onclick="deverrouillerCotisationsPresident()">
+          <i class="icon ion-md-key me-1"></i> Accès Président (Historique)
+        </button>
+      </div>
+
+      <!-- Zone Historique masquée par défaut par sécurité -->
+      <div id="conteneurHistoriqueCotisations" style="display: none;" class="mt-3">
+        <div class="text-end mb-2">
+          <button class="btn btn-sm btn-success" onclick="imprimerSection('zoneImpressionCotisations', 'Historique des Cotisations - JSD')">
+            <i class="icon ion-md-print me-1"></i> Imprimer l'Historique
+          </button>
+        </div>
+        <div class="table-responsive" id="zoneImpressionCotisations">
+          <table class="table table-sm table-hover align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>Membre</th>
+                <th>Catégorie</th>
+                <th>Montant</th>
+                <th>Date de paiement</th>
+              </tr>
+            </thead>
+            <tbody id="corpsTableauCotisations">
+              <!-- Historique dynamique des cotisations -->
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -1199,6 +1237,27 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
     function modifierMembre(matricule) {
         alert("Modification du membre : " + matricule);
+    }
+
+    // Fonction universelle d'impression d'une zone HTML spécifique
+    function imprimerSection(elementId, titreDoc) {
+        var element = document.getElementById(elementId);
+        if (!element) return;
+        
+        var fenetreImpression = window.open('', '_blank', 'height=600,width=800');
+        fenetreImpression.document.write('<html><head><title>' + (titreDoc || 'Impression JSD') + '</title>');
+        fenetreImpression.document.write('<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">');
+        fenetreImpression.document.write('<style>body{padding:20px; font-family:sans-serif;} .no-print{display:none !important;}</style>');
+        fenetreImpression.document.write('</head><body>');
+        fenetreImpression.document.write('<div class="text-center mb-4"><h3>Jeunesse Sociale pour le Développement (JSD)</h3><p class="text-muted">' + (titreDoc || '') + '</p></div>');
+        fenetreImpression.document.write(element.innerHTML);
+        fenetreImpression.document.write('</body></html>');
+        fenetreImpression.document.close();
+        fenetreImpression.focus();
+        setTimeout(function() {
+            fenetreImpression.print();
+            fenetreImpression.close();
+        }, 500);
     }
 </script>
 
@@ -1514,13 +1573,25 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     const code = prompt("Veuillez saisir le code secret du Président :");
     if (code === CODE_SECRET_PRESIDENT) {
       document.getElementById("conteneurTableauGeneral").style.display = "block";
+      document.getElementById("btnImprimerListeMembres").style.display = "inline-block";
       alert("Accès Président autorisé. Le tableau complet est maintenant déverrouillé.");
     } else if (code !== null) {
       alert("Code secret incorrect !");
     }
   };
 
-  // MODO MEMBRE SIMPLE : RECHERCHE INDIVIDUELLE PAR MATRICULE
+  // DÉVERROUILLAGE SÉCURISÉ DE L'HISTORIQUE DES COTISATIONS POUR LE PRÉSIDENT
+  window.deverrouillerCotisationsPresident = function() {
+    const code = prompt("Veuillez saisir le code secret du Président pour consulter les cotisations :");
+    if (code === CODE_SECRET_PRESIDENT) {
+      document.getElementById("conteneurHistoriqueCotisations").style.display = "block";
+      alert("Accès autorisé. Historique des cotisations déverrouillé.");
+    } else if (code !== null) {
+      alert("Code secret incorrect !");
+    }
+  };
+
+  // MODO MEMBRE SIMPLE : RECHERCHE INDIVIDUELLE PAR MATRICULE AVEC BOUTON D'IMPRESSION
   window.rechercherFicheMembre = function() {
     const matSaisi = document.getElementById("rechercheMatriculeMembre").value.trim().toUpperCase();
     const zone = document.getElementById("zoneFichePersonnelle");
@@ -1535,9 +1606,12 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     if (membre) {
       zone.style.display = "block";
       zone.innerHTML = `
-        <div class="card border-info">
-          <div class="card-header bg-info text-white font-weight-bold">
-            Fiche Personnelle Membre : ${membre.matricule}
+        <div class="card border-info" id="ficheIndividuellePrint">
+          <div class="card-header bg-info text-white font-weight-bold d-flex justify-content-between align-items-center">
+            <span>Fiche Personnelle Membre : ${membre.matricule}</span>
+            <button type="button" class="btn btn-sm btn-light text-info fw-bold no-print" onclick="imprimerSection('ficheIndividuellePrint', 'Fiche Membre ${membre.matricule}')">
+              <i class="icon ion-md-print me-1"></i> Imprimer Ma Fiche
+            </button>
           </div>
           <div class="card-body">
             <div class="row">
@@ -1643,7 +1717,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         <td>${data.province || '-'}</td>
         <td><span class="badge ${badgeClass} px-2 py-1">${data.statut || 'Membre'}</span></td>
         <td>${data.dateAdhesion || '-'}</td>
-        <td class="text-center">
+        <td class="text-center no-print">
           <button type="button" class="btn btn-sm btn-outline-warning me-1" title="Modifier" 
             onclick="chargerMembrePourModification('${idDoc}')">
             <i class="icon ion-md-create"></i> Modifier
