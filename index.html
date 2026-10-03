@@ -7,8 +7,10 @@
         <meta content="JSD" name="JSD-RDC">
         <meta content="JSD" name="JSD-RDC">
 
-        <!-- Favicon -->
-        <link href="img/favicon.ico" rel="icon">
+        <!-- Favicon configuré avec le Logo JSD pour Chrome et Google -->
+        <link href="img/logo.jpg" rel="icon" type="image/jpeg">
+        <link href="img/logo.jpg" rel="shortcut icon" type="image/jpeg">
+        <link href="img/logo.jpg" rel="apple-touch-icon">
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet"> 
@@ -180,18 +182,37 @@
         </div>
         <!-- Nav End -->
         
-        <!-- BANNIÈRE DE NOTIFICATIONS -->
+        <!-- BANNIÈRE DE NOTIFICATIONS ET COMMENTAIRES -->
         <div class="container mt-3">
             <div class="d-flex justify-content-end align-items-center">
                 <div id="notif-widget-container"></div>
+            </div>
+            
+            <!-- Modal / Zone de commentaires sur les notifications -->
+            <div id="zoneCommentairesNotif" class="card shadow-sm mt-3 border-info" style="display: none;">
+              <div class="card-header bg-info text-white font-weight-bold d-flex justify-content-between align-items-center">
+                <span><i class="icon ion-md-chatbubbles me-2"></i> Commentaires des Membres sur la Notification</span>
+                <button type="button" class="btn-close btn-close-white" onclick="document.getElementById('zoneCommentairesNotif').style.display='none'"></button>
+              </div>
+              <div class="card-body">
+                <div id="boiteListeCommentaires" class="border rounded p-3 mb-3 bg-light" style="max-height: 250px; overflow-y: auto;"></div>
+                <form id="formAjoutCommentaireNotif" onsubmit="ajouterCommentaireNotification(event)">
+                  <div class="input-group">
+                    <input type="text" id="nomAuteurCommentaire" class="form-control me-2" placeholder="Votre Nom / Matricule" required style="max-width: 200px;">
+                    <input type="text" id="texteCommentaireNotif" class="form-control" placeholder="Écrivez votre commentaire ici..." required>
+                    <button class="btn btn-info text-white fw-bold" type="submit">Commenter</button>
+                  </div>
+                </form>
+              </div>
             </div>
         </div>
 
         <!-- SECTION ÉVÉNEMENTS (IMAGE ET TEXTE) -->
         <div class="container my-4">
             <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-                <h3 class="fw-bold text-primary mb-0"><i class="icon ion-md-calendar me-2"></i> Événements & Activités</h3>
-                <button class="btn btn-sm btn-outline-primary fw-bold" onclick="toggleFormulaireEvenement()">+ Publier une activité</button>
+                <h3 class="fw-bold text-primary mb-0"><i class="icon ion-md-calendar me-2"></i> Événements & Activités (Actifs 24h)</h3>
+                <!-- Bouton sécurisé : demande directement le code secret -->
+                <button class="btn btn-sm btn-outline-primary fw-bold" onclick="toggleFormulaireEvenementSecurise()">+ Publier une activité</button>
             </div>
             
             <!-- Conteneur d'affichage dynamique des événements -->
@@ -313,7 +334,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                                 <h3>La Genèse et la Vision (2021)</h3>
                                 <p>L'histoire de l'organisation commence en 2021, portée par l'initiative de deux figures clés engagées pour l'épanouissement communautaire et l'autonomisation des jeunes:</p>
                                 <h4>1. Mike TSHIBANGU KALOMBO,</h4> 
-                                <p>en tant que Visionnaire et Fondateur, a conçu les orientations stratégiques et les valeurs cardinales de l'organisation:</p> 
+                                <p>en tant que Visionnaire et Fondateur, a conçu les orientations strategic et les valeurs cardinales de l'organisation:</p> 
                                 <p>-l'unité, la solidarité, le travail et la reconstruction nationale.</p>
                                 <h4>2. SANTA TANGANIKA USENI,</h4> 
                                 <p>en tant que Co-fondateur, a adhéré dès le premier jour à cette vision et a activement œuvré à la structuration, à l'orientation et à la concrétisation des initiatives du mouvement.</p>
@@ -333,13 +354,13 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             <div>
                                 <p>La Jeunesse Sociale pour le Développement (JSD) est une organisation non gouvernementale de développement (ONGD / ASBL) qui vise à promouvoir l'épanouissement des jeunes congolais par l'unité, la solidarité et le travail.</p>
                                 <p>Voici les grands axes et objectifs principaux de l’organisation:</p>
-                                <p>1. Épanouissement et leadership de la jeunesse: </p> 
+                                <p>1. Épanouissement et leadership de la jeunesse: </p 
                                 <p>-Rassembler et encadrer les jeunes pour renforcer leur rôle dans le développement local et la reconstruction nationale; </p>
-                                <p>2. Lutte contre le chômage et la précarité: </p> 
+                                <p>2. Lutte contre le chômage et la précarité: </p 
                                 <p>-Promouvoir l'auto-prise en charge, la formation professionnelle et la création d'opportunités d'emploi; </p>
-                                <p>3. Éducation et réinsertion sociale: </p> 
+                                <p>3. Éducation et réinsertion sociale: </p 
                                 <p>-Lutter contre l'analphabétisme, l'oisiveté et la délinquance juvenile; </p>
-                                <p>4.Développement durable et citoyenneté: </p> 
+                                <p>4.Développement durable et citoyenneté: </p 
                                 <p>-Organiser des initiatives communautaires, des projets de travail à impact social et des activités culturelles et sportives. </p>
                             </div>
                              <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important; position: relative; z-index: 99999;" onclick="window.location.href='skill.html';"> Nos compétences</button>
@@ -1081,7 +1102,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     </div>
   </div>
 
-  <!-- SECTION COTISATIONS (NOUVELLE SECTION INTÉGRÉE AVEC PAIEMENT M-PESA) -->
+  <!-- SECTION COTISATIONS (NOUVELLE SECTION INTÉGRÉE AVEC PAIEMENT M-PESA & CONFIRMATION CAISSE) -->
   <div class="card shadow-sm border-0 mb-4">
     <div class="card-header bg-success text-white font-weight-bold">
       <i class="icon ion-md-cash me-2"></i> Gestion des Cotisations (Membres Simples & D'Honneur)
@@ -1113,7 +1134,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
           </div>
           <div class="col-md-2 d-flex align-items-end">
             <button type="submit" class="btn btn-success w-100 fw-bold">
-              <i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer
+              <i class="icon ion-md-checkmark-circle me-1"></i> Soumettre
             </button>
           </div>
         </div>
@@ -1132,7 +1153,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       <div class="d-flex justify-content-between align-items-center mt-4 border-bottom pb-2">
         <h6 class="fw-bold mb-0">Historique des Cotisations Reçues</h6>
         <button class="btn btn-sm btn-outline-success" onclick="deverrouillerCotisationsPresident()">
-          <i class="icon ion-md-key me-1"></i> Accès Président (Historique)
+          <i class="icon ion-md-key me-1"></i> Accès Président / Caissier (Validation)
         </button>
       </div>
 
@@ -1152,7 +1173,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                 <th>Montant</th>
                 <th>Mode de paiement</th>
                 <th>Référence / Transaction</th>
-                <th>Date de paiement</th>
+                <th>Statut Caisse</th>
+                <th>Date</th>
+                <th class="no-print">Action Caissier</th>
               </tr>
             </thead>
             <tbody id="corpsTableauCotisations">
@@ -1166,10 +1189,10 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
 </div>
 
-<!-- Formulaire de publication d'événement -->
+<!-- Formulaire de publication d'événement (Protégé par le code secret) -->
 <div class="container">
   <div id="formulairePublicatEvent" class="card shadow-sm p-4 mb-4 border-primary" style="display: none;">
-    <h5 class="fw-bold text-primary mb-3">Publier un nouvel événement</h5>
+    <h5 class="fw-bold text-primary mb-3"><i class="icon ion-md-lock me-2"></i> Espace Chargé de Publication (Visibilité 24h)</h5>
     <div class="row g-3">
       <div class="col-md-6">
         <label class="form-label font-weight-bold">Titre de l'événement</label>
@@ -1198,7 +1221,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         <input type="number" id="evPlaces" class="form-control" value="50">
       </div>
       <div class="col-12 text-end mt-3">
-        <button class="btn btn-secondary me-2" onclick="toggleFormulaireEvenement()">Annuler</button>
+        <button class="btn btn-secondary me-2" onclick="document.getElementById('formulairePublicatEvent').style.display='none'">Annuler / Fermer</button>
         <button class="btn btn-success fw-bold" onclick="publierNouvelEvenement()">Publier l'événement</button>
       </div>
     </div>
@@ -1275,10 +1298,8 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         var element = document.getElementById(elementId);
         if (!element) return;
         
-        // Méthode principale multi-plateforme via application directe de classe d'impression
         element.classList.add('is-printing');
         
-        // Ajout temporaire d'un en-tête pour le document imprimé
         var enteteImpression = document.createElement('div');
         enteteImpression.className = 'text-center mb-4 is-printing';
         enteteImpression.innerHTML = '<h3>Jeunesse Sociale pour le Développement (JSD)</h3><p class="text-muted">' + (titreDoc || '') + '</p><hr>';
@@ -1532,6 +1553,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   let enEnregistrement = false;
   const CODE_SECRET_PRESIDENT = "ann@s0852";
   let cacheMembresLocal = [];
+  let notificationActiveId = null;
 
   // Initialiser la date du jour sur le formulaire
   document.addEventListener("DOMContentLoaded", () => {
@@ -1540,7 +1562,22 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     if (champDate) champDate.value = today;
   });
 
-  // 1. ENREGISTREMENT ET MODIFICATION DES MEMBRES COMPLETS
+  // 1. DEMANDE IMMÉDIATE DU CODE SECRET SUR L'ÉVÉNEMENT
+  window.toggleFormulaireEvenementSecurise = function() {
+    const codeSaisi = prompt("ACCÈS SÉCURISÉ (Président / Chargé de Communication) :\nVeuillez saisir le code secret pour publier une activité :");
+    
+    if (codeSaisi && codeSaisi.trim() === CODE_SECRET_PRESIDENT) {
+      const el = document.getElementById("formulairePublicatEvent");
+      if (el) {
+        el.style.display = "block";
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else if (codeSaisi !== null) {
+      alert("Accès refusé ! Code secret incorrect.");
+    }
+  };
+
+  // 2. ENREGISTREMENT ET MODIFICATION DES MEMBRES COMPLETS
   window.enregistrerMembre = async function(event) {
     if (event) event.preventDefault();
     if (enEnregistrement) return;
@@ -1599,7 +1636,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // MODO PRÉSIDENT/ADMIN (SÉCURITÉ & DÉVERROUILLAGE EXCLUSIF AVEC ann@s0852)
+  // MODO PRÉSIDENT/ADMIN
   window.deverrouillerTableauPresident = function() {
     const code = prompt("Veuillez saisir le code secret du Président :");
     if (code && code.trim() === CODE_SECRET_PRESIDENT) {
@@ -1611,9 +1648,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // DÉVERROUILLAGE SÉCURISÉ DE L'HISTORIQUE DES COTISATIONS POUR LE PRÉSIDENT (EXCLUSIVEMENT VIA ann@s0852)
+  // DÉVERROUILLAGE SÉCURISÉ DES COTISATIONS POUR LE PRÉSIDENT / CAISSIER
   window.deverrouillerCotisationsPresident = function() {
-    const code = prompt("Veuillez saisir le code secret du Président pour consulter les cotisations :");
+    const code = prompt("Veuillez saisir le code secret du Président / Caissier pour consulter et valider les cotisations :");
     if (code && code.trim() === CODE_SECRET_PRESIDENT) {
       document.getElementById("conteneurHistoriqueCotisations").style.display = "block";
       alert("Accès autorisé. Historique des cotisations déverrouillé.");
@@ -1622,7 +1659,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // MODO MEMBRE SIMPLE : RECHERCHE INDIVIDUELLE PAR MATRICULE AVEC BOUTON D'IMPRESSION
+  // MODO MEMBRE SIMPLE : RECHERCHE INDIVIDUELLE PAR MATRICULE
   window.rechercherFicheMembre = function() {
     const matSaisi = document.getElementById("rechercheMatriculeMembre").value.trim().toUpperCase();
     const zone = document.getElementById("zoneFichePersonnelle");
@@ -1716,7 +1753,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // AFFICHAGE DES MEMBRES EN TEMPS RÉEL (AVEC STOCKAGE EN CACHE)
+  // AFFICHAGE DES MEMBRES EN TEMPS RÉEL
   onSnapshot(collection(db, "membres"), (snapshot) => {
     const tbody = document.getElementById("corpsTableauMembres");
     if (!tbody) return;
@@ -1764,7 +1801,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     });
   });
 
-  // 2. MESSAGERIE PRIVÉE
+  // 3. MESSAGERIE PRIVÉE
   let membreChatSession = null;
   let estModePresidentChat = false;
   let conversationActiveMembreId = null;
@@ -2033,49 +2070,90 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // 3. MODULE NOTIFICATIONS (CLOCHE AMÉLIORÉE & DYNAMIQUE)
+  // 4. MODULE NOTIFICATIONS AVEC INTERACTION / COMMENTAIRES TOUS MEMBRES
   const listeNotifications = [
-    { id: 1, titre: "📢 Annonce JSD", message: "Bienvenue sur notre nouvelle plateforme officielle !" },
-    { id: 2, titre: "💬 Messagerie", message: "Vous pouvez désormais échanger en privé avec le Président." },
-    { id: 3, titre: "💳 Cotisations M-Pesa", message: "Payez vos cotisations par M-Pesa au +243 836315788 !" }
+    { id: "notif1", titre: "📢 Annonce JSD", message: "Bienvenue sur notre nouvelle plateforme officielle !" },
+    { id: "notif2", titre: "💬 Messagerie", message: "Vous pouvez désormais échanger en privé avec le Président." },
+    { id: "notif3", titre: "💳 Cotisations M-Pesa", message: "Payez vos cotisations par M-Pesa au +243 836315788 !" }
   ];
 
   function initialiserNotifications() {
     const conteneur = document.getElementById("notif-widget-container");
     if (!conteneur) return;
 
-    const nombreNonLues = listeNotifications.length;
-
     let htmlItems = listeNotifications.map(notif => `
-      <a class="dropdown-item p-2 border-bottom" href="javascript:void(0)">
+      <div class="dropdown-item p-2 border-bottom">
         <strong>${notif.titre}</strong><br>
-        <small class="text-muted">${notif.message}</small>
-      </a>
+        <small class="text-muted">${notif.message}</small><br>
+        <button class="btn btn-xs btn-outline-info mt-1" onclick="ouvrirZoneCommentaires('${notif.id}', '${notif.titre.replace(/'/g, "\\'")}')">💬 Voir & Commenter</button>
+      </div>
     `).join("");
 
     conteneur.innerHTML = `
       <div class="dropdown">
         <button class="btn btn-outline-primary position-relative dropdown-toggle" type="button" id="btnNotif" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          🔔 Notifications
-          <span class="badge badge-danger position-absolute" style="top: -5px; right: -5px;">
-            ${nombreNonLues}
-          </span>
+          🔔 Notifications (${listeNotifications.length})
         </button>
-        <div class="dropdown-menu dropdown-menu-right p-2 shadow" aria-labelledby="btnNotif" style="width: 280px; max-height: 300px; overflow-y: auto;">
+        <div class="dropdown-menu dropdown-menu-right p-2 shadow" aria-labelledby="btnNotif" style="width: 300px; max-height: 350px; overflow-y: auto;">
           ${htmlItems}
         </div>
       </div>
     `;
   }
 
-  // 4. MODULE ÉVÉNEMENTS & IMPORTATION PHOTO DEPUIS APPAREIL
-  window.toggleFormulaireEvenement = function() {
-    const el = document.getElementById("formulairePublicatEvent");
-    if (el) {
-      el.style.display = (el.style.display === "none" || el.style.display === "") ? "block" : "none";
+  window.ouvrirZoneCommentaires = function(notifId, titreNotif) {
+    notificationActiveId = notifId;
+    document.getElementById("zoneCommentairesNotif").style.display = "block";
+    ecouterCommentairesNotification(notifId);
+  };
+
+  function ecouterCommentairesNotification(notifId) {
+    const q = query(collection(db, "commentaires_notifs"), where("notifId", "==", notifId));
+    onSnapshot(q, (snapshot) => {
+      const boite = document.getElementById("boiteListeCommentaires");
+      boite.innerHTML = "";
+
+      let comms = [];
+      snapshot.forEach(docSnap => comms.push(docSnap.data()));
+      comms.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+
+      if (comms.length === 0) {
+        boite.innerHTML = `<p class="text-muted text-center my-2">Soyez le premier à commenter cette notification !</p>`;
+        return;
+      }
+
+      comms.forEach(c => {
+        const div = document.createElement("div");
+        div.className = "mb-2 p-2 bg-white rounded border";
+        div.innerHTML = `<strong class="text-primary">${c.auteur} :</strong> ${c.texte} <small class="text-muted d-block text-end">${c.heure}</small>`;
+        boite.appendChild(div);
+      });
+      boite.scrollTop = boite.scrollHeight;
+    });
+  }
+
+  window.ajouterCommentaireNotification = async function(e) {
+    e.preventDefault();
+    const auteur = document.getElementById("nomAuteurCommentaire").value.trim();
+    const texte = document.getElementById("texteCommentaireNotif").value.trim();
+
+    if (!auteur || !texte || !notificationActiveId) return;
+
+    try {
+      await addDoc(collection(db, "commentaires_notifs"), {
+        notifId: notificationActiveId,
+        auteur,
+        texte,
+        timestamp: Date.now(),
+        heure: new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+      });
+      document.getElementById("texteCommentaireNotif").value = "";
+    } catch (err) {
+      console.error("Erreur de commentaire :", err);
     }
   };
 
+  // 5. MODULE ÉVÉNEMENTS (GESTION 24h AUTOMATIQUE)
   window.publierNouvelEvenement = async function() {
     const titre = document.getElementById("evTitre").value.trim();
     const desc = document.getElementById("evDescription").value.trim();
@@ -2089,7 +2167,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       return;
     }
 
-    let imageBase64 = "img/JSD16.jpg"; // Image par défaut si aucune photo n'est choisie
+    let imageBase64 = "img/JSD16.jpg";
 
     if (inputFichier && inputFichier.files && inputFichier.files[0]) {
       const file = inputFichier.files[0];
@@ -2107,17 +2185,17 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         timestamp: Date.now()
       });
 
-      alert("Nouvel événement publié avec succès !");
+      alert("Nouvel événement publié avec succès ! Il restera en ligne pendant 24 heures.");
       document.getElementById("evTitre").value = "";
       document.getElementById("evDescription").value = "";
       document.getElementById("evDate").value = "";
       document.getElementById("evLieu").value = "";
       if (inputFichier) inputFichier.value = "";
-      toggleFormulaireEvenement();
+      document.getElementById("formulairePublicatEvent").style.display = "none";
 
     } catch (err) {
-      console.error("Erreur lors de la publication de l'événement : ", err);
-      alert("Erreur lors de la publication : " + error.message);
+      console.error("Erreur de publication : ", err);
+      alert("Erreur lors de la publication : " + err.message);
     }
   };
 
@@ -2130,26 +2208,39 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     });
   }
 
-  // ÉCOUTE EN TEMPS RÉEL DES ÉVÉNEMENTS DANS FIREBASE
-  onSnapshot(collection(db, "evenements"), (snapshot) => {
+  // NETTOYAGE ET ÉCOUTE 24H DES ÉVÉNEMENTS
+  onSnapshot(collection(db, "evenements"), async (snapshot) => {
     const container = document.getElementById("events-widget-container");
     if (!container) return;
 
     container.innerHTML = "";
+    const maintenant = Date.now();
+    const DUREE_24H = 24 * 60 * 60 * 1000;
 
-    let evenements = [];
-    snapshot.forEach(docSnap => {
-      evenements.push({ id: docSnap.id, ...docSnap.data() });
-    });
+    let evenementsValides = [];
 
-    evenements.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+    for (let docSnap of snapshot.docs) {
+      const ev = { id: docSnap.id, ...docSnap.data() };
+      const dureeEcoulee = maintenant - (ev.timestamp || 0);
 
-    if (evenements.length === 0) {
-      container.innerHTML = `<div class="col-12"><p class="text-muted">Aucune activité enregistrée pour le moment.</p></div>`;
+      // Si l'événement a dépassé 24h, on le supprime automatiquement de Firebase
+      if (dureeEcoulee > DUREE_24H) {
+        try {
+          await deleteDoc(doc(db, "evenements", ev.id));
+        } catch (e) { console.error("Erreur auto-suppression 24h:", e); }
+      } else {
+        evenementsValides.push(ev);
+      }
+    }
+
+    evenementsValides.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+
+    if (evenementsValides.length === 0) {
+      container.innerHTML = `<div class="col-12 text-center py-4"><p class="text-muted fw-bold">Aucune publication active. Espace disponible pour une nouvelle publication d'activité.</p></div>`;
       return;
     }
 
-    evenements.forEach(ev => {
+    evenementsValides.forEach(ev => {
       const col = document.createElement("div");
       col.className = "col-md-4 mb-4";
       col.innerHTML = `
@@ -2170,7 +2261,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     });
   });
 
-  // 5. MODULE DE COTISATIONS (CASH ET PAIEMENT M-PESA +243 836315788)
+  // 6. MODULE COTISATIONS AVEC VALIDATION OBLIGATOIRE DU CAISSIER
   window.enregistrerCotisation = async function(e) {
     e.preventDefault();
     const membre = document.getElementById("cotisationMembre").value.trim();
@@ -2186,30 +2277,54 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
 
     try {
+      const estMPesa = modePaiement === "M-Pesa";
       const cotisationData = {
         membre: membre,
         typeMembre: typeMembre,
         montant: montant,
         modePaiement: modePaiement,
-        referenceTransaction: modePaiement === "M-Pesa" ? (refMPesa || "M-Pesa (+243 836315788)") : "Encaissement direct",
+        referenceTransaction: estMPesa ? (refMPesa || "M-Pesa (+243 836315788)") : "Encaissement direct",
+        statutValidation: estMPesa ? "En attente caisse" : "Validé en Caisse",
         date: new Date().toLocaleDateString('fr-FR'),
         timestamp: Date.now()
       };
 
       await addDoc(collection(db, "cotisations"), cotisationData);
 
-      alert(`Cotisation enregistrée avec succès pour ${membre} (${montant} $) via ${modePaiement} !`);
+      if (estMPesa) {
+        alert(`Paiement M-Pesa soumis ! Il sera comptabilisé dès que le caissier aura vérifié la réception sur le +243 836315788.`);
+      } else {
+        alert(`Cotisation cash enregistrée avec succès !`);
+      }
+
       document.getElementById("formCotisation").reset();
       const blocAide = document.getElementById("blocAideMPesa");
       if (blocAide) blocAide.style.display = "none";
 
     } catch (err) {
-      console.error("Erreur lors de l'enregistrement de la cotisation : ", err);
-      alert("Erreur d'enregistrement de la cotisation : " + err.message);
+      console.error("Erreur enregistrement cotisation : ", err);
+      alert("Erreur : " + err.message);
     }
   };
 
-  // ÉCOUTE EN TEMPS RÉEL DES COTISATIONS DANS FIREBASE AVEC AFFICHAGE DU MODE ET DE LA RÉFÉRENCE DE PAIEMENT
+  // VALIDATION CAISSE PAR LE CAISSIER / PRÉSIDENT
+  window.validerPaiementCaisse = async function(idCotisation) {
+    const code = prompt("VALIDATION CAISSIER : Entrez le code secret pour confirmer la réception M-Pesa :");
+    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
+      try {
+        await updateDoc(doc(db, "cotisations", idCotisation), {
+          statutValidation: "Validé en Caisse"
+        });
+        alert("Paiement confirmé et validé en caisse avec succès !");
+      } catch (e) {
+        alert("Erreur lors de la confirmation : " + e.message);
+      }
+    } else if (code !== null) {
+      alert("Code secret incorrect ! Validation annulée.");
+    }
+  };
+
+  // ÉCOUTE EN TEMPS RÉEL DES COTISATIONS
   onSnapshot(collection(db, "cotisations"), (snapshot) => {
     const tbody = document.getElementById("corpsTableauCotisations");
     if (!tbody) return;
@@ -2224,13 +2339,21 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     listCotisations.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
 
     if (listCotisations.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-3">Aucune cotisation enregistrée.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="8" class="text-center text-muted py-3">Aucune cotisation enregistrée.</td></tr>`;
       return;
     }
 
     listCotisations.forEach(c => {
       let badgeColor = c.typeMembre === "Membre d'Honneur" ? "bg-warning text-dark" : "bg-info text-white";
       let badgeMode = c.modePaiement === "M-Pesa" ? "bg-success text-white" : "bg-secondary text-white";
+      
+      let badgeStatut = c.statutValidation === "Validé en Caisse" 
+        ? `<span class="badge bg-success"><i class="icon ion-md-checkmark-circle me-1"></i> Validé</span>`
+        : `<span class="badge bg-warning text-dark"><i class="icon ion-md-time me-1"></i> En attente Caisse</span>`;
+
+      let boutonAction = (c.statutValidation === "En attente caisse") 
+        ? `<button class="btn btn-xs btn-outline-success fw-bold no-print" onclick="validerPaiementCaisse('${c.id}')">Confirmer Caisse</button>` 
+        : `<small class="text-success fw-bold">Confirmé</small>`;
 
       const tr = document.createElement("tr");
       tr.innerHTML = `
@@ -2239,7 +2362,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         <td><strong class="text-success">${c.montant} $</strong></td>
         <td><span class="badge ${badgeMode}">${c.modePaiement || 'Cash'}</span></td>
         <td><small class="text-muted">${c.referenceTransaction || '-'}</small></td>
+        <td>${badgeStatut}</td>
         <td>${c.date}</td>
+        <td class="no-print">${boutonAction}</td>
       `;
       tbody.appendChild(tr);
     });
