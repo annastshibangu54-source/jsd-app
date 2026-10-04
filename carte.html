@@ -3,141 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Générateur de Carte de Membre - JSD</title>
+    <title>Carte de Membre Officielle - JSD</title>
     
-    <!-- Bootstrap CSS -->
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     
-    <!-- Bibliothèques JavaScript pour le QR Code et la génération JPG -->
+    <!-- Bibliothèques JS (QR Code & Export JPG) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
         body {
-            background-color: #f4f6f9;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f5;
+            font-family: 'Montserrat', sans-serif;
             padding-bottom: 50px;
         }
 
-        /* CONFIGURATION STRICTE DES DIMENSIONS DE LA CARTE (9 cm x 6 cm) */
+        /* FORMAT STRICT : 9 cm x 6 cm */
         .carte-container {
             width: 9cm;
             height: 6cm;
-            background: #ffffff;
-            border: 2px solid #4F84C4;
+            /* Fond Blanc mélangé avec Bleu Ciel + Lignes Dorées */
+            background: 
+                repeating-linear-gradient(45deg, rgba(212, 175, 55, 0.08) 0px, rgba(212, 175, 55, 0.08) 2px, transparent 2px, transparent 12px),
+                linear-gradient(135deg, #ffffff 35%, #e0f2fe 100%);
             border-radius: 8px;
-            padding: 0.2cm 0.3cm;
             position: relative;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             box-sizing: border-box;
             overflow: hidden;
             margin: auto;
+            border: 1px solid #b0c4de;
         }
 
-        /* Logo en haut à gauche */
-        .carte-logo {
+        /* LOGO EN FILIGRANE AU CENTRE AVEC TRANSPARENCE */
+        .carte-watermark-logo {
             position: absolute;
-            top: 0.2cm;
-            left: 0.2cm;
-            width: 1.1cm;
-            height: 1.1cm;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -40%);
+            width: 3.2cm;
+            height: 3.2cm;
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 1;
             object-fit: contain;
         }
 
-        /* En-tête centré */
-        .carte-header {
-            text-align: center;
-            margin-left: 1cm; /* Laisse la place au logo */
-            margin-bottom: 0.1cm;
+        /* EN-TÊTE SUR FOND BLEU AVEC LOGO */
+        .carte-header-bg {
+            background-color: #004085;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            padding: 4px 8px;
+            position: relative;
+            z-index: 2;
         }
 
-        .carte-header h6 {
-            font-size: 7.5pt;
-            font-weight: bold;
-            color: #000000;
+        .carte-logo {
+            width: 1cm;
+            height: 1cm;
+            object-fit: contain;
+            background: #ffffff;
+            padding: 1px;
+            border-radius: 3px;
+        }
+
+        .carte-header-text {
+            flex-grow: 1;
+            text-align: center;
+            padding-right: 0.2cm;
+        }
+
+        .carte-header-text h6 {
+            font-size: 5.5pt;
+            font-weight: 700;
             margin: 0;
             text-transform: uppercase;
-            line-height: 1.1;
+            letter-spacing: 0.2px;
+            color: #ffffff;
         }
 
-        .carte-header h5 {
-            font-size: 8pt;
+        .carte-header-text h5 {
+            font-size: 6.5pt;
             font-weight: 800;
-            color: #4F84C4;
             margin: 1px 0;
             text-transform: uppercase;
-            line-height: 1.1;
+            color: #ffdd57; /* Touche dorée */
         }
 
-        .carte-header p {
-            font-size: 7pt;
-            font-weight: bold;
-            color: #000000;
+        .carte-header-text p {
+            font-size: 5.5pt;
+            font-weight: 800;
             margin: 0;
-            line-height: 1;
+            color: #ffffff;
         }
 
-        /* Corps de la carte */
+        /* LIGNE SÉPARATEUR EN DESSOUS DE L'EN-TÊTE */
+        .carte-separator {
+            height: 2px;
+            background: linear-gradient(90deg, #d4af37 0%, #002752 50%, #d4af37 100%);
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* CORPS DE LA CARTE */
         .carte-body {
             display: flex;
+            padding: 5px 8px 2px 8px;
+            height: calc(100% - 1.8cm);
             justify-content: space-between;
-            margin-top: 0.1cm;
-            height: calc(100% - 1.5cm);
+            position: relative;
+            z-index: 2;
         }
 
-        /* Informations à gauche */
+        /* RUBRIQUES D'IDENTITÉ (ALIGNÉES TOUT À GAUCHE TOUT DROIT) */
         .carte-infos {
-            width: 5.8cm;
-            font-size: 6.5pt;
-            color: #000000;
-            line-height: 1.25;
+            width: 5.4cm;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 1.5px;
+            text-align: left;
         }
 
-        .carte-infos div {
+        .info-row {
+            display: flex;
+            align-items: center;
+            font-size: 5.8pt;
+            line-height: 1.15;
+        }
+
+        .info-label {
+            width: 1.4cm;
+            font-weight: 700;
+            color: #003366;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .info-value {
+            font-weight: 600;
+            color: #111111;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        .carte-infos strong {
-            color: #222;
-        }
-
-        /* Zone droite : Photo et QR Code */
+        /* ZONE DE DROITE (PHOTO, PRÉSIDENT, QR CODE) */
         .carte-droite {
-            width: 2.2cm;
+            width: 2.5cm;
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
+            align-items: center;
             justify-content: space-between;
         }
 
-        /* Photo en haut à droite */
         .carte-photo {
-            width: 1.8cm;
-            height: 2.1cm;
-            border: 1px solid #4F84C4;
+            width: 1.7cm;
+            height: 1.9cm;
+            border: 1.5px solid #004085;
             border-radius: 4px;
             object-fit: cover;
-            background-color: #e9ecef;
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
         }
 
-        /* QR Code en bas à droite */
+        /* NOM DU PRÉSIDENT EN DESSOUS DE LA PHOTO */
+        .president-block {
+            text-align: center;
+            margin-top: 1px;
+            margin-bottom: 2px;
+        }
+
+        .president-title {
+            font-size: 4pt;
+            font-weight: 700;
+            color: #003366;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .president-name {
+            font-size: 4.5pt;
+            font-weight: 800;
+            color: #111111;
+            margin: 0;
+            line-height: 1;
+        }
+
+        /* QR CODE EN BAS À DROITE */
+        .qr-wrapper {
+            align-self: flex-end;
+        }
+
         #qrcode {
-            width: 1.5cm;
-            height: 1.5cm;
+            width: 1.1cm;
+            height: 1.1cm;
+            background: #ffffff;
+            padding: 1px;
+            border: 1px solid #004085;
+            border-radius: 3px;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
         }
 
         #qrcode img {
-            width: 1.5cm !important;
-            height: 1.5cm !important;
+            width: 1cm !important;
+            height: 1cm !important;
         }
 
-        /* Styles pour l'impression sécurisée */
+        /* MOT D'ASSISTANCE EN BAS AU CENTRE */
+        .carte-footer-assistance {
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 0 4px;
+            font-size: 4.2pt;
+            font-weight: 600;
+            color: #002752;
+            line-height: 1.1;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        /* IMPRESSION */
         @media print {
             body * {
                 visibility: hidden !important;
@@ -151,6 +249,7 @@
                 top: 0 !important;
                 margin: 0 !important;
                 box-shadow: none !important;
+                border: none !important;
             }
             .no-print {
                 display: none !important;
@@ -160,59 +259,58 @@
 </head>
 <body>
 
-    <!-- Barre de Navigation Simple -->
-    <div class="bg-dark py-2 text-white mb-4 no-print">
+    <div class="bg-dark py-3 text-white mb-4 no-print shadow-sm">
         <div class="container d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 fw-bold"><i class="icon ion-md-card me-2"></i> Générateur de Carte de Membre JSD</h5>
-            <a href="index.html" class="btn btn-sm btn-outline-light">Retour à l'accueil</a>
+            <h5 class="mb-0 fw-bold"><i class="bi bi-person-badge me-2"></i> Générateur de Carte de Membre JSD</h5>
+            <a href="index.html" class="btn btn-sm btn-outline-light">Retour</a>
         </div>
     </div>
 
     <div class="container">
-        <div class="row">
+        <div class="row g-4 align-items-start">
             
-            <!-- FORMULAIRE DE SAISIE POUR LE MEMBRE -->
-            <div class="col-md-6 mb-4 no-print">
-                <div class="card shadow-sm border-0">
-                    <div class="card-header bg-primary text-white font-weight-bold">
-                        <i class="icon ion-md-create me-1"></i> Remplissez vos informations
+            <!-- FORMULAIRE MEMBRE -->
+            <div class="col-lg-6 no-print">
+                <div class="card border-0 shadow-sm rounded-3">
+                    <div class="card-header bg-primary text-white font-weight-bold py-3">
+                        <i class="bi bi-pencil-square me-2"></i> Informations du Membre
                     </div>
-                    <div class="card-body">
+                    <div class="card-body p-4">
                         <form id="formCarte">
-                            <div class="row g-2">
+                            <div class="row g-3">
                                 <div class="col-md-4">
-                                    <label class="form-label font-weight-bold">Nom</label>
-                                    <input type="text" id="inNom" class="form-control form-control-sm" placeholder="Ex: TSHIBANGU" oninput="mettreAJourCarte()" required>
+                                    <label class="form-label small fw-bold">Nom</label>
+                                    <input type="text" id="inNom" class="form-control form-control-sm" placeholder="TSHIBANGU" oninput="mettreAJourCarte()" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="form-label font-weight-bold">Postnom</label>
-                                    <input type="text" id="inPostnom" class="form-control form-control-sm" placeholder="Ex: KALOMBO" oninput="mettreAJourCarte()">
+                                    <label class="form-label small fw-bold">Postnom</label>
+                                    <input type="text" id="inPostnom" class="form-control form-control-sm" placeholder="KALOMBO" oninput="mettreAJourCarte()">
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="form-label font-weight-bold">Prénom</label>
-                                    <input type="text" id="inPrenom" class="form-control form-control-sm" placeholder="Ex: Mike" oninput="mettreAJourCarte()" required>
+                                    <label class="form-label small fw-bold">Prénom</label>
+                                    <input type="text" id="inPrenom" class="form-control form-control-sm" placeholder="Mike" oninput="mettreAJourCarte()" required>
                                 </div>
 
-                                <div class="col-md-6 mt-2">
-                                    <label class="form-label font-weight-bold">Fonction / Qualité</label>
-                                    <input type="text" id="inFonction" class="form-control form-control-sm" placeholder="Ex: Président / Membre" oninput="mettreAJourCarte()">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">Fonction</label>
+                                    <input type="text" id="inFonction" class="form-control form-control-sm" placeholder="Membre" oninput="mettreAJourCarte()">
                                 </div>
-                                <div class="col-md-6 mt-2">
-                                    <label class="form-label font-weight-bold">Téléphone</label>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">Téléphone</label>
                                     <input type="text" id="inTel" class="form-control form-control-sm" placeholder="+243 ..." oninput="mettreAJourCarte()">
                                 </div>
 
-                                <div class="col-md-6 mt-2">
-                                    <label class="form-label font-weight-bold">E-mail</label>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">E-mail</label>
                                     <input type="email" id="inEmail" class="form-control form-control-sm" placeholder="exemple@gmail.com" oninput="mettreAJourCarte()">
                                 </div>
-                                <div class="col-md-6 mt-2">
-                                    <label class="form-label font-weight-bold">Adresse</label>
-                                    <input type="text" id="inAdresse" class="form-control form-control-sm" placeholder="Commune, Ville" oninput="mettreAJourCarte()">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">Adresse</label>
+                                    <input type="text" id="inAdresse" class="form-control form-control-sm" placeholder="Kinshasa, RDC" oninput="mettreAJourCarte()">
                                 </div>
 
-                                <div class="col-12 mt-3">
-                                    <label class="form-label font-weight-bold">Photo de Profil (Format d'identité)</label>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold">Photo de Passeport</label>
                                     <input type="file" id="inPhoto" class="form-control form-control-sm" accept="image/*" onchange="chargerPhoto(event)">
                                 </div>
                             </div>
@@ -221,62 +319,77 @@
                 </div>
             </div>
 
-            <!-- APERÇU EN TEMPS RÉEL DE LA CARTE DE MEMBRE (9cm x 6cm) -->
-            <div class="col-md-6 text-center">
-                <h6 class="font-weight-bold text-secondary mb-3 no-print">Aperçu en temps réel de votre carte (9cm x 6cm)</h6>
+            <!-- APERÇU CARTE -->
+            <div class="col-lg-6 text-center">
+                <h6 class="fw-bold text-muted mb-3 no-print">Format Standard Plastifié (9 cm × 6 cm)</h6>
                 
-                <!-- RENDU DE LA CARTE -->
+                <!-- RENDU CARTE DE MEMBRE -->
                 <div id="zoneCarteImpression" class="carte-container">
                     
-                    <!-- Logo JSD en haut à gauche -->
-                    <img src="img/logo.jpg" alt="Logo" class="carte-logo" onerror="this.src='https://via.placeholder.com/50?text=JSD'">
+                    <!-- Logo en Filigrane au centre avec transparence -->
+                    <img src="img/logo.jpg" alt="" class="carte-watermark-logo" onerror="this.src='https://via.placeholder.com/150?text=JSD'">
 
-                    <!-- En-tête centré -->
-                    <div class="carte-header">
-                        <h6>République Démocratique du Congo</h6>
-                        <h5>Jeunesse Sociale pour le Développement</h5>
-                        <p>(JSD)</p>
+                    <!-- En-tête sur fond bleu avec Logo -->
+                    <div class="carte-header-bg">
+                        <img src="img/logo.jpg" alt="Logo JSD" class="carte-logo" onerror="this.src='https://via.placeholder.com/50?text=JSD'">
+                        <div class="carte-header-text">
+                            <h6>République Démocratique du Congo</h6>
+                            <h5>Jeunesse Sociale pour le Développement</h5>
+                            <p>(JSD)</p>
+                        </div>
                     </div>
+
+                    <!-- Ligne Séparateur -->
+                    <div class="carte-separator"></div>
 
                     <!-- Corps de la carte -->
                     <div class="carte-body">
                         
-                        <!-- Informations du membre à gauche -->
+                        <!-- Rubriques d'identités (Alignées tout à gauche tout droit) -->
                         <div class="carte-infos">
-                            <div><strong>Nom :</strong> <span id="outNom">...</span></div>
-                            <div><strong>Postnom :</strong> <span id="outPostnom">...</span></div>
-                            <div><strong>Prénom :</strong> <span id="outPrenom">...</span></div>
-                            <div><strong>Fonction :</strong> <span id="outFonction">...</span></div>
-                            <div><strong>Adresse :</strong> <span id="outAdresse">...</span></div>
-                            <div><strong>Tél :</strong> <span id="outTel">...</span></div>
-                            <div><strong>E-mail :</strong> <span id="outEmail">...</span></div>
+                            <div class="info-row"><span class="info-label">Nom :</span><span class="info-value" id="outNom">...</span></div>
+                            <div class="info-row"><span class="info-label">Postnom :</span><span class="info-value" id="outPostnom">...</span></div>
+                            <div class="info-row"><span class="info-label">Prénom :</span><span class="info-value" id="outPrenom">...</span></div>
+                            <div class="info-row"><span class="info-label">Fonction :</span><span class="info-value" id="outFonction">...</span></div>
+                            <div class="info-row"><span class="info-label">Adresse :</span><span class="info-value" id="outAdresse">...</span></div>
+                            <div class="info-row"><span class="info-label">Tél :</span><span class="info-value" id="outTel">...</span></div>
+                            <div class="info-row"><span class="info-label">E-mail :</span><span class="info-value" id="outEmail">...</span></div>
                         </div>
 
-                        <!-- Zone de droite (Photo + Code QR) -->
+                        <!-- Zone de droite -->
                         <div class="carte-droite">
-                            <!-- Photo du membre en haut à droite -->
+                            <!-- Zone Photo -->
                             <img id="outPhoto" src="https://via.placeholder.com/100x120?text=PHOTO" alt="Photo" class="carte-photo">
                             
-                            <!-- QR Code généré en bas à droite -->
-                            <div id="qrcode"></div>
+                            <!-- Nom du Président en dessous de la photo -->
+                            <div class="president-block">
+                                <div class="president-title">Le Président</div>
+                                <div class="president-name">TSHIBANGU KALOMBO Mike</div>
+                            </div>
+
+                            <!-- Code QR en bas à droite -->
+                            <div class="qr-wrapper">
+                                <div id="qrcode"></div>
+                            </div>
                         </div>
 
                     </div>
+
+                    <!-- Mot d'assistance aux autorités civiles et militaires en bas au centre -->
+                    <div class="carte-footer-assistance">
+                        Prière aux autorités tant civiles que militaires de prêter assistance au porteur de la présente carte.
+                    </div>
+
                 </div>
 
-                <!-- BOUTONS D'ACTION ET DE SÉCURITÉ -->
-                <div class="mt-4 no-print d-flex justify-content-center gap-2">
-                    
-                    <!-- Téléchargement JPG accessible au membre -->
-                    <button type="button" class="btn btn-success me-2 fw-bold" onclick="telechargerCarteJPG()">
-                        <i class="icon ion-md-download me-1"></i> Télécharger en JPG
+                <!-- BOUTONS D'ACTIONS -->
+                <div class="mt-4 no-print d-flex justify-content-center gap-3">
+                    <button type="button" class="btn btn-success fw-bold px-4" onclick="telechargerCarteJPG()">
+                        <i class="bi bi-download me-2"></i> Télécharger (JPG)
                     </button>
-
-                    <!-- Impression restreinte exclusivement au Président -->
-                    <button type="button" class="btn btn-dark fw-bold" onclick="imprimerCarteSecurisee()">
-                        <i class="icon ion-md-print me-1"></i> Imprimer (Réservé au Président)
+                    <button type="button" class="btn btn-dark fw-bold px-4" onclick="imprimerCarteSecurisee()">
+                        <i class="bi bi-printer me-2"></i> Imprimer (Président)
                     </button>
-
                 </div>
 
             </div>
@@ -284,16 +397,14 @@
         </div>
     </div>
 
-    <!-- SCRIPTS JAVASCRIPT POUR LA DYNAMIQUE DE LA CARTE -->
     <script>
         const CODE_SECRET_PRESIDENT = "ann@s0852";
         let qrcodeObj = null;
 
-        // Initialisation au chargement de la page
         document.addEventListener("DOMContentLoaded", () => {
             qrcodeObj = new QRCode(document.getElementById("qrcode"), {
-                width: 55,
-                height: 55,
+                width: 40,
+                height: 40,
                 colorDark: "#000000",
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.H
@@ -301,7 +412,6 @@
             mettreAJourCarte();
         });
 
-        // Mise à jour en temps réel des champs sur la carte
         function mettreAJourCarte() {
             const nom = document.getElementById("inNom").value.trim() || "...";
             const postnom = document.getElementById("inPostnom").value.trim() || "...";
@@ -319,45 +429,40 @@
             document.getElementById("outTel").innerText = tel;
             document.getElementById("outEmail").innerText = email;
 
-            // Contenu dynamique du QR Code
             const qrTexte = `JSD-CARTE\nNom: ${nom}\nPrénom: ${prenom}\nFonction: ${fonction}\nTel: ${tel}`;
             qrcodeObj.clear();
             qrcodeObj.makeCode(qrTexte);
         }
 
-        // Chargement de la photo envoyée par le membre
         function chargerPhoto(event) {
             const reader = new FileReader();
             reader.onload = function() {
-                const output = document.getElementById('outPhoto');
-                output.src = reader.result;
+                document.getElementById('outPhoto').src = reader.result;
             };
             if(event.target.files[0]) {
                 reader.readAsDataURL(event.target.files[0]);
             }
         }
 
-        // 4. Génération et téléchargement en image JPG
         function telechargerCarteJPG() {
             const zoneCarte = document.getElementById("zoneCarteImpression");
             
             html2canvas(zoneCarte, {
-                scale: 3, // Haute résolution JPG
+                scale: 4,
                 useCORS: true,
                 logging: false,
                 backgroundColor: "#ffffff"
             }).then(canvas => {
                 const link = document.createElement('a');
-                const nomFichier = (document.getElementById("inNom").value.trim() || "Membre") + "_JSD.jpg";
+                const nomFichier = (document.getElementById("inNom").value.trim() || "Membre") + "_Carte_JSD.jpg";
                 link.download = nomFichier;
                 link.href = canvas.toDataURL("image/jpeg", 0.95);
                 link.click();
             });
         }
 
-        // 5. Impression sécurisée (Seul le Président a l'accès)
         function imprimerCarteSecurisee() {
-            const codeSaisi = prompt("ACCÈS RESTREINT (Président uniquement) :\nVeuillez saisir le code secret du Président pour imprimer cette carte :");
+            const codeSaisi = prompt("Accès Réservé au Président :\nVeuillez entrer le code secret pour imprimer :");
 
             if (codeSaisi && codeSaisi.trim() === CODE_SECRET_PRESIDENT) {
                 const carte = document.getElementById("zoneCarteImpression");
@@ -368,7 +473,7 @@
                     carte.classList.remove("is-printing-carte");
                 }, 300);
             } else if (codeSaisi !== null) {
-                alert("Accès refusé ! Vous n'avez pas l'autorisation d'imprimer la carte.");
+                alert("Accès refusé !");
             }
         }
     </script>
