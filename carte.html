@@ -1,4 +1,3 @@
-Voici votre code complet mis à jour. L'URL SVG a été remplacée aux deux endroits par le chemin d'accès à votre image Img/logo.jpg pour afficher directement le logo officiel exact.
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -304,12 +303,17 @@ Voici votre code complet mis à jour. L'URL SVG a été remplacée aux deux endr
                                     <input type="file" id="inPhoto" class="form-control form-control-sm bg-secondary text-white border-0" accept="image/*" onchange="chargerPhotoPasseport(event)">
                                 </div>
 
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold text-info">Changer le Logo JSD (Optionnel si "img/logo.jpg" existe)</label>
+                                    <input type="file" id="inLogoCustom" class="form-control form-control-sm bg-secondary text-white border-0" accept="image/*" onchange="chargerLogoCustom(event)">
+                                </div>
+
                                 <div class="col-12 mt-4 d-flex gap-2">
                                     <button type="submit" class="btn btn-success fw-bold w-100 py-2">
                                         <i class="bi bi-check-circle-fill me-2"></i> Enregistrer les informations
                                     </button>
                                     <button type="button" class="btn btn-outline-light fw-bold text-nowrap py-2" onclick="reinitialiserFormulaireMembre()">
-                                        <i class="bi bi-house-door-fill me-1"></i> Retour à l'accueil
+                                        <i class="bi bi-house-door-fill me-1"></i> Réinitialiser
                                     </button>
                                 </div>
                             </div>
@@ -332,8 +336,8 @@ Voici votre code complet mis à jour. L'URL SVG a été remplacée aux deux endr
 
                     <div class="carte-gold-wave"></div>
 
-                    <!-- REMPLACEMENT : APERÇU DU LOGO -->
-                    <img id="img/logo.jpg" src="Img/logo.jpg" alt="Sceau Officiel JSD" class="carte-sceau">
+                    <!-- APERÇU DU LOGO -->
+                    <img id="imgLogoApercu" src="img/logo.jpg" alt="Sceau Officiel JSD" class="carte-sceau" onerror="this.onerror=null; this.src='https://via.placeholder.com/100?text=LOGO+JSD';">
 
                     <div class="carte-org-name">
                         <h5>JEUNESSE SOCIALE POUR LE DÉVELOPPEMENT</h5>
@@ -433,11 +437,7 @@ Voici votre code complet mis à jour. L'URL SVG a été remplacée aux deux endr
 
     <!-- SCRIPT JS PRINCIPAL -->
     <script>
-        // REMPLACEMENT : CHEMIN DE L'IMAGE LOGO EN JS
-    
-        // Par celle-ci :
-        const LOGO_JSD_BASE64 = "img/logo.jpg";
-
+        let logoJsdActuel = "img/logo.jpg";
         const MDP_PRESIDENT = "ann@s0852";
         let membreSelectionneActuel = null;
 
@@ -450,7 +450,7 @@ Voici votre code complet mis à jour. L'URL SVG a été remplacée aux deux endr
             actualiserApercuEtQR();
         });
 
-        // 1. Génération dynamique du QR Code
+        // Génération dynamique du QR Code
         function actualiserApercuEtQR() {
             const nom = document.getElementById("inNom").value.trim() || "TSHIBANGU";
             const postnom = document.getElementById("inPostnom").value.trim() || "KALOMBO";
@@ -487,12 +487,25 @@ Voici votre code complet mis à jour. L'URL SVG a été remplacée aux deux endr
             }
         }
 
-        // Bouton Retour Accueil Membre
+        function chargerLogoCustom(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    logoJsdActuel = e.target.result;
+                    document.getElementById('imgLogoApercu').src = logoJsdActuel;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Bouton Réinitialiser
         function reinitialiserFormulaireMembre() {
             document.getElementById("formMembre").reset();
             document.getElementById("outPhoto").src = "https://via.placeholder.com/100x120?text=PHOTO";
+            logoJsdActuel = "img/logo.jpg";
+            document.getElementById("imgLogoApercu").src = logoJsdActuel;
             actualiserApercuEtQR();
-            afficherPageAccueil();
         }
 
         // Enregistrer un nouveau membre
@@ -579,7 +592,7 @@ Voici votre code complet mis à jour. L'URL SVG a été remplacée aux deux endr
             });
         }
 
-        // 2. Bouton Supprimer l'enregistrement pour le Président
+        // Supprimer un membre
         function supprimerMembre(index) {
             let membres = JSON.parse(localStorage.getItem("membresJSD")) || [];
             const membre = membres[index];
@@ -622,7 +635,7 @@ Voici votre code complet mis à jour. L'URL SVG a été remplacée aux deux endr
                         <div class="title-badge">CARTE DE MEMBRE</div>
                     </div>
                     <div class="carte-gold-wave"></div>
-                    <img src="${LOGO_JSD_BASE64}" alt="Logo JSD" class="carte-sceau">
+                    <img src="${logoJsdActuel}" alt="Logo JSD" class="carte-sceau" onerror="this.onerror=null; this.src='https://via.placeholder.com/100?text=LOGO+JSD';">
                     <div class="carte-org-name">
                         <h5>JEUNESSE SOCIALE POUR LE DÉVELOPPEMENT</h5>
                         <p>(JSD)</p>
@@ -652,7 +665,7 @@ Voici votre code complet mis à jour. L'URL SVG a été remplacée aux deux endr
             document.getElementById("actionsImpression").classList.remove("d-none");
         }
 
-        // 3. Télécharger et enregistrer sur le téléphone / PC
+        // Télécharger l'image sur le téléphone / PC
         function telechargerEtEnregistrerTelephone() {
             const el = document.getElementById("carteFinalePresident");
             html2canvas(el, { scale: 3, useCORS: true, allowTaint: true }).then(canvas => {
@@ -666,7 +679,7 @@ Voici votre code complet mis à jour. L'URL SVG a été remplacée aux deux endr
             });
         }
 
-        // 4. Imprimer la carte
+        // Imprimer la carte
         function imprimerCarteMembre() {
             const el = document.getElementById("carteFinalePresident");
             el.classList.add("is-printing-carte");
@@ -678,4 +691,3 @@ Voici votre code complet mis à jour. L'URL SVG a été remplacée aux deux endr
     </script>
 </body>
 </html>
-
