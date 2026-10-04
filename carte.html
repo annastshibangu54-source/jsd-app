@@ -309,7 +309,7 @@
                                         <i class="bi bi-check-circle-fill me-2"></i> Enregistrer les informations
                                     </button>
                                     <button type="button" class="btn btn-outline-light fw-bold text-nowrap py-2" onclick="reinitialiserFormulaireMembre()">
-                                        <i class="bi bi-arrow-counterclockwise me-1"></i> Réinitialiser / Nouveau
+                                        <i class="bi bi-house-door-fill me-1"></i> Retour à l'accueil
                                     </button>
                                 </div>
                             </div>
@@ -334,7 +334,7 @@
                     <div class="carte-gold-wave"></div>
 
                     <!-- Logo JSD officiel -->
-                    <img id="imgLogoOfficiel" src="3474.jpg" alt="Logo JSD" class="carte-sceau" onerror="this.src='3478_2.jpg'">
+                    <img id="imgLogoOfficiel" src="3477.jpg" alt="Logo JSD" class="carte-sceau" onerror="this.onerror=null; this.src='3474.jpg';">
 
                     <!-- Titre Organisation -->
                     <div class="carte-org-name">
@@ -372,16 +372,16 @@
                 </div>
 
                 <div class="mt-3 text-muted small">
-                    <i class="bi bi-qr-code me-1"></i> Le QR Code se génère en temps réel pendant la saisie des informations.
+                    <i class="bi bi-qr-code me-1"></i> Le QR Code se génère automatiquement en temps réel pendant la saisie des données.
                 </div>
             </div>
         </div>
 
-        <!-- SECTION 2 : ESPACE PRÉSIDENT (SÉLECTION & IMPRESSION DES CARTES) -->
+        <!-- SECTION 2 : ESPACE PRÉSIDENT (SÉLECTION, IMPRESSION & SUPPRESSION DES CARTES) -->
         <div id="sectionPresident" class="d-none">
             <div class="card bg-dark text-white border-warning shadow">
                 <div class="card-header bg-warning text-dark fw-bold d-flex justify-content-between align-items-center">
-                    <span class="fs-5"><i class="bi bi-shield-lock-fill me-2"></i> Espace Président - Gestion & Impression des Cartes</span>
+                    <span class="fs-5"><i class="bi bi-shield-lock-fill me-2"></i> Espace Président - Gestion, Impression & Suppression</span>
                     <button class="btn btn-sm btn-outline-dark fw-bold" onclick="afficherPageAccueil()">
                         <i class="bi bi-arrow-left-circle-fill me-1"></i> Retour à la Page d'Accueil
                     </button>
@@ -399,7 +399,7 @@
                                             <th>Matricule</th>
                                             <th>Nom & Prénom</th>
                                             <th>Fonction</th>
-                                            <th class="text-center">Action</th>
+                                            <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody id="listeMembresBody">
@@ -465,7 +465,7 @@
             actualiserApercuEtQR();
         });
 
-        // Mise à jour de l'aperçu dynamique ET génération instantanée du QR Code avant enregistrement
+        // Génération instantanée du QR Code et mise à jour de l'aperçu avant enregistrement
         function actualiserApercuEtQR() {
             const nom = document.getElementById("inNom").value.trim() || "TSHIBANGU";
             const postnom = document.getElementById("inPostnom").value.trim() || "KALOMBO";
@@ -505,11 +505,12 @@
             }
         }
 
-        // Réinitialiser le formulaire pour enregistrer un nouveau membre / Retour accueil membre
+        // Réinitialiser le formulaire pour enregistrer un nouveau membre / Bouton retour accueil pour le membre
         function reinitialiserFormulaireMembre() {
             document.getElementById("formMembre").reset();
             document.getElementById("outPhoto").src = "https://via.placeholder.com/100x120?text=PHOTO";
             actualiserApercuEtQR();
+            afficherPageAccueil();
         }
 
         // Enregistrement d'un membre avec contrôle d'unicité du matricule
@@ -542,7 +543,7 @@
             membres.push(nouveauMembre);
             localStorage.setItem("membresJSD", JSON.stringify(membres));
 
-            alert(`Succès ! Le membre ${nouveauMembre.nom} ${nouveauMembre.prenom} (Matricule: ${matricule}) a bien été enregistré dans le registre.\nVous pouvez réinitialiser pour ajouter un nouveau membre.`);
+            alert(`Succès ! Le membre ${nouveauMembre.nom} ${nouveauMembre.prenom} (Matricule: ${matricule}) a été enregistré dans le registre.`);
         }
 
         // Accès restreint pour le Président
@@ -586,13 +587,42 @@
                     <td>${m.nom} ${m.postnom} ${m.prenom}</td>
                     <td>${m.fonction || '-'}</td>
                     <td class="text-center">
-                        <button class="btn btn-sm btn-primary fw-bold" onclick="chargerCartePourImpression(${idx})">
-                            <i class="bi bi-card-heading me-1"></i> Sélectionner Carte
+                        <button class="btn btn-sm btn-primary fw-bold me-1" onclick="chargerCartePourImpression(${idx})">
+                            <i class="bi bi-card-heading me-1"></i> Sélectionner
+                        </button>
+                        <button class="btn btn-sm btn-danger fw-bold" onclick="supprimerMembre(${idx})">
+                            <i class="bi bi-trash-fill"></i> Supprimer
                         </button>
                     </td>
                 `;
                 tbody.appendChild(tr);
             });
+        }
+
+        // Supprimer un enregistrement membre (Réservé au Président)
+        function supprimerMembre(index) {
+            let membres = JSON.parse(localStorage.getItem("membresJSD")) || [];
+            const membre = membres[index];
+
+            if (confirm(`Êtes-vous sûr de vouloir supprimer l'enregistrement du membre ${membre.nom} ${membre.prenom} (Matricule: ${membre.matricule}) ?`)) {
+                membres.splice(index, 1);
+                localStorage.setItem("membresJSD", JSON.stringify(membres));
+
+                // Réinitialisation de la zone de prévisualisation si la carte supprimée était actuellement affichée
+                if (membreSelectionneActuel && membreSelectionneActuel.matricule === membre.matricule) {
+                    membreSelectionneActuel = null;
+                    document.getElementById("zoneCarteImpressionPresident").innerHTML = `
+                        <div class="p-4 border border-secondary rounded bg-dark text-muted">
+                            <i class="bi bi-arrow-left-square fs-2 d-block mb-2"></i>
+                            Veuillez cliquer sur "Sélectionner Carte" dans la liste de gauche pour afficher la carte correspondant au membre.
+                        </div>
+                    `;
+                    document.getElementById("actionsImpression").classList.add("d-none");
+                }
+
+                chargerListeMembresPresident();
+                alert("L'enregistrement a bien été supprimé du registre.");
+            }
         }
 
         // Prévisualiser la carte sélectionnée
