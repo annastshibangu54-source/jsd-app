@@ -46,7 +46,7 @@
             z-index: 1;
         }
 
-        /* En-tête supérieur dégagé */
+        /* En-tête supérieur */
         .carte-header {
             position: absolute;
             top: 0.2cm;
@@ -88,7 +88,7 @@
             z-index: 3;
         }
 
-        /* Logo Officiel JSD (Détouré sans cadran blanc) */
+        /* Logo Officiel JSD */
         .carte-sceau {
             position: absolute;
             top: 0.95cm;
@@ -127,7 +127,7 @@
             margin: 0;
         }
 
-        /* Rubriques Identité - Strictement alignées à gauche tout droit */
+        /* Rubriques Identité */
         .carte-identite {
             position: absolute;
             top: 1.7cm;
@@ -236,7 +236,7 @@
                 <i class="bi bi-shield-check me-2"></i>JSD - Portail Enregistrement & Cartes
             </span>
             <div class="d-flex align-items-center gap-2">
-                <button id="btnRetourAccueil" class="btn btn-sm btn-outline-light d-none" onclick="afficherPageAccueil()">
+                <button id="btnRetourAccueilNav" class="btn btn-sm btn-outline-light d-none" onclick="afficherPageAccueil()">
                     <i class="bi bi-house-door-fill me-1"></i> Page d'Accueil
                 </button>
                 <button id="btnEspacePresident" class="btn btn-sm btn-warning fw-bold text-dark" onclick="demanderAccesPresident()">
@@ -261,42 +261,42 @@
                             <div class="row g-3">
                                 <div class="col-md-4">
                                     <label class="form-label small fw-bold">Nom *</label>
-                                    <input type="text" id="inNom" class="form-control form-control-sm bg-secondary text-white border-0" placeholder="TSHIBANGU" oninput="actualiserApercu()" required>
+                                    <input type="text" id="inNom" class="form-control form-control-sm bg-secondary text-white border-0" placeholder="TSHIBANGU" oninput="actualiserApercuEtQR()" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label small fw-bold">Postnom</label>
-                                    <input type="text" id="inPostnom" class="form-control form-control-sm bg-secondary text-white border-0" placeholder="KALOMBO" oninput="actualiserApercu()">
+                                    <input type="text" id="inPostnom" class="form-control form-control-sm bg-secondary text-white border-0" placeholder="KALOMBO" oninput="actualiserApercuEtQR()">
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label small fw-bold">Prénom *</label>
-                                    <input type="text" id="inPrenom" class="form-control form-control-sm bg-secondary text-white border-0" placeholder="Mike" oninput="actualiserApercu()" required>
+                                    <input type="text" id="inPrenom" class="form-control form-control-sm bg-secondary text-white border-0" placeholder="Mike" oninput="actualiserApercuEtQR()" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label class="form-label small fw-bold">Matricule Unique *</label>
-                                    <input type="text" id="inMatricule" class="form-control form-control-sm bg-secondary text-white border-0" placeholder="JSD-2026-001" oninput="actualiserApercu()" required>
+                                    <input type="text" id="inMatricule" class="form-control form-control-sm bg-secondary text-white border-0" placeholder="JSD-2026-001" oninput="actualiserApercuEtQR()" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label small fw-bold">Fonction</label>
-                                    <input type="text" id="inFonction" class="form-control form-control-sm bg-secondary text-white border-0" placeholder="Membre Actif" oninput="actualiserApercu()">
+                                    <input type="text" id="inFonction" class="form-control form-control-sm bg-secondary text-white border-0" placeholder="Membre Actif" oninput="actualiserApercuEtQR()">
                                 </div>
 
                                 <div class="col-md-6">
                                     <label class="form-label small fw-bold">Profession</label>
-                                    <input type="text" id="inProfession" class="form-control form-control-sm bg-secondary text-white border-0" placeholder="Ingénieur" oninput="actualiserApercu()">
+                                    <input type="text" id="inProfession" class="form-control form-control-sm bg-secondary text-white border-0" placeholder="Ingénieur" oninput="actualiserApercuEtQR()">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label small fw-bold">Date d'Expiration</label>
-                                    <input type="text" id="inExpiration" class="form-control form-control-sm bg-secondary text-white border-0" value="31/12/2026" oninput="actualiserApercu()">
+                                    <input type="text" id="inExpiration" class="form-control form-control-sm bg-secondary text-white border-0" value="31/12/2026" oninput="actualiserApercuEtQR()">
                                 </div>
 
                                 <div class="col-md-6">
                                     <label class="form-label small fw-bold">Adresse</label>
-                                    <input type="text" id="inAdresse" class="form-control form-control-sm bg-secondary text-white border-0" placeholder="Kinshasa, RDC" oninput="actualiserApercu()">
+                                    <input type="text" id="inAdresse" class="form-control form-control-sm bg-secondary text-white border-0" placeholder="Kinshasa, RDC" oninput="actualiserApercuEtQR()">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label small fw-bold">E-mail</label>
-                                    <input type="email" id="inEmail" class="form-control form-control-sm bg-secondary text-white border-0" placeholder="contact@jsd-drc.org" oninput="actualiserApercu()">
+                                    <input type="email" id="inEmail" class="form-control form-control-sm bg-secondary text-white border-0" placeholder="contact@jsd-drc.org" oninput="actualiserApercuEtQR()">
                                 </div>
 
                                 <div class="col-12">
@@ -304,9 +304,12 @@
                                     <input type="file" id="inPhoto" class="form-control form-control-sm bg-secondary text-white border-0" accept="image/*" onchange="chargerPhotoPasseport(event)">
                                 </div>
 
-                                <div class="col-12 mt-4">
+                                <div class="col-12 mt-4 d-flex gap-2">
                                     <button type="submit" class="btn btn-success fw-bold w-100 py-2">
-                                        <i class="bi bi-check-circle-fill me-2"></i> Enregistrer les informations du Membre
+                                        <i class="bi bi-check-circle-fill me-2"></i> Enregistrer les informations
+                                    </button>
+                                    <button type="button" class="btn btn-outline-light fw-bold text-nowrap py-2" onclick="reinitialiserFormulaireMembre()">
+                                        <i class="bi bi-arrow-counterclockwise me-1"></i> Réinitialiser / Nouveau
                                     </button>
                                 </div>
                             </div>
@@ -331,7 +334,7 @@
                     <div class="carte-gold-wave"></div>
 
                     <!-- Logo JSD officiel -->
-                    <img id="imgLogoOfficiel" src="3478_2.jpg" alt="Logo JSD" class="carte-sceau" onerror="this.src='https://via.placeholder.com/150?text=LOGO+JSD'">
+                    <img id="imgLogoOfficiel" src="3474.jpg" alt="Logo JSD" class="carte-sceau" onerror="this.src='3478_2.jpg'">
 
                     <!-- Titre Organisation -->
                     <div class="carte-org-name">
@@ -362,14 +365,14 @@
                         Prière aux autorités militaires et civiles d'accorder leur assistance au porteur de cette carte dans l'exercice de ses fonctions, en vertu de l'intérêt social national.
                     </div>
 
-                    <!-- QR Code Généré Dynamiquement -->
+                    <!-- QR Code Généré Dynamiquement en temps réel -->
                     <div class="carte-qrcode-container">
                         <div id="qrcode"></div>
                     </div>
                 </div>
 
                 <div class="mt-3 text-muted small">
-                    <i class="bi bi-qr-code me-1"></i> Le QR Code se génère automatiquement avec la fiche complète du membre.
+                    <i class="bi bi-qr-code me-1"></i> Le QR Code se génère en temps réel pendant la saisie des informations.
                 </div>
             </div>
         </div>
@@ -459,11 +462,11 @@
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.H
             });
-            actualiserApercu();
+            actualiserApercuEtQR();
         });
 
-        // Mise à jour de l'aperçu dynamique & QR Code
-        function actualiserApercu() {
+        // Mise à jour de l'aperçu dynamique ET génération instantanée du QR Code avant enregistrement
+        function actualiserApercuEtQR() {
             const nom = document.getElementById("inNom").value.trim() || "TSHIBANGU";
             const postnom = document.getElementById("inPostnom").value.trim() || "KALOMBO";
             const prenom = document.getElementById("inPrenom").value.trim() || "Mike";
@@ -484,7 +487,7 @@
             document.getElementById("outEmail").innerText = email;
             document.getElementById("outExpiration").innerText = expiration;
 
-            // Données encodées dans le QR Code
+            // Encodage dynamique instantané dans le QR Code
             const payloadQR = `JSD - CARTE OFFICIELLE\nMATRICULE: ${matricule}\nNOM: ${nom} ${postnom} ${prenom}\nFONCTION: ${fonction}\nPROFESSION: ${profession}\nADRESSE: ${adresse}\nEMAIL: ${email}\nEXPIRATION: ${expiration}`;
             
             qrcodeInstance.clear();
@@ -500,6 +503,13 @@
                 };
                 reader.readAsDataURL(file);
             }
+        }
+
+        // Réinitialiser le formulaire pour enregistrer un nouveau membre / Retour accueil membre
+        function reinitialiserFormulaireMembre() {
+            document.getElementById("formMembre").reset();
+            document.getElementById("outPhoto").src = "https://via.placeholder.com/100x120?text=PHOTO";
+            actualiserApercuEtQR();
         }
 
         // Enregistrement d'un membre avec contrôle d'unicité du matricule
@@ -532,12 +542,7 @@
             membres.push(nouveauMembre);
             localStorage.setItem("membresJSD", JSON.stringify(membres));
 
-            alert(`Succès ! Le membre ${nouveauMembre.nom} ${nouveauMembre.prenom} (Matricule: ${matricule}) a bien été enregistré.\nLe formulaire a été réinitialisé.`);
-
-            // Réinitialisation du formulaire pour le membre suivant
-            document.getElementById("formMembre").reset();
-            document.getElementById("outPhoto").src = "https://via.placeholder.com/100x120?text=PHOTO";
-            actualiserApercu();
+            alert(`Succès ! Le membre ${nouveauMembre.nom} ${nouveauMembre.prenom} (Matricule: ${matricule}) a bien été enregistré dans le registre.\nVous pouvez réinitialiser pour ajouter un nouveau membre.`);
         }
 
         // Accès restreint pour le Président
@@ -553,14 +558,14 @@
         function afficherEspacePresident() {
             document.getElementById("sectionAccueil").classList.add("d-none");
             document.getElementById("sectionPresident").classList.remove("d-none");
-            document.getElementById("btnRetourAccueil").classList.remove("d-none");
+            document.getElementById("btnRetourAccueilNav").classList.remove("d-none");
             chargerListeMembresPresident();
         }
 
         function afficherPageAccueil() {
             document.getElementById("sectionPresident").classList.add("d-none");
             document.getElementById("sectionAccueil").classList.remove("d-none");
-            document.getElementById("btnRetourAccueil").classList.add("d-none");
+            document.getElementById("btnRetourAccueilNav").classList.add("d-none");
         }
 
         // Chargement du registre dans l'Espace Président
