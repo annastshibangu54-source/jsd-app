@@ -23,7 +23,7 @@
             padding-bottom: 50px;
         }
 
-        /* --- CONTENEUR STRICT 9cm x 6cm EN HAUTE DÉFINITION --- */
+        /* --- FORMAT ISO STRICT : 9cm x 6cm --- */
         .carte-container {
             width: 9cm;
             height: 6cm;
@@ -37,7 +37,7 @@
             border: 1px solid #c5a059;
         }
 
-        /* Motifs de fond (Feuillage/Guilloche discret) */
+        /* Motifs de fond (Guilloche discret) */
         .carte-bg-pattern {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -46,7 +46,7 @@
             z-index: 1;
         }
 
-        /* En-tête supérieur */
+        /* En-tête supérieur dégagé */
         .carte-header {
             position: absolute;
             top: 0.25cm;
@@ -59,57 +59,60 @@
         }
 
         .carte-header .title-rdc {
-            font-size: 7.5pt;
+            font-size: 6.2pt;
             font-weight: 900;
             color: #d4af37;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            letter-spacing: 0.3px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            white-space: nowrap;
         }
 
         .carte-header .title-badge {
-            font-size: 7.5pt;
+            font-size: 6.5pt;
             font-weight: 800;
             color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 0.3px;
-        }
-
-        /* Grand Sceau Central JSD */
-        .carte-sceau {
-            position: absolute;
-            top: 0.85cm;
-            left: 0.3cm;
-            width: 3.4cm;
-            height: 3.4cm;
-            z-index: 3;
-            object-fit: contain;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+            white-space: nowrap;
         }
 
         /* Vague Dorée Séparatrice */
         .carte-gold-wave {
             position: absolute;
-            top: 1.1cm;
+            top: 0.85cm;
+            left: 0;
             right: 0;
-            width: 5.6cm;
-            height: 3px;
-            background: linear-gradient(90deg, transparent 0%, #d4af37 30%, #fef1c9 70%, #d4af37 100%);
+            height: 2px;
+            background: linear-gradient(90deg, #d4af37 0%, #fef1c9 50%, #d4af37 100%);
             z-index: 3;
-            box-shadow: 0 0 6px rgba(212, 175, 55, 0.8);
+            box-shadow: 0 0 4px rgba(212, 175, 55, 0.8);
         }
 
-        /* Blocs Textes du Milieu / Droite */
+        /* Taille ajustée du Sceau (ne cache plus l'en-tête) */
+        .carte-sceau {
+            position: absolute;
+            top: 1.05cm;
+            left: 0.3cm;
+            width: 2.6cm;
+            height: 2.6cm;
+            z-index: 3;
+            object-fit: contain;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));
+        }
+
+        /* Titre Organisation (Espacé de l'en-tête) */
         .carte-org-name {
             position: absolute;
-            top: 1.25cm;
-            left: 3.8cm;
+            top: 1.05cm;
+            left: 3.2cm;
             right: 0.3cm;
             z-index: 3;
+            text-align: left;
         }
 
         .carte-org-name h5 {
-            font-size: 6.5pt;
+            font-size: 6pt;
             font-weight: 800;
             color: #ffffff;
             margin: 0;
@@ -118,22 +121,23 @@
         }
 
         .carte-org-name p {
-            font-size: 6.5pt;
+            font-size: 5.8pt;
             font-weight: 800;
             color: #d4af37;
             margin: 0;
         }
 
-        /* Liste des rubriques d'identité */
+        /* Rubriques d'identité (Alignées strictement à gauche) */
         .carte-identite {
             position: absolute;
-            top: 1.95cm;
-            left: 3.8cm;
+            top: 1.8cm;
+            left: 3.2cm;
             right: 0.2cm;
             z-index: 3;
-            font-size: 5.2pt;
+            font-size: 4.8pt;
             line-height: 1.25;
             color: #e0e6ed;
+            text-align: left;
         }
 
         .carte-identite div {
@@ -147,13 +151,13 @@
             font-weight: 700;
         }
 
-        /* Photo en bas à gauche */
+        /* Photo de passeport en bas à gauche */
         .carte-photo {
             position: absolute;
             bottom: 0.25cm;
             left: 0.3cm;
-            width: 1.4cm;
-            height: 1.7cm;
+            width: 1.3cm;
+            height: 1.6cm;
             border: 1.5px solid #d4af37;
             border-radius: 4px;
             object-fit: cover;
@@ -162,13 +166,13 @@
             box-shadow: 0 3px 8px rgba(0,0,0,0.6);
         }
 
-        /* Bandeau Doré en Bas (Texte d'assistance + QR) */
+        /* Bandeau Doré Inférieur */
         .carte-bottom-gold-banner {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 1.35cm;
+            height: 1.3cm;
             background: linear-gradient(135deg, #c5a059 0%, #fef1c9 50%, #b38728 100%);
             z-index: 2;
             clip-path: polygon(0 25%, 100% 0, 100% 100%, 0 100%);
@@ -177,10 +181,10 @@
         /* Texte d'assistance officiel */
         .carte-assistance {
             position: absolute;
-            bottom: 0.15cm;
-            left: 1.9cm;
-            right: 1.5cm;
-            font-size: 3.8pt;
+            bottom: 0.12cm;
+            left: 1.8cm;
+            right: 1.4cm;
+            font-size: 3.7pt;
             font-weight: 700;
             color: #0a1128;
             text-align: center;
@@ -191,13 +195,13 @@
         /* QR Code en bas à droite */
         .carte-qrcode-container {
             position: absolute;
-            bottom: 0.2cm;
-            right: 0.3cm;
-            width: 1.1cm;
-            height: 1.1cm;
+            bottom: 0.18cm;
+            right: 0.25cm;
+            width: 1.05cm;
+            height: 1.05cm;
             background: #ffffff;
             padding: 2px;
-            border-radius: 4px;
+            border-radius: 3px;
             border: 1px solid #0a1128;
             z-index: 4;
             display: flex;
@@ -226,10 +230,10 @@
 </head>
 <body>
 
-    <!-- ENTÊTE INTERFACE -->
+    <!-- BARRE SUPÉRIEURE DE L'INTERFACE -->
     <div class="bg-dark py-3 border-bottom border-secondary no-print">
         <div class="container d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 fw-bold text-warning"><i class="bi bi-card-heading me-2"></i> Portail Membre JSD - Génération de Carte</h5>
+            <h5 class="mb-0 fw-bold text-warning"><i class="bi bi-card-heading me-2"></i> Portail Membre JSD - Carte Officielle</h5>
             <span class="badge bg-danger">Espace Restreint</span>
         </div>
     </div>
@@ -237,11 +241,11 @@
     <div class="container my-4">
         <div class="row g-4 align-items-start">
             
-            <!-- FORMULAIRE EXCLUSIVEMENT DÉDIÉ AU MEMBRE -->
+            <!-- FORMULAIRE À REMPLIR PAR LE MEMBRE -->
             <div class="col-lg-6 no-print">
                 <div class="card bg-secondary text-white border-0 shadow">
                     <div class="card-header bg-primary text-white fw-bold">
-                        <i class="bi bi-person-lines-fill me-2"></i> Remplissez vos informations de membre
+                        <i class="bi bi-pencil-square me-2"></i> Informations du Membre
                     </div>
                     <div class="card-body p-4">
                         <form id="formCarte">
@@ -296,24 +300,25 @@
                 </div>
             </div>
 
-            <!-- APERÇU EN TEMPS RÉEL (FORMAT FIXE 9cm x 6cm) -->
+            <!-- APERÇU CARTE (9cm × 6cm) -->
             <div class="col-lg-6 text-center">
-                <h6 class="text-warning fw-bold mb-3 no-print">Aperçu officiel de la carte (Format ISO 9cm × 6cm)</h6>
+                <h6 class="text-warning fw-bold mb-3 no-print">Format Standard Plastifié (9 cm × 6 cm)</h6>
                 
                 <div id="zoneCarteImpression" class="carte-container">
                     
                     <div class="carte-bg-pattern"></div>
 
-                    <!-- En-tête Haut -->
+                    <!-- En-tête Haut (Lisible entièrement) -->
                     <div class="carte-header">
                         <div class="title-rdc">RÉPUBLIQUE DÉMOCRATIQUE DU CONGO</div>
                         <div class="title-badge">CARTE DE MEMBRE</div>
                     </div>
 
-                    <!-- Grand Sceau Central JSD -->
-                    <img src="img/logo.jpg" alt="Sceau JSD" class="carte-sceau" onerror="this.src='https://via.placeholder.com/150?text=SCEAU+JSD'">
-
+                    <!-- Vague Dorée -->
                     <div class="carte-gold-wave"></div>
+
+                    <!-- Grand Sceau JSD (Taille ajustée) -->
+                    <img src="img/logo.jpg" alt="Sceau JSD" class="carte-sceau" onerror="this.src='https://via.placeholder.com/150?text=SCEAU+JSD'">
 
                     <!-- Titre Organisation -->
                     <div class="carte-org-name">
@@ -321,7 +326,7 @@
                         <p>(JSD)</p>
                     </div>
 
-                    <!-- Liste Identité -->
+                    <!-- Rubriques Identité (Alignées à gauche tout droit) -->
                     <div class="carte-identite">
                         <div><strong>Nom:</strong> <span id="outNom">MUTOMBO</span></div>
                         <div><strong>Postnom:</strong> <span id="outPostnom">KABALA</span></div>
@@ -334,7 +339,7 @@
                         <div><strong>Date d'Expiration:</strong> <span id="outExpiration">31/12/2026</span></div>
                     </div>
 
-                    <!-- Photo d'identité -->
+                    <!-- Photo passeport -->
                     <img id="outPhoto" src="https://via.placeholder.com/100x120?text=PHOTO" alt="Photo" class="carte-photo">
 
                     <!-- Bandeau Doré Inférieur -->
@@ -345,17 +350,17 @@
                         Prière aux autorités militaires et civiles d'accorder leur assistance au porteur de cette carte dans l'exercice de ses fonctions, en vertu de l'intérêt social national.
                     </div>
 
-                    <!-- QR Code -->
+                    <!-- QR Code Dynamique -->
                     <div class="carte-qrcode-container">
                         <div id="qrcode"></div>
                     </div>
 
                 </div>
 
-                <!-- ZONE D'ACCÈS EXCLUSIF AU PRÉSIDENT (Rien pour le membre) -->
+                <!-- BOUTON D'ACCÈS DU PRÉSIDENT SEULEMENT -->
                 <div class="mt-4 no-print">
                     <button type="button" class="btn btn-outline-warning fw-bold w-100 py-2" onclick="accesEspacePresident()">
-                        <i class="bi bi-shield-lock-fill me-2"></i> Espace Téléchargement & Impression (Réservé au Président)
+                        <i class="bi bi-shield-lock-fill me-2"></i> Accès Téléchargement & Impression (Réservé au Président)
                     </button>
                 </div>
 
@@ -364,15 +369,15 @@
         </div>
     </div>
 
-    <!-- SCRIPT DE FONCTIONNEMENT -->
+    <!-- SCRIPT DE GÉNÉRATION ET SÉCURITÉ -->
     <script>
         const CODE_SECRET_PRESIDENT = "ann@s0852";
         let qrcodeObj = null;
 
         document.addEventListener("DOMContentLoaded", () => {
             qrcodeObj = new QRCode(document.getElementById("qrcode"), {
-                width: 40,
-                height: 40,
+                width: 38,
+                height: 38,
                 colorDark: "#000000",
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.H
@@ -401,7 +406,9 @@
             document.getElementById("outEmail").innerText = email;
             document.getElementById("outExpiration").innerText = expiration;
 
-            const qrTexte = `JSD-CARTE\nMatricule: ${matricule}\nNom: ${nom} ${postnom} ${prenom}\nFonction: ${fonction}\nExp: ${expiration}`;
+            // Encodage complet des données dans le QR Code
+            const qrTexte = `ORGANISATION: JSD\nMATRICULE: ${matricule}\nNOM: ${nom}\nPOSTNOM: ${postnom}\nPRENOM: ${prenom}\nFONCTION: ${fonction}\nPROFESSION: ${profession}\nADRESSE: ${adresse}\nEMAIL: ${email}\nEXPIRATION: ${expiration}`;
+            
             qrcodeObj.clear();
             qrcodeObj.makeCode(qrTexte);
         }
@@ -416,7 +423,7 @@
             }
         }
 
-        // ACCÈS SÉCURISÉ PRÉSIDENT : TÉLÉCHARGEMENT JPG ET IMPRESSION
+        // ACCÈS SÉCURISÉ POUR LE PRÉSIDENT
         function accesEspacePresident() {
             const mdp = prompt("ACCÈS PRÉSIDENTIEL RESTREINT :\nVeuillez entrer le mot de passe du Président :");
 
@@ -424,7 +431,6 @@
                 const choix = confirm("Accès Autorisé !\n\nCliquez sur 'OK' pour Télécharger l'image JPG HD.\nCliquez sur 'Annuler' pour Imprimer directement.");
                 
                 if (choix) {
-                    // Téléchargement JPG
                     const zoneCarte = document.getElementById("zoneCarteImpression");
                     html2canvas(zoneCarte, {
                         scale: 4,
@@ -438,7 +444,6 @@
                         link.click();
                     });
                 } else {
-                    // Impression
                     const carte = document.getElementById("zoneCarteImpression");
                     carte.classList.add("is-printing-carte");
                     setTimeout(() => {
@@ -447,7 +452,7 @@
                     }, 300);
                 }
             } else if (mdp !== null) {
-                alert("Accès refusé ! Mot de passe incorrect. Seul le Président peut télécharger ou imprimer les cartes.");
+                alert("Accès refusé ! Mot de passe incorrect.");
             }
         }
     </script>
