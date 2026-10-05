@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devenir Membre ou Faire un Don - JSD RDC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+<body class="bg-light text-dark">
+
+    <!-- BARRE DE NAVIGATION -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-warning" href="index.html">
+                <img src="img/logo.jpg" alt="Logo JSD" width="30" height="30" class="d-inline-block align-text-top me-2" onerror="this.style.display='none'">
+                JSD RDC
+            </a>
+            <a href="index.html" class="btn btn-outline-warning btn-sm"><i class="bi bi-arrow-left me-1"></i> Retour à l'accueil</a>
+        </div>
+    </nav>
+
+    <!-- ENTÊTE -->
+    <div class="bg-primary text-white py-4 text-center">
+        <div class="container">
+            <h1 class="fw-bold mb-2">Rejoignez-nous ou Soutenez nos Actions</h1>
+            <p class="lead mb-0">Ensemble pour le développement et l'épanouissement de la jeunesse</p>
+        </div>
+    </div>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="container my-5">
+        <div class="row g-4">
+
+            <!-- SECTION 1 : DEVENIR MEMBRE -->
+            <div class="col-lg-7">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-white border-0 pt-4 px-4">
+                        <h3 class="fw-bold text-primary mb-0"><i class="bi bi-person-plus-fill me-2 text-warning"></i>Demande d'Adhésion JSD</h3>
+                        <p class="text-muted small">Remplissez ce formulaire pour soumettre votre candidature de membre.</p>
+                    </div>
+                    <div class="card-body px-4 pb-4">
+                        <form id="formAdhesion" onsubmit="event.preventDefault(); alert('Votre demande d\'adhésion a été transmise avec succès au secrétariat de la JSD !');">
+                            
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold small">Nom & Post-nom</label>
+                                    <input type="text" class="form-control" placeholder="Ex: TSHIBANGU KALOMBO" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold small">Prénom</label>
+                                    <input type="text" class="form-control" placeholder="Ex: Mike" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold small">Téléphone (WhatsApp)</label>
+                                    <input type="tel" class="form-control" placeholder="+243 ..." required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold small">Adresse E-mail</label>
+                                    <input type="email" class="form-control" placeholder="exemple@gmail.com">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold small">Commune / Ville</label>
+                                    <input type="text" class="form-control" placeholder="Ex: Bandalungwa, Kinshasa" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold small">Qualité / Statut souhaité</label>
+                                    <select class="form-select" required>
+                                        <option value="" selected disabled>Choisir...</option>
+                                        <option value="Actif">Membre Actif</option>
+                                        <option value="Sympathisant">Membre Sympathisant</option>
+                                        <option value="Bénévole">Bénévole / Volontaire</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-bold small">Profession ou Domaines de compétences</label>
+                                    <input type="text" class="form-control" placeholder="Ex: Informaticien, Enseignant, Étudiant...">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-bold small">Pourquoi souhaitez-vous rejoindre la JSD ?</label>
+                                    <textarea class="form-control" rows="3" placeholder="Ex: Contribuer aux projets sociaux de développement..."></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-warning w-100 fw-bold py-2"><i class="bi bi-send-fill me-2"></i> Envoyer ma demande d'adhésion</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 2 : FAIRE UN DON -->
+            <div class="col-lg-5">
+                <div class="card shadow-sm border-0 h-100 bg-white">
+                    <div class="card-header bg-white border-0 pt-4 px-4">
+                        <h3 class="fw-bold text-success mb-0"><i class="bi bi-heart-fill me-2 text-danger"></i>Faire un Don</h3>
+                        <p class="text-muted small">Soutenez les projets et actions sociales de la JSD.</p>
+                    </div>
+                    <div class="card-body px-4">
+                        
+                        <div class="alert alert-warning border-0 small mb-4">
+                            <i class="bi bi-info-circle-fill me-2"></i> Vos dons permettent d'imprimer du matériel, d'organiser des formations pour les jeunes et de soutenir nos actions communautaires.
+                        </div>
+
+                        <!-- MOBILE MONEY -->
+                        <h6 class="fw-bold text-dark border-bottom pb-2"><i class="bi bi-phone me-2 text-primary"></i>Paiement Mobile Money (RDC)</h6>
+                        <ul class="list-group list-group-flush mb-4">
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <span><strong class="text-danger">M-Pesa / Vodacom :</strong></span>
+                                <span class="badge bg-light text-dark border fs-6">+243 81 000 0000</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <span><strong class="text-warning text-dark">Orange Money :</strong></span>
+                                <span class="badge bg-light text-dark border fs-6">+243 89 000 0000</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <span><strong class="text-danger">Airtel Money :</strong></span>
+                                <span class="badge bg-light text-dark border fs-6">+243 90 681 9993</span>
+                            </li>
+                        </ul>
+
+                        <!-- COMPTE BANCAIRE -->
+                        <h6 class="fw-bold text-dark border-bottom pb-2"><i class="bi bi-bank me-2 text-primary"></i>Compte Bancaire Officiel</h6>
+                        <div class="bg-light p-3 rounded mb-4 border">
+                            <p class="mb-1 small"><strong>Banque :</strong> Equity BCDC / Rawbank</p>
+                            <p class="mb-1 small"><strong>Intitulé du compte :</strong> Jeunesse Sociale pour le Développement (JSD)</p>
+                            <p class="mb-0 small"><strong>Numéro de compte :</strong> 0000-0000000-00</p>
+                        </div>
+
+                        <!-- CONTACT DIRECT -->
+                        <div class="text-center pt-2">
+                            <p class="small text-muted mb-2">Pour toute donation en nature ou partenariat :</p>
+                            <a href="https://wa.me/243906819993" target="_blank" class="btn btn-outline-success btn-sm w-100"><i class="bi bi-whatsapp me-2"></i>Contacter le Secrétariat sur WhatsApp</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER SIMPLE -->
+    <footer class="bg-dark text-center text-light py-3">
+        <small>&copy; 2026 Jeunesse Sociale pour le Développement (JSD) - Tous droits réservés.</small>
+    </footer>
+
+</body>
+</html>
