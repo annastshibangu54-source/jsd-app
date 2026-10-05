@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi de Demande d'Adhésion - JSD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+<body class="bg-light">
+
+    <div class="container my-5" style="max-width: 600px;">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-dark text-white text-center py-3">
+                <h4 class="fw-bold mb-0"><i class="bi bi-shield-check me-2 text-warning"></i>Espace Suivi Confidentiel</h4>
+            </div>
+            <div class="card-body p-4">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Entrez votre Code de Suivi :</label>
+                    <div class="input-group">
+                        <input type="text" id="codeSearch" class="form-control" placeholder="Ex: JSD-8K2A9">
+                        <button id="btnSearch" class="btn btn-warning fw-bold">Vérifier</button>
+                    </div>
+                </div>
+
+                <div id="resultBox" class="d-none mt-4 p-3 border rounded bg-white"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBlGswEPk6CM4AO7SeqmZeuaFxUWMRlESI",
+            authDomain: "jeunesse-social-pour-le-dvelop.firebaseapp.com",
+            projectId: "jeunesse-social-pour-le-dvelop",
+            storageBucket: "jeunesse-social-pour-le-dvelop.firebasestorage.app",
+            messagingSenderId: "728224479628",
+            appId: "1:728224479628:web:c43406a998d184d3a63ea9"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Récupération automatique si le code est dans l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const codeUrl = urlParams.get('code');
+        if(codeUrl) {
+            document.getElementById('codeSearch').value = codeUrl;
+            rechercherCode(codeUrl);
+        }
+
+        document.getElementById('btnSearch').addEventListener('click', () => {
+            const code = document.getElementById('codeSearch').value.trim();
+            if(code) rechercherCode(code);
+        });
+
+        async function rechercherCode(code) {
+            const resultBox = document.getElementById('resultBox');
+            resultBox.classList.remove('d-none');
+            resultBox.innerHTML = '<div class="text-center"><div class="spinner-border spinner-border-sm text-primary"></div> Recherche...</div>';
+
+            try {
+                const q = query(collection(db, "adhesions"), where("codeSuivi", "==", code));
+                const querySnapshot = await getDocs(q);
+
+                if (querySnapshot.empty) {
+                    resultBox.innerHTML = `<div class="alert alert-danger mb-0">Aucune demande trouvée avec ce code de suivi.</div>`;
+                    return;
+                }
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    let statusBadge = '<span class="badge bg-warning text-dark">En cours de traitement</span>';
+                    if(data.etatDemande === 'Adhésion Approuvée') statusBadge = '<span class="badge bg-success">Adhésion Approuvée</span>';
+                    if(data.etatDemande === 'Adhésion Refusée') statusBadge = '<span class="badge bg-danger">Adhésion Refusée</span>';
+
+                    resultBox.innerHTML = `
+                        <h5 class="fw-bold text-primary mb-1">${data.prenom} ${data.nom}</h5>
+                        <p class="small text-muted mb-2">Qualité demandée : ${data.statut}</p>
+                        <div class="mb-3">Statut : ${statusBadge}</div>
+                        <hr>
+                        <h6 class="fw-bold"><i class="bi bi-chat-quote-fill me-2 text-primary"></i>Message de la Présidence JSD :</h6>
+                        <div class="p-3 bg-light rounded text-dark">
+                            ${data.reponsePresident ? data.reponsePresident : '<em>Aucune réponse transmise pour le moment. Votre dossier est en cours d’examen par le Président.</em>'}
+                        </div>
+                    `;
+                });
+            } catch (err) {
+                console.error(err);
+                resultBox.innerHTML = `<div class="alert alert-danger mb-0">Erreur lors de la recherche.</div>`;
+            }
+        }
+    </script>
+</body>
+</html>
