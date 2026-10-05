@@ -40,52 +40,58 @@
                         <p class="text-muted small">Remplissez ce formulaire pour soumettre votre candidature de membre.</p>
                     </div>
                     <div class="card-body px-4 pb-4">
-                        <form id="formAdhesion" onsubmit="event.preventDefault(); alert('Votre demande d\'adhésion a été transmise avec succès au secrétariat de la JSD !');">
-                            
+
+                        <!-- MESSAGE DE SUCCÈS OU D'ERREUR -->
+                        <div id="alertMessage" class="d-none alert border-0 mb-3" role="alert"></div>
+                        
+                        <form id="formAdhesion">
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <label class="form-label fw-bold small">Nom & Post-nom</label>
-                                    <input type="text" class="form-control" placeholder="Ex: TSHIBANGU KALOMBO" required>
+                                    <label class="form-label fw-bold small">Nom & Post-nom *</label>
+                                    <input type="text" id="nom" class="form-control" placeholder="Ex: TSHIBANGU KALOMBO" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label fw-bold small">Prénom</label>
-                                    <input type="text" class="form-control" placeholder="Ex: Mike" required>
+                                    <label class="form-label fw-bold small">Prénom *</label>
+                                    <input type="text" id="prenom" class="form-control" placeholder="Ex: Mike" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label fw-bold small">Téléphone (WhatsApp)</label>
-                                    <input type="tel" class="form-control" placeholder="+243 906819993" required>
+                                    <label class="form-label fw-bold small">Téléphone (WhatsApp) *</label>
+                                    <input type="tel" id="telephone" class="form-control" placeholder="+243 ..." required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold small">Adresse E-mail</label>
-                                    <input type="email" class="form-control" placeholder="annastshibangu54@gmail.com">
+                                    <input type="email" id="email" class="form-control" placeholder="exemple@gmail.com">
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label fw-bold small">Commune / Ville</label>
-                                    <input type="text" class="form-control" placeholder="Ex: Bandalungwa, Kinshasa" required>
+                                    <label class="form-label fw-bold small">Commune / Ville *</label>
+                                    <input type="text" id="ville" class="form-control" placeholder="Ex: Bandalungwa, Kinshasa" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label fw-bold small">Qualité / Statut souhaité</label>
-                                    <select class="form-select" required>
+                                    <label class="form-label fw-bold small">Qualité / Statut souhaité *</label>
+                                    <select id="statut" class="form-select" required>
                                         <option value="" selected disabled>Choisir...</option>
-                                        <option value="Actif">Membre Actif</option>
-                                        <option value="Sympathisant">Membre Sympathisant</option>
-                                        <option value="Bénévole">Bénévole / Volontaire</option>
+                                        <option value="Membre Actif">Membre Actif</option>
+                                        <option value="Membre Sympathisant">Membre Sympathisant</option>
+                                        <option value="Bénévole / Volontaire">Bénévole / Volontaire</option>
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <label class="form-label fw-bold small">Profession ou Domaines de compétences</label>
-                                    <input type="text" class="form-control" placeholder="Ex: Informaticien, Enseignant, Étudiant...">
+                                    <label class="form-label fw-bold small">Profession / Compétences</label>
+                                    <input type="text" id="profession" class="form-control" placeholder="Ex: Informaticien, Enseignant, Étudiant...">
                                 </div>
                                 <div class="col-12">
-                                    <label class="form-label fw-bold small">Pourquoi souhaitez-vous rejoindre la JSD ?</label>
-                                    <textarea class="form-control" rows="3" placeholder="Ex: Contribuer aux projets sociaux de développement..."></textarea>
+                                    <label class="form-label fw-bold small">Motivation</label>
+                                    <textarea id="motivation" class="form-control" rows="3" placeholder="Ex: Contribuer aux projets sociaux de développement..."></textarea>
                                 </div>
                                 <div class="col-12 mt-4">
-                                    <button type="submit" class="btn btn-warning w-100 fw-bold py-2"><i class="bi bi-send-fill me-2"></i> Envoyer ma demande d'adhésion</button>
+                                    <button type="submit" id="btnSubmit" class="btn btn-warning w-100 fw-bold py-2">
+                                        <span id="btnText"><i class="bi bi-send-fill me-2"></i> Soumettre ma demande d'adhésion</span>
+                                        <span id="btnSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                                    </button>
                                 </div>
                             </div>
-
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -108,15 +114,15 @@
                         <ul class="list-group list-group-flush mb-4">
                             <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                                 <span><strong class="text-danger">M-Pesa / Vodacom :</strong></span>
-                                <span class="badge bg-light text-dark border fs-6">+243 83 63 15 788</span>
+                                <span class="badge bg-light text-dark border fs-6">+243 81 000 0000</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                                 <span><strong class="text-warning text-dark">Orange Money :</strong></span>
-                                <span class="badge bg-light text-dark border fs-6">+243 89 85 98 609</span>
+                                <span class="badge bg-light text-dark border fs-6">+243 89 000 0000</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                                 <span><strong class="text-danger">Airtel Money :</strong></span>
-                                <span class="badge bg-light text-dark border fs-6">+243 ....</span>
+                                <span class="badge bg-light text-dark border fs-6">+243 90 681 9993</span>
                             </li>
                         </ul>
 
@@ -131,9 +137,9 @@
                         <!-- CONTACT DIRECT -->
                         <div class="text-center pt-2">
                             <p class="small text-muted mb-2">Pour toute donation en nature ou partenariat :</p>
-                            <a href="https://wa.me/https://whatsapp.com/dl/
-
-                              " target="_blank" class="btn btn-outline-success btn-sm w-100"><i class="bi bi-whatsapp me-2"></i>Contacter le Secrétariat sur WhatsApp</a>
+                            <a href="https://api.whatsapp.com/send?phone=243906819993&text=Bonjour%20Secr%C3%A9tariat%20JSD,%20je%20souhaite%20faire%20un%20don%20ou%20%C3%A9tablir%20un%20partenariat." target="_blank" class="btn btn-outline-success btn-sm w-100">
+                                <i class="bi bi-whatsapp me-2"></i>Contacter le Secrétariat sur WhatsApp
+                            </a>
                         </div>
 
                     </div>
@@ -143,10 +149,80 @@
         </div>
     </main>
 
-    <!-- FOOTER SIMPLE -->
     <footer class="bg-dark text-center text-light py-3">
         <small>&copy; 2026 Jeunesse Sociale pour le Développement (JSD) - Tous droits réservés.</small>
     </footer>
+
+    <!-- SCRIPT FIREBASE COMPLET AVEC VOS VRAIES CLÉS CONFIGURÉES -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Vos clés exactes récupérées de la console Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBlGswEPk6CM4AO7SeqmZeuaFxUWMRlESI",
+            authDomain: "jeunesse-social-pour-le-dvelop.firebaseapp.com",
+            projectId: "jeunesse-social-pour-le-dvelop",
+            storageBucket: "jeunesse-social-pour-le-dvelop.firebasestorage.app",
+            messagingSenderId: "728224479628",
+            appId: "1:728224479628:web:c43406a998d184d3a63ea9",
+            measurementId: "G-F81CFLLD55"
+        };
+
+        // Initialisation de Firebase & Firestore Database
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Traitement du formulaire d'adhésion
+        document.getElementById('formAdhesion').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const alertBox = document.getElementById('alertMessage');
+            const btnSubmit = document.getElementById('btnSubmit');
+            const btnText = document.getElementById('btnText');
+            const btnSpinner = document.getElementById('btnSpinner');
+
+            // Réinitialisation des états
+            alertBox.classList.add('d-none');
+            alertBox.className = 'alert border-0 mb-3';
+            btnSubmit.disabled = true;
+            btnText.textContent = ' Enregistrement en cours...';
+            btnSpinner.classList.remove('d-none');
+
+            try {
+                // Envoi des données vers la collection 'adhesions' sur Firebase
+                await addDoc(collection(db, "adhesions"), {
+                    nom: document.getElementById('nom').value.trim(),
+                    prenom: document.getElementById('prenom').value.trim(),
+                    telephone: document.getElementById('telephone').value.trim(),
+                    email: document.getElementById('email').value.trim() || "Non renseigné",
+                    ville: document.getElementById('ville').value.trim(),
+                    statut: document.getElementById('statut').value,
+                    profession: document.getElementById('profession').value.trim() || "Non renseignée",
+                    motivation: document.getElementById('motivation').value.trim() || "Aucune",
+                    createdAt: serverTimestamp()
+                });
+
+                // Affichage du message de succès
+                alertBox.classList.add('alert-success');
+                alertBox.innerHTML = `<i class="bi bi-check-circle-fill me-2"></i> Votre demande d'adhésion a été enregistrée avec succès !`;
+                alertBox.classList.remove('d-none');
+                
+                // Réinitialiser les champs du formulaire
+                document.getElementById('formAdhesion').reset();
+
+            } catch (error) {
+                console.error("Erreur Firebase : ", error);
+                alertBox.classList.add('alert-danger');
+                alertBox.innerHTML = `<i class="bi bi-exclamation-triangle-fill me-2"></i> Erreur lors de l'enregistrement. Assurez-vous d'avoir activé Firestore Database.`;
+                alertBox.classList.remove('d-none');
+            } finally {
+                btnSubmit.disabled = false;
+                btnText.innerHTML = '<i class="bi bi-send-fill me-2"></i> Soumettre ma demande d\'adhésion';
+                btnSpinner.classList.add('d-none');
+            }
+        });
+    </script>
 
 </body>
 </html>
