@@ -255,6 +255,41 @@
     font-size: 8pt;
     font-weight: 600;
 }
+
+        @media print {
+    /* Masquer tout le reste de la page */
+    body * {
+        visibility: hidden !important;
+    }
+    
+    /* Afficher uniquement la carte principale et le verso */
+    #zoneCarteImpressionPresident,
+    #zoneCarteImpressionPresident *,
+    #cadranVerso,
+    #cadranVerso * {
+        visibility: visible !important;
+    }
+
+    /* Positionner la carte en haut à gauche de la page imprimée */
+    #zoneCarteImpressionPresident, #cadranVerso {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+    }
+
+    #cadranVerso {
+        top: 6.5cm !important; /* Place le verso juste sous le recto */
+    }
+
+    /* Supprimer les marges par défaut d'impression */
+    @page {
+        size: A4 portrait;
+        margin: 1cm;
+    }
+}
+
         
     </style>
 </head>
