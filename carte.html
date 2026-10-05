@@ -745,6 +745,24 @@
             }, 300);
         }
 
+        
+        // Fonction pour importer et afficher l'image du Verso
+function chargerImageVerso(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imgVerso = document.getElementById('imgVersoAffiche');
+            const placeholder = document.getElementById('placeholderVerso');
+            
+            imgVerso.src = e.target.result;
+            imgVerso.style.display = 'block';
+            placeholder.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
     </script>
 </body>
 </html>
