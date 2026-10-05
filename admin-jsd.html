@@ -3,35 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Espace Présidence - JSD</title>
+    <title>Espace Présidence - JSD RDC</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 </head>
 <body class="bg-light">
 
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container">
-            <span class="navbar-brand fw-bold text-warning"><i class="bi bi-shield-lock-fill me-2"></i>JSD RDC - Espace Présidence</span>
+    <!-- ÉCRAN DE CONNEXION / MOT DE PASSE -->
+    <div id="loginSection" class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card shadow border-0">
+                    <div class="card-header bg-dark text-white text-center py-3">
+                        <h5 class="fw-bold mb-0"><i class="bi bi-shield-lock-fill text-warning me-2"></i>Accès Restreint - Présidence</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div id="loginAlert" class="alert alert-danger d-none">Mot de passe incorrect !</div>
+                        <form id="formLogin">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Mot de passe d'accès :</label>
+                                <input type="password" id="adminPassword" class="form-control" placeholder="Entrez le mot de passe" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 fw-bold">
+                                <i class="bi bi-box-arrow-in-right me-1"></i> Se connecter
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
+    </div>
 
-    <div class="container my-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="fw-bold"><i class="bi bi-inbox-fill text-primary me-2"></i>Gestion des Adhésions</h3>
-            <button id="btnRefresh" class="btn btn-outline-primary btn-sm"><i class="bi bi-arrow-clockwise"></i> Actualiser</button>
+    <!-- TABLEAU DE BORD ADMIN (MASQUÉ PAR DÉFAUT) -->
+    <div id="adminContent" class="d-none">
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container">
+                <span class="navbar-brand fw-bold text-warning"><i class="bi bi-shield-lock-fill me-2"></i>JSD RDC - Espace Présidence</span>
+                <button id="btnLogout" class="btn btn-outline-light btn-sm"><i class="bi bi-power me-1"></i> Déconnexion</button>
+            </div>
+        </nav>
+
+        <div class="container my-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-bold"><i class="bi bi-inbox-fill text-primary me-2"></i>Gestion des Demandes d'Adhésion</h3>
+                <button id="btnRefresh" class="btn btn-outline-primary btn-sm"><i class="bi bi-arrow-clockwise"></i> Actualiser</button>
+            </div>
+
+            <div id="loading" class="text-center py-5">
+                <div class="spinner-border text-primary" role="status"></div>
+                <p class="mt-2 text-muted">Chargement des candidatures...</p>
+            </div>
+
+            <div id="demandesList" class="row g-4"></div>
         </div>
-
-        <div id="loading" class="text-center py-5">
-            <div class="spinner-border text-primary" role="status"></div>
-            <p class="mt-2 text-muted">Chargement des demandes d'adhésion...</p>
-        </div>
-
-        <div id="demandesList" class="row g-4"></div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, getDocs, doc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // CONFIGURATION DU MOT DE PASSE (Modifiez le mot de passe ci-dessous si besoin)
+        const MOT_DE_PASSE_SECRET = "JSD2026@President";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBlGswEPk6CM4AO7SeqmZeuaFxUWMRlESI",
@@ -44,6 +76,38 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+
+        // VÉRIFICATION DE LA SESSION
+        if (sessionStorage.getItem('jsd_admin_logged') === 'true') {
+            afficherDashboard();
+        }
+
+        // GESTION DE LA CONNEXION
+        document.getElementById('formLogin').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const pass = document.getElementById('adminPassword').value;
+            const alertBox = document.getElementById('loginAlert');
+
+            if (pass === MOT_DE_PASSE_SECRET) {
+                sessionStorage.setItem('jsd_admin_logged', 'true');
+                alertBox.classList.add('d-none');
+                afficherDashboard();
+            } else {
+                alertBox.classList.remove('d-none');
+            }
+        });
+
+        // GESTION DE LA DÉCONNEXION
+        document.getElementById('btnLogout').addEventListener('click', function() {
+            sessionStorage.removeItem('jsd_admin_logged');
+            window.location.reload();
+        });
+
+        function afficherDashboard() {
+            document.getElementById('loginSection').classList.add('d-none');
+            document.getElementById('adminContent').classList.remove('d-none');
+            chargerDemandes();
+        }
 
         async function chargerDemandes() {
             const container = document.getElementById('demandesList');
@@ -58,39 +122,50 @@
                 loading.classList.add('d-none');
 
                 if (querySnapshot.empty) {
-                    container.innerHTML = `<div class="col-12 text-center text-muted">Aucune demande reçue pour le moment.</div>`;
+                    container.innerHTML = `<div class="col-12 text-center text-muted py-4">Aucune demande reçue pour le moment.</div>`;
                     return;
                 }
 
                 querySnapshot.forEach((documentSnap) => {
                     const data = documentSnap.data();
                     const id = documentSnap.id;
+                    const cleanPhone = data.telephone ? data.telephone.replace(/[^0-9]/g, '') : '';
 
                     const col = document.createElement('div');
                     col.className = 'col-md-6 col-lg-4';
                     col.innerHTML = `
                         <div class="card shadow-sm border-0 h-100">
                             <div class="card-header bg-white fw-bold d-flex justify-content-between align-items-center">
-                                <span>${data.nom} ${data.prenom}</span>
-                                <span class="badge bg-secondary small">${data.codeSuivi || 'N/A'}</span>
+                                <span>${data.prenom} ${data.nom}</span>
+                                <span class="badge bg-secondary">${data.codeSuivi || 'N/A'}</span>
                             </div>
                             <div class="card-body">
                                 <p class="mb-1 small"><strong>Qualité :</strong> ${data.statut}</p>
-                                <p class="mb-1 small"><strong>Téléphone :</strong> <a href="https://wa.me/${data.telephone.replace(/[^0-9]/g, '')}" target="_blank">${data.telephone}</a></p>
                                 <p class="mb-1 small"><strong>Ville :</strong> ${data.ville}</p>
+                                <p class="mb-1 small"><strong>Téléphone :</strong> ${data.telephone}</p>
                                 <p class="mb-2 small"><strong>Motivation :</strong> ${data.motivation}</p>
+                                
+                                <div class="d-flex gap-2 my-3">
+                                    <a href="tel:${data.telephone}" class="btn btn-outline-primary btn-sm flex-fill">
+                                        <i class="bi bi-telephone-fill me-1"></i> Appeler
+                                    </a>
+                                    <a href="https://wa.me/${cleanPhone}?text=${encodeURIComponent('Bonjour ' + data.prenom + ', concernant votre demande d\'adhésion à la JSD (Code: ' + data.codeSuivi + ') :')}" target="_blank" class="btn btn-outline-success btn-sm flex-fill">
+                                        <i class="bi bi-whatsapp me-1"></i> WhatsApp
+                                    </a>
+                                </div>
+
                                 <hr>
                                 <div class="mb-2">
-                                    <label class="form-label fw-bold small">Décision & Réponse du Président :</label>
+                                    <label class="form-label fw-bold small">Décision & Réponse confidentielle :</label>
                                     <select id="etat-${id}" class="form-select form-select-sm mb-2">
                                         <option value="En attente de traitement" ${data.etatDemande === 'En attente de traitement' ? 'selected' : ''}>En attente</option>
                                         <option value="Adhésion Approuvée" ${data.etatDemande === 'Adhésion Approuvée' ? 'selected' : ''}>Approuver</option>
                                         <option value="Adhésion Refusée" ${data.etatDemande === 'Adhésion Refusée' ? 'selected' : ''}>Refuser</option>
                                     </select>
-                                    <textarea id="reponse-${id}" class="form-control form-control-sm" rows="3" placeholder="Rédiger une réponse confidentielle...">${data.reponsePresident || ''}</textarea>
+                                    <textarea id="reponse-${id}" class="form-control form-control-sm" rows="3" placeholder="Ex: Votre demande a été approuvée...">${data.reponsePresident || ''}</textarea>
                                 </div>
                                 <button onclick="enregistrerReponse('${id}')" class="btn btn-primary btn-sm w-100 fw-bold">
-                                    <i class="bi bi-check-circle me-1"></i> Transmettre la réponse
+                                    <i class="bi bi-check-circle me-1"></i> Enregistrer & Transmettre
                                 </button>
                             </div>
                         </div>
@@ -100,7 +175,7 @@
             } catch (err) {
                 console.error(err);
                 loading.classList.add('d-none');
-                container.innerHTML = `<div class="col-12 alert alert-danger">Erreur de chargement des données.</div>`;
+                container.innerHTML = `<div class="col-12 alert alert-danger">Erreur lors de la récupération des données.</div>`;
             }
         }
 
@@ -114,15 +189,14 @@
                     etatDemande: etat,
                     reponsePresident: reponse
                 });
-                alert("Réponse transmise avec succès ! L'adhérent pourra la consulter via son code de suivi.");
+                alert("Réponse enregistrée avec succès !");
             } catch (err) {
                 console.error(err);
-                alert("Erreur lors de l'enregistrement de la réponse.");
+                alert("Erreur lors de l'enregistrement.");
             }
         };
 
         document.getElementById('btnRefresh').addEventListener('click', chargerDemandes);
-        chargerDemandes();
     </script>
 </body>
 </html>
