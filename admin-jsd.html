@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Présidence - JSD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <span class="navbar-brand fw-bold text-warning"><i class="bi bi-shield-lock-fill me-2"></i>JSD RDC - Espace Présidence</span>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold"><i class="bi bi-inbox-fill text-primary me-2"></i>Gestion des Adhésions</h3>
+            <button id="btnRefresh" class="btn btn-outline-primary btn-sm"><i class="bi bi-arrow-clockwise"></i> Actualiser</button>
+        </div>
+
+        <div id="loading" class="text-center py-5">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2 text-muted">Chargement des demandes d'adhésion...</p>
+        </div>
+
+        <div id="demandesList" class="row g-4"></div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, doc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBlGswEPk6CM4AO7SeqmZeuaFxUWMRlESI",
+            authDomain: "jeunesse-social-pour-le-dvelop.firebaseapp.com",
+            projectId: "jeunesse-social-pour-le-dvelop",
+            storageBucket: "jeunesse-social-pour-le-dvelop.firebasestorage.app",
+            messagingSenderId: "728224479628",
+            appId: "1:728224479628:web:c43406a998d184d3a63ea9"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function chargerDemandes() {
+            const container = document.getElementById('demandesList');
+            const loading = document.getElementById('loading');
+            container.innerHTML = '';
+            loading.classList.remove('d-none');
+
+            try {
+                const q = query(collection(db, "adhesions"), orderBy("createdAt", "desc"));
+                const querySnapshot = await getDocs(q);
+
+                loading.classList.add('d-none');
+
+                if (querySnapshot.empty) {
+                    container.innerHTML = `<div class="col-12 text-center text-muted">Aucune demande reçue pour le moment.</div>`;
+                    return;
+                }
+
+                querySnapshot.forEach((documentSnap) => {
+                    const data = documentSnap.data();
+                    const id = documentSnap.id;
+
+                    const col = document.createElement('div');
+                    col.className = 'col-md-6 col-lg-4';
+                    col.innerHTML = `
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-header bg-white fw-bold d-flex justify-content-between align-items-center">
+                                <span>${data.nom} ${data.prenom}</span>
+                                <span class="badge bg-secondary small">${data.codeSuivi || 'N/A'}</span>
+                            </div>
+                            <div class="card-body">
+                                <p class="mb-1 small"><strong>Qualité :</strong> ${data.statut}</p>
+                                <p class="mb-1 small"><strong>Téléphone :</strong> <a href="https://wa.me/${data.telephone.replace(/[^0-9]/g, '')}" target="_blank">${data.telephone}</a></p>
+                                <p class="mb-1 small"><strong>Ville :</strong> ${data.ville}</p>
+                                <p class="mb-2 small"><strong>Motivation :</strong> ${data.motivation}</p>
+                                <hr>
+                                <div class="mb-2">
+                                    <label class="form-label fw-bold small">Décision & Réponse du Président :</label>
+                                    <select id="etat-${id}" class="form-select form-select-sm mb-2">
+                                        <option value="En attente de traitement" ${data.etatDemande === 'En attente de traitement' ? 'selected' : ''}>En attente</option>
+                                        <option value="Adhésion Approuvée" ${data.etatDemande === 'Adhésion Approuvée' ? 'selected' : ''}>Approuver</option>
+                                        <option value="Adhésion Refusée" ${data.etatDemande === 'Adhésion Refusée' ? 'selected' : ''}>Refuser</option>
+                                    </select>
+                                    <textarea id="reponse-${id}" class="form-control form-control-sm" rows="3" placeholder="Rédiger une réponse confidentielle...">${data.reponsePresident || ''}</textarea>
+                                </div>
+                                <button onclick="enregistrerReponse('${id}')" class="btn btn-primary btn-sm w-100 fw-bold">
+                                    <i class="bi bi-check-circle me-1"></i> Transmettre la réponse
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(col);
+                });
+            } catch (err) {
+                console.error(err);
+                loading.classList.add('d-none');
+                container.innerHTML = `<div class="col-12 alert alert-danger">Erreur de chargement des données.</div>`;
+            }
+        }
+
+        window.enregistrerReponse = async function(id) {
+            const etat = document.getElementById(`etat-${id}`).value;
+            const reponse = document.getElementById(`reponse-${id}`).value;
+
+            try {
+                const docRef = doc(db, "adhesions", id);
+                await updateDoc(docRef, {
+                    etatDemande: etat,
+                    reponsePresident: reponse
+                });
+                alert("Réponse transmise avec succès ! L'adhérent pourra la consulter via son code de suivi.");
+            } catch (err) {
+                console.error(err);
+                alert("Erreur lors de l'enregistrement de la réponse.");
+            }
+        };
+
+        document.getElementById('btnRefresh').addEventListener('click', chargerDemandes);
+        chargerDemandes();
+    </script>
+</body>
+</html>
