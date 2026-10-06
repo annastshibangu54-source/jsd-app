@@ -52,6 +52,11 @@
                     </button>
                 </li>
                 <li class="nav-item">
+                    <button class="nav-link fw-bold" id="benevoles-tab" data-bs-toggle="pill" data-bs-target="#tab-benevoles">
+                        <i class="bi bi-heart-fill me-2"></i>Candidatures Bénévolat
+                    </button>
+                </li>
+                <li class="nav-item">
                     <button class="nav-link fw-bold" id="rapports-tab" data-bs-toggle="pill" data-bs-target="#tab-rapports">
                         <i class="bi bi-file-earmark-text-fill me-2"></i>Rapports d'Activités
                     </button>
@@ -75,7 +80,39 @@
                     <div id="demandesList" class="row g-4"></div>
                 </div>
 
-                <!-- SECTION 2 : RAPPORTS D'ACTIVITÉS -->
+                <!-- SECTION SÉCURISÉE : CANDIDATURES AU BÉNÉVOLAT -->
+                <div class="tab-pane fade" id="tab-benevoles">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="fw-bold text-primary mb-0">Candidatures au Bénévolat</h4>
+                        <button id="btnRefreshBenevoles" class="btn btn-outline-primary btn-sm"><i class="bi bi-arrow-clockwise"></i> Actualiser</button>
+                    </div>
+
+                    <div id="loadingBenevoles" class="text-center py-5">
+                        <div class="spinner-border text-primary" role="status"></div>
+                        <p class="mt-2 text-muted">Chargement des candidatures de bénévolat...</p>
+                    </div>
+
+                    <div class="card shadow-sm border-0 p-4">
+                        <div class="table-responsive">
+                            <table class="table table-striped align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Nom complet</th>
+                                        <th>Téléphone / WhatsApp</th>
+                                        <th>Domaine</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="listeBenevoles">
+                                    <!-- Les données sécurisées s'afficheront ici -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 3 : RAPPORTS D'ACTIVITÉS -->
                 <div class="tab-pane fade" id="tab-rapports">
                     <div class="row g-4">
                         <!-- FORMULAIRE DE PUBLICATION -->
@@ -130,23 +167,6 @@
             </div>
         </div>
     </div>
-    <div class="card p-4 mt-4">
-    <h3 class="fw-bold text-primary mb-3">Candidatures au Bénévolat</h3>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Nom complet</th>
-                <th>Téléphone / WhatsApp</th>
-                <th>Domaine</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody id="listeBenevoles">
-            <!-- Les données s'afficheront ici -->
-        </tbody>
-    </table>
-</div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -192,198 +212,11 @@
             document.getElementById('loginSection').classList.add('d-none');
             document.getElementById('adminContent').classList.remove('d-none');
             chargerDemandes();
+            chargerBenevoles();
             chargerRapportsAdmin();
         }
 
         // --- GESTION DES ADHÉSIONS ---
         async function chargerDemandes() {
             const container = document.getElementById('demandesList');
-            const loading = document.getElementById('loadingAdhesions');
-            container.innerHTML = '';
-            loading.classList.remove('d-none');
-
-            try {
-                const q = query(collection(db, "adhesions"), orderBy("createdAt", "desc"));
-                const querySnapshot = await getDocs(q);
-                loading.classList.add('d-none');
-
-                if (querySnapshot.empty) {
-                    container.innerHTML = `<div class="col-12 text-center text-muted py-4">Aucune demande reçue pour le moment.</div>`;
-                    return;
-                }
-
-                querySnapshot.forEach((documentSnap) => {
-                    const data = documentSnap.data();
-                    const id = documentSnap.id;
-                    const cleanPhone = data.telephone ? data.telephone.replace(/[^0-9]/g, '') : '';
-
-                    const col = document.createElement('div');
-                    col.className = 'col-md-6 col-lg-4';
-                    col.innerHTML = `
-                        <div class="card shadow-sm border-0 h-100">
-                            <div class="card-header bg-white fw-bold d-flex justify-content-between align-items-center">
-                                <span>${data.prenom} ${data.nom}</span>
-                                <span class="badge bg-secondary">${data.codeSuivi || 'N/A'}</span>
-                            </div>
-                            <div class="card-body">
-                                <p class="mb-1 small"><strong>Qualité :</strong> ${data.statut}</p>
-                                <p class="mb-1 small"><strong>Ville :</strong> ${data.ville}</p>
-                                <p class="mb-1 small"><strong>Téléphone :</strong> ${data.telephone}</p>
-                                <p class="mb-2 small"><strong>Motivation :</strong> ${data.motivation}</p>
-                                
-                                <div class="d-flex gap-2 my-3">
-                                    <a href="tel:${data.telephone}" class="btn btn-outline-primary btn-sm flex-fill"><i class="bi bi-telephone-fill me-1"></i> Appeler</a>
-                                    <a href="https://wa.me/${cleanPhone}?text=${encodeURIComponent('Bonjour ' + data.prenom + ', concernant votre demande d\'adhésion à la JSD (Code: ' + data.codeSuivi + ') :')}" target="_blank" class="btn btn-outline-success btn-sm flex-fill"><i class="bi bi-whatsapp me-1"></i> WhatsApp</a>
-                                </div>
-
-                                <hr>
-                                <div class="mb-2">
-                                    <label class="form-label fw-bold small">Décision & Réponse confidentielle :</label>
-                                    <select id="etat-${id}" class="form-select form-select-sm mb-2">
-                                        <option value="En attente de traitement" ${data.etatDemande === 'En attente de traitement' ? 'selected' : ''}>En attente</option>
-                                        <option value="Adhésion Approuvée" ${data.etatDemande === 'Adhésion Approuvée' ? 'selected' : ''}>Approuver</option>
-                                        <option value="Adhésion Refusée" ${data.etatDemande === 'Adhésion Refusée' ? 'selected' : ''}>Refuser</option>
-                                    </select>
-                                    <textarea id="reponse-${id}" class="form-control form-control-sm" rows="3" placeholder="Ex: Votre demande a été approuvée...">${data.reponsePresident || ''}</textarea>
-                                </div>
-                                <div class="d-flex gap-2 mt-3">
-                                    <button onclick="enregistrerReponse('${id}')" class="btn btn-primary btn-sm flex-fill fw-bold"><i class="bi bi-check-circle me-1"></i> Enregistrer</button>
-                                    <button onclick="supprimerDemande('${id}', '${data.prenom} ${data.nom}')" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    container.appendChild(col);
-                });
-            } catch (err) {
-                console.error(err);
-                loading.classList.add('d-none');
-            }
-        }
-
-        window.enregistrerReponse = async function(id) {
-            try {
-                await updateDoc(doc(db, "adhesions", id), {
-                    etatDemande: document.getElementById(`etat-${id}`).value,
-                    reponsePresident: document.getElementById(`reponse-${id}`).value
-                });
-                alert("Réponse enregistrée avec succès !");
-            } catch (err) {
-                console.error(err);
-                alert("Erreur lors de l'enregistrement.");
-            }
-        };
-
-        window.supprimerDemande = async function(id, nomComplet) {
-            if (confirm(`Supprimer la demande de ${nomComplet} ?`)) {
-                try {
-                    await deleteDoc(doc(db, "adhesions", id));
-                    alert("Demande supprimée.");
-                    chargerDemandes();
-                } catch (err) {
-                    console.error(err);
-                }
-            }
-        };
-
-        // --- GESTION DES RAPPORTS D'ACTIVITÉS ---
-        document.getElementById('formRapport').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            try {
-                await addDoc(collection(db, "rapports"), {
-                    titre: document.getElementById('rapTitre').value.trim(),
-                    periode: document.getElementById('rapPeriode').value.trim(),
-                    description: document.getElementById('rapDesc').value.trim(),
-                    lienDocument: document.getElementById('rapLien').value.trim() || "",
-                    createdAt: serverTimestamp()
-                });
-                alert("Rapport publié avec succès !");
-                document.getElementById('formRapport').reset();
-                chargerRapportsAdmin();
-            } catch (err) {
-                console.error(err);
-                alert("Erreur lors de la publication.");
-            }
-        });
-
-        async function chargerRapportsAdmin() {
-            const container = document.getElementById('rapportsAdminList');
-            const loading = document.getElementById('loadingRapports');
-            container.innerHTML = '';
-            loading.classList.remove('d-none');
-
-            try {
-                const q = query(collection(db, "rapports"), orderBy("createdAt", "desc"));
-                const querySnapshot = await getDocs(q);
-                loading.classList.add('d-none');
-
-                if (querySnapshot.empty) {
-                    container.innerHTML = `<div class="col-12 text-center text-muted py-4">Aucun rapport publié.</div>`;
-                    return;
-                }
-
-                querySnapshot.forEach((docSnap) => {
-                    const data = docSnap.data();
-                    const id = docSnap.id;
-
-                    const col = document.createElement('div');
-                    col.className = 'col-12';
-                    col.innerHTML = `
-                        <div class="card shadow-sm border-0">
-                            <div class="card-body d-flex justify-content-between align-items-center">
-                                <div>
-                                    <span class="badge bg-primary mb-1">${data.periode}</span>
-                                    <h6 class="fw-bold mb-1">${data.titre}</h6>
-                                    <p class="small text-muted mb-0">${data.description}</p>
-                                </div>
-                                <button onclick="supprimerRapport('${id}')" class="btn btn-outline-danger btn-sm ms-2">
-                                    <i class="bi bi-trash-fill"></i> Supprimer
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                    container.appendChild(col);
-                });
-            } catch (err) {
-                console.error(err);
-                loading.classList.add('d-none');
-            }
-        }
-
-        window.supprimerRapport = async function(id) {
-            if (confirm("Voulez-vous supprimer ce rapport d'activité ?")) {
-                try {
-                    await deleteDoc(doc(db, "rapports", id));
-                    alert("Rapport supprimé.");
-                    chargerRapportsAdmin();
-                } catch (err) {
-                    console.error(err);
-                }
-            }
-        };
-
-        document.getElementById('btnRefreshAdhesions').addEventListener('click', chargerDemandes);
-        document.getElementById('btnRefreshRapports').addEventListener('click', chargerRapportsAdmin);
-        // Chargement automatique des bénévoles
-db.collection('benevolats').orderBy('date', 'desc').onSnapshot((snapshot) => {
-    let html = '';
-    snapshot.forEach((doc) => {
-        const data = doc.data();
-        html += `
-            <tr>
-                <td>${data.nom}</td>
-                <td>${data.phone}</td>
-                <td><span class="badge bg-info text-dark">${data.domaine}</span></td>
-                <td>${new Date(data.date).toLocaleDateString()}</td>
-            </tr>
-        `;
-    });
-    document.getElementById('listeBenevoles').innerHTML = html;
-});
-match /benevolats/{docId} {
-  allow read, write: if true;
-}
-
-    </script>
-</body>
-</html>
+            
