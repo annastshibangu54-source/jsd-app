@@ -2215,6 +2215,42 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     });
   });
 
+
+    <---->
+  // LECTURE EN TEMPS RÉEL DES CANDIDATURES POUR LE PRÉSIDENT
+  onSnapshot(collection(db, "benevolats"), (snapshot) => {
+    const tbody = document.getElementById("corpsTableauBenevoles") || document.querySelector("tbody");
+    if (!tbody) return;
+
+    tbody.innerHTML = "";
+
+    if (snapshot.empty) {
+      tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Aucune candidature enregistrée pour le moment.</td></tr>`;
+      return;
+    }
+
+    snapshot.docs.forEach((docSnap) => {
+      const data = docSnap.data();
+      const dateFormatee = data.date ? new Date(data.date).toLocaleDateString('fr-FR') : '-';
+      const numClean = (data.phone || '').replace(/[^0-9]/g, '');
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><strong>${data.nom || '-'}</strong></td>
+        <td>${data.phone || '-'}</td>
+        <td><span class="badge bg-primary">${data.domaine || '-'}</span></td>
+        <td>${dateFormatee}</td>
+        <td>
+          <a href="https://wa.me/${numClean}" target="_blank" class="btn btn-sm btn-success">
+            Contacter
+          </a>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  });
+
+        
 </script>
     </body>
 </html>
