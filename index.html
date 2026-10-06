@@ -2494,6 +2494,32 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   });
 
   document.addEventListener("DOMContentLoaded", initialiserNotifications);
+    // Écoute de la soumission du formulaire Bénévolat
+document.getElementById('benevolatForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const nom = document.getElementById('benevoleNom').value;
+    const phone = document.getElementById('benevolePhone').value;
+    const domaine = document.getElementById('benevoleDomaine').value;
+
+    try {
+        // Enregistrement dans la collection 'benevolats'
+        await db.collection('benevolats').add({
+            nom: nom,
+            phone: phone,
+            domaine: domaine,
+            date: new Date().toISOString(),
+            statut: 'En attente'
+        });
+
+        alert('Votre candidature a été envoyée avec succès !');
+        document.getElementById('benevolatForm').reset();
+    } catch (error) {
+        console.error("Erreur d'enregistrement :", error);
+        alert("Erreur lors de l'envoi : " + error.message);
+    }
+});
+
 </script>
     </body>
 </html>
