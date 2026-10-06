@@ -2494,31 +2494,57 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   });
 
   document.addEventListener("DOMContentLoaded", initialiserNotifications);
-    // Écoute de la soumission du formulaire Bénévolat
-document.getElementById('benevolatForm')?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    <!-- En bas de votre fichier HTML -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { 
+        getFirestore, 
+        collection, 
+        addDoc, 
+        serverTimestamp 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    const nom = document.getElementById('benevoleNom').value;
-    const phone = document.getElementById('benevolePhone').value;
-    const domaine = document.getElementById('benevoleDomaine').value;
+    // Votre configuration Firebase
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT.firebaseapp.com",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_PROJECT.appspot.com",
+        messagingSenderId: "SENDER_ID",
+        appId: "APP_ID"
+    };
 
-    try {
-        // Enregistrement dans la collection 'benevolats'
-        await db.collection('benevolats').add({
-            nom: nom,
-            phone: phone,
-            domaine: domaine,
-            date: new Date().toISOString(),
-            statut: 'En attente'
-        });
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-        alert('Votre candidature a été envoyée avec succès !');
-        document.getElementById('benevolatForm').reset();
-    } catch (error) {
-        console.error("Erreur d'enregistrement :", error);
-        alert("Erreur lors de l'envoi : " + error.message);
-    }
-});
+    // 👇 REMPLACEZ OU AJOUTEZ LE CODE ICI 👇
+    document.getElementById('formBenevole').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const nomInput = document.getElementById('benevoleNom').value.trim();
+        const phoneInput = document.getElementById('benevolePhone').value.trim();
+        const domaineInput = document.getElementById('benevoleDomaine').value;
+
+        try {
+            await addDoc(collection(db, "benevolats"), {
+                nom: nomInput,
+                phone: phoneInput,
+                domaine: domaineInput,
+                date: new Date().toISOString(),
+                createdAt: serverTimestamp()
+            });
+
+            alert("Votre candidature au bénévolat a été envoyée avec succès !");
+            document.getElementById('formBenevole').reset();
+
+        } catch (error) {
+            console.error("Erreur d'envoi :", error);
+            alert("Erreur lors de l'envoi : " + error.message);
+        }
+    });
+    // 👆 FIN DU BLOC 👆
+
+</script>
 
 </script>
     </body>
