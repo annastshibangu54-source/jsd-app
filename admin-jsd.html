@@ -60,7 +60,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, doc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, doc, updateDoc, deleteDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         // CONFIGURATION DU MOT DE PASSE (Modifiez le mot de passe ci-dessous si besoin)
         const MOT_DE_PASSE_SECRET = "JSD2026@President";
@@ -164,9 +164,14 @@
                                     </select>
                                     <textarea id="reponse-${id}" class="form-control form-control-sm" rows="3" placeholder="Ex: Votre demande a été approuvée...">${data.reponsePresident || ''}</textarea>
                                 </div>
-                                <button onclick="enregistrerReponse('${id}')" class="btn btn-primary btn-sm w-100 fw-bold">
-                                    <i class="bi bi-check-circle me-1"></i> Enregistrer & Transmettre
-                                </button>
+                                <div class="d-flex gap-2 mt-3">
+                                    <button onclick="enregistrerReponse('${id}')" class="btn btn-primary btn-sm flex-fill fw-bold">
+                                        <i class="bi bi-check-circle me-1"></i> Enregistrer & Transmettre
+                                    </button>
+                                    <button onclick="supprimerDemande('${id}', '${data.prenom} ${data.nom}')" class="btn btn-outline-danger btn-sm" title="Supprimer la demande">
+                                        <i class="bi bi-trash-fill"></i> Supprimer
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     `;
@@ -193,6 +198,21 @@
             } catch (err) {
                 console.error(err);
                 alert("Erreur lors de l'enregistrement.");
+            }
+        };
+
+        // NOUVELLE FONCTION : SUPPRESSION D'UNE DEMANDE D'ADHÉSION
+        window.supprimerDemande = async function(id, nomComplet) {
+            if (confirm(`Êtes-vous sûr de vouloir supprimer définitivement la demande de ${nomComplet} ?`)) {
+                try {
+                    const docRef = doc(db, "adhesions", id);
+                    await deleteDoc(docRef);
+                    alert("La demande a été supprimée avec succès.");
+                    chargerDemandes();
+                } catch (err) {
+                    console.error(err);
+                    alert("Erreur lors de la suppression de la demande.");
+                }
             }
         };
 
