@@ -2153,6 +2153,40 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   function initialiserNotifications() {
     // Emplacement pour la gestion des notifications générales si besoin
   }
+      // 4. NOTIFICATIONS SIMPLES
+  function initialiserNotifications() {
+    // Emplacement pour la gestion des notifications générales si besoin
+  }
+
+  // 5. GESTION DU FORMULAIRE BÉNÉVOLAT
+  const formBenevole = document.getElementById('formBenevole');
+  if (formBenevole) {
+      formBenevole.addEventListener('submit', async function(e) {
+          e.preventDefault();
+
+          const nomInput = document.getElementById('benevoleNom').value.trim();
+          const phoneInput = document.getElementById('benevolePhone').value.trim();
+          const domaineInput = document.getElementById('benevoleDomaine').value;
+
+          try {
+              await addDoc(collection(db, "benevolats"), {
+                  nom: nomInput,
+                  phone: phoneInput,
+                  domaine: domaineInput,
+                  date: new Date().toISOString(),
+                  createdAt: serverTimestamp()
+              });
+
+              alert("Votre candidature au bénévolat a été envoyée avec succès !");
+              formBenevole.reset();
+
+          } catch (error) {
+              console.error("Erreur d'envoi :", error);
+              alert("Erreur lors de l'envoi : " + error.message);
+          }
+      });
+  }
+
 </script>
     </body>
 </html>
