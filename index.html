@@ -2186,6 +2186,34 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
           }
       });
   }
+    
+  // 6. AFFICHAGE EN TEMPS RÉEL DES CANDIDATURES DANS L'ESPACE PRÉSIDENCE
+  onSnapshot(collection(db, "benevolats"), (snapshot) => {
+    const conteneurTableau = document.querySelector("#benevolatTable tbody") || document.querySelector(".table tbody");
+    if (!conteneurTableau) return;
+
+    conteneurTableau.innerHTML = "";
+
+    if (snapshot.empty) {
+      conteneurTableau.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Aucune candidature enregistrée pour le moment.</td></tr>`;
+      return;
+    }
+
+    snapshot.docs.forEach((docSnap) => {
+      const data = docSnap.data();
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><strong>${data.nom || '-'}</strong></td>
+        <td>${data.phone || '-'}</td>
+        <td><span class="badge bg-primary">${data.domaine || '-'}</span></td>
+        <td>${data.date ? new Date(data.date).toLocaleDateString('fr-FR') : '-'}</td>
+        <td>
+          <a href="https://wa.me/${(data.phone || '').replace(/[^0-9]/g, '')}" target="_blank" class="btn btn-xs btn-success">WhatsApp</a>
+        </td>
+      `;
+      conteneurTableau.appendChild(tr);
+    });
+  });
 
 </script>
     </body>
