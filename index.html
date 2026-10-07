@@ -1451,7 +1451,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         <!-- SCRIPT FIREBASE UNIQUE ET SÉCURISÉ -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, where, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, where, orderBy, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
   // Configuration Firebase officielle JSD
   const firebaseConfig = {
@@ -1511,33 +1511,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     const dateEv = document.getElementById("evDate").value.trim();
     const lieu = document.getElementById("evLieu").value.trim();
     const places = document.getElementById("evPlaces").value;
-
-    if (!titre || !desc) {
-      alert("Veuillez saisir au moins un titre et une description pour l'événement.");
-      return;
-    }
-
-    try {
-      await addDoc(collection(db, "evenements"), {
-        titre, description: desc, date: dateEv, lieu, places,
-        timestamp: Date.now(),
-        createdAt: serverTimestamp()
-      });
-      alert("Événement publié avec succès !");
-      document.getElementById("formulairePublicatEvent").style.display = "none";
-    } catch (err) {
-      console.error("Erreur d'envoi d'événement :", err);
-      alert("Erreur lors de la publication : " + err.message);
-    }
-  };
-      
-  // FONCTION UNIQUE DE PUBLICATION
-  window.publierNouvelEvenement = async function() {
-    const titre = document.getElementById("evTitre").value.trim();
-    const desc = document.getElementById("evDescription").value.trim();
-    const dateEv = document.getElementById("evDate").value.trim();
-    const lieu = document.getElementById("evLieu").value.trim();
-    const places = document.getElementById("evPlaces").value;
     const fichierInput = document.getElementById("evFichierImage");
 
     if (!titre || !desc) {
@@ -1547,7 +1520,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
     let imageBase64 = "";
 
-    // Si une image est sélectionnée, on la lit d'abord puis on enregistre
     if (fichierInput && fichierInput.files && fichierInput.files[0]) {
       const file = fichierInput.files[0];
       const reader = new FileReader();
@@ -1558,7 +1530,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       };
       reader.readAsDataURL(file);
     } else {
-      // Pas d'image, enregistrement direct
       await enregistrerEvenementFirebase(titre, desc, dateEv, lieu, places, "");
     }
   };
@@ -1572,7 +1543,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       });
       alert("Événement publié avec succès !");
       
-      // Nettoyage et fermeture du formulaire
       document.getElementById("formulairePublicatEvent").style.display = "none";
       document.getElementById("evTitre").value = "";
       document.getElementById("evDescription").value = "";
@@ -1603,7 +1573,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       alert("Accès refusé ! Code secret incorrect.");
     }
   };
-
 
   // 2. GESTION DES MEMBRES
   window.enregistrerMembre = async function(event) {
@@ -1956,18 +1925,18 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       }
     } catch (err) {
       console.error("Erreur d'accès :", err);
-      alert("Erreur lors de la vérification des identifiants.");
+      alert("Erreur de connexion au serveur : " + err.message);
     }
   };
 
   window.connexionPresidentChat = function() {
-    const codeSaisi = prompt("Saisissez le code secret du Président pour accéder à l'administration du chat :");
-    if (codeSaisi && codeSaisi.trim() === CODE_SECRET_PRESIDENT) {
+    const code = prompt("ACCÈS PRÉSIDENT :\nVeuillez saisir le code secret :");
+    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
       estModePresidentChat = true;
-      membreChatSession = { nom: "Président JSD", matricule: "PRESIDENT" };
+      membreChatSession = { id: "president", nom: "Président JSD", matricule: "PRESIDENT" };
       ouvrirEspaceDiscussionPresident();
-    } else if (codeSaisi !== null) {
-      alert("Code secret incorrect !");
+    } else if (code !== null) {
+      alert("Code secret incorrect.");
     }
   };
 
@@ -1976,61 +1945,45 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     document.getElementById("blocDiscussionChat").style.display = "block";
     document.getElementById("vueDiscussionMembre").style.display = "block";
     document.getElementById("vueDiscussionPresident").style.display = "none";
-
-    document.getElementById("libelleMembreConnecte").innerText = `${membreChatSession.nom} (${membreChatSession.matricule})`;
-    document.getElementById("badgeStatutConnexion").innerText = "Membre Connecté";
+    document.getElementById("libelleMembreConnecte").textContent = `${membreChatSession.nom} (${membreChatSession.matricule})`;
+    document.getElementById("badgeStatutConnexion").textContent = "Connecté : " + membreChatSession.matricule;
     document.getElementById("badgeStatutConnexion").className = "badge bg-success text-white";
 
-    ecouterMessagesMembre(membreChatSession.id);
+    ecouterMessagesMembre();
   }
 
-  function ouvrirEspaceDiscussionPresident() {
-    document.getElementById("blocConnexionChat").style.display = "none";
-    document.getElementById("blocDiscussionChat").style.display = "block";
-    document.getElementById("vueDiscussionMembre").style.display = "none";
-    document.getElementById("vueDiscussionPresident").style.display = "block";
+  function ecouterMessagesMembre() {
+    if (unsubscribeMessagesMembre) unsubscribeMessagesMembre();
 
-    document.getElementById("badgeStatutConnexion").innerText = "Président (Admin)";
-    document.getElementById("badgeStatutConnexion").className = "badge bg-danger text-white";
-
-    chargerListeConversationsPresident();
-  }
-
-  function ecouterMessagesMembre(membreId) {
     const q = query(
       collection(db, "messages"),
-      where("membreId", "==", membreId)
+      where("membreId", "==", membreChatSession.id)
     );
-
-    if (unsubscribeMessagesMembre) unsubscribeMessagesMembre();
 
     unsubscribeMessagesMembre = onSnapshot(q, (snapshot) => {
       const boite = document.getElementById("boiteMessagesMembre");
       boite.innerHTML = "";
 
-      let messages = [];
-      snapshot.forEach(docSnap => {
-        messages.push({ id: docSnap.id, ...docSnap.data() });
-      });
-
-      messages.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
-
-      if (messages.length === 0) {
-        boite.innerHTML = `<p class="text-muted text-center my-4">Aucun message pour le moment. Écrivez au Président ci-dessous.</p>`;
+      if (snapshot.empty) {
+        boite.innerHTML = `<p class="text-muted text-center my-4">Aucun message pour le moment. Écrivez votre premier message au Président.</p>`;
         return;
       }
 
-      messages.forEach((msg) => {
-        const estMoi = msg.expediteur === "membre";
-        const divMsg = document.createElement("div");
-        divMsg.className = `d-flex mb-2 ${estMoi ? 'justify-content-end' : 'justify-content-start'}`;
-        divMsg.innerHTML = `
-          <div class="p-2 px-3 rounded ${estMoi ? 'bg-primary text-white' : 'bg-light text-dark border'}" style="max-width: 75%;">
-            <small class="d-block fw-bold" style="font-size: 0.75rem;">${estMoi ? 'Vous' : 'Président JSD'}</small>
-            <span>${msg.texte}</span>
+      let msgs = [];
+      snapshot.docs.forEach(d => msgs.push({ id: d.id, ...d.data() }));
+      msgs.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+
+      msgs.forEach(m => {
+        const estPres = m.expediteur === "president";
+        const div = document.createElement("div");
+        div.className = `d-flex flex-column ${estPres ? 'align-items-start' : 'align-items-end'} mb-2`;
+        div.innerHTML = `
+          <div class="p-2 rounded ${estPres ? 'bg-light text-dark border' : 'bg-primary text-white'}" style="max-width: 75%;">
+            <small class="fw-bold d-block mb-1">${estPres ? 'Président JSD' : 'Vous'}</small>
+            <span>${m.texte}</span>
           </div>
         `;
-        boite.appendChild(divMsg);
+        boite.appendChild(div);
       });
 
       boite.scrollTop = boite.scrollHeight;
@@ -2039,8 +1992,8 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
   window.envoyerMessageMembre = async function(e) {
     if (e) e.preventDefault();
-    const champ = document.getElementById("champMessageMembre");
-    const texte = champ.value.trim();
+    const input = document.getElementById("champMessageMembre");
+    const texte = input.value.trim();
 
     if (!texte || !membreChatSession) return;
 
@@ -2052,101 +2005,102 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         expediteur: "membre",
         texte: texte,
         timestamp: Date.now(),
-        dateCreation: serverTimestamp()
+        createdAt: serverTimestamp()
       });
-      champ.value = "";
+      input.value = "";
     } catch (err) {
-      console.error("Erreur d'envoi :", err);
-      alert("Erreur lors de l'envoi du message.");
+      alert("Erreur lors de l'envoi : " + err.message);
     }
   };
 
-  function chargerListeConversationsPresident() {
-    onSnapshot(collection(db, "messages"), (snapshot) => {
-      const conversationsMap = new Map();
+  function ouvrirEspaceDiscussionPresident() {
+    document.getElementById("blocConnexionChat").style.display = "none";
+    document.getElementById("blocDiscussionChat").style.display = "block";
+    document.getElementById("vueDiscussionMembre").style.display = "none";
+    document.getElementById("vueDiscussionPresident").style.display = "block";
+    document.getElementById("badgeStatutConnexion").textContent = "Connecté : Président JSD";
+    document.getElementById("badgeStatutConnexion").className = "badge bg-warning text-dark";
 
-      snapshot.forEach(docSnap => {
-        const data = docSnap.data();
-        if (data.membreId) {
-          if (!conversationsMap.has(data.membreId)) {
-            conversationsMap.set(data.membreId, {
-              membreId: data.membreId,
-              membreNom: data.membreNom || "Membre Inconnu",
-              membreMatricule: data.membreMatricule || "",
-              dernierTimestamp: data.timestamp || 0
-            });
-          } else {
-            const current = conversationsMap.get(data.membreId);
-            if ((data.timestamp || 0) > current.dernierTimestamp) {
-              current.dernierTimestamp = data.timestamp || 0;
-            }
+    ecouterConversationsMembresForPresident();
+  }
+
+  function ecouterConversationsMembresForPresident() {
+    onSnapshot(collection(db, "messages"), (snapshot) => {
+      const containerList = document.getElementById("listeConversationsMembres");
+      containerList.innerHTML = "";
+
+      let conversationsMap = {};
+
+      snapshot.docs.forEach(d => {
+        const m = d.data();
+        if (m.membreId) {
+          if (!conversationsMap[m.membreId] || (m.timestamp || 0) > conversationsMap[m.membreId].lastTimestamp) {
+            conversationsMap[m.membreId] = {
+              membreId: m.membreId,
+              membreNom: m.membreNom || "Membre",
+              membreMatricule: m.membreMatricule || "",
+              dernierTexte: m.texte,
+              lastTimestamp: m.timestamp || 0
+            };
           }
         }
       });
 
-      const listeUI = document.getElementById("listeConversationsMembres");
-      listeUI.innerHTML = "";
+      const listes = Object.values(conversationsMap).sort((a, b) => b.lastTimestamp - a.lastTimestamp);
 
-      const convs = Array.from(conversationsMap.values());
-      convs.sort((a, b) => b.dernierTimestamp - a.dernierTimestamp);
-
-      if (convs.length === 0) {
-        listeUI.innerHTML = `<p class="text-muted p-2">Aucune conversation en cours.</p>`;
+      if (listes.length === 0) {
+        containerList.innerHTML = `<p class="text-muted p-2">Aucune conversation enregistrée.</p>`;
         return;
       }
 
-      convs.forEach(c => {
-        const item = document.createElement("button");
-        item.type = "button";
-        item.className = `list-group-item list-group-item-action ${c.membreId === conversationActiveMembreId ? 'active' : ''}`;
-        item.innerHTML = `
+      listes.forEach(c => {
+        const a = document.createElement("a");
+        a.href = "javascript:void(0)";
+        a.className = `list-group-item list-group-item-action ${conversationActiveMembreId === c.membreId ? 'active' : ''}`;
+        a.innerHTML = `
           <div class="d-flex w-100 justify-content-between">
             <h6 class="mb-1 fw-bold">${c.membreNom}</h6>
+            <small>${c.membreMatricule}</small>
           </div>
-          <small>${c.membreMatricule}</small>
+          <p class="mb-1 text-truncate small">${c.dernierTexte}</p>
         `;
-        item.onclick = () => ouvrirDiscussionPresidentAvecMembre(c.membreId, c.membreNom, c.membreMatricule);
-        listeUI.appendChild(item);
+        a.onclick = () => chargerDiscussionMembrePresident(c.membreId, c.membreNom, c.membreMatricule);
+        containerList.appendChild(a);
       });
     });
   }
 
-  function ouvrirDiscussionPresidentAvecMembre(mId, mNom, mMatricule) {
+  function chargerDiscussionMembrePresident(mId, mNom, mMat) {
     conversationActiveMembreId = mId;
-    document.getElementById("titreDiscussionActive").innerText = `Discussion avec : ${mNom} (${mMatricule})`;
+    document.getElementById("titreDiscussionActive").textContent = `Discussion avec : ${mNom} (${mMat})`;
     document.getElementById("formEnvoyerReponsePresident").style.display = "block";
 
-    chargerListeConversationsPresident();
+    if (unsubscribeMessagesPresident) unsubscribeMessagesPresident();
 
     const q = query(
       collection(db, "messages"),
       where("membreId", "==", mId)
     );
 
-    if (unsubscribeMessagesPresident) unsubscribeMessagesPresident();
-
     unsubscribeMessagesPresident = onSnapshot(q, (snapshot) => {
       const boite = document.getElementById("boiteMessagesPresident");
       boite.innerHTML = "";
 
-      let messages = [];
-      snapshot.forEach(docSnap => {
-        messages.push({ id: docSnap.id, ...docSnap.data() });
-      });
+      let msgs = [];
+      snapshot.docs.forEach(d => msgs.push({ id: d.id, ...d.data() }));
+      msgs.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
 
-      messages.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
-
-      messages.forEach((msg) => {
-        const estPresident = msg.expediteur === "president";
-        const divMsg = document.createElement("div");
-        divMsg.className = `d-flex mb-2 ${estPresident ? 'justify-content-end' : 'justify-content-start'}`;
-        divMsg.innerHTML = `
-          <div class="p-2 px-3 rounded ${estPresident ? 'bg-success text-white' : 'bg-light text-dark border'}" style="max-width: 75%;">
-            <small class="d-block fw-bold" style="font-size: 0.75rem;">${estPresident ? 'Vous (Président)' : mNom}</small>
-            <span>${msg.texte}</span>
+      msgs.forEach(m => {
+        const estPres = m.expediteur === "president";
+        const div = document.createElement("div");
+        div.className = `d-flex flex-column ${estPres ? 'align-items-end' : 'align-items-start'} mb-2`;
+        div.innerHTML = `
+          <div class="p-2 rounded ${estPres ? 'bg-success text-white' : 'bg-light text-dark border'}" style="max-width: 75%;">
+            <small class="fw-bold d-block mb-1">${estPres ? 'Vous (Président)' : mNom}</small>
+            <span>${m.texte}</span>
           </div>
         `;
-        boite.appendChild(divMsg);
+        boite.appendChild(div);
       });
 
       boite.scrollTop = boite.scrollHeight;
@@ -2155,8 +2109,8 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
   window.envoyerReponsePresident = async function(e) {
     if (e) e.preventDefault();
-    const champ = document.getElementById("champReponsePresident");
-    const texte = champ.value.trim();
+    const input = document.getElementById("champReponsePresident");
+    const texte = input.value.trim();
 
     if (!texte || !conversationActiveMembreId) return;
 
@@ -2166,157 +2120,13 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         expediteur: "president",
         texte: texte,
         timestamp: Date.now(),
-        dateCreation: serverTimestamp()
-      });
-      champ.value = "";
-    } catch (err) {
-      console.error("Erreur d'envoi du président :", err);
-      alert("Erreur lors de l'envoi de la réponse.");
-    }
-  };
-
-  // 5. SOUMISSION BÉNÉVOLAT
-  const formBenevole = document.getElementById('formBenevole');
-  if (formBenevole) {
-      formBenevole.addEventListener('submit', async function(e) {
-          e.preventDefault();
-
-          const nomInput = document.getElementById('benevoleNom').value.trim();
-          const phoneInput = document.getElementById('benevolePhone').value.trim();
-          const domaineInput = document.getElementById('benevoleDomaine').value;
-
-          try {
-              await addDoc(collection(db, "benevolats"), {
-                  nom: nomInput,
-                  phone: phoneInput,
-                  domaine: domaineInput,
-                  date: new Date().toISOString(),
-                  createdAt: serverTimestamp()
-              });
-
-              alert("Votre candidature au bénévolat a été envoyée avec succès !");
-              formBenevole.reset();
-
-          } catch (error) {
-              console.error("Erreur d'envoi :", error);
-              alert("Erreur lors de l'envoi : " + error.message);
-          }
-      });
-  }
-
-  // LECTURE EN TEMPS RÉEL DES BÉNÉVOLES (INJECTÉE UNIQUEMENT APPRÈS DÉVERROUILLAGE)
-  onSnapshot(collection(db, "benevolats"), (snapshot) => {
-    const tbody = document.getElementById("corpsTableauBenevoles");
-    if (!tbody) return;
-
-    tbody.innerHTML = "";
-
-    if (snapshot.empty) {
-      tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Aucune candidature enregistrée pour le moment.</td></tr>`;
-      return;
-    }
-
-    snapshot.docs.forEach((docSnap) => {
-      const data = docSnap.data();
-      const dateFormatee = data.date ? new Date(data.date).toLocaleDateString('fr-FR') : '-';
-      const numClean = (data.phone || '').replace(/[^0-9]/g, '');
-
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td><strong>${data.nom || '-'}</strong></td>
-        <td>${data.phone || '-'}</td>
-        <td><span class="badge bg-primary">${data.domaine || '-'}</span></td>
-        <td>${dateFormatee}</td>
-        <td>
-          <a href="https://wa.me/${numClean}" target="_blank" class="btn btn-sm btn-success">
-            Contacter WhatsApp
-          </a>
-        </td>
-      `;
-      tbody.appendChild(tr);
-    });
-  });
-
-  // 6. NOTIFICATIONS
-  function initialiserNotifications() {
-    onSnapshot(collection(db, "notifications"), (snapshot) => {
-      const conteneur = document.getElementById("notif-widget-container");
-      if (!conteneur) return;
-
-      conteneur.innerHTML = "";
-      if (snapshot.empty) return;
-
-      snapshot.docs.forEach((docSnap) => {
-        const notif = docSnap.data();
-        const div = document.createElement("div");
-        div.className = "alert alert-info alert-dismissible fade show p-2 px-3 shadow-sm";
-        div.innerHTML = `
-          <strong>📢 Notification :</strong> ${notif.message || ''}
-          <button type="button" class="btn-close py-2" data-bs-dismiss="alert"></button>
-        `;
-        conteneur.appendChild(div);
-      });
-    });
-  }
-
-  initialiserNotifications();
-      // FONCTION COMPLÈTE AVEC GESTION DE L'IMAGE
-  window.publierNouvelEvenement = async function() {
-    const titre = document.getElementById("evTitre").value.trim();
-    const desc = document.getElementById("evDescription").value.trim();
-    const dateEv = document.getElementById("evDate") ? document.getElementById("evDate").value.trim() : "";
-    const lieu = document.getElementById("evLieu") ? document.getElementById("evLieu").value.trim() : "";
-    const places = document.getElementById("evPlaces") ? document.getElementById("evPlaces").value : "";
-    const fichierInput = document.getElementById("evFichierImage");
-
-    if (!titre || !desc) {
-      alert("Veuillez saisir au moins un titre et une description pour l'événement.");
-      return;
-    }
-
-    let imageBase64 = "";
-
-    // Convertir l'image en Base64 de manière sécurisée (Promise)
-    if (fichierInput && fichierInput.files && fichierInput.files[0]) {
-      const file = fichierInput.files[0];
-      imageBase64 = await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = (e) => resolve(e.target.result);
-        reader.onerror = () => resolve("");
-        reader.readAsDataURL(file);
-      });
-    }
-
-    // Envoi dans Firestore
-    try {
-      await addDoc(collection(db, "evenements"), {
-        titre: titre,
-        description: desc,
-        date: dateEv,
-        lieu: lieu,
-        places: places,
-        image: imageBase64, // L'image au format Base64 est envoyée ici
-        timestamp: Date.now(),
         createdAt: serverTimestamp()
       });
-
-      alert("Événement publié avec succès !");
-
-      // Réinitialisation du formulaire
-      document.getElementById("formulairePublicatEvent").style.display = "none";
-      document.getElementById("evTitre").value = "";
-      document.getElementById("evDescription").value = "";
-      if (document.getElementById("evDate")) document.getElementById("evDate").value = "";
-      if (document.getElementById("evLieu")) document.getElementById("evLieu").value = "";
-      if (document.getElementById("evPlaces")) document.getElementById("evPlaces").value = "";
-      if (fichierInput) fichierInput.value = "";
-
+      input.value = "";
     } catch (err) {
-      console.error("Erreur lors de la publication :", err);
-      alert("Erreur lors de la publication : " + err.message);
+      alert("Erreur lors de l'envoi de la réponse : " + err.message);
     }
   };
-
 </script>
     </body>
 </html>
