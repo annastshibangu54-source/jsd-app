@@ -1327,14 +1327,17 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             </div>
         </div>
 
-        <!-- TABLEAU DES BÉNÉVOLES (VISIBILITÉ PRÉSIDENCE ET ADMINISTRATION) -->
-        <div class="row mt-5" id="zoneTableauBenevoles">
+        <!-- TABLEAU DES BÉNÉVOLES (SÉCURISÉ PAR ACCÈS PRÉSIDENT) -->
+        <div class="row mt-5">
             <div class="col-12">
                 <div class="card shadow-sm border-0">
                     <div class="card-header bg-primary text-white font-weight-bold d-flex justify-content-between align-items-center">
-                        <span><i class="icon ion-md-heart me-2"></i> Candidatures au Bénévolat Recues</span>
+                        <span><i class="icon ion-md-heart me-2"></i> Candidatures au Bénévolat Reçues</span>
+                        <button class="btn btn-sm btn-outline-light fw-bold" onclick="deverrouillerTableauBenevoles()">
+                            <i class="icon ion-md-key me-1"></i> Accès Président / Sécurisé
+                        </button>
                     </div>
-                    <div class="card-body p-0">
+                    <div class="card-body p-0" id="zoneTableauBenevolesSecurise" style="display: none;">
                         <div class="table-responsive">
                             <table class="table table-hover align-middle mb-0" id="benevolatTable">
                                 <thead class="table-light">
@@ -1347,7 +1350,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                                     </tr>
                                 </thead>
                                 <tbody id="corpsTableauBenevoles">
-                                    <!-- Les candidatures Firebase s'afficheront automatiquement ici -->
+                                    <!-- Les candidatures Firebase s'afficheront ici après déverrouillage -->
                                 </tbody>
                             </table>
                         </div>
@@ -1445,7 +1448,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         <!-- Main Javascript -->
         <script src="js/main.js"></script>
 
-        <!-- SCRIPT FIREBASE UNIQUE, CORRIGÉ ET STRUCTURÉ -->
+        <!-- SCRIPT FIREBASE UNIQUE ET SÉCURISÉ -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, where, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -1468,14 +1471,26 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   const CODE_SECRET_PRESIDENT = "ann@s0852";
   let cacheMembresLocal = [];
 
-  // Initialisation de la date du jour sur le formulaire d'inscription
+  // Initialisation date
   document.addEventListener("DOMContentLoaded", () => {
     const today = new Date().toISOString().split('T')[0];
     const champDate = document.getElementById("dateAdhesionMembre");
     if (champDate) champDate.value = today;
   });
 
-  // 1. PUBLICATION SÉCURISÉE DES ÉVÉNEMENTS
+  // DÉVERROUILLAGE SÉCURISÉ DU TABLEAU DES BÉNÉVOLES PAR CODE SECRET
+  window.deverrouillerTableauBenevoles = function() {
+    const code = prompt("ACCÈS SÉCURISÉ PRÉSIDENT :\nVeuillez saisir le code secret pour consulter la liste des candidatures bénévoles :");
+    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
+      const zone = document.getElementById("zoneTableauBenevolesSecurise");
+      if (zone) zone.style.display = "block";
+      alert("Accès autorisé. Tableau des candidatures bénévoles déverrouillé.");
+    } else if (code !== null) {
+      alert("Accès refusé ! Code secret incorrect.");
+    }
+  };
+
+  // 1. PUBLICATION ÉVÉNEMENTS
   window.toggleFormulaireEvenementSecurise = function() {
     const codeSaisi = prompt("ACCÈS SÉCURISÉ (Président / Chargé de Communication) :\nVeuillez saisir le code secret pour publier une activité :");
     
@@ -1516,7 +1531,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // 2. ENREGISTREMENT ET GESTION DES MEMBRES
+  // 2. GESTION DES MEMBRES
   window.enregistrerMembre = async function(event) {
     if (event) event.preventDefault();
     if (enEnregistrement) return;
@@ -1737,7 +1752,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     });
   });
 
-  // 3. ENREGISTREMENT ET LECTURE DES COTISATIONS
+  // 3. COTISATIONS
   window.enregistrerCotisation = async function(e) {
     if (e) e.preventDefault();
     const membre = document.getElementById("cotisationMembre").value.trim();
@@ -1812,7 +1827,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // 4. MESSAGERIE PRIVÉE (CHAT MEMBRE / PRÉSIDENT)
+  // 4. MESSAGERIE PRIVÉE (CHAT)
   let membreChatSession = null;
   let estModePresidentChat = false;
   let conversationActiveMembreId = null;
@@ -2086,7 +2101,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // 5. GESTION DU FORMULAIRE ET DU TABLEAU DE BÉNÉVOLAT
+  // 5. SOUMISSION BÉNÉVOLAT
   const formBenevole = document.getElementById('formBenevole');
   if (formBenevole) {
       formBenevole.addEventListener('submit', async function(e) {
@@ -2115,9 +2130,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       });
   }
 
-  // ÉCOUTE EN TEMPS RÉEL DU TABLEAU DE BÉNÉVOLAT
+  // LECTURE EN TEMPS RÉEL DES BÉNÉVOLES (INJECTÉE UNIQUEMENT APPRÈS DÉVERROUILLAGE)
   onSnapshot(collection(db, "benevolats"), (snapshot) => {
-    const tbody = document.getElementById("corpsTableauBenevoles") || document.querySelector("#benevolatTable tbody");
+    const tbody = document.getElementById("corpsTableauBenevoles");
     if (!tbody) return;
 
     tbody.innerHTML = "";
@@ -2148,7 +2163,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     });
   });
 
-  // 6. GESTION DES NOTIFICATIONS DYNAMIQUES
+  // 6. NOTIFICATIONS
   function initialiserNotifications() {
     onSnapshot(collection(db, "notifications"), (snapshot) => {
       const conteneur = document.getElementById("notif-widget-container");
