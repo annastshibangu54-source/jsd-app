@@ -1530,38 +1530,79 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       alert("Erreur lors de la publication : " + err.message);
     }
   };
-      // LECTURE ET AFFICHAGE EN TEMPS RÉEL DES ÉVÉNEMENTS
-  onSnapshot(collection(db, "evenements"), (snapshot) => {
-    const conteneurEv = document.getElementById("events-widget-container");
-    if (!conteneurEv) return;
+      
+  // FONCTION UNIQUE DE PUBLICATION
+  window.publierNouvelEvenement = async function() {
+    const titre = document.getElementById("evTitre").value.trim();
+    const desc = document.getElementById("evDescription").value.trim();
+    const dateEv = document.getElementById("evDate").value.trim();
+    const lieu = document.getElementById("evLieu").value.trim();
+    const places = document.getElementById("evPlaces").value;
+    const fichierInput = document.getElementById("evFichierImage");
 
-    conteneurEv.innerHTML = "";
-
-    if (snapshot.empty) {
-      conteneurEv.innerHTML = `<div class="col-12"><p class="text-muted text-center py-3">Aucun événement actif pour le moment.</p></div>`;
+    if (!titre || !desc) {
+      alert("Veuillez saisir au moins un titre et une description pour l'événement.");
       return;
     }
 
-    snapshot.docs.forEach((docSnap) => {
-      const ev = docSnap.data();
-      const div = document.createElement("div");
-      div.className = "col-md-6 col-lg-4 mb-4";
-      div.innerHTML = `
-        <div class="card h-100 shadow-sm border-0">
-          <div class="card-body">
-            <span class="badge bg-primary mb-2"><i class="icon ion-md-calendar me-1"></i> ${ev.date || 'À venir'}</span>
-            <h5 class="card-title fw-bold text-dark">${ev.titre || 'Événement'}</h5>
-            <p class="card-text text-secondary">${ev.description || ''}</p>
-            <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
-              <small class="text-muted"><i class="icon ion-md-pin me-1"></i> ${ev.lieu || 'Kinshasa'}</small>
-              <small class="badge bg-secondary">${ev.places || '0'} places</small>
-            </div>
-          </div>
-        </div>
-      `;
-      conteneurEv.appendChild(div);
-    });
-  });
+    let imageBase64 = "";
+
+    // Si une image est sélectionnée, on la lit d'abord puis on enregistre
+    if (fichierInput && fichierInput.files && fichierInput.files[0]) {
+      const file = fichierInput.files[0];
+      const reader = new FileReader();
+      
+      reader.onload = async function(e) {
+        imageBase64 = e.target.result;
+        await enregistrerEvenementFirebase(titre, desc, dateEv, lieu, places, imageBase64);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      // Pas d'image, enregistrement direct
+      await enregistrerEvenementFirebase(titre, desc, dateEv, lieu, places, "");
+    }
+  };
+
+  async function enregistrerEvenementFirebase(titre, description, date, lieu, places, image) {
+    try {
+      await addDoc(collection(db, "evenements"), {
+        titre, description, date, lieu, places, image,
+        timestamp: Date.now(),
+        createdAt: serverTimestamp()
+      });
+      alert("Événement publié avec succès !");
+      
+      // Nettoyage et fermeture du formulaire
+      document.getElementById("formulairePublicatEvent").style.display = "none";
+      document.getElementById("evTitre").value = "";
+      document.getElementById("evDescription").value = "";
+      if (document.getElementById("evDate")) document.getElementById("evDate").value = "";
+      if (document.getElementById("evLieu")) document.getElementById("evLieu").value = "";
+      if (document.getElementById("evPlaces")) document.getElementById("evPlaces").value = "";
+      if (document.getElementById("evFichierImage")) document.getElementById("evFichierImage").value = "";
+    } catch (err) {
+      console.error("Erreur d'envoi d'événement :", err);
+      alert("Erreur lors de la publication : " + err.message);
+    }
+  }
+
+  // SUPPRESSION SÉCURISÉE D'UN ÉVÉNEMENT
+  window.supprimerEvenement = async function(idEv, titreEv) {
+    const code = prompt(`ATTENTION : Suppression de l'événement "${titreEv}".\nVeuillez saisir le code secret :`);
+    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
+      if (confirm(`Êtes-vous sûr de vouloir supprimer l'événement : ${titreEv} ?`)) {
+        try {
+          await deleteDoc(doc(db, "evenements", idEv));
+          alert("Événement supprimé avec succès !");
+        } catch (err) {
+          console.error("Erreur de suppression :", err);
+          alert("Erreur lors de la suppression : " + err.message);
+        }
+      }
+    } else if (code !== null) {
+      alert("Accès refusé ! Code secret incorrect.");
+    }
+  };
 
 
   // 2. GESTION DES MEMBRES
