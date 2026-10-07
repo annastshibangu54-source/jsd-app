@@ -1917,233 +1917,80 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // 4. MESSAGERIE PRIVÉE (CHAT)
-  let membreChatSession = null;
-  let estModePresidentChat = false;
-  let conversationActiveMembreId = null;
-  let unsubscribeMessagesMembre = null;
-  let unsubscribeMessagesPresident = null;
-
   window.connexionMessagerie = async function() {
-    const nomSaisi = document.getElementById("chatNom") ? document.getElementById("chatNom").value.trim() : "";
-    const champMat = document.getElementById("chatMatricule");
-    const matBrut = champMat ? champMat.value.trim() : "";
+  const nomSaisi = document.getElementById("chatNom") ? document.getElementById("chatNom").value.trim() : "";
+  const champMat = document.getElementById("chatMatricule");
+  const matBrut = champMat ? champMat.value.trim() : "";
 
-    if (!matBrut) {
-      alert("Veuillez remplir le champ matricule.");
-      return;
-    }
+  if (!matBrut) {
+    alert("Veuillez remplir le champ matricule.");
+    return;
+  }
 
-    if (matBrut === CODE_SECRET_PRESIDENT) {
-      estModePresidentChat = true;
-      membreChatSession = { id: "president", nom: "Président JSD", matricule: "PRESIDENT" };
-      ouvrirEspaceDiscussionPresident();
-      return;
-    }
+  // 1. Détection Accès Président par Code Secret
+  if (matBrut === CODE_SECRET_PRESIDENT) {
+    estModePresidentChat = true;
+    membreChatSession = { id: "president", nom: "Président JSD", matricule: "PRESIDENT" };
+    ouvrirEspaceDiscussionPresident();
+    return;
+  }
 
-    const matriculeSaisi = matBrut.toUpperCase();
+  const matriculeSaisi = matBrut.toUpperCase();
 
-    if (!nomSaisi) {
-      alert("Veuillez saisir votre Nom et votre Matricule pour accéder au chat.");
-      return;
-    }
+  if (!nomSaisi) {
+    alert("Veuillez saisir votre Nom et votre Matricule pour accéder au chat.");
+    return;
+  }
 
-    try {
-      const snapshotMembres = await getDocs(collection(db, "membres"));
-      let membreTrouve = null;
+  try {
+    const snapshotMembres = await getDocs(collection(db, "membres"));
+    let membreTrouve = null;
 
-      snapshotMembres.forEach((docSnap) => {
-        const data = docSnap.data();
-        const docId = docSnap.id;
-        const matriculeAuto = "JSD-2026-xxxx" + docId.substring(0, 4).toUpperCase();
-        const nomData = (data.nom || "").trim().toLowerCase();
+    // Découpage des mots de la recherche pour gérer l'ordre différemment (ex: Nom Prénom vs Prénom Nom)
+    const motsSaisis = nomSaisi.toLowerCase().split(/\s+/).filter(m => m.length > 0);
 
-        if ((nomData === nomSaisi.toLowerCase() || nomData.includes(nomSaisi.toLowerCase())) && matriculeAuto === matriculeSaisi) {
-          membreTrouve = { id: docId, nom: data.nom, matricule: matriculeAuto };
+    snapshotMembres.forEach((docSnap) => {
+      const data = docSnap.data();
+      const docId = docSnap.id;
+      
+      // Calcule le matricule basé sur l'ID OU utilise le champ matricule s'il existe dans le document
+      const matriculeAuto = data.matricule 
+        ? data.matricule.trim().toUpperCase() 
+        : ("JSD-2026-" + docId.substring(0, 4).toUpperCase());
+
+      // Vérification du matricule
+      const matriculeValide = (matriculeAuto === matriculeSaisi);
+
+      if (matriculeValide) {
+        // Normalisation du nom en BDD (combinaison éventuelle nom/prenom si champs séparés)
+        const nomBDD = ((data.nom || "") + " " + (data.prenom || "") + " " + (data.nomComplet || "")).toLowerCase();
+        
+        // Vérifie si TOUS les mots saisis (ex: TSHIBANGU, KALOMBO, Mike) existent dans la BDD, quel que soit l'ordre
+        const nomValide = motsSaisis.every(mot => nomBDD.includes(mot));
+
+        if (nomValide) {
+          membreTrouve = { 
+            id: docId, 
+            nom: data.nom || data.nomComplet || nomSaisi, 
+            matricule: matriculeAuto 
+          };
         }
-      });
-
-      if (membreTrouve) {
-        membreChatSession = membreTrouve;
-        estModePresidentChat = false;
-        ouvrirEspaceDiscussionMembre();
-      } else {
-        alert("Accès refusé ! Le Nom ou le Matricule est incorrect.");
       }
-    } catch (err) {
-      console.error("Erreur d'accès :", err);
-      alert("Erreur de connexion au serveur : " + err.message);
-    }
-  };
-
-  window.connexionPresidentChat = function() {
-    const code = prompt("ACCÈS PRÉSIDENT :\nVeuillez saisir le code secret :");
-    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
-      estModePresidentChat = true;
-      membreChatSession = { id: "president", nom: "Président JSD", matricule: "PRESIDENT" };
-      ouvrirEspaceDiscussionPresident();
-    } else if (code !== null) {
-      alert("Code secret incorrect.");
-    }
-  };
-
-  function ouvrirEspaceDiscussionMembre() {
-    document.getElementById("blocConnexionChat").style.display = "none";
-    document.getElementById("blocDiscussionChat").style.display = "block";
-    document.getElementById("vueDiscussionMembre").style.display = "block";
-    document.getElementById("vueDiscussionPresident").style.display = "none";
-    document.getElementById("libelleMembreConnecte").textContent = `${membreChatSession.nom} (${membreChatSession.matricule})`;
-    document.getElementById("badgeStatutConnexion").textContent = "Connecté : " + membreChatSession.matricule;
-    document.getElementById("badgeStatutConnexion").className = "badge bg-success text-white";
-
-    ecouterMessagesMembre();
-  }
-
-  function ouvrirEspaceDiscussionPresident() {
-    document.getElementById("blocConnexionChat").style.display = "none";
-    document.getElementById("blocDiscussionChat").style.display = "block";
-    document.getElementById("vueDiscussionMembre").style.display = "none";
-    document.getElementById("vueDiscussionPresident").style.display = "block";
-    document.getElementById("badgeStatutConnexion").textContent = "Mode Président Actif";
-    document.getElementById("badgeStatutConnexion").className = "badge bg-primary text-white";
-
-    ecouterListeConversationsPresident();
-  }
-
-  function ecouterMessagesMembre() {
-    if (!membreChatSession) return;
-    const q = query(
-      collection(db, "messages_chat"),
-      where("membreId", "==", membreChatSession.id)
-    );
-
-    unsubscribeMessagesMembre = onSnapshot(q, (snapshot) => {
-      const boite = document.getElementById("boiteMessagesMembre");
-      if (!boite) return;
-      boite.innerHTML = "";
-
-      let msgs = [];
-      snapshot.docs.forEach(d => msgs.push(d.data()));
-      msgs.sort((a,b) => (a.timestamp || 0) - (b.timestamp || 0));
-
-      msgs.forEach(m => {
-        const div = document.createElement("div");
-        const estMoi = m.expediteur === "membre";
-        div.className = `d-flex mb-2 ${estMoi ? 'justify-content-end' : 'justify-content-start'}`;
-        div.innerHTML = `
-          <div class="p-2 px-3 rounded ${estMoi ? 'bg-primary text-white' : 'bg-light text-dark border'}" style="max-width: 75%;">
-            <small class="d-block fw-bold mb-1">${estMoi ? 'Vous' : 'Président'}</small>
-            <span>${m.texte}</span>
-          </div>
-        `;
-        boite.appendChild(div);
-      });
-      boite.scrollTop = boite.scrollHeight;
     });
-  }
 
-  window.envoyerMessageMembre = async function(e) {
-    if (e) e.preventDefault();
-    const input = document.getElementById("champMessageMembre");
-    const txt = input.value.trim();
-    if (!txt || !membreChatSession) return;
-
-    try {
-      await addDoc(collection(db, "messages_chat"), {
-        membreId: membreChatSession.id,
-        membreNom: membreChatSession.nom,
-        expediteur: "membre",
-        texte: txt,
-        timestamp: Date.now(),
-        createdAt: serverTimestamp()
-      });
-      input.value = "";
-    } catch (err) {
-      alert("Erreur lors de l'envoi du message : " + err.message);
+    if (membreTrouve) {
+      membreChatSession = membreTrouve;
+      estModePresidentChat = false;
+      ouvrirEspaceDiscussionMembre();
+    } else {
+      alert("Accès refusé ! Le Nom ou le Matricule ne correspond à aucun membre enregistré.");
     }
-  };
-
-  function ecouterListeConversationsPresident() {
-    onSnapshot(collection(db, "messages_chat"), (snapshot) => {
-      const container = document.getElementById("listeConversationsMembres");
-      if (!container) return;
-
-      let membresMap = {};
-      snapshot.docs.forEach(docSnap => {
-        const data = docSnap.data();
-        if (data.membreId) {
-          membresMap[data.membreId] = data.membreNom || "Membre " + data.membreId;
-        }
-      });
-
-      container.innerHTML = "";
-      Object.keys(membresMap).forEach(mId => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = `list-group-item list-group-item-action ${conversationActiveMembreId === mId ? 'active' : ''}`;
-        btn.textContent = membresMap[mId];
-        btn.onclick = () => chargerDiscussionPresidentPourMembre(mId, membresMap[mId]);
-        container.appendChild(btn);
-      });
-    });
+  } catch (err) {
+    console.error("Erreur d'accès :", err);
+    alert("Erreur de connexion au serveur : " + err.message);
   }
-
-  function chargerDiscussionPresidentPourMembre(mId, mNom) {
-    conversationActiveMembreId = mId;
-    document.getElementById("titreDiscussionActive").textContent = "Discussion avec : " + mNom;
-    document.getElementById("formEnvoyerReponsePresident").style.display = "block";
-
-    if (unsubscribeMessagesPresident) unsubscribeMessagesPresident();
-
-    const q = query(
-      collection(db, "messages_chat"),
-      where("membreId", "==", mId)
-    );
-
-    unsubscribeMessagesPresident = onSnapshot(q, (snapshot) => {
-      const boite = document.getElementById("boiteMessagesPresident");
-      if (!boite) return;
-      boite.innerHTML = "";
-
-      let msgs = [];
-      snapshot.docs.forEach(d => msgs.push(d.data()));
-      msgs.sort((a,b) => (a.timestamp || 0) - (b.timestamp || 0));
-
-      msgs.forEach(m => {
-        const div = document.createElement("div");
-        const estPres = m.expediteur === "president";
-        div.className = `d-flex mb-2 ${estPres ? 'justify-content-end' : 'justify-content-start'}`;
-        div.innerHTML = `
-          <div class="p-2 px-3 rounded ${estPres ? 'bg-success text-white' : 'bg-light text-dark border'}" style="max-width: 75%;">
-            <small class="d-block fw-bold mb-1">${estPres ? 'Vous (Président)' : mNom}</small>
-            <span>${m.texte}</span>
-          </div>
-        `;
-        boite.appendChild(div);
-      });
-      boite.scrollTop = boite.scrollHeight;
-    });
-  }
-
-  window.envoyerReponsePresident = async function(e) {
-    if (e) e.preventDefault();
-    const input = document.getElementById("champReponsePresident");
-    const txt = input.value.trim();
-    if (!txt || !conversationActiveMembreId) return;
-
-    try {
-      await addDoc(collection(db, "messages_chat"), {
-        membreId: conversationActiveMembreId,
-        expediteur: "president",
-        texte: txt,
-        timestamp: Date.now(),
-        createdAt: serverTimestamp()
-      });
-      input.value = "";
-    } catch (err) {
-      alert("Erreur d'envoi de réponse : " + err.message);
-    }
-  };
+};
+    
 
   // 5. BÉNÉVOLAT
   window.enregistrerBenevole = async function(e) {
