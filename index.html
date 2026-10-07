@@ -2260,6 +2260,63 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   }
 
   initialiserNotifications();
+      // FONCTION COMPLÈTE AVEC GESTION DE L'IMAGE
+  window.publierNouvelEvenement = async function() {
+    const titre = document.getElementById("evTitre").value.trim();
+    const desc = document.getElementById("evDescription").value.trim();
+    const dateEv = document.getElementById("evDate") ? document.getElementById("evDate").value.trim() : "";
+    const lieu = document.getElementById("evLieu") ? document.getElementById("evLieu").value.trim() : "";
+    const places = document.getElementById("evPlaces") ? document.getElementById("evPlaces").value : "";
+    const fichierInput = document.getElementById("evFichierImage");
+
+    if (!titre || !desc) {
+      alert("Veuillez saisir au moins un titre et une description pour l'événement.");
+      return;
+    }
+
+    let imageBase64 = "";
+
+    // Convertir l'image en Base64 de manière sécurisée (Promise)
+    if (fichierInput && fichierInput.files && fichierInput.files[0]) {
+      const file = fichierInput.files[0];
+      imageBase64 = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => resolve(e.target.result);
+        reader.onerror = () => resolve("");
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // Envoi dans Firestore
+    try {
+      await addDoc(collection(db, "evenements"), {
+        titre: titre,
+        description: desc,
+        date: dateEv,
+        lieu: lieu,
+        places: places,
+        image: imageBase64, // L'image au format Base64 est envoyée ici
+        timestamp: Date.now(),
+        createdAt: serverTimestamp()
+      });
+
+      alert("Événement publié avec succès !");
+
+      // Réinitialisation du formulaire
+      document.getElementById("formulairePublicatEvent").style.display = "none";
+      document.getElementById("evTitre").value = "";
+      document.getElementById("evDescription").value = "";
+      if (document.getElementById("evDate")) document.getElementById("evDate").value = "";
+      if (document.getElementById("evLieu")) document.getElementById("evLieu").value = "";
+      if (document.getElementById("evPlaces")) document.getElementById("evPlaces").value = "";
+      if (fichierInput) fichierInput.value = "";
+
+    } catch (err) {
+      console.error("Erreur lors de la publication :", err);
+      alert("Erreur lors de la publication : " + err.message);
+    }
+  };
+
 </script>
     </body>
 </html>
