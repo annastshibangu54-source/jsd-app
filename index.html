@@ -24,7 +24,7 @@
         <!-- Main Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
 
-        <!-- 2. Correction directe des styles pour la couleur et les images sur Render -->
+        <!-- Styles personnalisés -->
         <style>
     /* 1. Titre principal et bouton du carrousel */
     .header .carousel-content h2,
@@ -53,7 +53,7 @@
         width: auto !important;
     }
 
-    /* 3. CORRECTION DU FOOTER (PIED DE PAGE NOIR ET STYLISÉ) */
+    /* 3. CORRECTION DU FOOTER */
     .footer {
         background: #000000 !important;
         color: #ffffff !important;
@@ -105,7 +105,6 @@
         margin-right: 4px !important;
     }
     
-    /* Rend le contenu du carrousel et le bouton cliquables au premier plan */
     .carousel-content {
         position: relative !important;
         z-index: 9999 !important;
@@ -120,7 +119,6 @@
         cursor: pointer !important;
     }
 
-    /* Styles spécifiques pour l'impression de documents (Mobiles & PC) */
     @media print {
         body * {
             visibility: hidden !important;
@@ -163,7 +161,7 @@
                             <a href="about.html" class="nav-item nav-link">Apropos</a>
                             <a href="service.html" class="nav-item nav-link">Services</a>
                             <a href="portfolio.html" class="nav-item nav-link">Porteffeuilles</a>
-                            <a href="#benevolat" class="nav-item nav-link">Bénévolat</a>
+                            <a href="#benevolats" class="nav-item nav-link">Bénévolat</a>
                             <a href="pricing.html" class="nav-item nav-link">Tarifs</a>
                             <a href="carte.html" class="nav-item nav-link">Carter de membre</a>
                             <a href="admin-jsd.html" class="nav-item nav-link">Consulter</a>
@@ -191,7 +189,6 @@
                 <div id="notif-widget-container"></div>
             </div>
             
-            <!-- Modal / Zone de commentaires sur les notifications -->
             <div id="zoneCommentairesNotif" class="card shadow-sm mt-3 border-info" style="display: none;">
               <div class="card-header bg-info text-white font-weight-bold d-flex justify-content-between align-items-center">
                 <span><i class="icon ion-md-chatbubbles me-2"></i> Commentaires des Membres sur la Notification</span>
@@ -210,22 +207,19 @@
             </div>
         </div>
 
-        <!-- SECTION ÉVÉNEMENTS (IMAGE ET TEXTE) -->
+        <!-- SECTION ÉVÉNEMENTS -->
         <div class="container my-4">
             <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                 <h3 class="fw-bold text-primary mb-0"><i class="icon ion-md-calendar me-2"></i> Événements & Activités (Actifs 24h)</h3>
-                <!-- Bouton sécurisé : demande directement le code secret -->
                 <button class="btn btn-sm btn-outline-primary fw-bold" onclick="toggleFormulaireEvenementSecurise()">+ Publier une activité</button>
             </div>
             
-            <!-- Conteneur d'affichage dynamique des événements -->
             <div id="events-widget-container" class="row"></div>
         </div>
 
         <!-- Header Start-->
         <div class="header">
             <div id="header-slider" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
                 <ul class="carousel-indicators">
                     <li data-target="#header-slider" data-slide-to="0" class="active"></li>
                     <li data-target="#header-slider" data-slide-to="1"></li>
@@ -240,7 +234,7 @@
                                     <h2>Jeunesse Sociale pour le Développement</h2>
                                     <h2>"JSD"</h2>
                                     <p>Franchise Pureté Dévouement</p>
-                                     <button type="button" class="btn" style="position: relative; z-index: 10000; cursor: pointer;" onclick="window.location.assign('about.html'); ">En savoir plus</button>
+                                     <button type="button" class="btn" onclick="window.location.assign('about.html');">En savoir plus</button>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -256,7 +250,7 @@
                                 <div class="carousel-content">
                                      <h2>Jeunesse Sociale pour le Développement</h2>
                                     <p>Franchise Pureté Dévouement</p>
-                                    <button type="button" class="btn" style="position: relative; z-index: 10000; cursor: pointer;" onclick="window.location.assign('about.html'); ">En savoir plus</button>
+                                    <button type="button" class="btn" onclick="window.location.assign('about.html');">En savoir plus</button>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -272,7 +266,7 @@
                                 <div class="carousel-content">
                                     <h2>Jeunesse Sociale pour le Développement</h2>
                                     <p>Franchise Pureté Dévouement</p>
-                                   <button type="button" class="btn" style="position: relative; z-index: 10000; cursor: pointer;" onclick="window.location.assign('about.html'); ">En savoir plus</button>
+                                   <button type="button" class="btn" onclick="window.location.assign('about.html');">En savoir plus</button>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -299,9 +293,7 @@
             <div class="container">
                 <div class="section-header">
                     <h2>Competance Travail</h2>
-                    <p>
-                        L'avenir est une compétence que l'on construi au présent.
-                    </p>
+                    <p>L'avenir est une compétence que l'on construi au présent.</p>
                 </div>
                 
                 <div class="row align-items-center">
@@ -319,7 +311,7 @@ Convaincus de notre idéal de faire des jeunes et par les jeunes des acteurs act
 Considérant que le meilleur procédé à poursuivre pour atteindre tous ces objectifs, réside dans l’unité de nos efforts et le travail ;
 Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse Sociale pour le Développement » en sigle JSD, une ONGD/ASBL poursuivant des objectifs nobles de promouvoir, sur l’ensemble du territoire national, l’épanouissement de la jeunesse sans distinction aucune.
                             </p>
-                            <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important; position: relative; z-index: 99999;" onclick="window.location.href='contact.html';"> Nous contacter</button>
+                            <button type="button" class="btn" onclick="window.location.href='contact.html';"> Nous contacter</button>
                         </div>
                     </div>
                 </div>
@@ -345,7 +337,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                                 <p>Depuis 2021 jusqu'à ce jour, l'équipe dirigeante et les membres fondateurs poursuivent sans relâche cet engagement commun. Au fil des années, la JSD s'est dotée d'un cadre juridique et organisationnel solide, structuré autour d'organes de gouvernance clairs (Assemblée Générale, Conseil d'Administration et bureau exécutif) et de textes fondateurs garantissant sa transparence et sa pérennité.</p>
                                 <p>Aujourd'hui, l'organisation continue de développer des initiatives concrètes axées sur l'éducation, la formation professionnelle, la lutte contre l'analphabétisme et la délinquance juvénile, tout en promouvant l'entrepreneuriat et l'auto-prise en charge des jeunes Congolais.</p>
                             </div>
-                            <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important; position: relative; z-index: 99999;" onclick="window.location.href='portfolio.html';"> Nos porteffeuilles</button>
+                            <button type="button" class="btn" onclick="window.location.href='portfolio.html';"> Nos porteffeuilles</button>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -366,7 +358,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                                 <p>4.Développement durable et citoyenneté: </p> 
                                 <p>-Organiser des initiatives communautaires, des projets de travail à impact social et des activités culturelles et sportives. </p>
                             </div>
-                             <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important; position: relative; z-index: 99999;" onclick="window.location.href='skill.html';"> Nos compétences</button>
+                             <button type="button" class="btn" onclick="window.location.href='skill.html';"> Nos compétences</button>
                         </div>
                     </div>
                 </div>
@@ -379,16 +371,12 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="section-header">
                     <h2>Services</h2>
-                    <p>
-                        L'avenir est une compétence que l'on construi au présent 
-                    </p>
+                    <p>L'avenir est une compétence que l'on construi au présent</p>
                 </div>
                 <div class="row">
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="service-item">
-                            <div class="service-icon">
-                                <img src="img/S1.jpg" alt="photo" class="img-service">
-                            </div>
+                            <div class="service-icon"><img src="img/S1.jpg" alt="photo" class="img-service"></div>
                             <div class="service-detail">
                                 <h4><a href="">Formation Professionnelles et Renforcement des Capacités:</a></h4>
                                 <p>Ateliers d'apprentissage de métiers, formations pratiques et programmes visant l'autonomisation et l'insertion professionnelles des jeunes.</p>
@@ -397,9 +385,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="service-item">
-                            <div class="service-icon">
-                                <img src="img/S2.jpg" alt="photo" class="img-service">
-                            </div>
+                            <div class="service-icon"><img src="img/S2.jpg" alt="photo" class="img-service"></div>
                             <div class="service-detail">
                                 <h4><a href="">Projets d'entrepreneuriat et d'auto-prise en charge :</a></h4>
                                 <p>Accompagnement de projets communautaire et soutien aux initiaves entrepreneuriales pour crées des opportunités économiques locales.</p>
@@ -408,9 +394,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="service-item">
-                            <div class="service-icon">
-                               <img src="img/S3.jpg" alt="photo" class="img-service">
-                            </div>
+                            <div class="service-icon"><img src="img/S3.jpg" alt="photo" class="img-service"></div>
                             <div class="service-detail">
                                 <h4><a href="">Education et Alphabétisation:</a></h4>
                                 <p>Initiatives de sensibilisation et programmes éducatifs visant à réduire l'analphabétisme et à promouvoir la citoyenneté responsable.</p>
@@ -419,9 +403,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="service-item">
-                            <div class="service-icon">
-                            <img src="img/S4.jpg" alt="photo" class="img-service">
-                            </div>
+                            <div class="service-icon"><img src="img/S4.jpg" alt="photo" class="img-service"></div>
                             <div class="service-detail">
                                 <h4><a href="">Activités Socioculturelles et Sportives:</a></h4>
                                 <p>Organisation d'événements de cohésion, d'activités culturelles et de rencontres sportives pour encadrer la Jeunesse et renforcer les liens communautaires.</p>
@@ -430,9 +412,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="service-item">
-                            <div class="service-icon">
-                                <img src="img/S5.jpg" alt="photo" class="img-service">
-                            </div>
+                            <div class="service-icon"><img src="img/S5.jpg" alt="photo" class="img-service"></div>
                             <div class="service-detail">
                                 <h4><a href="">Projets Multiservices et de développement durable:</a></h4>
                                 <p>Actions communautaires à impacte social pour répondre aux besoins locaux et favoriser l'autonomie financièr de la structure et de ses membres.</p>
@@ -441,9 +421,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="service-item">
-                            <div class="service-icon">
-                             <img src="img/S6.jpg" alt="photo" class="img-service">
-                            </div>
+                            <div class="service-icon"><img src="img/S6.jpg" alt="photo" class="img-service"></div>
                             <div class="service-detail">
                                 <h4><a href="">Sensibilisation et Santé communnautaire:</a></h4>
                                 <p>Campagnes d'information sur la santé préventive, la salubrité publique et la lutte contre les fléaux sociaux touchant la jeunesse.</p>
@@ -452,9 +430,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="service-item">
-                            <div class="service-icon">
-                               <img src="img/S7.jpg" alt="photo" class="img-service">
-                            </div>
+                            <div class="service-icon"><img src="img/S7.jpg" alt="photo" class="img-service"></div>
                             <div class="service-detail">
                                 <h4><a href="">Encadrement civique et leadership youth:</a></h4>
                                 <p>Ateliers d'initiation au leadership, au civisme et à la gestion associative pour former des acteurs du chagement.</p>
@@ -463,9 +439,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="service-item">
-                            <div class="service-icon">
-                                <img src="img/S8.jpg" alt="photo" class="img-service">
-                            </div>
+                            <div class="service-icon"><img src="img/S8.jpg" alt="photo" class="img-service"></div>
                             <div class="service-detail">
                                 <h4><a href="">orientation et accompagnement social:</a></h4>
                                 <p>Ecoute, conseil et assistance pour l'insertion social des jeunes vulnérables ou en quête de repères professionnels.</p>
@@ -482,9 +456,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container text-center">
                 <div class="section-header">
                     <h2>Appel à l'Action</h2>
-                    <p>
-                        Balisés aujourd'hui pour une meuilleur navigation demain 
-                    </p>
+                    <p>Balisés aujourd'hui pour une meuilleur navigation demain</p>
                 </div>
                 <a class="btn" href="#">Call To Action</a>
             </div>
@@ -496,9 +468,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="section-header">
                     <h2>Nos Tarifs</h2>
-                    <p>
-                        Syllabus !!! 
-                    </p>
+                    <p>Syllabus !!!</p>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
@@ -556,60 +526,30 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="section-header">
                     <h2>Nos Compétences</h2>
-                    <p>
-                        Toujours près à : 
-                    </p>
+                    <p>Toujours près à :</p>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
                         <div class="skill-item">
                             <h3>Développer vos Compétences</h3>
-                            <div class="skill-name">
-                                <p>Formations</p><p>85%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            
-                            <div class="skill-name">
-                                <p>Encadrement</p><p>95%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            
-                            <div class="skill-name">
-                                <p>Orientation</p><p>80%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                            <div class="skill-name"><p>Formations</p><p>85%</p></div>
+                            <div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div></div>
+                            <div class="skill-name"><p>Encadrement</p><p>95%</p></div>
+                            <div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div></div>
+                            <div class="skill-name"><p>Orientation</p><p>80%</p></div>
+                            <div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div></div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="skill-item">
                             <h3>leadership</h3>
-                            <div class="skill-name">
-                                <p>Etres Chef</p><p>90%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            
-                            <div class="skill-name">
-                                <p>Dirgent</p><p>85%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            
-                            <div class="skill-name">
-                                <p>Visionaire</p><p>95%</p>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                            <div class="skill-name"><p>Etres Chef</p><p>90%</p></div>
+                            <div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div></div>
+                            <div class="skill-name"><p>Dirgent</p><p>85%</p></div>
+                            <div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div></div>
+                            <div class="skill-name"><p>Visionaire</p><p>95%</p></div>
+                            <div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div></div>
                         </div>
                     </div>
                 </div>
@@ -626,19 +566,16 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                         <h2 data-toggle="counter-up">10</h2>
                         <p>Nos Staffs</p>
                     </div>
-
                     <div class="col-lg-3 col-6 text-center">
                         <i class="ion-md-people"></i>
                         <h2 data-toggle="counter-up">80</h2>
                         <p>Nos Clients</p>
                     </div>
-
                     <div class="col-lg-3 col-6 text-center">
                         <i class="ion-md-checkmark"></i>
                         <h2 data-toggle="counter-up">30</h2>
                         <p>Projets complet</p>
                     </div>
-
                     <div class="col-lg-3 col-6 text-center">
                         <i class="ion-md-trending-up"></i>
                         <h2 data-toggle="counter-up">10</h2>
@@ -654,9 +591,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="section-header">
                     <h2>Nos Porteffeuilles</h2>
-                    <p>
-                        Choisir ce qui vous convient 
-                    </p>
+                    <p>Choisir ce qui vous convient</p>
                 </div>
 
                 <div class="row portfolio-container">
@@ -666,7 +601,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             <a href="img/S1.jpg" data-lightbox="portfolio" data-title="Lorem ipsum dolor" class="link-preview" title="Preview"><i class="ion-md-eye"></i></a>
                             <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
                         </div>
-
                         <div class="portfolio-info">
                             <h3>Formation à 100$</h3>
                             <p>Experiences</p>
@@ -679,7 +613,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             <a href="img/S2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Nulla ullamcorper pharetra" title="Preview"><i class="ion-md-eye"></i></a>
                             <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
                         </div>
-
                         <div class="portfolio-info">
                             <h3>Entrepreneuriat</h3>
                             <p>expériences</p>
@@ -692,7 +625,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             <a href="img/S3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Phasellus eget dictum" title="Preview"><i class="ion-md-eye"></i></a>
                             <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
                         </div>
-
                         <div class="portfolio-info">
                             <h3>Education</h3>
                             <p>Experiences</p>
@@ -705,7 +637,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             <a href="img/S4.jpg" data-lightbox="portfolio" data-title="Lorem ipsum dolor" class="link-preview" title="Preview"><i class="ion-md-eye"></i></a>
                             <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
                         </div>
-
                         <div class="portfolio-info">
                             <h3>Sport</h3>
                             <p>Expériences</p>
@@ -718,7 +649,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             <a href="img/S5.jpg" class="link-preview" data-lightbox="portfolio" data-title="Nulla ullamcorper pharetra" title="Preview"><i class="ion-md-eye"></i></a>
                             <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
                         </div>
-
                         <div class="portfolio-info">
                             <h3>Orientation</h3>
                             <p>Expériences</p>
@@ -731,7 +661,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             <a href="img/S6.jpg" class="link-preview" data-lightbox="portfolio" data-title="Phasellus eget dictum" title="Preview"><i class="ion-md-eye"></i></a>
                             <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
                         </div>
-
                         <div class="portfolio-info">
                             <h3>Sensibilisé</h3>
                             <p>Experiences</p>
@@ -747,9 +676,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="section-header">
                     <h2>Notre Equipe</h2>
-                    <p>
-                        Commité directeur de la JSD 
-                    </p>
+                    <p>Commité directeur de la JSD</p>
                 </div>
 
                 <div class="row">
@@ -828,70 +755,32 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="section-header">
                     <h2>Avis ou Critiques</h2>
-                    <p>
-                        Votres choix notre priotités 
-                    </p>
+                    <p>Votres choix notre priotités</p>
                 </div>
 
                 <div class="owl-carousel testimonials-carousel">
                     <div class="testimonial-item row align-items-center">
-                        <div class="testimonial-img">
-                            <img src="img/testimonial-1.jpg" alt="Testimonial image">
-                        </div>
+                        <div class="testimonial-img"><img src="img/testimonial-1.jpg" alt="Testimonial image"></div>
                         <div class="testimonial-text">
                             <h3>Anna M. Brzezinski</h3>
                             <h4>businesswoman</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel
-                            </p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel</p>
                         </div>
                     </div>
                     <div class="testimonial-item row align-items-center">
-                        <div class="testimonial-img">
-                            <img src="img/testimonial-2.jpg" alt="Testimonial image">
-                        </div>
+                        <div class="testimonial-img"><img src="img/testimonial-2.jpg" alt="Testimonial image"></div>
                         <div class="testimonial-text">
                             <h3>Shirley H. Lee</h3>
                             <h4>businesswoman</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel
-                            </p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel</p>
                         </div>
                     </div>
                     <div class="testimonial-item row align-items-center">
-                        <div class="testimonial-img">
-                            <img src="img/testimonial-3.jpg" alt="Testimonial image">
-                        </div>
+                        <div class="testimonial-img"><img src="img/testimonial-3.jpg" alt="Testimonial image"></div>
                         <div class="testimonial-text">
                             <h3>Kerry E. Thomas</h3>
                             <h4>businesswoman</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel
-                            </p>
-                        </div>
-                    </div>
-                    <div class="testimonial-item row align-items-center">
-                        <div class="testimonial-img">
-                            <img src="img/testimonial-4.jpg" alt="Testimonial image">
-                        </div>
-                        <div class="testimonial-text">
-                            <h3>Kerry E. Thomas</h3>
-                            <h4>businesswoman</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel
-                            </p>
-                        </div>
-                    </div>
-                    <div class="testimonial-item row align-items-center">
-                        <div class="testimonial-img">
-                            <img src="img/testimonial-5.jpg" alt="Testimonial image">
-                        </div>
-                        <div class="testimonial-text">
-                            <h3>Kerry E. Thomas</h3>
-                            <h4>businesswoman</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel
-                            </p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel</p>
                         </div>
                     </div>
                 </div>
@@ -904,9 +793,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="section-header">
                     <h2>Nos Partenaires</h2>
-                    <p>
-                        Toujourqs près à servir  
-                    </p>
+                    <p>Toujourqs près à servir</p>
                 </div>
 
                 <div class="owl-carousel clients-carousel">
@@ -1048,7 +935,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     </div>
   </div>
 
-  <!-- SECTION RECHERCHE ET CONSULTATION INDIVIDUELLE (MODE MEMBRE SIMPLE) -->
+  <!-- SECTION RECHERCHE ET CONSULTATION INDIVIDUELLE -->
   <div class="card shadow-sm border-0 mb-4">
     <div class="card-header bg-info text-white font-weight-bold">
       <i class="icon ion-md-search me-2"></i> Espace Membre : Consulter ma Fiche Personnelle
@@ -1068,7 +955,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     </div>
   </div>
 
-  <!-- ZONE ADMIN / PRÉSIDENT (DÉVERROUILLAGE SÉCURISÉ) -->
+  <!-- ZONE ADMIN / PRÉSIDENT -->
   <div class="card shadow-sm border-0 mb-4">
     <div class="card-header bg-dark text-white font-weight-bold d-flex justify-content-between align-items-center">
       <span><i class="icon ion-md-lock me-2"></i> Administration : Liste Générale des Membres</span>
@@ -1081,7 +968,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         </button>
       </div>
     </div>
-    <!-- Tableau masqué par défaut par sécurité -->
     <div class="card-body p-0" id="conteneurTableauGeneral" style="display: none;">
       <div class="table-responsive" id="zoneImpressionMembres">
         <table class="table table-hover align-middle mb-0">
@@ -1098,14 +984,13 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             </tr>
           </thead>
           <tbody id="corpsTableauMembres">
-            <!-- Les membres enregistrés dans Firebase s'afficheront ici -->
           </tbody>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- SECTION COTISATIONS (NOUVELLE SECTION INTÉGRÉE AVEC PAIEMENT M-PESA & CONFIRMATION CAISSE) -->
+  <!-- SECTION COTISATIONS -->
   <div class="card shadow-sm border-0 mb-4">
     <div class="card-header bg-success text-white font-weight-bold">
       <i class="icon ion-md-cash me-2"></i> Gestion des Cotisations (Membres Simples & D'Honneur)
@@ -1142,7 +1027,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
           </div>
         </div>
 
-        <!-- Consigne explicite pour le paiement M-Pesa -->
         <div id="blocAideMPesa" class="alert alert-warning mt-3 p-2 text-dark" style="display: none;">
           <small>
             <i class="icon ion-md-information-circle me-1"></i>
@@ -1160,7 +1044,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         </button>
       </div>
 
-      <!-- Zone Historique masquée par défaut par sécurité -->
       <div id="conteneurHistoriqueCotisations" style="display: none;" class="mt-3">
         <div class="text-end mb-2">
           <button class="btn btn-sm btn-success" onclick="imprimerSection('zoneImpressionCotisations', 'Historique des Cotisations - JSD')">
@@ -1182,7 +1065,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
               </tr>
             </thead>
             <tbody id="corpsTableauCotisations">
-              <!-- Historique dynamique des cotisations -->
             </tbody>
           </table>
         </div>
@@ -1192,7 +1074,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
 </div>
 
-<!-- Formulaire de publication d'événement (Protégé par le code secret) -->
+<!-- Formulaire de publication d'événement -->
 <div class="container">
   <div id="formulairePublicatEvent" class="card shadow-sm p-4 mb-4 border-primary" style="display: none;">
     <h5 class="fw-bold text-primary mb-3"><i class="icon ion-md-lock me-2"></i> Espace Chargé de Publication (Visibilité 24h)</h5>
@@ -1202,13 +1084,13 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         <input type="text" id="evTitre" class="form-control" placeholder="ex: Conférence Annuelle">
       </div>
       <div class="col-md-6">
-        <label class="form-label font-weight-bold">Affiche / Image (Depuis téléphone ou ordinateur)</label>
+        <label class="form-label font-weight-bold">Affiche / Image</label>
         <input type="file" id="evFichierImage" class="form-control" accept="image/*">
       </div>
 
       <div class="col-12">
-        <label class="form-label font-weight-bold">Texte d'accompagnement (Description de l'affiche)</label>
-        <textarea id="evDescription" class="form-control" rows="2" placeholder="Saisissez un message ou une légende sous/sur l'image..."></textarea>
+        <label class="form-label font-weight-bold">Texte d'accompagnement</label>
+        <textarea id="evDescription" class="form-control" rows="2" placeholder="Saisissez un message ou une légende..."></textarea>
       </div>
 
       <div class="col-md-4">
@@ -1231,63 +1113,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   </div>
 </div>
 
-<!-- Script minimal de gestion d'accès et d'envoi -->
 <script>
-    function unlockChat() {
-        var mat = document.getElementById('chatMatricule').value.trim();
-        var pin = document.getElementById('chatPin').value.trim();
-
-        if (mat !== "" && pin !== "") {
-            localStorage.setItem('jsd_current_user', mat);
-            var chatBox = document.getElementById('chatMessages');
-            if (chatBox) {
-                chatBox.innerHTML = ''; 
-            }
-            document.getElementById('chatAuthCard').classList.add('d-none');
-            document.getElementById('chatBoxCard').classList.remove('d-none');
-        } else {
-            alert('Veuillez saisir votre matricule et votre code PIN.');
-        }
-    }
-
-    function lockChat() {
-        localStorage.removeItem('jsd_current_user');
-        document.getElementById('chatBoxCard').classList.add('d-none');
-        document.getElementById('chatAuthCard').classList.remove('d-none');
-        document.getElementById('chatMatricule').value = '';
-        document.getElementById('chatPin').value = '';
-        
-        var chatBox = document.getElementById('chatMessages');
-        if (chatBox) {
-            chatBox.innerHTML = '';
-        }
-    }
-
-    function sendChatMessage() {
-        var input = document.getElementById('chatInputMessage');
-        var text = input.value.trim();
-        var currentUser = localStorage.getItem('jsd_current_user') || 'Membre';
-
-        if (text !== "") {
-            var chatBox = document.getElementById('chatMessages');
-            var msgDiv = document.createElement('div');
-            msgDiv.className = 'd-flex flex-row justify-content-end mb-2';
-            msgDiv.innerHTML = '<div class="p-2 me-2 border 0 rounded-3 bg-primary text-white"><b>' + currentUser + ':</b> ' + text + '</div>';
-            
-            chatBox.appendChild(msgDiv);
-            input.value = '';
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-    }
-
-    function voirMembre(matricule) {
-        alert("Consultation de la fiche du membre : " + matricule);
-    }
-
-    function modifierMembre(matricule) {
-        alert("Modification du membre : " + matricule);
-    }
-
     function gestionAffichageMPesa() {
         var mode = document.getElementById('cotisationModePaiement').value;
         var bloc = document.getElementById('blocAideMPesa');
@@ -1296,7 +1122,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         }
     }
 
-    // Fonction universelle d'impression d'une zone HTML spécifique (Compatibilité maximale Mobiles, Android, iOS, PC, Imprimantes Wi-Fi/Bluetooth)
     function imprimerSection(elementId, titreDoc) {
         var element = document.getElementById(elementId);
         if (!element) return;
@@ -1324,7 +1149,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   </div>
   <div class="card-body">
 
-    <!-- ÉTAPE 1 : FORMULAIRE D'AUTHENTIFICATION ET CONNEXION -->
     <div id="blocConnexionChat" class="p-3 bg-light rounded border">
       <h6 class="fw-bold mb-3"><i class="icon ion-md-lock me-1"></i> Identifiez-vous pour accéder à votre espace de discussion :</h6>
       <div class="row g-2 align-items-center">
@@ -1345,10 +1169,8 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       </div>
     </div>
 
-    <!-- ÉTAPE 2 : INTERFACE DE DISCUSSION -->
     <div id="blocDiscussionChat" class="mt-4" style="display: none;">
       
-      <!-- Vue membre ordinaire -->
       <div id="vueDiscussionMembre">
         <div class="alert alert-info py-2 d-flex justify-content-between align-items-center">
           <small>Espace privé sécurisé de : <strong id="libelleMembreConnecte"></strong></small>
@@ -1368,7 +1190,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         </form>
       </div>
 
-      <!-- Vue Président -->
       <div id="vueDiscussionPresident" style="display: none;">
         <div class="alert alert-success py-2 d-flex justify-content-between align-items-center">
           <small><i class="icon ion-md-shield me-1"></i> <strong>Espace d'Administration Présidentielle</strong></small>
@@ -1410,9 +1231,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="section-header">
                     <h2>Contact </h2>
-                    <p>
-                        Veuillez-nous contactez ici SVP !!! 
-                    </p>
+                    <p>Veuillez-nous contactez ici SVP !!!</p>
                 </div>
 
                 <div class="row">
@@ -1446,7 +1265,8 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             </div>
         </div>
         <!-- Contact End -->
-        <!-- Section Rejoindre le réseau / Bénévolat -->
+
+<!-- Section Rejoindre le réseau / Bénévolat -->
 <section id="benevolats" class="py-5 bg-light">
     <div class="container">
         <div class="text-center mb-5">
@@ -1456,7 +1276,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         </div>
 
         <div class="row g-4 align-items-center">
-            <!-- Offres de Bénévolat -->
             <div class="col-lg-6">
                 <div class="card border-0 shadow-sm p-4 h-100">
                     <h4 class="fw-bold mb-3 text-dark"><i class="bi bi-heart-fill text-danger me-2"></i>Pourquoi devenir bénévole ?</h4>
@@ -1476,23 +1295,21 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                 </div>
             </div>
 
-            <!-- Formulaire rapide de contact bénévolat -->
             <div class="col-lg-6">
                 <div class="card border-0 shadow-sm p-4 h-100 bg-white">
                     <h4 class="fw-bold mb-3 text-dark"><i class="bi bi-envelope-paper-fill text-primary me-2"></i>Exprimer votre intérêt</h4>
                     
-                     
-                        <form id="formBenevole">
+                    <form id="formBenevole">
                         <div class="mb-3">
                             <label class="form-label font-weight-bold">Nom complet *</label>
                             <input type="text" class="form-control" id="benevoleNom" required placeholder="Ex: TSHIBANGU Mike">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Téléphone / WhatsApp *</label>
+                            <label class="form-label font-weight-bold">Téléphone / WhatsApp *</label>
                             <input type="tel" class="form-control" id="benevolePhone" required placeholder="Ex: 0906819993">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Domaine de compétence / Intérêt *</label>
+                            <label class="form-label font-weight-bold">Domaine de compétence / Intérêt *</label>
                             <select class="form-select" id="benevoleDomaine" required>
                                 <option value="" selected disabled>Choisir un domaine...</option>
                                 <option value="Informatique & Web">Informatique & Numérique</option>
@@ -1509,9 +1326,37 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                 </div>
             </div>
         </div>
+
+        <!-- TABLEAU DES BÉNÉVOLES (VISIBILITÉ PRÉSIDENCE ET ADMINISTRATION) -->
+        <div class="row mt-5" id="zoneTableauBenevoles">
+            <div class="col-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-primary text-white font-weight-bold d-flex justify-content-between align-items-center">
+                        <span><i class="icon ion-md-heart me-2"></i> Candidatures au Bénévolat Recues</span>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0" id="benevolatTable">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Nom complet</th>
+                                        <th>Téléphone / WhatsApp</th>
+                                        <th>Domaine</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="corpsTableauBenevoles">
+                                    <!-- Les candidatures Firebase s'afficheront automatiquement ici -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
-
 
         <!-- Footer Start -->
         <div class="footer">
@@ -1532,12 +1377,11 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Lien Utiles</h4>
                             <ul>
-                
                                 <li><i class="ion-ios-arrow-forward"></i> <a href="Dos/statut-jsd.pdf" target="_blank">Notre Statut & Règlement Intérieur</a></li>
                                 <li><i class="ion-ios-arrow-forward"></i> <a href="don-adhesion.html">Faire un Don/ Devenir membre</a></li>
                                 <li><i class="ion-ios-arrow-forward"></i> <a href="projet.html">Nos Projets & Activités</a></li>
                                 <li><i class="ion-ios-arrow-forward"></i> <a href="rapports-activites.html">Rapports d'activités</a></li>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="#benevolat">Rejoindre le réseau / Bénévolat</a></li>
+                                <li><i class="ion-ios-arrow-forward"></i> <a href="#benevolats">Rejoindre le réseau / Bénévolat</a></li>
                             </ul>
                         </div>
 
@@ -1601,7 +1445,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         <!-- Main Javascript -->
         <script src="js/main.js"></script>
 
-        <!-- SCRIPT FIREBASE UNIQUE ET NETTOYÉ -->
+        <!-- SCRIPT FIREBASE UNIQUE, CORRIGÉ ET STRUCTURÉ -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, where, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -1623,16 +1467,15 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   let enEnregistrement = false;
   const CODE_SECRET_PRESIDENT = "ann@s0852";
   let cacheMembresLocal = [];
-  let notificationActiveId = null;
 
-  // Initialiser la date du jour sur le formulaire
+  // Initialisation de la date du jour sur le formulaire d'inscription
   document.addEventListener("DOMContentLoaded", () => {
     const today = new Date().toISOString().split('T')[0];
     const champDate = document.getElementById("dateAdhesionMembre");
     if (champDate) champDate.value = today;
   });
 
-  // 1. DEMANDE IMMÉDIATE DU CODE SECRET SUR L'ÉVÉNEMENT
+  // 1. PUBLICATION SÉCURISÉE DES ÉVÉNEMENTS
   window.toggleFormulaireEvenementSecurise = function() {
     const codeSaisi = prompt("ACCÈS SÉCURISÉ (Président / Chargé de Communication) :\nVeuillez saisir le code secret pour publier une activité :");
     
@@ -1647,7 +1490,33 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // 2. ENREGISTREMENT ET MODIFICATION DES MEMBRES COMPLETS
+  window.publierNouvelEvenement = async function() {
+    const titre = document.getElementById("evTitre").value.trim();
+    const desc = document.getElementById("evDescription").value.trim();
+    const dateEv = document.getElementById("evDate").value.trim();
+    const lieu = document.getElementById("evLieu").value.trim();
+    const places = document.getElementById("evPlaces").value;
+
+    if (!titre || !desc) {
+      alert("Veuillez saisir au moins un titre et une description pour l'événement.");
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "evenements"), {
+        titre, description: desc, date: dateEv, lieu, places,
+        timestamp: Date.now(),
+        createdAt: serverTimestamp()
+      });
+      alert("Événement publié avec succès !");
+      document.getElementById("formulairePublicatEvent").style.display = "none";
+    } catch (err) {
+      console.error("Erreur d'envoi d'événement :", err);
+      alert("Erreur lors de la publication : " + err.message);
+    }
+  };
+
+  // 2. ENREGISTREMENT ET GESTION DES MEMBRES
   window.enregistrerMembre = async function(event) {
     if (event) event.preventDefault();
     if (enEnregistrement) return;
@@ -1706,19 +1575,17 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // MODO PRÉSIDENT/ADMIN
   window.deverrouillerTableauPresident = function() {
     const code = prompt("Veuillez saisir le code secret du Président :");
     if (code && code.trim() === CODE_SECRET_PRESIDENT) {
       document.getElementById("conteneurTableauGeneral").style.display = "block";
       document.getElementById("btnImprimerListeMembres").style.display = "inline-block";
-      alert("Accès Président autorisé. La liste générale des membres est maintenant accessible.");
+      alert("Accès Président autorisé. La liste générale des membres est accessible.");
     } else if (code !== null) {
       alert("Accès refusé ! Code secret incorrect.");
     }
   };
 
-  // DÉVERROUILLAGE SÉCURISÉ DES COTISATIONS POUR LE PRÉSIDENT / CAISSIER
   window.deverrouillerCotisationsPresident = function() {
     const code = prompt("Veuillez saisir le code secret du Président / Caissier pour consulter et valider les cotisations :");
     if (code && code.trim() === CODE_SECRET_PRESIDENT) {
@@ -1729,7 +1596,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // MODO MEMBRE SIMPLE : RECHERCHE INDIVIDUELLE PAR MATRICULE
   window.rechercherFicheMembre = function() {
     const matSaisi = document.getElementById("rechercheMatriculeMembre").value.trim().toUpperCase();
     const zone = document.getElementById("zoneFichePersonnelle");
@@ -1819,7 +1685,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         }
       }
     } else {
-      alert("Accès refusé ! Vous n'avez pas l'autorisation de supprimer un membre.");
+      alert("Accès refusé ! Code secret incorrect.");
     }
   };
 
@@ -1869,12 +1735,84 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       `;
       tbody.appendChild(newRow);
     });
-
-    // Mettre à jour les notifications personnelles si un membre est identifié
-    initialiserNotifications();
   });
 
-  // 3. MESSAGERIE PRIVÉE
+  // 3. ENREGISTREMENT ET LECTURE DES COTISATIONS
+  window.enregistrerCotisation = async function(e) {
+    if (e) e.preventDefault();
+    const membre = document.getElementById("cotisationMembre").value.trim();
+    const typeMembre = document.getElementById("cotisationTypeMembre").value;
+    const montant = document.getElementById("cotisationMontant").value;
+    const mode = document.getElementById("cotisationModePaiement").value;
+    const ref = document.getElementById("cotisationRefMPesa") ? document.getElementById("cotisationRefMPesa").value.trim() : "";
+
+    if (!membre || !montant) {
+      alert("Veuillez saisir le nom/matricule du membre et le montant.");
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "cotisations"), {
+        membre, typeMembre, montant, mode, reference: ref,
+        statut: "En attente validation",
+        date: new Date().toISOString(),
+        createdAt: serverTimestamp()
+      });
+      alert("Cotisation soumise avec succès ! En attente de validation par la Caisse.");
+      document.getElementById("formCotisation").reset();
+      document.getElementById("blocAideMPesa").style.display = "none";
+    } catch (err) {
+      console.error("Erreur enregistrement cotisation :", err);
+      alert("Erreur lors de l'enregistrement de la cotisation.");
+    }
+  };
+
+  onSnapshot(collection(db, "cotisations"), (snapshot) => {
+    const tbody = document.getElementById("corpsTableauCotisations");
+    if (!tbody) return;
+
+    tbody.innerHTML = "";
+
+    if (snapshot.empty) {
+      tbody.innerHTML = `<tr><td colspan="8" class="text-center text-muted py-3">Aucune cotisation enregistrée.</td></tr>`;
+      return;
+    }
+
+    snapshot.docs.forEach((docSnap) => {
+      const c = docSnap.data();
+      const idDoc = docSnap.id;
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><strong>${c.membre || '-'}</strong></td>
+        <td>${c.typeMembre || '-'}</td>
+        <td>${c.montant || '0'} USD</td>
+        <td>${c.mode || '-'}</td>
+        <td>${c.reference || '-'}</td>
+        <td><span class="badge ${c.statut === 'Validé' ? 'bg-success' : 'bg-warning text-dark'}">${c.statut || 'En attente'}</span></td>
+        <td>${c.date ? new Date(c.date).toLocaleDateString('fr-FR') : '-'}</td>
+        <td class="no-print">
+          ${c.statut !== 'Validé' ? `<button class="btn btn-sm btn-success" onclick="validerCotisation('${idDoc}')">Valider</button>` : '<i class="icon ion-md-checkmark text-success"></i>'}
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  });
+
+  window.validerCotisation = async function(idCotisation) {
+    const code = prompt("Entrez le code secret pour valider le paiement :");
+    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
+      try {
+        await updateDoc(doc(db, "cotisations", idCotisation), { statut: "Validé" });
+        alert("Paiement validé avec succès !");
+      } catch (err) {
+        alert("Erreur lors de la validation.");
+      }
+    } else if (code !== null) {
+      alert("Code secret incorrect.");
+    }
+  };
+
+  // 4. MESSAGERIE PRIVÉE (CHAT MEMBRE / PRÉSIDENT)
   let membreChatSession = null;
   let estModePresidentChat = false;
   let conversationActiveMembreId = null;
@@ -1924,7 +1862,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         membreChatSession = membreTrouve;
         estModePresidentChat = false;
         ouvrirEspaceDiscussionMembre();
-        initialiserNotifications();
       } else {
         alert("Accès refusé ! Le Nom ou le Matricule est incorrect.");
       }
@@ -2149,16 +2086,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // 4. NOTIFICATIONS SIMPLES
-  function initialiserNotifications() {
-    // Emplacement pour la gestion des notifications générales si besoin
-  }
-      // 4. NOTIFICATIONS SIMPLES
-  function initialiserNotifications() {
-    // Emplacement pour la gestion des notifications générales si besoin
-  }
-
-  // 5. GESTION DU FORMULAIRE BÉNÉVOLAT
+  // 5. GESTION DU FORMULAIRE ET DU TABLEAU DE BÉNÉVOLAT
   const formBenevole = document.getElementById('formBenevole');
   if (formBenevole) {
       formBenevole.addEventListener('submit', async function(e) {
@@ -2186,40 +2114,10 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
           }
       });
   }
-    
-  // 6. AFFICHAGE EN TEMPS RÉEL DES CANDIDATURES DANS L'ESPACE PRÉSIDENCE
+
+  // ÉCOUTE EN TEMPS RÉEL DU TABLEAU DE BÉNÉVOLAT
   onSnapshot(collection(db, "benevolats"), (snapshot) => {
-    const conteneurTableau = document.querySelector("#benevolatTable tbody") || document.querySelector(".table tbody");
-    if (!conteneurTableau) return;
-
-    conteneurTableau.innerHTML = "";
-
-    if (snapshot.empty) {
-      conteneurTableau.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Aucune candidature enregistrée pour le moment.</td></tr>`;
-      return;
-    }
-
-    snapshot.docs.forEach((docSnap) => {
-      const data = docSnap.data();
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td><strong>${data.nom || '-'}</strong></td>
-        <td>${data.phone || '-'}</td>
-        <td><span class="badge bg-primary">${data.domaine || '-'}</span></td>
-        <td>${data.date ? new Date(data.date).toLocaleDateString('fr-FR') : '-'}</td>
-        <td>
-          <a href="https://wa.me/${(data.phone || '').replace(/[^0-9]/g, '')}" target="_blank" class="btn btn-xs btn-success">WhatsApp</a>
-        </td>
-      `;
-      conteneurTableau.appendChild(tr);
-    });
-  });
-
-
-    
-  // LECTURE EN TEMPS RÉEL DES CANDIDATURES POUR LE PRÉSIDENT
-  onSnapshot(collection(db, "benevolats"), (snapshot) => {
-    const tbody = document.getElementById("corpsTableauBenevoles") || document.querySelector("tbody");
+    const tbody = document.getElementById("corpsTableauBenevoles") || document.querySelector("#benevolatTable tbody");
     if (!tbody) return;
 
     tbody.innerHTML = "";
@@ -2242,7 +2140,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         <td>${dateFormatee}</td>
         <td>
           <a href="https://wa.me/${numClean}" target="_blank" class="btn btn-sm btn-success">
-            Contacter
+            Contacter WhatsApp
           </a>
         </td>
       `;
@@ -2250,7 +2148,29 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     });
   });
 
-        
+  // 6. GESTION DES NOTIFICATIONS DYNAMIQUES
+  function initialiserNotifications() {
+    onSnapshot(collection(db, "notifications"), (snapshot) => {
+      const conteneur = document.getElementById("notif-widget-container");
+      if (!conteneur) return;
+
+      conteneur.innerHTML = "";
+      if (snapshot.empty) return;
+
+      snapshot.docs.forEach((docSnap) => {
+        const notif = docSnap.data();
+        const div = document.createElement("div");
+        div.className = "alert alert-info alert-dismissible fade show p-2 px-3 shadow-sm";
+        div.innerHTML = `
+          <strong>📢 Notification :</strong> ${notif.message || ''}
+          <button type="button" class="btn-close py-2" data-bs-dismiss="alert"></button>
+        `;
+        conteneur.appendChild(div);
+      });
+    });
+  }
+
+  initialiserNotifications();
 </script>
     </body>
 </html>
