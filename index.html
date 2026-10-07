@@ -24,27 +24,11 @@
         <!-- Main Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
 
-        <!-- Styles personnalisés -->
+        <!-- 2. Correction directe des styles pour la couleur et les images sur Render -->
         <style>
     /* 1. Titre principal et bouton du carrousel */
     .header .carousel-content h2,
     .carousel-content h2 {
-        color: #4F84C4 !important;
-        font-size: 42px !important;
-        font-weight: 700 !important;
-    }
-
-    .header .carousel-content .btn,
-    .carousel-content a.btn {
-        background-color: #4F84C4 !important;
-        color: #ffffff !important;
-        border: none !important;
-        padding: 10px 25px !important;
-    }
-
-    /* 2. Images et logo */
-    img {
-        max-width: 100% !important;
         height: auto !important;
     }
 
@@ -53,7 +37,7 @@
         width: auto !important;
     }
 
-    /* 3. CORRECTION DU FOOTER */
+    /* 3. CORRECTION DU FOOTER (PIED DE PAGE NOIR ET STYLISÉ) */
     .footer {
         background: #000000 !important;
         color: #ffffff !important;
@@ -105,6 +89,7 @@
         margin-right: 4px !important;
     }
     
+    /* Rend le contenu du carrousel et le bouton cliquables au premier plan */
     .carousel-content {
         position: relative !important;
         z-index: 9999 !important;
@@ -119,6 +104,7 @@
         cursor: pointer !important;
     }
 
+    /* Styles spécifiques pour l'impression de documents (Mobiles & PC) */
     @media print {
         body * {
             visibility: hidden !important;
@@ -161,7 +147,7 @@
                             <a href="about.html" class="nav-item nav-link">Apropos</a>
                             <a href="service.html" class="nav-item nav-link">Services</a>
                             <a href="portfolio.html" class="nav-item nav-link">Porteffeuilles</a>
-                            <a href="#benevolats" class="nav-item nav-link">Bénévolat</a>
+                            <a href="#benevolat" class="nav-item nav-link">Bénévolat</a>
                             <a href="pricing.html" class="nav-item nav-link">Tarifs</a>
                             <a href="carte.html" class="nav-item nav-link">Carter de membre</a>
                             <a href="admin-jsd.html" class="nav-item nav-link">Consulter</a>
@@ -189,6 +175,7 @@
                 <div id="notif-widget-container"></div>
             </div>
             
+            <!-- Modal / Zone de commentaires sur les notifications -->
             <div id="zoneCommentairesNotif" class="card shadow-sm mt-3 border-info" style="display: none;">
               <div class="card-header bg-info text-white font-weight-bold d-flex justify-content-between align-items-center">
                 <span><i class="icon ion-md-chatbubbles me-2"></i> Commentaires des Membres sur la Notification</span>
@@ -207,19 +194,22 @@
             </div>
         </div>
 
-        <!-- SECTION ÉVÉNEMENTS -->
+        <!-- SECTION ÉVÉNEMENTS (IMAGE ET TEXTE) -->
         <div class="container my-4">
             <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                 <h3 class="fw-bold text-primary mb-0"><i class="icon ion-md-calendar me-2"></i> Événements & Activités (Actifs 24h)</h3>
+                <!-- Bouton sécurisé : demande directement le code secret -->
                 <button class="btn btn-sm btn-outline-primary fw-bold" onclick="toggleFormulaireEvenementSecurise()">+ Publier une activité</button>
             </div>
             
+            <!-- Conteneur d'affichage dynamique des événements -->
             <div id="events-widget-container" class="row"></div>
         </div>
 
         <!-- Header Start-->
         <div class="header">
             <div id="header-slider" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
                 <ul class="carousel-indicators">
                     <li data-target="#header-slider" data-slide-to="0" class="active"></li>
                     <li data-target="#header-slider" data-slide-to="1"></li>
@@ -234,7 +224,7 @@
                                     <h2>Jeunesse Sociale pour le Développement</h2>
                                     <h2>"JSD"</h2>
                                     <p>Franchise Pureté Dévouement</p>
-                                     <button type="button" class="btn" onclick="window.location.assign('about.html');">En savoir plus</button>
+                                     <button type="button" class="btn" style="position: relative; z-index: 10000; cursor: pointer;" onclick="window.location.assign('about.html'); ">En savoir plus</button>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -250,7 +240,7 @@
                                 <div class="carousel-content">
                                      <h2>Jeunesse Sociale pour le Développement</h2>
                                     <p>Franchise Pureté Dévouement</p>
-                                    <button type="button" class="btn" onclick="window.location.assign('about.html');">En savoir plus</button>
+                                    <button type="button" class="btn" style="position: relative; z-index: 10000; cursor: pointer;" onclick="window.location.assign('about.html'); ">En savoir plus</button>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -266,7 +256,7 @@
                                 <div class="carousel-content">
                                     <h2>Jeunesse Sociale pour le Développement</h2>
                                     <p>Franchise Pureté Dévouement</p>
-                                   <button type="button" class="btn" onclick="window.location.assign('about.html');">En savoir plus</button>
+                                   <button type="button" class="btn" style="position: relative; z-index: 10000; cursor: pointer;" onclick="window.location.assign('about.html'); ">En savoir plus</button>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -293,7 +283,9 @@
             <div class="container">
                 <div class="section-header">
                     <h2>Competance Travail</h2>
-                    <p>L'avenir est une compétence que l'on construi au présent.</p>
+                    <p>
+                        L'avenir est une compétence que l'on construi au présent.
+                    </p>
                 </div>
                 
                 <div class="row align-items-center">
@@ -311,7 +303,7 @@ Convaincus de notre idéal de faire des jeunes et par les jeunes des acteurs act
 Considérant que le meilleur procédé à poursuivre pour atteindre tous ces objectifs, réside dans l’unité de nos efforts et le travail ;
 Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse Sociale pour le Développement » en sigle JSD, une ONGD/ASBL poursuivant des objectifs nobles de promouvoir, sur l’ensemble du territoire national, l’épanouissement de la jeunesse sans distinction aucune.
                             </p>
-                            <button type="button" class="btn" onclick="window.location.href='contact.html';"> Nous contacter</button>
+                            <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important; position: relative; z-index: 99999;" onclick="window.location.href='contact.html';"> Nous contacter</button>
                         </div>
                     </div>
                 </div>
@@ -337,7 +329,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                                 <p>Depuis 2021 jusqu'à ce jour, l'équipe dirigeante et les membres fondateurs poursuivent sans relâche cet engagement commun. Au fil des années, la JSD s'est dotée d'un cadre juridique et organisationnel solide, structuré autour d'organes de gouvernance clairs (Assemblée Générale, Conseil d'Administration et bureau exécutif) et de textes fondateurs garantissant sa transparence et sa pérennité.</p>
                                 <p>Aujourd'hui, l'organisation continue de développer des initiatives concrètes axées sur l'éducation, la formation professionnelle, la lutte contre l'analphabétisme et la délinquance juvénile, tout en promouvant l'entrepreneuriat et l'auto-prise en charge des jeunes Congolais.</p>
                             </div>
-                            <button type="button" class="btn" onclick="window.location.href='portfolio.html';"> Nos porteffeuilles</button>
+                            <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important; position: relative; z-index: 99999;" onclick="window.location.href='portfolio.html';"> Nos porteffeuilles</button>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -358,7 +350,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                                 <p>4.Développement durable et citoyenneté: </p> 
                                 <p>-Organiser des initiatives communautaires, des projets de travail à impact social et des activités culturelles et sportives. </p>
                             </div>
-                             <button type="button" class="btn" onclick="window.location.href='skill.html';"> Nos compétences</button>
+                             <button type="button" class="btn" style="background-color: #4F84C4 !important; color: #ffffff !important; border: none !important; padding: 12px 30px !important; border-radius: 5px !important; font-weight: 600 !important; cursor: pointer !important; position: relative; z-index: 99999;" onclick="window.location.href='skill.html';"> Nos compétences</button>
                         </div>
                     </div>
                 </div>
@@ -371,12 +363,16 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="section-header">
                     <h2>Services</h2>
-                    <p>L'avenir est une compétence que l'on construi au présent</p>
+                    <p>
+                        L'avenir est une compétence que l'on construi au présent 
+                    </p>
                 </div>
                 <div class="row">
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="service-item">
-                            <div class="service-icon"><img src="img/S1.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-icon">
+                                <img src="img/S1.jpg" alt="photo" class="img-service">
+                            </div>
                             <div class="service-detail">
                                 <h4><a href="">Formation Professionnelles et Renforcement des Capacités:</a></h4>
                                 <p>Ateliers d'apprentissage de métiers, formations pratiques et programmes visant l'autonomisation et l'insertion professionnelles des jeunes.</p>
@@ -385,7 +381,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="service-item">
-                            <div class="service-icon"><img src="img/S2.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-icon">
+                                <img src="img/S2.jpg" alt="photo" class="img-service">
+                            </div>
                             <div class="service-detail">
                                 <h4><a href="">Projets d'entrepreneuriat et d'auto-prise en charge :</a></h4>
                                 <p>Accompagnement de projets communautaire et soutien aux initiaves entrepreneuriales pour crées des opportunités économiques locales.</p>
@@ -394,7 +392,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="service-item">
-                            <div class="service-icon"><img src="img/S3.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-icon">
+                               <img src="img/S3.jpg" alt="photo" class="img-service">
+                            </div>
                             <div class="service-detail">
                                 <h4><a href="">Education et Alphabétisation:</a></h4>
                                 <p>Initiatives de sensibilisation et programmes éducatifs visant à réduire l'analphabétisme et à promouvoir la citoyenneté responsable.</p>
@@ -403,7 +403,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="service-item">
-                            <div class="service-icon"><img src="img/S4.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-icon">
+                            <img src="img/S4.jpg" alt="photo" class="img-service">
+                            </div>
                             <div class="service-detail">
                                 <h4><a href="">Activités Socioculturelles et Sportives:</a></h4>
                                 <p>Organisation d'événements de cohésion, d'activités culturelles et de rencontres sportives pour encadrer la Jeunesse et renforcer les liens communautaires.</p>
@@ -412,7 +414,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="service-item">
-                            <div class="service-icon"><img src="img/S5.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-icon">
+                                <img src="img/S5.jpg" alt="photo" class="img-service">
+                            </div>
                             <div class="service-detail">
                                 <h4><a href="">Projets Multiservices et de développement durable:</a></h4>
                                 <p>Actions communautaires à impacte social pour répondre aux besoins locaux et favoriser l'autonomie financièr de la structure et de ses membres.</p>
@@ -421,7 +425,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="service-item">
-                            <div class="service-icon"><img src="img/S6.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-icon">
+                             <img src="img/S6.jpg" alt="photo" class="img-service">
+                            </div>
                             <div class="service-detail">
                                 <h4><a href="">Sensibilisation et Santé communnautaire:</a></h4>
                                 <p>Campagnes d'information sur la santé préventive, la salubrité publique et la lutte contre les fléaux sociaux touchant la jeunesse.</p>
@@ -430,7 +436,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="service-item">
-                            <div class="service-icon"><img src="img/S7.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-icon">
+                               <img src="img/S7.jpg" alt="photo" class="img-service">
+                            </div>
                             <div class="service-detail">
                                 <h4><a href="">Encadrement civique et leadership youth:</a></h4>
                                 <p>Ateliers d'initiation au leadership, au civisme et à la gestion associative pour former des acteurs du chagement.</p>
@@ -439,7 +447,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="service-item">
-                            <div class="service-icon"><img src="img/S8.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-icon">
+                                <img src="img/S8.jpg" alt="photo" class="img-service">
+                            </div>
                             <div class="service-detail">
                                 <h4><a href="">orientation et accompagnement social:</a></h4>
                                 <p>Ecoute, conseil et assistance pour l'insertion social des jeunes vulnérables ou en quête de repères professionnels.</p>
@@ -456,7 +466,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container text-center">
                 <div class="section-header">
                     <h2>Appel à l'Action</h2>
-                    <p>Balisés aujourd'hui pour une meuilleur navigation demain</p>
+                    <p>
+                        Balisés aujourd'hui pour une meuilleur navigation demain 
+                    </p>
                 </div>
                 <a class="btn" href="#">Call To Action</a>
             </div>
@@ -468,7 +480,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="section-header">
                     <h2>Nos Tarifs</h2>
-                    <p>Syllabus !!!</p>
+                    <p>
+                        Syllabus !!! 
+                    </p>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
@@ -526,30 +540,60 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="section-header">
                     <h2>Nos Compétences</h2>
-                    <p>Toujours près à :</p>
+                    <p>
+                        Toujours près à : 
+                    </p>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
                         <div class="skill-item">
                             <h3>Développer vos Compétences</h3>
-                            <div class="skill-name"><p>Formations</p><p>85%</p></div>
-                            <div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div></div>
-                            <div class="skill-name"><p>Encadrement</p><p>95%</p></div>
-                            <div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div></div>
-                            <div class="skill-name"><p>Orientation</p><p>80%</p></div>
-                            <div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div></div>
+                            <div class="skill-name">
+                                <p>Formations</p><p>85%</p>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            
+                            <div class="skill-name">
+                                <p>Encadrement</p><p>95%</p>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            
+                            <div class="skill-name">
+                                <p>Orientation</p><p>80%</p>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="skill-item">
                             <h3>leadership</h3>
-                            <div class="skill-name"><p>Etres Chef</p><p>90%</p></div>
-                            <div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div></div>
-                            <div class="skill-name"><p>Dirgent</p><p>85%</p></div>
-                            <div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div></div>
-                            <div class="skill-name"><p>Visionaire</p><p>95%</p></div>
-                            <div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div></div>
+                            <div class="skill-name">
+                                <p>Etres Chef</p><p>90%</p>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            
+                            <div class="skill-name">
+                                <p>Dirgent</p><p>85%</p>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            
+                            <div class="skill-name">
+                                <p>Visionaire</p><p>95%</p>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -566,16 +610,19 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                         <h2 data-toggle="counter-up">10</h2>
                         <p>Nos Staffs</p>
                     </div>
+
                     <div class="col-lg-3 col-6 text-center">
                         <i class="ion-md-people"></i>
                         <h2 data-toggle="counter-up">80</h2>
                         <p>Nos Clients</p>
                     </div>
+
                     <div class="col-lg-3 col-6 text-center">
                         <i class="ion-md-checkmark"></i>
                         <h2 data-toggle="counter-up">30</h2>
                         <p>Projets complet</p>
                     </div>
+
                     <div class="col-lg-3 col-6 text-center">
                         <i class="ion-md-trending-up"></i>
                         <h2 data-toggle="counter-up">10</h2>
@@ -591,7 +638,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="section-header">
                     <h2>Nos Porteffeuilles</h2>
-                    <p>Choisir ce qui vous convient</p>
+                    <p>
+                        Choisir ce qui vous convient 
+                    </p>
                 </div>
 
                 <div class="row portfolio-container">
@@ -601,6 +650,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             <a href="img/S1.jpg" data-lightbox="portfolio" data-title="Lorem ipsum dolor" class="link-preview" title="Preview"><i class="ion-md-eye"></i></a>
                             <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
                         </div>
+
                         <div class="portfolio-info">
                             <h3>Formation à 100$</h3>
                             <p>Experiences</p>
@@ -613,6 +663,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             <a href="img/S2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Nulla ullamcorper pharetra" title="Preview"><i class="ion-md-eye"></i></a>
                             <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
                         </div>
+
                         <div class="portfolio-info">
                             <h3>Entrepreneuriat</h3>
                             <p>expériences</p>
@@ -625,6 +676,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             <a href="img/S3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Phasellus eget dictum" title="Preview"><i class="ion-md-eye"></i></a>
                             <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
                         </div>
+
                         <div class="portfolio-info">
                             <h3>Education</h3>
                             <p>Experiences</p>
@@ -637,6 +689,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             <a href="img/S4.jpg" data-lightbox="portfolio" data-title="Lorem ipsum dolor" class="link-preview" title="Preview"><i class="ion-md-eye"></i></a>
                             <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
                         </div>
+
                         <div class="portfolio-info">
                             <h3>Sport</h3>
                             <p>Expériences</p>
@@ -649,6 +702,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             <a href="img/S5.jpg" class="link-preview" data-lightbox="portfolio" data-title="Nulla ullamcorper pharetra" title="Preview"><i class="ion-md-eye"></i></a>
                             <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
                         </div>
+
                         <div class="portfolio-info">
                             <h3>Orientation</h3>
                             <p>Expériences</p>
@@ -661,6 +715,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             <a href="img/S6.jpg" class="link-preview" data-lightbox="portfolio" data-title="Phasellus eget dictum" title="Preview"><i class="ion-md-eye"></i></a>
                             <a href="" class="link-details" title="More Details"><i class="ion-md-open"></i></a>
                         </div>
+
                         <div class="portfolio-info">
                             <h3>Sensibilisé</h3>
                             <p>Experiences</p>
@@ -676,7 +731,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="section-header">
                     <h2>Notre Equipe</h2>
-                    <p>Commité directeur de la JSD</p>
+                    <p>
+                        Commité directeur de la JSD 
+                    </p>
                 </div>
 
                 <div class="row">
@@ -755,32 +812,69 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="section-header">
                     <h2>Avis ou Critiques</h2>
-                    <p>Votres choix notre priotités</p>
+                    <p>
+                        Votres choix notre priotités 
+                    </p>
                 </div>
 
                 <div class="owl-carousel testimonials-carousel">
                     <div class="testimonial-item row align-items-center">
-                        <div class="testimonial-img"><img src="img/testimonial-1.jpg" alt="Testimonial image"></div>
+                        <div class="testimonial-img">
+                            <img src="img/testimonial-1.jpg" alt="Testimonial image">
+                        </div>
                         <div class="testimonial-text">
                             <h3>Anna M. Brzezinski</h3>
                             <h4>businesswoman</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel</p>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel
+                            </p>
                         </div>
                     </div>
                     <div class="testimonial-item row align-items-center">
-                        <div class="testimonial-img"><img src="img/testimonial-2.jpg" alt="Testimonial image"></div>
+                        <div class="testimonial-img">
+                            <img src="img/testimonial-2.jpg" alt="Testimonial image">
+                        </div>
                         <div class="testimonial-text">
                             <h3>Shirley H. Lee</h3>
                             <h4>businesswoman</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel</p>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel
+                            </p>
                         </div>
                     </div>
                     <div class="testimonial-item row align-items-center">
-                        <div class="testimonial-img"><img src="img/testimonial-3.jpg" alt="Testimonial image"></div>
+                        <div class="testimonial-img">
+                            <img src="img/testimonial-3.jpg" alt="Testimonial image">
+                        </div>
                         <div class="testimonial-text">
                             <h3>Kerry E. Thomas</h3>
                             <h4>businesswoman</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel</p>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel
+                            </p>
+                        </div>
+                    </div>
+                    <div class="testimonial-item row align-items-center">
+                        <div class="testimonial-img">
+                            <img src="img/testimonial-4.jpg" alt="Testimonial image">
+                        </div>
+                        <div class="testimonial-text">
+                            <h3>Kerry E. Thomas</h3>
+                            <h4>businesswoman</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel
+                            </p>
+                        </div>
+                    </div>
+                    <div class="testimonial-item row align-items-center">
+                            <img src="img/testimonial-5.jpg" alt="Testimonial image">
+                        </div>
+                        <div class="testimonial-text">
+                            <h3>Kerry E. Thomas</h3>
+                            <h4>businesswoman</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipiscing elit. Maecenas dictum vel
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -793,7 +887,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="section-header">
                     <h2>Nos Partenaires</h2>
-                    <p>Toujourqs près à servir</p>
+                    <p>
+                        Toujourqs près à servir  
+                    </p>
                 </div>
 
                 <div class="owl-carousel clients-carousel">
@@ -864,7 +960,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
               <option value="Haut-Lomami">Haut-Lomami</option>
               <option value="Haut-Uele">Haut-Uele</option>
               <option value="Ituri">Ituri</option>
-              <option value="Kasaï">Kasaï</option>
               <option value="Kasaï central">Kasaï central</option>
               <option value="Kasaï oriental">Kasaï oriental</option>
               <option value="Kinshasa" selected>Kinshasa</option>
@@ -929,13 +1024,12 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <button type="submit" class="btn btn-primary px-4 py-2">
               <i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer
             </button>
-          </div>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- SECTION RECHERCHE ET CONSULTATION INDIVIDUELLE -->
+  <!-- SECTION RECHERCHE ET CONSULTATION INDIVIDUELLE (MODE MEMBRE SIMPLE) -->
   <div class="card shadow-sm border-0 mb-4">
     <div class="card-header bg-info text-white font-weight-bold">
       <i class="icon ion-md-search me-2"></i> Espace Membre : Consulter ma Fiche Personnelle
@@ -955,7 +1049,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     </div>
   </div>
 
-  <!-- ZONE ADMIN / PRÉSIDENT -->
+  <!-- ZONE ADMIN / PRÉSIDENT (DÉVERROUILLAGE SÉCURISÉ) -->
   <div class="card shadow-sm border-0 mb-4">
     <div class="card-header bg-dark text-white font-weight-bold d-flex justify-content-between align-items-center">
       <span><i class="icon ion-md-lock me-2"></i> Administration : Liste Générale des Membres</span>
@@ -968,6 +1062,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         </button>
       </div>
     </div>
+    <!-- Tableau masqué par défaut par sécurité -->
     <div class="card-body p-0" id="conteneurTableauGeneral" style="display: none;">
       <div class="table-responsive" id="zoneImpressionMembres">
         <table class="table table-hover align-middle mb-0">
@@ -984,13 +1079,26 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             </tr>
           </thead>
           <tbody id="corpsTableauMembres">
+            <!-- Les membres enregistrés dans Firebase s'afficheront ici -->
           </tbody>
         </table>
+      </div>
+
+      <!-- Candidatures Bénévolat (visible uniquement en mode Président) -->
+      <div class="p-3 border-top no-print">
+        <h6 class="fw-bold">Candidatures Bénévolat</h6>
+        <div class="table-responsive">
+          <table class="table table-sm table-hover mb-0">
+            <thead class="table-light">
+            </thead>
+            <tbody id="corpsTableauBenevoles"></tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- SECTION COTISATIONS -->
+  <!-- SECTION COTISATIONS (NOUVELLE SECTION INTÉGRÉE AVEC PAIEMENT M-PESA & CONFIRMATION CAISSE) -->
   <div class="card shadow-sm border-0 mb-4">
     <div class="card-header bg-success text-white font-weight-bold">
       <i class="icon ion-md-cash me-2"></i> Gestion des Cotisations (Membres Simples & D'Honneur)
@@ -1027,6 +1135,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
           </div>
         </div>
 
+        <!-- Consigne explicite pour le paiement M-Pesa -->
         <div id="blocAideMPesa" class="alert alert-warning mt-3 p-2 text-dark" style="display: none;">
           <small>
             <i class="icon ion-md-information-circle me-1"></i>
@@ -1044,6 +1153,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         </button>
       </div>
 
+      <!-- Zone Historique masquée par défaut par sécurité -->
       <div id="conteneurHistoriqueCotisations" style="display: none;" class="mt-3">
         <div class="text-end mb-2">
           <button class="btn btn-sm btn-success" onclick="imprimerSection('zoneImpressionCotisations', 'Historique des Cotisations - JSD')">
@@ -1065,6 +1175,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
               </tr>
             </thead>
             <tbody id="corpsTableauCotisations">
+              <!-- Historique dynamique des cotisations -->
             </tbody>
           </table>
         </div>
@@ -1074,7 +1185,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
 </div>
 
-<!-- Formulaire de publication d'événement -->
+<!-- Formulaire de publication d'événement (Protégé par le code secret) -->
 <div class="container">
   <div id="formulairePublicatEvent" class="card shadow-sm p-4 mb-4 border-primary" style="display: none;">
     <h5 class="fw-bold text-primary mb-3"><i class="icon ion-md-lock me-2"></i> Espace Chargé de Publication (Visibilité 24h)</h5>
@@ -1084,13 +1195,13 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         <input type="text" id="evTitre" class="form-control" placeholder="ex: Conférence Annuelle">
       </div>
       <div class="col-md-6">
-        <label class="form-label font-weight-bold">Affiche / Image</label>
+        <label class="form-label font-weight-bold">Affiche / Image (Depuis téléphone ou ordinateur)</label>
         <input type="file" id="evFichierImage" class="form-control" accept="image/*">
       </div>
 
       <div class="col-12">
-        <label class="form-label font-weight-bold">Texte d'accompagnement</label>
-        <textarea id="evDescription" class="form-control" rows="2" placeholder="Saisissez un message ou une légende..."></textarea>
+        <label class="form-label font-weight-bold">Texte d'accompagnement (Description de l'affiche)</label>
+        <textarea id="evDescription" class="form-control" rows="2" placeholder="Saisissez un message ou une légende sous/sur l'image..."></textarea>
       </div>
 
       <div class="col-md-4">
@@ -1113,7 +1224,63 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   </div>
 </div>
 
+<!-- Script minimal de gestion d'accès et d'envoi -->
 <script>
+    function unlockChat() {
+        var mat = document.getElementById('chatMatricule').value.trim();
+        var pin = document.getElementById('chatPin').value.trim();
+
+        if (mat !== "" && pin !== "") {
+            localStorage.setItem('jsd_current_user', mat);
+            var chatBox = document.getElementById('chatMessages');
+            if (chatBox) {
+                chatBox.innerHTML = ''; 
+            }
+            document.getElementById('chatAuthCard').classList.add('d-none');
+            document.getElementById('chatBoxCard').classList.remove('d-none');
+        } else {
+            alert('Veuillez saisir votre matricule et votre code PIN.');
+        }
+    }
+
+    function lockChat() {
+        localStorage.removeItem('jsd_current_user');
+        document.getElementById('chatBoxCard').classList.add('d-none');
+        document.getElementById('chatAuthCard').classList.remove('d-none');
+        document.getElementById('chatMatricule').value = '';
+        document.getElementById('chatPin').value = '';
+        
+        var chatBox = document.getElementById('chatMessages');
+        if (chatBox) {
+            chatBox.innerHTML = '';
+        }
+    }
+
+    function sendChatMessage() {
+        var input = document.getElementById('chatInputMessage');
+        var text = input.value.trim();
+        var currentUser = localStorage.getItem('jsd_current_user') || 'Membre';
+
+        if (text !== "") {
+            var chatBox = document.getElementById('chatMessages');
+            var msgDiv = document.createElement('div');
+            msgDiv.className = 'd-flex flex-row justify-content-end mb-2';
+            msgDiv.innerHTML = '<div class="p-2 me-2 border 0 rounded-3 bg-primary text-white"><b>' + currentUser + ':</b> ' + text + '</div>';
+            
+            chatBox.appendChild(msgDiv);
+            input.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    }
+
+    function voirMembre(matricule) {
+        alert("Consultation de la fiche du membre : " + matricule);
+    }
+
+    function modifierMembre(matricule) {
+        alert("Modification du membre : " + matricule);
+    }
+
     function gestionAffichageMPesa() {
         var mode = document.getElementById('cotisationModePaiement').value;
         var bloc = document.getElementById('blocAideMPesa');
@@ -1122,6 +1289,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         }
     }
 
+    // Fonction universelle d'impression d'une zone HTML spécifique (Compatibilité maximale Mobiles, Android, iOS, PC, Imprimantes Wi-Fi/Bluetooth)
     function imprimerSection(elementId, titreDoc) {
         var element = document.getElementById(elementId);
         if (!element) return;
@@ -1149,6 +1317,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   </div>
   <div class="card-body">
 
+    <!-- ÉTAPE 1 : FORMULAIRE D'AUTHENTIFICATION ET CONNEXION -->
     <div id="blocConnexionChat" class="p-3 bg-light rounded border">
       <h6 class="fw-bold mb-3"><i class="icon ion-md-lock me-1"></i> Identifiez-vous pour accéder à votre espace de discussion :</h6>
       <div class="row g-2 align-items-center">
@@ -1169,8 +1338,10 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       </div>
     </div>
 
+    <!-- ÉTAPE 2 : INTERFACE DE DISCUSSION -->
     <div id="blocDiscussionChat" class="mt-4" style="display: none;">
       
+      <!-- Vue membre ordinaire -->
       <div id="vueDiscussionMembre">
         <div class="alert alert-info py-2 d-flex justify-content-between align-items-center">
           <small>Espace privé sécurisé de : <strong id="libelleMembreConnecte"></strong></small>
@@ -1190,6 +1361,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         </form>
       </div>
 
+      <!-- Vue Président -->
       <div id="vueDiscussionPresident" style="display: none;">
         <div class="alert alert-success py-2 d-flex justify-content-between align-items-center">
           <small><i class="icon ion-md-shield me-1"></i> <strong>Espace d'Administration Présidentielle</strong></small>
@@ -1231,7 +1403,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <div class="container">
                 <div class="section-header">
                     <h2>Contact </h2>
-                    <p>Veuillez-nous contactez ici SVP !!!</p>
+                    <p>
+                        Veuillez-nous contactez ici SVP !!! 
+                    </p>
                 </div>
 
                 <div class="row">
@@ -1265,8 +1439,8 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             </div>
         </div>
         <!-- Contact End -->
-
-<!-- Section Rejoindre le réseau / Bénévolat -->
+        <!-- Section Rejoindre le réseau / Bénévolat -->
+<a id="benevolat"></a>
 <section id="benevolats" class="py-5 bg-light">
     <div class="container">
         <div class="text-center mb-5">
@@ -1276,6 +1450,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         </div>
 
         <div class="row g-4 align-items-center">
+            <!-- Offres de Bénévolat -->
             <div class="col-lg-6">
                 <div class="card border-0 shadow-sm p-4 h-100">
                     <h4 class="fw-bold mb-3 text-dark"><i class="bi bi-heart-fill text-danger me-2"></i>Pourquoi devenir bénévole ?</h4>
@@ -1295,21 +1470,23 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                 </div>
             </div>
 
+            <!-- Formulaire rapide de contact bénévolat -->
             <div class="col-lg-6">
                 <div class="card border-0 shadow-sm p-4 h-100 bg-white">
                     <h4 class="fw-bold mb-3 text-dark"><i class="bi bi-envelope-paper-fill text-primary me-2"></i>Exprimer votre intérêt</h4>
                     
-                    <form id="formBenevole">
+                     
+                        <form id="formBenevole">
                         <div class="mb-3">
                             <label class="form-label font-weight-bold">Nom complet *</label>
                             <input type="text" class="form-control" id="benevoleNom" required placeholder="Ex: TSHIBANGU Mike">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label font-weight-bold">Téléphone / WhatsApp *</label>
+                            <label class="form-label">Téléphone / WhatsApp *</label>
                             <input type="tel" class="form-control" id="benevolePhone" required placeholder="Ex: 0906819993">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label font-weight-bold">Domaine de compétence / Intérêt *</label>
+                            <label class="form-label">Domaine de compétence / Intérêt *</label>
                             <select class="form-select" id="benevoleDomaine" required>
                                 <option value="" selected disabled>Choisir un domaine...</option>
                                 <option value="Informatique & Web">Informatique & Numérique</option>
@@ -1326,40 +1503,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                 </div>
             </div>
         </div>
-
-        <!-- TABLEAU DES BÉNÉVOLES (SÉCURISÉ PAR ACCÈS PRÉSIDENT) -->
-        <div class="row mt-5">
-            <div class="col-12">
-                <div class="card shadow-sm border-0">
-                    <div class="card-header bg-primary text-white font-weight-bold d-flex justify-content-between align-items-center">
-                        <span><i class="icon ion-md-heart me-2"></i> Candidatures au Bénévolat Reçues</span>
-                        <button class="btn btn-sm btn-outline-light fw-bold" onclick="deverrouillerTableauBenevoles()">
-                            <i class="icon ion-md-key me-1"></i> Accès Président / Sécurisé
-                        </button>
-                    </div>
-                    <div class="card-body p-0" id="zoneTableauBenevolesSecurise" style="display: none;">
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle mb-0" id="benevolatTable">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Nom complet</th>
-                                        <th>Téléphone / WhatsApp</th>
-                                        <th>Domaine</th>
-                                        <th>Date</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="corpsTableauBenevoles">
-                                    <!-- Les candidatures Firebase s'afficheront ici après déverrouillage -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
+
 
         <!-- Footer Start -->
         <div class="footer">
@@ -1380,11 +1526,12 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Lien Utiles</h4>
                             <ul>
+                
                                 <li><i class="ion-ios-arrow-forward"></i> <a href="Dos/statut-jsd.pdf" target="_blank">Notre Statut & Règlement Intérieur</a></li>
                                 <li><i class="ion-ios-arrow-forward"></i> <a href="don-adhesion.html">Faire un Don/ Devenir membre</a></li>
                                 <li><i class="ion-ios-arrow-forward"></i> <a href="projet.html">Nos Projets & Activités</a></li>
                                 <li><i class="ion-ios-arrow-forward"></i> <a href="rapports-activites.html">Rapports d'activités</a></li>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="#benevolats">Rejoindre le réseau / Bénévolat</a></li>
+                                <li><i class="ion-ios-arrow-forward"></i> <a href="#benevolat">Rejoindre le réseau / Bénévolat</a></li>
                             </ul>
                         </div>
 
@@ -1448,12 +1595,11 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         <!-- Main Javascript -->
         <script src="js/main.js"></script>
 
-        <!-- SCRIPT FIREBASE UNIQUE ET SÉCURISÉ -->
+<!-- SCRIPT FIREBASE UNIQUE ET CORRIGÉ -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, where, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  // Configuration Firebase officielle JSD
   const firebaseConfig = {
     apiKey: "AIzaSyBlGSwEPk6CM4A07SeqmZeuaFxUWMRlESI",
     authDomain: "jeunesse-social-pour-le-dvelop.firebaseapp.com",
@@ -1470,162 +1616,239 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   let enEnregistrement = false;
   const CODE_SECRET_PRESIDENT = "ann@s0852";
   let cacheMembresLocal = [];
+  let cacheEvenements = [];
+  let unsubscribeCommentairesNotif = null;
+  const DUREE_24H = 24 * 60 * 60 * 1000;
 
-  // Initialisation date
+  const $ = (id) => document.getElementById(id);
+  function esc(v) {
+    return String(v === undefined || v === null ? "" : v)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+  function erreurEcoute(nom) {
+    return (err) => console.error("Erreur d'écoute Firestore (" + nom + ") :", err);
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
-    const today = new Date().toISOString().split('T')[0];
-    const champDate = document.getElementById("dateAdhesionMembre");
-    if (champDate) champDate.value = today;
+    const champDate = $("dateAdhesionMembre");
+    if (champDate) champDate.value = new Date().toISOString().split('T')[0];
   });
 
-  // DÉVERROUILLAGE SÉCURISÉ DU TABLEAU DES BÉNÉVOLES PAR CODE SECRET
-  window.deverrouillerTableauBenevoles = function() {
-    const code = prompt("ACCÈS SÉCURISÉ PRÉSIDENT :\nVeuillez saisir le code secret pour consulter la liste des candidatures bénévoles :");
-    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
-      const zone = document.getElementById("zoneTableauBenevolesSecurise");
-      if (zone) zone.style.display = "block";
-      alert("Accès autorisé. Tableau des candidatures bénévoles déverrouillé.");
-    } else if (code !== null) {
-      alert("Accès refusé ! Code secret incorrect.");
-    }
-  };
-
-  // 1. PUBLICATION ÉVÉNEMENTS
+  // ========== 1. ÉVÉNEMENTS (publication sécurisée + affichage 24h) ==========
   window.toggleFormulaireEvenementSecurise = function() {
     const codeSaisi = prompt("ACCÈS SÉCURISÉ (Président / Chargé de Communication) :\nVeuillez saisir le code secret pour publier une activité :");
-    
     if (codeSaisi && codeSaisi.trim() === CODE_SECRET_PRESIDENT) {
-      const el = document.getElementById("formulairePublicatEvent");
-      if (el) {
-        el.style.display = "block";
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
+      const el = $("formulairePublicatEvent");
+      if (el) { el.style.display = "block"; el.scrollIntoView({ behavior: 'smooth' }); }
     } else if (codeSaisi !== null) {
       alert("Accès refusé ! Code secret incorrect.");
     }
   };
 
-  window.publierNouvelEvenement = async function() {
-    const titre = document.getElementById("evTitre").value.trim();
-    const desc = document.getElementById("evDescription").value.trim();
-    const dateEv = document.getElementById("evDate").value.trim();
-    const lieu = document.getElementById("evLieu").value.trim();
-    const places = document.getElementById("evPlaces").value;
-
-    if (!titre || !desc) {
-      alert("Veuillez saisir au moins un titre et une description pour l'événement.");
-      return;
-    }
-
-    try {
-      await addDoc(collection(db, "evenements"), {
-        titre, description: desc, date: dateEv, lieu, places,
-        timestamp: Date.now(),
-        createdAt: serverTimestamp()
-      });
-      alert("Événement publié avec succès !");
-      document.getElementById("formulairePublicatEvent").style.display = "none";
-    } catch (err) {
-      console.error("Erreur d'envoi d'événement :", err);
-      alert("Erreur lors de la publication : " + err.message);
-    }
-  };
-      
-  // FONCTION UNIQUE DE PUBLICATION
-  window.publierNouvelEvenement = async function() {
-    const titre = document.getElementById("evTitre").value.trim();
-    const desc = document.getElementById("evDescription").value.trim();
-    const dateEv = document.getElementById("evDate").value.trim();
-    const lieu = document.getElementById("evLieu").value.trim();
-    const places = document.getElementById("evPlaces").value;
-    const fichierInput = document.getElementById("evFichierImage");
-
-    if (!titre || !desc) {
-      alert("Veuillez saisir au moins un titre et une description pour l'événement.");
-      return;
-    }
-
-    let imageBase64 = "";
-
-    // Si une image est sélectionnée, on la lit d'abord puis on enregistre
-    if (fichierInput && fichierInput.files && fichierInput.files[0]) {
-      const file = fichierInput.files[0];
+  function lireImageCompressee(file) {
+    return new Promise((resolve, reject) => {
+      if (!file) return resolve("");
       const reader = new FileReader();
-      
-      reader.onload = async function(e) {
-        imageBase64 = e.target.result;
-        await enregistrerEvenementFirebase(titre, desc, dateEv, lieu, places, imageBase64);
+      reader.onerror = () => reject(new Error("Lecture de l'image impossible."));
+      reader.onload = () => {
+        const img = new Image();
+        img.onerror = () => reject(new Error("Image invalide."));
+        img.onload = () => {
+          const max = 800;
+          let w = img.width, h = img.height;
+          if (w > max || h > max) {
+            const k = Math.min(max / w, max / h);
+            w = Math.round(w * k); h = Math.round(h * k);
+          }
+          const c = document.createElement("canvas");
+          c.width = w; c.height = h;
+          c.getContext("2d").drawImage(img, 0, 0, w, h);
+          resolve(c.toDataURL("image/jpeg", 0.7));
+        };
+        img.src = reader.result;
       };
       reader.readAsDataURL(file);
-    } else {
-      // Pas d'image, enregistrement direct
-      await enregistrerEvenementFirebase(titre, desc, dateEv, lieu, places, "");
-    }
-  };
-
-  async function enregistrerEvenementFirebase(titre, description, date, lieu, places, image) {
-    try {
-      await addDoc(collection(db, "evenements"), {
-        titre, description, date, lieu, places, image,
-        timestamp: Date.now(),
-        createdAt: serverTimestamp()
-      });
-      alert("Événement publié avec succès !");
-      
-      // Nettoyage et fermeture du formulaire
-      document.getElementById("formulairePublicatEvent").style.display = "none";
-      document.getElementById("evTitre").value = "";
-      document.getElementById("evDescription").value = "";
-      if (document.getElementById("evDate")) document.getElementById("evDate").value = "";
-      if (document.getElementById("evLieu")) document.getElementById("evLieu").value = "";
-      if (document.getElementById("evPlaces")) document.getElementById("evPlaces").value = "";
-      if (document.getElementById("evFichierImage")) document.getElementById("evFichierImage").value = "";
-    } catch (err) {
-      console.error("Erreur d'envoi d'événement :", err);
-      alert("Erreur lors de la publication : " + err.message);
-    }
+    });
   }
 
-  // SUPPRESSION SÉCURISÉE D'UN ÉVÉNEMENT
-  window.supprimerEvenement = async function(idEv, titreEv) {
-    const code = prompt(`ATTENTION : Suppression de l'événement "${titreEv}".\nVeuillez saisir le code secret :`);
-    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
-      if (confirm(`Êtes-vous sûr de vouloir supprimer l'événement : ${titreEv} ?`)) {
-        try {
-          await deleteDoc(doc(db, "evenements", idEv));
-          alert("Événement supprimé avec succès !");
-        } catch (err) {
-          console.error("Erreur de suppression :", err);
-          alert("Erreur lors de la suppression : " + err.message);
-        }
-      }
-    } else if (code !== null) {
-      alert("Accès refusé ! Code secret incorrect.");
+  window.publierNouvelEvenement = async function() {
+    const titre = $("evTitre").value.trim();
+    const description = $("evDescription").value.trim();
+    const dateEv = $("evDate").value.trim();
+    const lieu = $("evLieu").value.trim();
+    const places = parseInt($("evPlaces").value, 10) || 0;
+    const fichier = $("evFichierImage").files[0];
+
+    if (!titre) { alert("Veuillez saisir le titre de l'événement."); return; }
+
+    try {
+      const image = await lireImageCompressee(fichier);
+      await addDoc(collection(db, "evenements"), {
+        titre, description, date: dateEv, lieu, places, image,
+        publieLe: Date.now(),
+        dateCreation: serverTimestamp()
+      });
+      alert("Événement publié avec succès ! Il restera visible pendant 24h.");
+      $("evTitre").value = ""; $("evDescription").value = "";
+      $("evDate").value = ""; $("evLieu").value = "";
+      $("evPlaces").value = "50"; $("evFichierImage").value = "";
+      $("formulairePublicatEvent").style.display = "none";
+    } catch (err) {
+      console.error("Erreur publication :", err);
+      alert("Erreur lors de la publication : " + err.message);
     }
   };
 
+  function evenementsActifs() {
+    const maintenant = Date.now();
+    return cacheEvenements
+      .filter(e => e.publieLe && (maintenant - e.publieLe) < DUREE_24H)
+      .sort((a, b) => b.publieLe - a.publieLe);
+  }
 
-  // 2. GESTION DES MEMBRES
+  function afficherEvenements() {
+    const conteneur = $("events-widget-container");
+    if (!conteneur) return;
+    const actifs = evenementsActifs();
+
+    if (actifs.length === 0) {
+      conteneur.innerHTML = '<div class="col-12"><p class="text-muted text-center my-3">Aucune activité publiée dans les dernières 24h.</p></div>';
+    } else {
+      conteneur.innerHTML = actifs.map(e => `
+        <div class="col-md-6 col-lg-4 mb-3">
+          <div class="card shadow-sm h-100">
+            ${e.image ? `<img src="${e.image}" class="card-img-top" alt="${esc(e.titre)}" style="max-height:260px; object-fit:cover;">` : ''}
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">${esc(e.titre)}</h5>
+              ${e.description ? `<p class="card-text">${esc(e.description)}</p>` : ''}
+              <small class="text-muted d-block">${e.date ? '📅 ' + esc(e.date) : ''}</small>
+              <small class="text-muted d-block">${e.lieu ? '📍 ' + esc(e.lieu) : ''}</small>
+              <small class="text-muted d-block">${e.places ? '👥 ' + esc(e.places) + ' places' : ''}</small>
+            </div>
+            <div class="card-footer bg-white">
+              <button type="button" class="btn btn-sm btn-outline-info" onclick="ouvrirCommentairesNotif('${e.id}')">💬 Commenter</button>
+            </div>
+          </div>
+        </div>`).join("");
+    }
+    afficherNotifications();
+  }
+
+  onSnapshot(collection(db, "evenements"), (snapshot) => {
+    cacheEvenements = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+    afficherEvenements();
+  }, erreurEcoute("evenements"));
+
+  setInterval(afficherEvenements, 60000);
+
+  // ========== 2. NOTIFICATIONS + COMMENTAIRES ==========
+  window.basculerListeNotifications = function() {
+    const liste = $("listeNotifPanel");
+    if (liste) liste.style.display = (liste.style.display === "none") ? "block" : "none";
+  };
+
+  function afficherNotifications() {
+    const cont = $("notif-widget-container");
+    if (!cont) return;
+    const actifs = evenementsActifs();
+    const ouvert = $("listeNotifPanel") && $("listeNotifPanel").style.display === "block";
+
+    cont.innerHTML = `
+      <div class="position-relative">
+        <button type="button" class="btn btn-sm btn-outline-primary" onclick="basculerListeNotifications()">
+          🔔 Notifications <span class="badge badge-danger bg-danger text-white">${actifs.length}</span>
+        </button>
+        <div id="listeNotifPanel" class="card shadow position-absolute" style="display:${ouvert ? 'block' : 'none'}; right:0; top:110%; width:290px; z-index:20000;">
+          <div class="list-group list-group-flush" style="max-height:280px; overflow-y:auto;">
+            ${actifs.length === 0
+              ? '<div class="list-group-item text-muted small">Aucune notification.</div>'
+              : actifs.map(e => `
+                <button type="button" class="list-group-item list-group-item-action" onclick="ouvrirCommentairesNotif('${e.id}')">
+                  <strong>${esc(e.titre)}</strong><br>
+                  <small class="text-muted">Nouvelle activité · cliquez pour commenter</small>
+                </button>`).join("")}
+          </div>
+        </div>
+      </div>`;
+  }
+
+  window.ouvrirCommentairesNotif = function(notifId) {
+    const zone = $("zoneCommentairesNotif");
+    if (!zone) return;
+    zone.setAttribute("data-notif-id", notifId);
+    zone.style.display = "block";
+    zone.scrollIntoView({ behavior: 'smooth' });
+
+    const panel = $("listeNotifPanel");
+    if (panel) panel.style.display = "none";
+
+    if (unsubscribeCommentairesNotif) unsubscribeCommentairesNotif();
+    const q = query(collection(db, "commentairesNotif"), where("notifId", "==", notifId));
+
+    unsubscribeCommentairesNotif = onSnapshot(q, (snapshot) => {
+      const boite = $("boiteListeCommentaires");
+      const liste = snapshot.docs.map(d => d.data()).sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+      if (liste.length === 0) {
+        boite.innerHTML = '<p class="text-muted text-center mb-0">Aucun commentaire. Soyez le premier !</p>';
+        return;
+      }
+      boite.innerHTML = liste.map(c => `
+        <div class="mb-2 pb-2 border-bottom">
+          <strong>${esc(c.auteur)}</strong>
+          <small class="text-muted"> · ${c.timestamp ? new Date(c.timestamp).toLocaleString('fr-FR') : ''}</small>
+          <div>${esc(c.texte)}</div>
+        </div>`).join("");
+      boite.scrollTop = boite.scrollHeight;
+    }, erreurEcoute("commentairesNotif"));
+  };
+
+  window.ajouterCommentaireNotification = async function(event) {
+    if (event) event.preventDefault();
+    const zone = $("zoneCommentairesNotif");
+    const notifId = zone ? zone.getAttribute("data-notif-id") : null;
+    const auteur = $("nomAuteurCommentaire").value.trim();
+    const texte = $("texteCommentaireNotif").value.trim();
+    if (!notifId || !auteur || !texte) return;
+
+    try {
+      await addDoc(collection(db, "commentairesNotif"), {
+        notifId, auteur, texte,
+        timestamp: Date.now(),
+        dateCreation: serverTimestamp()
+      });
+      $("texteCommentaireNotif").value = "";
+    } catch (err) {
+      console.error("Erreur commentaire :", err);
+      alert("Erreur lors de l'envoi du commentaire : " + err.message);
+    }
+  };
+
+  function initialiserNotifications() {
+    afficherNotifications();
+  }
+
+  // ========== 3. MEMBRES : ENREGISTREMENT / MODIFICATION ==========
   window.enregistrerMembre = async function(event) {
     if (event) event.preventDefault();
     if (enEnregistrement) return;
 
-    const form = document.getElementById("formulaireInscription");
+    const form = $("formulaireInscription");
     const idEncours = form ? form.getAttribute("data-id-edition") : null;
-    
-    const nom = document.getElementById("nomMembre").value.trim();
-    const prenom = document.getElementById("prenomMembre").value.trim();
-    const postnom = document.getElementById("postnomMembre").value.trim();
-    const sexe = document.getElementById("sexeMembre").value;
-    const dateAdhesion = document.getElementById("dateAdhesionMembre").value;
-    const contact = document.getElementById("contactMembre").value.trim();
-    const nationalite = document.getElementById("nationaliteMembre").value.trim();
-    const province = document.getElementById("provinceMembre").value;
-    const localisation = document.getElementById("localisationMembre").value.trim() || "Kinshasa, RDC";
-    const niveauEtudes = document.getElementById("niveauEtudesMembre").value;
-    const etatCivil = document.getElementById("etatCivilMembre").value;
-    const profession = document.getElementById("professionMembre").value.trim();
-    const statut = document.getElementById("statutMembre").value;
+
+    const nom = $("nomMembre").value.trim();
+    const prenom = $("prenomMembre").value.trim();
+    const postnom = $("postnomMembre").value.trim();
+    const sexe = $("sexeMembre").value;
+    const dateAdhesion = $("dateAdhesionMembre").value;
+    const contact = $("contactMembre").value.trim();
+    const nationalite = $("nationaliteMembre").value.trim();
+    const province = $("provinceMembre").value;
+    const localisation = $("localisationMembre").value.trim() || "Kinshasa, RDC";
+    const niveauEtudes = $("niveauEtudesMembre").value;
+    const etatCivil = $("etatCivilMembre").value;
+    const profession = $("professionMembre").value.trim();
+    const statut = $("statutMembre").value;
 
     if (!nom || !prenom || !contact) {
       alert("Veuillez remplir les champs obligatoires (Nom, Prénom, Téléphone).");
@@ -1634,12 +1857,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
     try {
       enEnregistrement = true;
-
-      const membreData = {
-        nom, prenom, postnom, sexe, dateAdhesion, contact,
-        nationalite, province, localisation, niveauEtudes,
-        etatCivil, profession, statut
-      };
+      const membreData = { nom, prenom, postnom, sexe, dateAdhesion, contact, nationalite, province, localisation, niveauEtudes, etatCivil, profession, statut };
 
       if (idEncours) {
         await updateDoc(doc(db, "membres", idEncours), membreData);
@@ -1653,9 +1871,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       }
 
       if (form) form.reset();
-      const today = new Date().toISOString().split('T')[0];
-      if (document.getElementById("dateAdhesionMembre")) document.getElementById("dateAdhesionMembre").value = today;
-
+      if ($("dateAdhesionMembre")) $("dateAdhesionMembre").value = new Date().toISOString().split('T')[0];
     } catch (error) {
       console.error("Erreur Firebase : ", error);
       alert("Erreur lors de l'opération : " + error.message);
@@ -1667,9 +1883,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   window.deverrouillerTableauPresident = function() {
     const code = prompt("Veuillez saisir le code secret du Président :");
     if (code && code.trim() === CODE_SECRET_PRESIDENT) {
-      document.getElementById("conteneurTableauGeneral").style.display = "block";
-      document.getElementById("btnImprimerListeMembres").style.display = "inline-block";
-      alert("Accès Président autorisé. La liste générale des membres est accessible.");
+      $("conteneurTableauGeneral").style.display = "block";
+      $("btnImprimerListeMembres").style.display = "inline-block";
+      alert("Accès Président autorisé. La liste générale des membres est maintenant accessible.");
     } else if (code !== null) {
       alert("Accès refusé ! Code secret incorrect.");
     }
@@ -1678,21 +1894,19 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   window.deverrouillerCotisationsPresident = function() {
     const code = prompt("Veuillez saisir le code secret du Président / Caissier pour consulter et valider les cotisations :");
     if (code && code.trim() === CODE_SECRET_PRESIDENT) {
-      document.getElementById("conteneurHistoriqueCotisations").style.display = "block";
+      $("conteneurHistoriqueCotisations").style.display = "block";
       alert("Accès autorisé. Historique des cotisations déverrouillé.");
     } else if (code !== null) {
       alert("Accès refusé ! Code secret incorrect.");
     }
   };
 
+  // ========== 4. ESPACE MEMBRE : CONSULTER MA FICHE ==========
   window.rechercherFicheMembre = function() {
-    const matSaisi = document.getElementById("rechercheMatriculeMembre").value.trim().toUpperCase();
-    const zone = document.getElementById("zoneFichePersonnelle");
+    const matSaisi = $("rechercheMatriculeMembre").value.trim().toUpperCase();
+    const zone = $("zoneFichePersonnelle");
 
-    if (!matSaisi) {
-      alert("Veuillez entrer votre matricule.");
-      return;
-    }
+    if (!matSaisi) { alert("Veuillez entrer votre matricule."); return; }
 
     const membre = cacheMembresLocal.find(m => m.matricule === matSaisi);
 
@@ -1701,31 +1915,30 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       zone.innerHTML = `
         <div class="card border-info" id="ficheIndividuellePrint">
           <div class="card-header bg-info text-white font-weight-bold d-flex justify-content-between align-items-center">
-            <span>Fiche Personnelle Membre : ${membre.matricule}</span>
-            <button type="button" class="btn btn-sm btn-light text-info fw-bold no-print" onclick="imprimerSection('ficheIndividuellePrint', 'Fiche Membre ${membre.matricule}')">
+            <span>Fiche Personnelle Membre : ${esc(membre.matricule)}</span>
+            <button type="button" class="btn btn-sm btn-light text-info fw-bold no-print" onclick="imprimerSection('ficheIndividuellePrint', 'Fiche Membre ${esc(membre.matricule)}')">
               <i class="icon ion-md-print me-1"></i> Imprimer Ma Fiche
             </button>
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-md-6"><strong>Identité :</strong> ${membre.nom} ${membre.prenom} ${membre.postnom || ''}</div>
-              <div class="col-md-3"><strong>Sexe :</strong> ${membre.sexe || '-'}</div>
-              <div class="col-md-3"><strong>Statut :</strong> ${membre.statut || 'Membre'}</div>
-              <div class="col-md-6 mt-2"><strong>Téléphone :</strong> ${membre.contact || '-'}</div>
-              <div class="col-md-6 mt-2"><strong>Nationalité :</strong> ${membre.nationalite || 'Congolaise'}</div>
-              <div class="col-md-6 mt-2"><strong>Province d'origine :</strong> ${membre.province || '-'}</div>
-              <div class="col-md-6 mt-2"><strong>Localisation :</strong> ${membre.localisation || '-'}</div>
-              <div class="col-md-6 mt-2"><strong>Niveau d'études :</strong> ${membre.niveauEtudes || '-'}</div>
-              <div class="col-md-6 mt-2"><strong>État civil :</strong> ${membre.etatCivil || '-'}</div>
-              <div class="col-md-6 mt-2"><strong>Profession :</strong> ${membre.profession || '-'}</div>
-              <div class="col-md-6 mt-2"><strong>Date d'adhésion :</strong> ${membre.dateAdhesion || '-'}</div>
+              <div class="col-md-6"><strong>Identité :</strong> ${esc(membre.nom)} ${esc(membre.prenom)} ${esc(membre.postnom || '')}</div>
+              <div class="col-md-3"><strong>Sexe :</strong> ${esc(membre.sexe || '-')}</div>
+              <div class="col-md-3"><strong>Statut :</strong> ${esc(membre.statut || 'Membre')}</div>
+              <div class="col-md-6 mt-2"><strong>Téléphone :</strong> ${esc(membre.contact || '-')}</div>
+              <div class="col-md-6 mt-2"><strong>Nationalité :</strong> ${esc(membre.nationalite || 'Congolaise')}</div>
+              <div class="col-md-6 mt-2"><strong>Province d'origine :</strong> ${esc(membre.province || '-')}</div>
+              <div class="col-md-6 mt-2"><strong>Localisation :</strong> ${esc(membre.localisation || '-')}</div>
+              <div class="col-md-6 mt-2"><strong>Niveau d'études :</strong> ${esc(membre.niveauEtudes || '-')}</div>
+              <div class="col-md-6 mt-2"><strong>État civil :</strong> ${esc(membre.etatCivil || '-')}</div>
+              <div class="col-md-6 mt-2"><strong>Profession :</strong> ${esc(membre.profession || '-')}</div>
+              <div class="col-md-6 mt-2"><strong>Date d'adhésion :</strong> ${esc(membre.dateAdhesion || '-')}</div>
             </div>
           </div>
-        </div>
-      `;
+        </div>`;
     } else {
       zone.style.display = "block";
-      zone.innerHTML = `<div class="alert alert-warning">Aucun membre trouvé sous le matricule <strong>${matSaisi}</strong>. Vérifiez votre saisie.</div>`;
+      zone.innerHTML = `<div class="alert alert-warning">Aucun membre trouvé sous le matricule <strong>${esc(matSaisi)}</strong>. Vérifiez votre saisie.</div>`;
     }
   };
 
@@ -1733,590 +1946,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     const m = cacheMembresLocal.find(item => item.id === idDoc);
     if (!m) return;
 
-    document.getElementById("nomMembre").value = m.nom || "";
-    document.getElementById("prenomMembre").value = m.prenom || "";
-    document.getElementById("postnomMembre").value = m.postnom || "";
-    document.getElementById("sexeMembre").value = m.sexe || "M";
-    document.getElementById("dateAdhesionMembre").value = m.dateAdhesion || "";
-    document.getElementById("contactMembre").value = m.contact || "";
-    document.getElementById("nationaliteMembre").value = m.nationalite || "Congolaise";
-    document.getElementById("provinceMembre").value = m.province || "Kinshasa";
-    document.getElementById("localisationMembre").value = m.localisation || "";
-    document.getElementById("niveauEtudesMembre").value = m.niveauEtudes || "Diplômé d'État";
-    document.getElementById("etatCivilMembre").value = m.etatCivil || "Célibataire";
-    document.getElementById("professionMembre").value = m.profession || "";
-    document.getElementById("statutMembre").value = m.statut || "Membre";
-
-    const form = document.getElementById("formulaireInscription");
-    form.setAttribute("data-id-edition", idDoc);
-
-    const btnSubmit = form.querySelector("button[type='submit']");
-    if (btnSubmit) {
-      btnSubmit.innerHTML = '<i class="icon ion-md-save me-1"></i> Mettre à jour la fiche';
-    }
-
-    form.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  window.supprimerMembre = async function(idMembre, nomMembre) {
-    const motDePasse = prompt(`ATTENTION : Suppression de "${nomMembre}".\nSeul le Président peut effectuer cette action.\nVeuillez entrer le code secret :`);
-
-    if (motDePasse === null) return;
-
-    if (motDePasse && motDePasse.trim() === CODE_SECRET_PRESIDENT) {
-      if (confirm(`Êtes-vous sûr de vouloir supprimer définitivement le membre : ${nomMembre} ?`)) {
-        try {
-          await deleteDoc(doc(db, "membres", idMembre));
-          alert("Membre supprimé avec succès.");
-        } catch (error) {
-          console.error("Erreur de suppression : ", error);
-          alert("Erreur lors de la suppression : " + error.message);
-        }
-      }
-    } else {
-      alert("Accès refusé ! Code secret incorrect.");
-    }
-  };
-
-  // AFFICHAGE DES MEMBRES EN TEMPS RÉEL
-  onSnapshot(collection(db, "membres"), (snapshot) => {
-    const tbody = document.getElementById("corpsTableauMembres");
-    if (!tbody) return;
-
-    tbody.innerHTML = "";
-    cacheMembresLocal = [];
-
-    snapshot.docs.forEach((docSnap) => {
-      const data = docSnap.data();
-      const idDoc = docSnap.id;
-      const matriculeAuto = "JSD-2026-" + idDoc.substring(0, 4).toUpperCase();
-      
-      const membreObj = { id: idDoc, matricule: matriculeAuto, ...data };
-      cacheMembresLocal.push(membreObj);
-
-      let badgeClass = "bg-info text-white";
-      if (data.statut === "Président") badgeClass = "bg-success text-white";
-      if (data.statut === "Conseiller") badgeClass = "bg-primary text-white";
-      if (data.statut === "Membre d'Honneur") badgeClass = "bg-warning text-dark";
-
-      const nomComplet = `${data.nom || ''} ${data.prenom || ''} ${data.postnom || ''}`.trim();
-
-      const newRow = document.createElement("tr");
-      newRow.innerHTML = `
-        <td><strong>${matriculeAuto}</strong></td>
-        <td>${nomComplet || '-'}</td>
-        <td>${data.sexe || '-'}</td>
-        <td>${data.contact || '-'}</td>
-        <td>${data.province || '-'}</td>
-        <td><span class="badge ${badgeClass} px-2 py-1">${data.statut || 'Membre'}</span></td>
-        <td>${data.dateAdhesion || '-'}</td>
-        <td class="text-center no-print">
-          <button type="button" class="btn btn-sm btn-outline-warning me-1" title="Modifier" 
-            onclick="chargerMembrePourModification('${idDoc}')">
-            <i class="icon ion-md-create"></i> Modifier
-          </button>
-          
-          <button type="button" class="btn btn-sm btn-outline-danger" title="Supprimer" 
-            onclick="supprimerMembre('${idDoc}', '${(data.nom || '').replace(/'/g, "\\'")}')">
-            <i class="icon ion-md-trash"></i> Supprimer
-          </button>
-        </td>
-      `;
-      tbody.appendChild(newRow);
-    });
-  });
-
-  // 3. COTISATIONS
-  window.enregistrerCotisation = async function(e) {
-    if (e) e.preventDefault();
-    const membre = document.getElementById("cotisationMembre").value.trim();
-    const typeMembre = document.getElementById("cotisationTypeMembre").value;
-    const montant = document.getElementById("cotisationMontant").value;
-    const mode = document.getElementById("cotisationModePaiement").value;
-    const ref = document.getElementById("cotisationRefMPesa") ? document.getElementById("cotisationRefMPesa").value.trim() : "";
-
-    if (!membre || !montant) {
-      alert("Veuillez saisir le nom/matricule du membre et le montant.");
-      return;
-    }
-
-    try {
-      await addDoc(collection(db, "cotisations"), {
-        membre, typeMembre, montant, mode, reference: ref,
-        statut: "En attente validation",
-        date: new Date().toISOString(),
-        createdAt: serverTimestamp()
-      });
-      alert("Cotisation soumise avec succès ! En attente de validation par la Caisse.");
-      document.getElementById("formCotisation").reset();
-      document.getElementById("blocAideMPesa").style.display = "none";
-    } catch (err) {
-      console.error("Erreur enregistrement cotisation :", err);
-      alert("Erreur lors de l'enregistrement de la cotisation.");
-    }
-  };
-
-  onSnapshot(collection(db, "cotisations"), (snapshot) => {
-    const tbody = document.getElementById("corpsTableauCotisations");
-    if (!tbody) return;
-
-    tbody.innerHTML = "";
-
-    if (snapshot.empty) {
-      tbody.innerHTML = `<tr><td colspan="8" class="text-center text-muted py-3">Aucune cotisation enregistrée.</td></tr>`;
-      return;
-    }
-
-    snapshot.docs.forEach((docSnap) => {
-      const c = docSnap.data();
-      const idDoc = docSnap.id;
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td><strong>${c.membre || '-'}</strong></td>
-        <td>${c.typeMembre || '-'}</td>
-        <td>${c.montant || '0'} USD</td>
-        <td>${c.mode || '-'}</td>
-        <td>${c.reference || '-'}</td>
-        <td><span class="badge ${c.statut === 'Validé' ? 'bg-success' : 'bg-warning text-dark'}">${c.statut || 'En attente'}</span></td>
-        <td>${c.date ? new Date(c.date).toLocaleDateString('fr-FR') : '-'}</td>
-        <td class="no-print">
-          ${c.statut !== 'Validé' ? `<button class="btn btn-sm btn-success" onclick="validerCotisation('${idDoc}')">Valider</button>` : '<i class="icon ion-md-checkmark text-success"></i>'}
-        </td>
-      `;
-      tbody.appendChild(tr);
-    });
-  });
-
-  window.validerCotisation = async function(idCotisation) {
-    const code = prompt("Entrez le code secret pour valider le paiement :");
-    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
-      try {
-        await updateDoc(doc(db, "cotisations", idCotisation), { statut: "Validé" });
-        alert("Paiement validé avec succès !");
-      } catch (err) {
-        alert("Erreur lors de la validation.");
-      }
-    } else if (code !== null) {
-      alert("Code secret incorrect.");
-    }
-  };
-
-  // 4. MESSAGERIE PRIVÉE (CHAT)
-  let membreChatSession = null;
-  let estModePresidentChat = false;
-  let conversationActiveMembreId = null;
-  let unsubscribeMessagesMembre = null;
-  let unsubscribeMessagesPresident = null;
-
-  window.connexionMessagerie = async function() {
-    const nomSaisi = document.getElementById("chatNom") ? document.getElementById("chatNom").value.trim() : "";
-    const champMat = document.getElementById("chatMatricule");
-    const matBrut = champMat ? champMat.value.trim() : "";
-
-    if (!matBrut) {
-      alert("Veuillez remplir le champ matricule.");
-      return;
-    }
-
-    if (matBrut === CODE_SECRET_PRESIDENT) {
-      estModePresidentChat = true;
-      membreChatSession = { id: "president", nom: "Président JSD", matricule: "PRESIDENT" };
-      ouvrirEspaceDiscussionPresident();
-      return;
-    }
-
-    const matriculeSaisi = matBrut.toUpperCase();
-
-    if (!nomSaisi) {
-      alert("Veuillez saisir votre Nom et votre Matricule pour accéder au chat.");
-      return;
-    }
-
-    try {
-      const snapshotMembres = await getDocs(collection(db, "membres"));
-      let membreTrouve = null;
-
-      snapshotMembres.forEach((docSnap) => {
-        const data = docSnap.data();
-        const docId = docSnap.id;
-        const matriculeAuto = "JSD-2026-" + docId.substring(0, 4).toUpperCase();
-        const nomData = (data.nom || "").trim().toLowerCase();
-
-        if ((nomData === nomSaisi.toLowerCase() || nomData.includes(nomSaisi.toLowerCase())) && matriculeAuto === matriculeSaisi) {
-          membreTrouve = { id: docId, nom: data.nom, matricule: matriculeAuto };
-        }
-      });
-
-      if (membreTrouve) {
-        membreChatSession = membreTrouve;
-        estModePresidentChat = false;
-        ouvrirEspaceDiscussionMembre();
-      } else {
-        alert("Accès refusé ! Le Nom ou le Matricule est incorrect.");
-      }
-    } catch (err) {
-      console.error("Erreur d'accès :", err);
-      alert("Erreur lors de la vérification des identifiants.");
-    }
-  };
-
-  window.connexionPresidentChat = function() {
-    const codeSaisi = prompt("Saisissez le code secret du Président pour accéder à l'administration du chat :");
-    if (codeSaisi && codeSaisi.trim() === CODE_SECRET_PRESIDENT) {
-      estModePresidentChat = true;
-      membreChatSession = { nom: "Président JSD", matricule: "PRESIDENT" };
-      ouvrirEspaceDiscussionPresident();
-    } else if (codeSaisi !== null) {
-      alert("Code secret incorrect !");
-    }
-  };
-
-  function ouvrirEspaceDiscussionMembre() {
-    document.getElementById("blocConnexionChat").style.display = "none";
-    document.getElementById("blocDiscussionChat").style.display = "block";
-    document.getElementById("vueDiscussionMembre").style.display = "block";
-    document.getElementById("vueDiscussionPresident").style.display = "none";
-
-    document.getElementById("libelleMembreConnecte").innerText = `${membreChatSession.nom} (${membreChatSession.matricule})`;
-    document.getElementById("badgeStatutConnexion").innerText = "Membre Connecté";
-    document.getElementById("badgeStatutConnexion").className = "badge bg-success text-white";
-
-    ecouterMessagesMembre(membreChatSession.id);
-  }
-
-  function ouvrirEspaceDiscussionPresident() {
-    document.getElementById("blocConnexionChat").style.display = "none";
-    document.getElementById("blocDiscussionChat").style.display = "block";
-    document.getElementById("vueDiscussionMembre").style.display = "none";
-    document.getElementById("vueDiscussionPresident").style.display = "block";
-
-    document.getElementById("badgeStatutConnexion").innerText = "Président (Admin)";
-    document.getElementById("badgeStatutConnexion").className = "badge bg-danger text-white";
-
-    chargerListeConversationsPresident();
-  }
-
-  function ecouterMessagesMembre(membreId) {
-    const q = query(
-      collection(db, "messages"),
-      where("membreId", "==", membreId)
-    );
-
-    if (unsubscribeMessagesMembre) unsubscribeMessagesMembre();
-
-    unsubscribeMessagesMembre = onSnapshot(q, (snapshot) => {
-      const boite = document.getElementById("boiteMessagesMembre");
-      boite.innerHTML = "";
-
-      let messages = [];
-      snapshot.forEach(docSnap => {
-        messages.push({ id: docSnap.id, ...docSnap.data() });
-      });
-
-      messages.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
-
-      if (messages.length === 0) {
-        boite.innerHTML = `<p class="text-muted text-center my-4">Aucun message pour le moment. Écrivez au Président ci-dessous.</p>`;
-        return;
-      }
-
-      messages.forEach((msg) => {
-        const estMoi = msg.expediteur === "membre";
-        const divMsg = document.createElement("div");
-        divMsg.className = `d-flex mb-2 ${estMoi ? 'justify-content-end' : 'justify-content-start'}`;
-        divMsg.innerHTML = `
-          <div class="p-2 px-3 rounded ${estMoi ? 'bg-primary text-white' : 'bg-light text-dark border'}" style="max-width: 75%;">
-            <small class="d-block fw-bold" style="font-size: 0.75rem;">${estMoi ? 'Vous' : 'Président JSD'}</small>
-            <span>${msg.texte}</span>
-          </div>
-        `;
-        boite.appendChild(divMsg);
-      });
-
-      boite.scrollTop = boite.scrollHeight;
-    });
-  }
-
-  window.envoyerMessageMembre = async function(e) {
-    if (e) e.preventDefault();
-    const champ = document.getElementById("champMessageMembre");
-    const texte = champ.value.trim();
-
-    if (!texte || !membreChatSession) return;
-
-    try {
-      await addDoc(collection(db, "messages"), {
-        membreId: membreChatSession.id,
-        membreNom: membreChatSession.nom,
-        membreMatricule: membreChatSession.matricule,
-        expediteur: "membre",
-        texte: texte,
-        timestamp: Date.now(),
-        dateCreation: serverTimestamp()
-      });
-      champ.value = "";
-    } catch (err) {
-      console.error("Erreur d'envoi :", err);
-      alert("Erreur lors de l'envoi du message.");
-    }
-  };
-
-  function chargerListeConversationsPresident() {
-    onSnapshot(collection(db, "messages"), (snapshot) => {
-      const conversationsMap = new Map();
-
-      snapshot.forEach(docSnap => {
-        const data = docSnap.data();
-        if (data.membreId) {
-          if (!conversationsMap.has(data.membreId)) {
-            conversationsMap.set(data.membreId, {
-              membreId: data.membreId,
-              membreNom: data.membreNom || "Membre Inconnu",
-              membreMatricule: data.membreMatricule || "",
-              dernierTimestamp: data.timestamp || 0
-            });
-          } else {
-            const current = conversationsMap.get(data.membreId);
-            if ((data.timestamp || 0) > current.dernierTimestamp) {
-              current.dernierTimestamp = data.timestamp || 0;
-            }
-          }
-        }
-      });
-
-      const listeUI = document.getElementById("listeConversationsMembres");
-      listeUI.innerHTML = "";
-
-      const convs = Array.from(conversationsMap.values());
-      convs.sort((a, b) => b.dernierTimestamp - a.dernierTimestamp);
-
-      if (convs.length === 0) {
-        listeUI.innerHTML = `<p class="text-muted p-2">Aucune conversation en cours.</p>`;
-        return;
-      }
-
-      convs.forEach(c => {
-        const item = document.createElement("button");
-        item.type = "button";
-        item.className = `list-group-item list-group-item-action ${c.membreId === conversationActiveMembreId ? 'active' : ''}`;
-        item.innerHTML = `
-          <div class="d-flex w-100 justify-content-between">
-            <h6 class="mb-1 fw-bold">${c.membreNom}</h6>
-          </div>
-          <small>${c.membreMatricule}</small>
-        `;
-        item.onclick = () => ouvrirDiscussionPresidentAvecMembre(c.membreId, c.membreNom, c.membreMatricule);
-        listeUI.appendChild(item);
-      });
-    });
-  }
-
-  function ouvrirDiscussionPresidentAvecMembre(mId, mNom, mMatricule) {
-    conversationActiveMembreId = mId;
-    document.getElementById("titreDiscussionActive").innerText = `Discussion avec : ${mNom} (${mMatricule})`;
-    document.getElementById("formEnvoyerReponsePresident").style.display = "block";
-
-    chargerListeConversationsPresident();
-
-    const q = query(
-      collection(db, "messages"),
-      where("membreId", "==", mId)
-    );
-
-    if (unsubscribeMessagesPresident) unsubscribeMessagesPresident();
-
-    unsubscribeMessagesPresident = onSnapshot(q, (snapshot) => {
-      const boite = document.getElementById("boiteMessagesPresident");
-      boite.innerHTML = "";
-
-      let messages = [];
-      snapshot.forEach(docSnap => {
-        messages.push({ id: docSnap.id, ...docSnap.data() });
-      });
-
-      messages.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
-
-      messages.forEach((msg) => {
-        const estPresident = msg.expediteur === "president";
-        const divMsg = document.createElement("div");
-        divMsg.className = `d-flex mb-2 ${estPresident ? 'justify-content-end' : 'justify-content-start'}`;
-        divMsg.innerHTML = `
-          <div class="p-2 px-3 rounded ${estPresident ? 'bg-success text-white' : 'bg-light text-dark border'}" style="max-width: 75%;">
-            <small class="d-block fw-bold" style="font-size: 0.75rem;">${estPresident ? 'Vous (Président)' : mNom}</small>
-            <span>${msg.texte}</span>
-          </div>
-        `;
-        boite.appendChild(divMsg);
-      });
-
-      boite.scrollTop = boite.scrollHeight;
-    });
-  }
-
-  window.envoyerReponsePresident = async function(e) {
-    if (e) e.preventDefault();
-    const champ = document.getElementById("champReponsePresident");
-    const texte = champ.value.trim();
-
-    if (!texte || !conversationActiveMembreId) return;
-
-    try {
-      await addDoc(collection(db, "messages"), {
-        membreId: conversationActiveMembreId,
-        expediteur: "president",
-        texte: texte,
-        timestamp: Date.now(),
-        dateCreation: serverTimestamp()
-      });
-      champ.value = "";
-    } catch (err) {
-      console.error("Erreur d'envoi du président :", err);
-      alert("Erreur lors de l'envoi de la réponse.");
-    }
-  };
-
-  // 5. SOUMISSION BÉNÉVOLAT
-  const formBenevole = document.getElementById('formBenevole');
-  if (formBenevole) {
-      formBenevole.addEventListener('submit', async function(e) {
-          e.preventDefault();
-
-          const nomInput = document.getElementById('benevoleNom').value.trim();
-          const phoneInput = document.getElementById('benevolePhone').value.trim();
-          const domaineInput = document.getElementById('benevoleDomaine').value;
-
-          try {
-              await addDoc(collection(db, "benevolats"), {
-                  nom: nomInput,
-                  phone: phoneInput,
-                  domaine: domaineInput,
-                  date: new Date().toISOString(),
-                  createdAt: serverTimestamp()
-              });
-
-              alert("Votre candidature au bénévolat a été envoyée avec succès !");
-              formBenevole.reset();
-
-          } catch (error) {
-              console.error("Erreur d'envoi :", error);
-              alert("Erreur lors de l'envoi : " + error.message);
-          }
-      });
-  }
-
-  // LECTURE EN TEMPS RÉEL DES BÉNÉVOLES (INJECTÉE UNIQUEMENT APPRÈS DÉVERROUILLAGE)
-  onSnapshot(collection(db, "benevolats"), (snapshot) => {
-    const tbody = document.getElementById("corpsTableauBenevoles");
-    if (!tbody) return;
-
-    tbody.innerHTML = "";
-
-    if (snapshot.empty) {
-      tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Aucune candidature enregistrée pour le moment.</td></tr>`;
-      return;
-    }
-
-    snapshot.docs.forEach((docSnap) => {
-      const data = docSnap.data();
-      const dateFormatee = data.date ? new Date(data.date).toLocaleDateString('fr-FR') : '-';
-      const numClean = (data.phone || '').replace(/[^0-9]/g, '');
-
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td><strong>${data.nom || '-'}</strong></td>
-        <td>${data.phone || '-'}</td>
-        <td><span class="badge bg-primary">${data.domaine || '-'}</span></td>
-        <td>${dateFormatee}</td>
-        <td>
-          <a href="https://wa.me/${numClean}" target="_blank" class="btn btn-sm btn-success">
-            Contacter WhatsApp
-          </a>
-        </td>
-      `;
-      tbody.appendChild(tr);
-    });
-  });
-
-  // 6. NOTIFICATIONS
-  function initialiserNotifications() {
-    onSnapshot(collection(db, "notifications"), (snapshot) => {
-      const conteneur = document.getElementById("notif-widget-container");
-      if (!conteneur) return;
-
-      conteneur.innerHTML = "";
-      if (snapshot.empty) return;
-
-      snapshot.docs.forEach((docSnap) => {
-        const notif = docSnap.data();
-        const div = document.createElement("div");
-        div.className = "alert alert-info alert-dismissible fade show p-2 px-3 shadow-sm";
-        div.innerHTML = `
-          <strong>📢 Notification :</strong> ${notif.message || ''}
-          <button type="button" class="btn-close py-2" data-bs-dismiss="alert"></button>
-        `;
-        conteneur.appendChild(div);
-      });
-    });
-  }
-
-  initialiserNotifications();
-      // FONCTION COMPLÈTE AVEC GESTION DE L'IMAGE
-  window.publierNouvelEvenement = async function() {
-    const titre = document.getElementById("evTitre").value.trim();
-    const desc = document.getElementById("evDescription").value.trim();
-    const dateEv = document.getElementById("evDate") ? document.getElementById("evDate").value.trim() : "";
-    const lieu = document.getElementById("evLieu") ? document.getElementById("evLieu").value.trim() : "";
-    const places = document.getElementById("evPlaces") ? document.getElementById("evPlaces").value : "";
-    const fichierInput = document.getElementById("evFichierImage");
-
-    if (!titre || !desc) {
-      alert("Veuillez saisir au moins un titre et une description pour l'événement.");
-      return;
-    }
-
-    let imageBase64 = "";
-
-    // Convertir l'image en Base64 de manière sécurisée (Promise)
-    if (fichierInput && fichierInput.files && fichierInput.files[0]) {
-      const file = fichierInput.files[0];
-      imageBase64 = await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = (e) => resolve(e.target.result);
-        reader.onerror = () => resolve("");
-        reader.readAsDataURL(file);
-      });
-    }
-
-    // Envoi dans Firestore
-    try {
-      await addDoc(collection(db, "evenements"), {
-        titre: titre,
-        description: desc,
-        date: dateEv,
-        lieu: lieu,
-        places: places,
-        image: imageBase64, // L'image au format Base64 est envoyée ici
-        timestamp: Date.now(),
-        createdAt: serverTimestamp()
-      });
-
-      alert("Événement publié avec succès !");
-
-      // Réinitialisation du formulaire
-      document.getElementById("formulairePublicatEvent").style.display = "none";
-      document.getElementById("evTitre").value = "";
-      document.getElementById("evDescription").value = "";
-      if (document.getElementById("evDate")) document.getElementById("evDate").value = "";
-      if (document.getElementById("evLieu")) document.getElementById("evLieu").value = "";
-      if (document.getElementById("evPlaces")) document.getElementById("evPlaces").value = "";
-      if (fichierInput) fichierInput.value = "";
-
-    } catch (err) {
-      console.error("Erreur lors de la publication :", err);
-      alert("Erreur lors de la publication : " + err.message);
-    }
-  };
-
-</script>
-    </body>
-</html>
+    $("nomMembre").value = m.nom || "";
+    $("prenomMembre").value = m.prenom || "";
+    $("postnomMembre").
