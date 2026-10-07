@@ -29,6 +29,22 @@
     /* 1. Titre principal et bouton du carrousel */
     .header .carousel-content h2,
     .carousel-content h2 {
+        color: #4F84C4 !important;
+        font-size: 42px !important;
+        font-weight: 700 !important;
+    }
+
+    .header .carousel-content .btn,
+    .carousel-content a.btn {
+        background-color: #4F84C4 !important;
+        color: #ffffff !important;
+        border: none !important;
+        padding: 10px 25px !important;
+    }
+
+    /* 2. Images et logo */
+    img {
+        max-width: 100% !important;
         height: auto !important;
     }
 
@@ -867,6 +883,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                         </div>
                     </div>
                     <div class="testimonial-item row align-items-center">
+                        <div class="testimonial-img">
                             <img src="img/testimonial-5.jpg" alt="Testimonial image">
                         </div>
                         <div class="testimonial-text">
@@ -960,6 +977,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
               <option value="Haut-Lomami">Haut-Lomami</option>
               <option value="Haut-Uele">Haut-Uele</option>
               <option value="Ituri">Ituri</option>
+              <option value="Kasaï">Kasaï</option>
               <option value="Kasaï central">Kasaï central</option>
               <option value="Kasaï oriental">Kasaï oriental</option>
               <option value="Kinshasa" selected>Kinshasa</option>
@@ -1024,6 +1042,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             <button type="submit" class="btn btn-primary px-4 py-2">
               <i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer
             </button>
+          </div>
         </div>
       </form>
     </div>
@@ -1090,6 +1109,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         <div class="table-responsive">
           <table class="table table-sm table-hover mb-0">
             <thead class="table-light">
+              <tr><th>Nom</th><th>Téléphone</th><th>Domaine</th><th>Date</th><th>Action</th></tr>
             </thead>
             <tbody id="corpsTableauBenevoles"></tbody>
           </table>
@@ -1932,20 +1952,4 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
               <div class="col-md-6 mt-2"><strong>Niveau d'études :</strong> ${esc(membre.niveauEtudes || '-')}</div>
               <div class="col-md-6 mt-2"><strong>État civil :</strong> ${esc(membre.etatCivil || '-')}</div>
               <div class="col-md-6 mt-2"><strong>Profession :</strong> ${esc(membre.profession || '-')}</div>
-              <div class="col-md-6 mt-2"><strong>Date d'adhésion :</strong> ${esc(membre.dateAdhesion || '-')}</div>
-            </div>
-          </div>
-        </div>`;
-    } else {
-      zone.style.display = "block";
-      zone.innerHTML = `<div class="alert alert-warning">Aucun membre trouvé sous le matricule <strong>${esc(matSaisi)}</strong>. Vérifiez votre saisie.</div>`;
-    }
-  };
-
-  window.chargerMembrePourModification = function(idDoc) {
-    const m = cacheMembresLocal.find(item => item.id === idDoc);
-    if (!m) return;
-
-    $("nomMembre").value = m.nom || "";
-    $("prenomMembre").value = m.prenom || "";
-    $("postnomMembre").
+           
