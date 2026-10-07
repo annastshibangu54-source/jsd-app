@@ -1955,7 +1955,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       snapshotMembres.forEach((docSnap) => {
         const data = docSnap.data();
         const docId = docSnap.id;
-        const matriculeAuto = "JSD-2026-" + docId.substring(0, 4).toUpperCase();
+        const matriculeAuto = "JSD-2026-xxxx" + docId.substring(0, 4).toUpperCase();
         const nomData = (data.nom || "").trim().toLowerCase();
 
         if ((nomData === nomSaisi.toLowerCase() || nomData.includes(nomSaisi.toLowerCase())) && matriculeAuto === matriculeSaisi) {
