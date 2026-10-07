@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="Fr">
     <head>
@@ -2127,6 +2128,182 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       alert("Erreur lors de l'envoi de la réponse : " + err.message);
     }
   };
+
+      // ÉCOUTE DES MESSAGES EN TEMPS RÉEL (VUE MEMBRE)
+  function ecouterMessagesMembre() {
+    if (unsubscribeMessagesMembre) unsubscribeMessagesMembre();
+
+    const q = query(
+      collection(db, "messages_chat"),
+      where("membreId", "==", membreChatSession.id),
+      orderBy("timestamp", "asc")
+    );
+
+    unsubscribeMessagesMembre = onSnapshot(q, (snapshot) => {
+      const boite = document.getElementById("boiteMessagesMembre");
+      if (!boite) return;
+      boite.innerHTML = "";
+
+      if (snapshot.empty) {
+        boite.innerHTML = `<p class="text-muted text-center my-4">Aucun message pour le moment. Écrivez au Président ci-dessous.</p>`;
+        return;
+      }
+
+      snapshot.docs.forEach((docSnap) => {
+        const msg = docSnap.data();
+        const estMoi = msg.expediteur === "membre";
+        const alignClass = estMoi ? "text-end" : "text-start";
+        const bgClass = estMoi ? "bg-primary text-white" : "bg-light text-dark border";
+
+        const div = document.createElement("div");
+        div.className = `mb-2 ${alignClass}`;
+        div.innerHTML = `
+          <div class="d-inline-block p-2 rounded ${bgClass}" style="max-width: 80%;">
+            <small class="d-block fw-bold mb-1">${estMoi ? "Moi" : "Président JSD"}</small>
+            <div>${msg.texte || ""}</div>
+          </div>
+        `;
+        boite.appendChild(div);
+      });
+
+      boite.scrollTop = boite.scrollHeight;
+    });
+  }
+
+  window.envoyerMessageMembre = async function(e) {
+    if (e) e.preventDefault();
+    const champ = document.getElementById("champMessageMembre");
+    const texte = champ.value.trim();
+
+    if (!texte || !membreChatSession) return;
+
+    try {
+      await addDoc(collection(db, "messages_chat"), {
+        membreId: membreChatSession.id,
+        membreNom: membreChatSession.nom,
+        membreMatricule: membreChatSession.matricule,
+        expediteur: "membre",
+        texte: texte,
+        timestamp: Date.now(),
+        createdAt: serverTimestamp()
+      });
+      champ.value = "";
+    } catch (err) {
+      console.error("Erreur envoi message :", err);
+      alert("Erreur lors de l'envoi du message.");
+    }
+  };
+
+  // ESPACE DISCUSSION PRÉSIDENT
+  function ouvrirEspaceDiscussionPresident() {
+    document.getElementById("blocConnexionChat").style.display = "none";
+    document.getElementById("blocDiscussionChat").style.display = "block";
+    document.getElementById("vueDiscussionMembre").style.display = "none";
+    document.getElementById("vueDiscussionPresident").style.display = "block";
+    document.getElementById("badgeStatutConnexion").textContent = "Connecté : Président JSD";
+    document.getElementById("badgeStatutConnexion").className = "badge bg-dark text-white";
+
+    chargerListeConversationsMembres();
+  }
+
+  function chargerListeConversationsMembres() {
+    onSnapshot(collection(db, "messages_chat"), (snapshot) => {
+      const conteneurListe = document.getElementById("listeConversationsMembres");
+      if (!conteneurListe) return;
+
+      const discussionsMap = new Map();
+
+      snapshot.docs.forEach((docSnap) => {
+        const data = docSnap.data();
+        if (data.membreId) {
+          discussionsMap.set(data.membreId, {
+            id: data.membreId,
+            nom: data.membreNom || "Membre",
+            matricule: data.membreMatricule || ""
+          });
+        }
+      });
+
+      conteneurListe.innerHTML = "";
+
+      if (discussionsMap.size === 0) {
+        conteneurListe.innerHTML = `<div class="p-3 text-muted">Aucune discussion active.</div>`;
+        return;
+      }
+
+      discussionsMap.forEach((item) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `list-group-item list-group-item-action ${conversationActiveMembreId === item.id ? "active" : ""}`;
+        btn.innerHTML = `<strong>${item.nom}</strong> <br><small class="text-muted">${item.matricule}</small>`;
+        btn.onclick = () => selectionnerMembrePourDiscussion(item.id, item.nom, item.matricule);
+        conteneurListe.appendChild(btn);
+      });
+    });
+  }
+
+  function selectionnerMembrePourDiscussion(membreId, nomMembre, matriculeMembre) {
+    conversationActiveMembreId = membreId;
+    document.getElementById("titreDiscussionActive").textContent = `Discussion avec : ${nomMembre} (${matriculeMembre})`;
+    document.getElementById("formEnvoyerReponsePresident").style.display = "block";
+
+    if (unsubscribeMessagesPresident) unsubscribeMessagesPresident();
+
+    const q = query(
+      collection(db, "messages_chat"),
+      where("membreId", "==", membreId),
+      orderBy("timestamp", "asc")
+    );
+
+    unsubscribeMessagesPresident = onSnapshot(q, (snapshot) => {
+      const boite = document.getElementById("boiteMessagesPresident");
+      if (!boite) return;
+      boite.innerHTML = "";
+
+      snapshot.docs.forEach((docSnap) => {
+        const msg = docSnap.data();
+        const estPresident = msg.expediteur === "president";
+        const alignClass = estPresident ? "text-end" : "text-start";
+        const bgClass = estPresident ? "bg-success text-white" : "bg-light text-dark border";
+
+        const div = document.createElement("div");
+        div.className = `mb-2 ${alignClass}`;
+        div.innerHTML = `
+          <div class="d-inline-block p-2 rounded ${bgClass}" style="max-width: 80%;">
+            <small class="d-block fw-bold mb-1">${estPresident ? "Moi (Président)" : msg.membreNom}</small>
+            <div>${msg.texte || ""}</div>
+          </div>
+        `;
+        boite.appendChild(div);
+      });
+
+      boite.scrollTop = boite.scrollHeight;
+    });
+  }
+
+  window.envoyerReponsePresident = async function(e) {
+    if (e) e.preventDefault();
+    const champ = document.getElementById("champReponsePresident");
+    const texte = champ.value.trim();
+
+    if (!texte || !conversationActiveMembreId) return;
+
+    try {
+      await addDoc(collection(db, "messages_chat"), {
+        membreId: conversationActiveMembreId,
+        expediteur: "president",
+        texte: texte,
+        timestamp: Date.now(),
+        createdAt: serverTimestamp()
+      });
+      champ.value = "";
+    } catch (err) {
+      console.error("Erreur envoi réponse Président :", err);
+      alert("Erreur lors de l'envoi de la réponse.");
+    }
+  };
+</script>
+
 </script>
     </body>
 </html>
