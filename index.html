@@ -1958,38 +1958,66 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         ? data.matricule.trim().toUpperCase() 
         : ("JSD-2026-" + docId.substring(0, 4).toUpperCase());
 
-      // Vérification du matricule
-      const matriculeValide = (matriculeAuto === matriculeSaisi);
+window.connexionMessagerie = async function() {
+  const champMat = document.getElementById("chatMatricule");
+  const matBrut = champMat ? champMat.value.trim() : "";
 
-      if (matriculeValide) {
-        // Normalisation du nom en BDD (combinaison éventuelle nom/prenom si champs séparés)
-        const nomBDD = ((data.nom || "") + " " + (data.prenom || "") + " " + (data.nomComplet || "")).toLowerCase();
+  if (!matBrut) {
+    alert("Veuillez saisir votre matricule.");
+    return;
+  }
+
+  // 1. Détection de l'accès Président par le Code Secret
+  if (matBrut === CODE_SECRET_PRESIDENT) {
+    estModePresidentChat = true;
+    membreChatSession = { id: "president", nom: "Président JSD", matricule: "PRESIDENT" };
+    ouvrirEspaceDiscussionPresident();
+    return;
+  }
+
+  const matriculeSaisi = matBrut.toUpperCase();
+
+  try {
+    const snapshotMembres = await getDocs(collection(db, "membres"));
+    let membreTrouve = null;
+
+    // 2. Parcours de la base pour trouver le membre ayant CE matricule
+    snapshotMembres.forEach((docSnap) => {
+      const data = docSnap.data();
+      const docId = docSnap.id;
+
+      // On vérifie le matricule enregistré dans les données (data.matricule) 
+      // ou le matricule généré à partir de l'ID s'il n'existe pas en champ propre
+      const matriculeBDD = data.matricule 
+        ? data.matricule.trim().toUpperCase() 
+        : ("JSD-2026-" + docId.substring(0, 4).toUpperCase());
+
+      if (matriculeBDD === matriculeSaisi) {
+        // Nom du membre récupéré de la BDD pour l'en-tête du chat
+        const nomEnregistre = data.nomComplet || data.nom || (data.nom + " " + (data.postnom || "") + " " + (data.prenom || "")) || "Membre " + matriculeBDD;
         
-        // Vérifie si TOUS les mots saisis (ex: TSHIBANGU, KALOMBO, Mike) existent dans la BDD, quel que soit l'ordre
-        const nomValide = motsSaisis.every(mot => nomBDD.includes(mot));
-
-        if (nomValide) {
-          membreTrouve = { 
-            id: docId, 
-            nom: data.nom || data.nomComplet || nomSaisi, 
-            matricule: matriculeAuto 
-          };
-        }
+        membreTrouve = { 
+          id: docId, 
+          nom: nomEnregistre.trim(), 
+          matricule: matriculeBDD 
+        };
       }
     });
 
+    // 3. Validation de la connexion
     if (membreTrouve) {
       membreChatSession = membreTrouve;
       estModePresidentChat = false;
       ouvrirEspaceDiscussionMembre();
     } else {
-      alert("Accès refusé ! Le Nom ou le Matricule ne correspond à aucun membre enregistré.");
+      alert("Accès refusé ! Aucun membre correspondant au matricule : " + matriculeSaisi);
     }
   } catch (err) {
     console.error("Erreur d'accès :", err);
     alert("Erreur de connexion au serveur : " + err.message);
   }
 };
+
     
 
   // 5. BÉNÉVOLAT
