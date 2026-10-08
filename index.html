@@ -175,6 +175,25 @@
     }
     .conversation-item:hover, .conversation-item.active {
         background-color: #e9ecef;
+        <!-- Liens PWA et icônes iOS/Android -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a1128">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JSD App">
+<link rel="apple-touch-icon" href="img/logo.jpg">
+
+<!-- Enregistrement du Service Worker -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('Service Worker enregistré !', reg))
+        .catch(err => console.log('Erreur SW:', err));
+    });
+  }
+</script>
+
     }
 </style>
     </head>
