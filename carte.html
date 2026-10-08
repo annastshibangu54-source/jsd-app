@@ -30,7 +30,7 @@
             position: relative;
             border-radius: 10px;
             overflow: hidden;
-            margin: auto;
+            margin: 0 auto;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             box-sizing: border-box;
             background-color: #0a1128 !important;
@@ -200,13 +200,14 @@
             height: 100% !important;
         }
 
+        /* VERSO STYLES */
         .carte-verso-container {
             width: 9cm;
             height: 6cm;
             position: relative;
             border-radius: 10px;
             overflow: hidden;
-            margin: 15px auto 0 auto;
+            margin: 0 auto;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             box-sizing: border-box;
             background: #0a1128 !important;
@@ -230,38 +231,50 @@
             text-align: center;
             font-size: 11px;
             font-weight: 600;
+            padding: 10px;
         }
 
-        /* --- CORRECTION CSS POUR L'IMPRESSION --- */
+        /* --- STYLES SÉCURISÉS POUR L'IMPRESSION --- */
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 0;
+                margin: 1cm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
             }
 
             body {
                 background: #ffffff !important;
                 visibility: hidden !important;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
             }
 
-            /* Seule la zone d'impression spécifique sera visible */
+            /* Seule la zone d'impression combinée (Recto + Verso) est imprimée */
             #zoneImpressionContainer, #zoneImpressionContainer * {
                 visibility: visible !important;
             }
 
             #zoneImpressionContainer {
                 position: absolute !important;
-                left: 1cm !important;
-                top: 1cm !important;
+                left: 0 !important;
+                top: 0 !important;
                 width: 100% !important;
                 display: block !important;
             }
 
+            .bloc-impression-page {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 1.5cm !important;
+            }
+
             .carte-container, .carte-verso-container {
                 box-shadow: none !important;
-                margin: 0 0 1cm 0 !important;
+                margin: 0 !important;
                 page-break-inside: avoid !important;
             }
         }
@@ -349,7 +362,7 @@
                                         <i class="bi bi-check-circle-fill me-2"></i> Enregistrer les informations
                                     </button>
                                     <button type="button" class="btn btn-outline-light fw-bold text-nowrap py-2" onclick="reinitialiserFormulaireMembre()">
-                                        <i class="bi bi-house-door-fill me-1"></i> Réinitialiser
+                                        <i class="bi bi-arrow-counterclockwise me-1"></i> Réinitialiser
                                     </button>
                                 </div>
                             </div>
@@ -419,30 +432,10 @@
                     
                     <div class="row g-4">
 
-                        <!-- VERSO -->
-                        <div class="mt-2 text-center">
-                            <h6 class="text-warning fw-bold mb-2"><i class="bi bi-card-back me-1"></i> Verso de la Carte (9cm × 6cm)</h6>
-                            
-                            <div id="cadranVerso" class="carte-verso-container">
-                                <span id="placeholderVerso" class="carte-verso-placeholder">
-                                    <i class="bi bi-image fs-3 d-block mb-1"></i>
-                                    Aucun verso chargé (9 cm × 6 cm)
-                                </span>
-                                <img id="imgVersoAffiche" class="carte-verso-img" alt="Verso Carte JSD">
-                            </div>
-
-                            <div class="mt-2">
-                                <input type="file" id="inputImportVerso" accept="image/*" class="d-none" onchange="chargerImageVerso(event)">
-                                <button type="button" class="btn btn-sm btn-outline-warning fw-bold" onclick="document.getElementById('inputImportVerso').click()">
-                                    <i class="bi bi-upload me-1"></i> Importer le Verso
-                                </button>
-                            </div>
-                        </div>
-
                         <!-- LISTE MEMBRES -->
-                        <div class="col-lg-7">
+                        <div class="col-lg-6">
                             <h5 class="text-warning fw-bold mb-3"><i class="bi bi-journal-text me-2"></i> Registre des Cartes</h5>
-                            <div class="table-responsive bg-secondary rounded p-2" style="max-height: 420px; overflow-y: auto;">
+                            <div class="table-responsive bg-secondary rounded p-2" style="max-height: 480px; overflow-y: auto;">
                                 <table class="table table-dark table-hover align-middle mb-0">
                                     <thead>
                                         <tr class="text-warning">
@@ -458,29 +451,53 @@
                             </div>
                         </div>
 
-                        <!-- CARTE À IMPRIMER / ENREGISTRER -->
-                        <div class="col-lg-5 text-center">
-                            <h5 class="text-warning fw-bold mb-3"><i class="bi bi-printer-fill me-2"></i> Carte du Membre</h5>
+                        <!-- CARTE À IMPRIMER / ENREGISTRER (RECTO + VERSO) -->
+                        <div class="col-lg-6 text-center">
+                            <h5 class="text-warning fw-bold mb-3"><i class="bi bi-printer-fill me-2"></i> Aperçu avant impression (Recto & Verso)</h5>
                             
-                            <!-- CONTENEUR DÉDIÉ SÉCURISÉ POUR L'IMPRESSION -->
+                            <!-- IMPRESSION DE L'IMAGE VERSO -->
+                            <div class="mb-3 p-2 bg-secondary rounded">
+                                <label class="form-label small fw-bold text-warning d-block">Verso de la Carte (9cm × 6cm)</label>
+                                <input type="file" id="inputImportVerso" accept="image/*" class="d-none" onchange="chargerImageVerso(event)">
+                                <button type="button" class="btn btn-sm btn-outline-warning fw-bold me-2" onclick="document.getElementById('inputImportVerso').click()">
+                                    <i class="bi bi-upload me-1"></i> Importer le Verso depuis le téléphone / PC
+                                </button>
+                            </div>
+
+                            <!-- CONTENEUR DÉDIÉ POUR IMPRESSION (RECTO + VERSO) -->
                             <div id="zoneImpressionContainer">
-                                <div id="zoneCarteImpressionPresident" class="mb-3">
-                                    <div class="p-4 border border-secondary rounded bg-dark text-muted">
-                                        <i class="bi bi-arrow-left-square fs-2 d-block mb-2"></i>
-                                        Cliquez sur "Sélectionner" dans le tableau pour charger la carte complète avec le QR Code.
+                                <div id="blocImpressionComplete" class="bloc-impression-page">
+                                    
+                                    <!-- EMPLACEMENT RECTO -->
+                                    <div id="zoneCarteImpressionPresident">
+                                        <div class="p-4 border border-secondary rounded bg-dark text-muted mb-3">
+                                            <i class="bi bi-arrow-left-square fs-2 d-block mb-2"></i>
+                                            Cliquez sur "Sélectionner" dans le tableau pour charger le Recto.
+                                        </div>
                                     </div>
+
+                                    <!-- EMPLACEMENT VERSO -->
+                                    <div id="cadranVerso" class="carte-verso-container">
+                                        <span id="placeholderVerso" class="carte-verso-placeholder">
+                                            <i class="bi bi-image fs-3 d-block mb-1"></i>
+                                            Aucun verso chargé (9 cm × 6 cm)
+                                        </span>
+                                        <img id="imgVersoAffiche" class="carte-verso-img" alt="Verso Carte JSD">
+                                    </div>
+
                                 </div>
                             </div>
 
                             <div id="actionsImpression" class="d-none d-flex flex-wrap gap-2 justify-content-center mt-3">
                                 <button class="btn btn-success fw-bold" onclick="telechargerEtEnregistrerTelephone()">
-                                    <i class="bi bi-download me-1"></i> Enregistrer sur mon Téléphone (JPG)
+                                    <i class="bi bi-download me-1"></i> Télécharger Recto (JPG)
                                 </button>
                                 <button class="btn btn-warning fw-bold text-dark" onclick="imprimerCarteMembre()">
-                                    <i class="bi bi-printer me-1"></i> Imprimer la Carte
+                                    <i class="bi bi-printer me-1"></i> Imprimer Recto + Verso sur 1 Page
                                 </button>
                             </div>
                         </div>
+
                     </div>
 
                 </div>
@@ -494,6 +511,7 @@
         let logoJsdActuel = "img/logo.jpg";
         const MDP_PRESIDENT = "ann@s0852";
         let membreSelectionneActuel = null;
+        let imageVersoBase64 = null;
 
         if (!localStorage.getItem("membresJSD")) {
             localStorage.setItem("membresJSD", JSON.stringify([]));
@@ -501,6 +519,13 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             actualiserApercuEtQR();
+            
+            // Restaurer le verso sauvegardé s'il existe
+            const versoSauve = localStorage.getItem("versoCarteJSD");
+            if (versoSauve) {
+                imageVersoBase64 = versoSauve;
+                appliquerVersoVisuel(versoSauve);
+            }
         });
 
         function actualiserApercuEtQR() {
@@ -640,9 +665,9 @@
                 if (membreSelectionneActuel && membreSelectionneActuel.matricule === membre.matricule) {
                     membreSelectionneActuel = null;
                     document.getElementById("zoneCarteImpressionPresident").innerHTML = `
-                        <div class="p-4 border border-secondary rounded bg-dark text-muted">
+                        <div class="p-4 border border-secondary rounded bg-dark text-muted mb-3">
                             <i class="bi bi-arrow-left-square fs-2 d-block mb-2"></i>
-                            Cliquez sur "Sélectionner" dans le tableau pour charger la carte complète.
+                            Cliquez sur "Sélectionner" dans le tableau pour charger le Recto.
                         </div>
                     `;
                     document.getElementById("actionsImpression").classList.add("d-none");
@@ -698,6 +723,29 @@
             document.getElementById("actionsImpression").classList.remove("d-none");
         }
 
+        function chargerImageVerso(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const srcData = e.target.result;
+                    localStorage.setItem("versoCarteJSD", srcData);
+                    appliquerVersoVisuel(srcData);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function appliquerVersoVisuel(src) {
+            const imgVerso = document.getElementById('imgVersoAffiche');
+            const placeholder = document.getElementById('placeholderVerso');
+            
+            imgVerso.src = src;
+            imgVerso.style.display = 'block';
+            placeholder.style.display = 'none';
+            document.getElementById("cadranVerso").style.borderStyle = "solid";
+        }
+
         function telechargerEtEnregistrerTelephone() {
             const el = document.getElementById("carteFinalePresident");
             if (!el) return;
@@ -719,28 +767,11 @@
         }
 
         function imprimerCarteMembre() {
-            const el = document.getElementById("carteFinalePresident");
-            if (!el) {
+            if (!membreSelectionneActuel) {
                 alert("Veuillez d'abord sélectionner un membre dans le tableau !");
                 return;
             }
             window.print();
-        }
-
-        function chargerImageVerso(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const imgVerso = document.getElementById('imgVersoAffiche');
-                    const placeholder = document.getElementById('placeholderVerso');
-                    
-                    imgVerso.src = e.target.result;
-                    imgVerso.style.display = 'block';
-                    placeholder.style.display = 'none';
-                };
-                reader.readAsDataURL(file);
-            }
         }
     </script>
 </body>
