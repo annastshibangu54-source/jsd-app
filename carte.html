@@ -23,7 +23,7 @@
             padding-bottom: 40px;
         }
 
-        /* --- FORMAT ISO CARTE DE MEMBRE : 9cm x 6cm --- */
+        /* FORMAT ISO CARTE DE MEMBRE : 9cm x 6cm */
         .carte-container {
             width: 9cm;
             height: 6cm;
@@ -33,16 +33,13 @@
             margin: auto;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             box-sizing: border-box;
-            background-color: #0a1128 !important; /* Fond bleu fixe */
+            background-color: #0a1128 !important;
             border: 1.5px solid #c5a059;
-            
-            /* FORCE L'IMPRESSION DES COULEURS ET FONDS D'ÉCRAN */
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
             color-adjust: exact !important;
         }
 
-        /* En-tête supérieur */
         .carte-header {
             position: absolute;
             top: 0.15cm;
@@ -54,7 +51,6 @@
             z-index: 3;
         }
 
-        /* 2. En-tête RDC : Police 11px */
         .carte-header .title-rdc {
             font-size: 11px !important;
             font-weight: 900;
@@ -66,7 +62,6 @@
             text-align: left;
         }
 
-        /* 3. Carte de membre à droite : Police 13px */
         .carte-header .title-badge {
             font-size: 13px !important;
             font-weight: 800;
@@ -77,7 +72,6 @@
             width: 40%;
         }
 
-        /* Ligne dorée */
         .carte-gold-wave {
             position: absolute;
             top: 1.0cm;
@@ -90,7 +84,6 @@
             print-color-adjust: exact !important;
         }
 
-        /* Logo JSD */
         .carte-sceau {
             position: absolute;
             top: 1.1cm;
@@ -103,7 +96,6 @@
             border-radius: 50%;
         }
 
-        /* Nom Organisation : Police 15px */
         .carte-org-name {
             position: absolute;
             top: 1.1cm;
@@ -122,7 +114,6 @@
             line-height: 1.1;
         }
 
-        /* Données Identité : Police 10px */
         .carte-identite {
             position: absolute;
             top: 2.1cm;
@@ -146,7 +137,6 @@
             font-weight: 700;
         }
 
-        /* Photo Passeport */
         .carte-photo {
             position: absolute;
             bottom: 0.85cm;
@@ -162,7 +152,6 @@
             print-color-adjust: exact !important;
         }
 
-        /* Bandeau Inférieur */
         .carte-bottom-banner {
             position: absolute;
             bottom: 0;
@@ -175,7 +164,6 @@
             print-color-adjust: exact !important;
         }
 
-        /* Mot d'assistance en bas : Police 9px */
         .carte-assistance {
             position: absolute;
             bottom: 0.05cm;
@@ -189,7 +177,6 @@
             z-index: 4;
         }
 
-        /* Conteneur du QR Code */
         .carte-qrcode-container {
             position: absolute;
             bottom: 0.05cm;
@@ -213,7 +200,6 @@
             height: 100% !important;
         }
 
-        /* --- FORMAT VERSO (9cm x 6cm) --- */
         .carte-verso-container {
             width: 9cm;
             height: 6cm;
@@ -246,64 +232,44 @@
             font-weight: 600;
         }
 
-        /* STYLES D'IMPRESSION GLOBAL */
+        /* --- CORRECTION CSS POUR L'IMPRESSION --- */
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 1cm;
+                margin: 0;
             }
 
             body {
                 background: #ffffff !important;
+                visibility: hidden !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
 
-            body * { 
-                visibility: hidden !important; 
-            }
-
-            .no-print { 
-                display: none !important; 
-            }
-
-            /* Zone Carte Recto à imprimer */
-            .is-printing-carte, .is-printing-carte * { 
-                visibility: visible !important; 
-            }
-
-            .is-printing-carte {
-                position: absolute !important;
-                left: 0 !important; 
-                top: 0 !important;
-                margin: 0 !important;
-                box-shadow: none !important;
-                background-color: #0a1128 !important;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-
-            /* Cadran Verso si présent */
-            #cadranVerso, #cadranVerso * {
+            /* Seule la zone d'impression spécifique sera visible */
+            #zoneImpressionContainer, #zoneImpressionContainer * {
                 visibility: visible !important;
             }
 
-            #cadranVerso {
+            #zoneImpressionContainer {
                 position: absolute !important;
-                left: 0 !important;
-                top: 6.5cm !important;
-                margin: 0 !important;
+                left: 1cm !important;
+                top: 1cm !important;
+                width: 100% !important;
+                display: block !important;
+            }
+
+            .carte-container, .carte-verso-container {
                 box-shadow: none !important;
-                background-color: #0a1128 !important;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
+                margin: 0 0 1cm 0 !important;
+                page-break-inside: avoid !important;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- BARRE DE NAVIGATION -->
+    <!-- NAV BAR -->
     <nav class="navbar navbar-dark bg-dark border-bottom border-secondary no-print py-2">
         <div class="container">
             <span class="navbar-brand fw-bold text-warning fs-6">
@@ -322,7 +288,7 @@
 
     <div class="container my-4">
         
-        <!-- ACCUEIL : FORMULAIRE ET CARTE EN TEMPS RÉEL -->
+        <!-- SECTION ACCUEIL -->
         <div id="sectionAccueil" class="row g-4">
             <div class="col-lg-6">
                 <div class="card bg-dark text-white border-secondary shadow">
@@ -392,7 +358,6 @@
                 </div>
             </div>
 
-            <!-- APERÇU CARTE MEMBRE ET QR CODE -->
             <div class="col-lg-6 text-center">
                 <h6 class="text-warning fw-bold mb-3">Aperçu Carte de Membre (9 cm × 6 cm)</h6>
                 
@@ -404,7 +369,6 @@
 
                     <div class="carte-gold-wave"></div>
 
-                    <!-- APERÇU DU LOGO -->
                     <img id="imgLogoApercu" src="img/logo.jpg" alt="Sceau Officiel JSD" class="carte-sceau" onerror="this.onerror=null; this.src='https://via.placeholder.com/100?text=LOGO+JSD';">
 
                     <div class="carte-org-name">
@@ -431,7 +395,6 @@
                         Prière aux autorités militaires et civiles d'accorder leur assistance au porteur de cette carte dans l'exercice de ses fonctions, en vertu de l'intérêt social national.
                     </div>
 
-                    <!-- GENERATION DYNAMIQUE QR CODE -->
                     <div class="carte-qrcode-container">
                         <img id="imgQrCodeLive" src="" alt="QR Code">
                     </div>
@@ -456,8 +419,8 @@
                     
                     <div class="row g-4">
 
-                        <!-- ZONE CADRAN VERSO (9cm x 6cm) -->
-                        <div class="mt-4 text-center">
+                        <!-- VERSO -->
+                        <div class="mt-2 text-center">
                             <h6 class="text-warning fw-bold mb-2"><i class="bi bi-card-back me-1"></i> Verso de la Carte (9cm × 6cm)</h6>
                             
                             <div id="cadranVerso" class="carte-verso-container">
@@ -468,7 +431,6 @@
                                 <img id="imgVersoAffiche" class="carte-verso-img" alt="Verso Carte JSD">
                             </div>
 
-                            <!-- Bouton d'importation d'image -->
                             <div class="mt-2">
                                 <input type="file" id="inputImportVerso" accept="image/*" class="d-none" onchange="chargerImageVerso(event)">
                                 <button type="button" class="btn btn-sm btn-outline-warning fw-bold" onclick="document.getElementById('inputImportVerso').click()">
@@ -477,7 +439,7 @@
                             </div>
                         </div>
 
-                        <!-- Liste des cartes -->
+                        <!-- LISTE MEMBRES -->
                         <div class="col-lg-7">
                             <h5 class="text-warning fw-bold mb-3"><i class="bi bi-journal-text me-2"></i> Registre des Cartes</h5>
                             <div class="table-responsive bg-secondary rounded p-2" style="max-height: 420px; overflow-y: auto;">
@@ -496,14 +458,17 @@
                             </div>
                         </div>
 
-                        <!-- Affichage carte sélectionnée & Téléchargement / Impression -->
+                        <!-- CARTE À IMPRIMER / ENREGISTRER -->
                         <div class="col-lg-5 text-center">
                             <h5 class="text-warning fw-bold mb-3"><i class="bi bi-printer-fill me-2"></i> Carte du Membre</h5>
                             
-                            <div id="zoneCarteImpressionPresident" class="mb-3">
-                                <div class="p-4 border border-secondary rounded bg-dark text-muted">
-                                    <i class="bi bi-arrow-left-square fs-2 d-block mb-2"></i>
-                                    Cliquez sur "Sélectionner" dans le tableau pour charger la carte complète avec le QR Code.
+                            <!-- CONTENEUR DÉDIÉ SÉCURISÉ POUR L'IMPRESSION -->
+                            <div id="zoneImpressionContainer">
+                                <div id="zoneCarteImpressionPresident" class="mb-3">
+                                    <div class="p-4 border border-secondary rounded bg-dark text-muted">
+                                        <i class="bi bi-arrow-left-square fs-2 d-block mb-2"></i>
+                                        Cliquez sur "Sélectionner" dans le tableau pour charger la carte complète avec le QR Code.
+                                    </div>
                                 </div>
                             </div>
 
@@ -733,7 +698,6 @@
             document.getElementById("actionsImpression").classList.remove("d-none");
         }
 
-        /* Téléchargement avec garantie du fond bleu */
         function telechargerEtEnregistrerTelephone() {
             const el = document.getElementById("carteFinalePresident");
             if (!el) return;
@@ -756,13 +720,11 @@
 
         function imprimerCarteMembre() {
             const el = document.getElementById("carteFinalePresident");
-            if (!el) return;
-            
-            el.classList.add("is-printing-carte");
-            setTimeout(() => {
-                window.print();
-                el.classList.remove("is-printing-carte");
-            }, 300);
+            if (!el) {
+                alert("Veuillez d'abord sélectionner un membre dans le tableau !");
+                return;
+            }
+            window.print();
         }
 
         function chargerImageVerso(event) {
