@@ -1148,25 +1148,63 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
 </script>
 
-<!-- BLOC DE CONNEXION AU CHAT -->
-<div id="blocConnexionChat" class="card shadow-sm border-0 my-3">
-  <div class="card-body p-4">
-    <h6 class="fw-bold mb-3">
-      <i class="icon ion-md-lock me-2 text-primary"></i>Identifiez-vous pour accéder à votre espace de discussion :
-    </h6>
-
-    <!-- FORMULAIRE SIMPLIFIÉ (MATRICULE OU CODE PRÉSIDENT) -->
-    <div class="mb-3">
-      <label for="chatMatricule" class="form-label text-muted small">Matricule membre ou Code secret :</label>
-      <input type="text" id="chatMatricule" class="form-control" placeholder="Entrez votre Matricule (ex: JSD-2026-DSVW)" required>
+<!-- BLOC DE MESSAGERIE PRIVÉE (SÉCURISÉ MEMBRE / PRÉSIDENT) -->
+<div class="container my-4">
+  <div id="blocConnexionChat" class="card shadow-sm border-0">
+    <div class="card-header bg-primary text-white font-weight-bold">
+      <i class="icon ion-md-lock me-2"></i> Messagerie Privée & Échanges Sécurisés
     </div>
+    <div class="card-body p-4">
+      <h6 class="fw-bold mb-3 text-secondary">
+        Saisissez votre Identifiant (Matricule Membre ou Code Secret du Président) :
+      </h6>
+      <div class="input-group mb-3">
+        <input type="text" id="chatMatricule" class="form-control" placeholder="Entrez votre Matricule (ex: JSD-2026-XXXX) ou Code Secret" required>
+        <button type="button" onclick="connexionMessagerie()" class="btn btn-primary fw-bold">
+          <i class="icon ion-md-key me-1"></i> Accéder aux Messages
+        </button>
+      </div>
+    </div>
+  </div>
 
-    <button type="button" onclick="connexionMessagerie()" class="btn btn-primary w-100 fw-bold">
-      <i class="icon ion-md-key me-1"></i> Accéder au Chat
-    </button>
+  <!-- INTERFACE MESSAGERIE APRÈS CONNEXION -->
+  <div id="interfaceChatActive" class="card shadow-sm border-0 my-3" style="display: none;">
+    <div class="card-header bg-primary text-white font-weight-bold d-flex justify-content-between align-items-center">
+      <span id="titreHeaderChat"><i class="icon ion-md-chatboxes me-2"></i> Discussion avec la Présidence</span>
+      <button class="btn btn-sm btn-outline-light" onclick="deconnexionMessagerie()">
+        <i class="icon ion-md-log-out me-1"></i> Quitter
+      </button>
+    </div>
+    <div class="card-body p-3">
+      <div class="row">
+        <!-- LISTE DES MEMBRES AYANT DISCUTÉ (VISIBLE UNIQUEMENT PAR LE PRÉSIDENT) -->
+        <div class="col-md-4 border-end" id="colonneListeDiscussionsPresident" style="display: none;">
+          <h6 class="fw-bold border-bottom pb-2 text-primary"><i class="icon ion-md-people me-1"></i> Conversations Membres</h6>
+          <div id="boiteListeConversations" class="list-group list-group-flush" style="max-height: 400px; overflow-y: auto;">
+            <!-- Généré en temps réel pour le Président -->
+          </div>
+        </div>
+
+        <!-- ZONE DÉROULEMENT ET ENVOI DE MESSAGES -->
+        <div class="col-md-12" id="colonneBoiteDialogue">
+          <div id="infosCorrespondantActif" class="bg-light p-2 rounded mb-2 fw-bold text-dark border" style="display: none;"></div>
+          <div id="boiteAffichageMessages" class="border rounded p-3 mb-3 bg-light" style="height: 350px; overflow-y: auto;">
+            <p class="text-muted text-center mt-5">Sélectionnez ou commencez une discussion pour afficher les messages.</p>
+          </div>
+
+          <form id="formEnvoiMessagePrive" onsubmit="envoyerMessagePrive(event)">
+            <div class="input-group">
+              <input type="text" id="texteMessagePrive" class="form-control" placeholder="Écrivez votre message ici..." required autocomplete="off">
+              <button class="btn btn-primary fw-bold" type="submit">
+                <i class="icon ion-md-send me-1"></i> Envoyer
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
 
         <!-- Contact Start -->
         <div class="contact">
@@ -1412,6 +1450,13 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   let enEnregistrement = false;
   const CODE_SECRET_PRESIDENT = "ann@s0852";
   let cacheMembresLocal = [];
+
+  // Variables globales pour le module de Chat
+  let membreChatSession = null;
+  let estModePresidentChat = false;
+  let desabonnementChat = null;
+  let desabonnementListePresident = null;
+  let matriculeMembreActifPresident = null;
 
   // Initialisation date
   document.addEventListener("DOMContentLoaded", () => {
@@ -1742,332 +1787,4 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       const idDoc = docSnap.id;
       const matriculeAuto = "JSD-2026-" + idDoc.substring(0, 4).toUpperCase();
       
-      const membreObj = { id: idDoc, matricule: matriculeAuto, ...data };
-      cacheMembresLocal.push(membreObj);
-
-      let badgeClass = "bg-info text-white";
-      if (data.statut === "Président") badgeClass = "bg-success text-white";
-      if (data.statut === "Conseiller") badgeClass = "bg-primary text-white";
-      if (data.statut === "Membre d'Honneur") badgeClass = "bg-warning text-dark";
-
-      const nomComplet = `${data.nom || ''} ${data.prenom || ''} ${data.postnom || ''}`.trim();
-
-      const newRow = document.createElement("tr");
-      newRow.innerHTML = `
-        <td><strong>${matriculeAuto}</strong></td>
-        <td>${nomComplet || '-'}</td>
-        <td>${data.sexe || '-'}</td>
-        <td>${data.contact || '-'}</td>
-        <td>${data.province || '-'}</td>
-        <td><span class="badge ${badgeClass} px-2 py-1">${data.statut || 'Membre'}</span></td>
-        <td>${data.dateAdhesion || '-'}</td>
-        <td class="text-center no-print">
-          <button type="button" class="btn btn-sm btn-outline-warning me-1" title="Modifier" 
-            onclick="chargerMembrePourModification('${idDoc}')">
-            <i class="icon ion-md-create"></i> Modifier
-          </button>
-          
-          <button type="button" class="btn btn-sm btn-outline-danger" title="Supprimer" 
-            onclick="supprimerMembre('${idDoc}', '${(data.nom || '').replace(/'/g, "\\'")}')">
-            <i class="icon ion-md-trash"></i> Supprimer
-          </button>
-        </td>
-      `;
-      tbody.appendChild(newRow);
-    });
-  });
-
-  // 3. COTISATIONS
-  window.enregistrerCotisation = async function(e) {
-    if (e) e.preventDefault();
-    const membre = document.getElementById("cotisationMembre").value.trim();
-    const typeMembre = document.getElementById("cotisationTypeMembre").value;
-    const montant = document.getElementById("cotisationMontant").value;
-    const mode = document.getElementById("cotisationModePaiement").value;
-    const ref = document.getElementById("cotisationRefMPesa") ? document.getElementById("cotisationRefMPesa").value.trim() : "";
-
-    if (!membre || !montant) {
-      alert("Veuillez saisir le nom/matricule du membre et le montant.");
-      return;
-    }
-
-    try {
-      await addDoc(collection(db, "cotisations"), {
-        membre, typeMembre, montant, mode, reference: ref,
-        statut: "En attente validation",
-        date: new Date().toISOString(),
-        createdAt: serverTimestamp()
-      });
-      alert("Cotisation soumise avec succès ! En attente de validation par la Caisse.");
-      document.getElementById("formCotisation").reset();
-      document.getElementById("blocAideMPesa").style.display = "none";
-    } catch (err) {
-      console.error("Erreur enregistrement cotisation :", err);
-      alert("Erreur lors de l'enregistrement de la cotisation.");
-    }
-  };
-
-  onSnapshot(collection(db, "cotisations"), (snapshot) => {
-    const tbody = document.getElementById("corpsTableauCotisations");
-    if (!tbody) return;
-
-    tbody.innerHTML = "";
-
-    if (snapshot.empty) {
-      tbody.innerHTML = `<tr><td colspan="8" class="text-center text-muted py-3">Aucune cotisation enregistrée.</td></tr>`;
-      return;
-    }
-
-    snapshot.docs.forEach((docSnap) => {
-      const c = docSnap.data();
-      const idDoc = docSnap.id;
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td><strong>${c.membre || '-'}</strong></td>
-        <td>${c.typeMembre || '-'}</td>
-        <td>${c.montant || '0'} USD</td>
-        <td>${c.mode || '-'}</td>
-        <td>${c.reference || '-'}</td>
-        <td><span class="badge ${c.statut === 'Validé' ? 'bg-success' : 'bg-warning text-dark'}">${c.statut || 'En attente'}</span></td>
-        <td>${c.date ? new Date(c.date).toLocaleDateString('fr-FR') : '-'}</td>
-        <td class="no-print">
-          ${c.statut !== 'Validé' ? `<button class="btn btn-sm btn-success" onclick="validerCotisation('${idDoc}')">Valider</button>` : '<i class="icon ion-md-checkmark text-success"></i>'}
-        </td>
-      `;
-      tbody.appendChild(tr);
-    });
-  });
-
-  window.validerCotisation = async function(idCotisation) {
-    const code = prompt("Entrez le code secret pour valider le paiement :");
-    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
-      try {
-        await updateDoc(doc(db, "cotisations", idCotisation), { statut: "Validé" });
-        alert("Paiement validé avec succès !");
-      } catch (err) {
-        alert("Erreur lors de la validation.");
-      }
-    } else if (code !== null) {
-      alert("Code secret incorrect.");
-    }
-  };
-
-  window.connexionMessagerie = async function() {
-  const nomSaisi = document.getElementById("chatNom") ? document.getElementById("chatNom").value.trim() : "";
-  const champMat = document.getElementById("chatMatricule");
-  const matBrut = champMat ? champMat.value.trim() : "";
-
-  if (!matBrut) {
-    alert("Veuillez remplir le champ matricule.");
-    return;
-  }
-
-  // 1. Détection Accès Président par Code Secret
-  if (matBrut === CODE_SECRET_PRESIDENT) {
-    estModePresidentChat = true;
-    membreChatSession = { id: "president", nom: "Président JSD", matricule: "PRESIDENT" };
-    ouvrirEspaceDiscussionPresident();
-    return;
-  }
-
-  const matriculeSaisi = matBrut.toUpperCase();
-
-  if (!nomSaisi) {
-    alert("Veuillez saisir votre Nom et votre Matricule pour accéder au chat.");
-    return;
-  }
-
-  try {
-    const snapshotMembres = await getDocs(collection(db, "membres"));
-    let membreTrouve = null;
-
-    // Découpage des mots de la recherche pour gérer l'ordre différemment (ex: Nom Prénom vs Prénom Nom)
-    const motsSaisis = nomSaisi.toLowerCase().split(/\s+/).filter(m => m.length > 0);
-
-    snapshotMembres.forEach((docSnap) => {
-      const data = docSnap.data();
-      const docId = docSnap.id;
-      
-      // Calcule le matricule basé sur l'ID OU utilise le champ matricule s'il existe dans le document
-      const matriculeAuto = data.matricule 
-        ? data.matricule.trim().toUpperCase() 
-        : ("JSD-2026-" + docId.substring(0, 4).toUpperCase());
-
-window.connexionMessagerie = async function() {
-  const champMat = document.getElementById("chatMatricule");
-  const matBrut = champMat ? champMat.value.trim() : "";
-
-  if (!matBrut) {
-    alert("Veuillez saisir votre matricule.");
-    return;
-  }
-
-  // 1. Détection de l'accès Président par le Code Secret
-  if (matBrut === CODE_SECRET_PRESIDENT) {
-    estModePresidentChat = true;
-    membreChatSession = { id: "president", nom: "Président JSD", matricule: "PRESIDENT" };
-    ouvrirEspaceDiscussionPresident();
-    return;
-  }
-
-  const matriculeSaisi = matBrut.toUpperCase();
-
-  try {
-    const snapshotMembres = await getDocs(collection(db, "membres"));
-    let membreTrouve = null;
-
-    // 2. Parcours de la base pour trouver le membre ayant CE matricule
-    snapshotMembres.forEach((docSnap) => {
-      const data = docSnap.data();
-      const docId = docSnap.id;
-
-      // On vérifie le matricule enregistré dans les données (data.matricule) 
-      // ou le matricule généré à partir de l'ID s'il n'existe pas en champ propre
-      const matriculeBDD = data.matricule 
-        ? data.matricule.trim().toUpperCase() 
-        : ("JSD-2026-" + docId.substring(0, 4).toUpperCase());
-
-      if (matriculeBDD === matriculeSaisi) {
-        // Nom du membre récupéré de la BDD pour l'en-tête du chat
-        const nomEnregistre = data.nomComplet || data.nom || (data.nom + " " + (data.postnom || "") + " " + (data.prenom || "")) || "Membre " + matriculeBDD;
-        
-        membreTrouve = { 
-          id: docId, 
-          nom: nomEnregistre.trim(), 
-          matricule: matriculeBDD 
-        };
-      }
-    });
-
-    // 3. Validation de la connexion
-    if (membreTrouve) {
-      membreChatSession = membreTrouve;
-      estModePresidentChat = false;
-      ouvrirEspaceDiscussionMembre();
-    } else {
-      alert("Accès refusé ! Aucun membre correspondant au matricule : " + matriculeSaisi);
-    }
-  } catch (err) {
-    console.error("Erreur d'accès :", err);
-    alert("Erreur de connexion au serveur : " + err.message);
-  }
-};
-
-    
-
-  // 5. BÉNÉVOLAT
-  window.enregistrerBenevole = async function(e) {
-    if (e) e.preventDefault();
-    const nom = document.getElementById("benevoleNom").value.trim();
-    const phone = document.getElementById("benevolePhone").value.trim();
-    const domaine = document.getElementById("benevoleDomaine").value;
-
-    if (!nom || !phone || !domaine) {
-      alert("Veuillez remplir tous les champs du formulaire de bénévolat.");
-      return;
-    }
-
-    try {
-      await addDoc(collection(db, "benevoles"), {
-        nom, phone, domaine,
-        date: new Date().toISOString(),
-        createdAt: serverTimestamp()
-      });
-      alert("Votre candidature au bénévolat a été envoyée avec succès ! Merci pour votre engagement.");
-      document.getElementById("formBenevole").reset();
-    } catch (err) {
-      console.error("Erreur enregistrement bénévolat :", err);
-      alert("Erreur lors de l'envoi de la candidature.");
-    }
-  };
-
-  function ecouterBenevoles() {
-    onSnapshot(collection(db, "benevoles"), (snapshot) => {
-      const tbody = document.getElementById("corpsTableauBenevoles");
-      if (!tbody) return;
-      tbody.innerHTML = "";
-
-      if (snapshot.empty) {
-        tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Aucune candidature reçue.</td></tr>`;
-        return;
-      }
-
-      snapshot.docs.forEach((docSnap) => {
-        const b = docSnap.data();
-        const idDoc = docSnap.id;
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td><strong>${b.nom || '-'}</strong></td>
-          <td>${b.phone || '-'}</td>
-          <td><span class="badge bg-primary">${b.domaine || '-'}</span></td>
-          <td>${b.date ? new Date(b.date).toLocaleDateString('fr-FR') : '-'}</td>
-          <td class="no-print">
-            <button class="btn btn-sm btn-outline-danger" onclick="supprimerBenevole('${idDoc}')">
-              <i class="icon ion-md-trash"></i>
-            </button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-    });
-  }
-
-  window.supprimerBenevole = async function(id) {
-    const code = prompt("Saisissez le code secret du Président pour supprimer :");
-    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
-      try {
-        await deleteDoc(doc(db, "benevoles", id));
-        alert("Candidature supprimée.");
-      } catch (err) {
-        alert("Erreur de suppression.");
-      }
-    }
-  };
-
-  // 6. AVIS & CRITIQUES
-  window.publierAvis = async function(e) {
-    if (e) e.preventDefault();
-    const auteur = document.getElementById("avisAuteur").value.trim();
-    const role = document.getElementById("avisRole").value.trim();
-    const message = document.getElementById("avisMessage").value.trim();
-
-    if (!auteur || !message) {
-      alert("Veuillez renseigner votre nom et votre message.");
-      return;
-    }
-
-    try {
-      await addDoc(collection(db, "avis"), {
-        auteur, role, message,
-        createdAt: serverTimestamp()
-      });
-      alert("Merci ! Votre avis a été enregistré avec succès.");
-      document.getElementById("formAjoutAvis").reset();
-    } catch (err) {
-      alert("Erreur lors de la publication de votre avis : " + err.message);
-    }
-  };
-
-  onSnapshot(collection(db, "avis"), (snapshot) => {
-    const owlContainer = document.getElementById("carouselAvis");
-    if (!owlContainer) return;
-
-    snapshot.docs.forEach((docSnap) => {
-      const a = docSnap.data();
-      const div = document.createElement("div");
-      div.className = "testimonial-item row align-items-center my-2";
-      div.innerHTML = `
-        <div class="testimonial-img"><img src="img/testimonial-1.jpg" alt="Avis image"></div>
-        <div class="testimonial-text">
-            <h3>${a.auteur || 'Anonyme'}</h3>
-            <h4>${a.role || 'Visiteur'}</h4>
-            <p>${a.message || ''}</p>
-        </div>
-      `;
-      owlContainer.appendChild(div);
-    });
-  });
-
-</script>
-    </body>
-</html>
+      const membreObj = { id: idDoc, matricule
