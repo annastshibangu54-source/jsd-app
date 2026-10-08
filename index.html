@@ -1948,7 +1948,8 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // 4. MESSAGERIE PRIVÉE SÉCURISÉE ENTRE LE PRÉSIDENT ET LES MEMBRES
+
+        // 4. MESSAGERIE PRIVÉE SÉCURISÉE ENTRE LE PRÉSIDENT ET LES MEMBRES
   window.connexionMessagerie = async function() {
     const champMat = document.getElementById("chatMatricule");
     const matSaisi = champMat ? champMat.value.trim() : "";
@@ -2043,13 +2044,13 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
+  // --- NOUVELLE FONCTION ÉCOUTE MEMBRE CORRIGÉE ---
   function ecouterMessagesMembre(matricule) {
     if (desabonnerEcouteChat) desabonnerEcouteChat();
 
     const q = query(
       collection(db, "messages_prives"),
-      where("matriculeMembre", "==", matricule),
-      orderBy("createdAt", "asc")
+      where("matriculeMembre", "==", matricule)
     );
 
     desabonnerEcouteChat = onSnapshot(q, (snapshot) => {
@@ -2062,8 +2063,13 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         return;
       }
 
-      snapshot.docs.forEach((docSnap) => {
-        const msg = docSnap.data();
+      const docsTries = snapshot.docs.map(docSnap => docSnap.data()).sort((a, b) => {
+        const dateA = a.createdAt ? a.createdAt.toDate() : new Date();
+        const dateB = b.createdAt ? b.createdAt.toDate() : new Date();
+        return dateA - dateB;
+      });
+
+      docsTries.forEach((msg) => {
         const div = document.createElement("div");
         const estMembre = msg.expediteur === "membre";
 
@@ -2076,6 +2082,8 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       });
 
       boite.scrollTop = boite.scrollHeight;
+    }, (err) => {
+      console.error("Erreur écoute membre :", err);
     });
   }
 
@@ -2083,7 +2091,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   function chargerConversationsPresident() {
     if (desabonnerEcouteConversations) desabonnerEcouteConversations();
 
-    const q = query(collection(db, "messages_prives"), orderBy("createdAt", "desc"));
+    const q = query(collection(db, "messages_prives"));
 
     desabonnerEcouteConversations = onSnapshot(q, (snapshot) => {
       const liste = document.getElementById("listeConversationsPresident");
@@ -2092,8 +2100,14 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
       const conversationsMap = new Map();
 
-      snapshot.docs.forEach((docSnap) => {
-        const msg = docSnap.data();
+      // Tri local des conversations
+      const docsTries = snapshot.docs.map(docSnap => docSnap.data()).sort((a, b) => {
+        const dateA = a.createdAt ? a.createdAt.toDate() : new Date();
+        const dateB = b.createdAt ? b.createdAt.toDate() : new Date();
+        return dateB - dateA;
+      });
+
+      docsTries.forEach((msg) => {
         const mat = msg.matriculeMembre;
 
         if (!conversationsMap.has(mat)) {
@@ -2131,6 +2145,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     });
   }
 
+  // --- NOUVELLE FONCTION OUVRIR DISCUSSION PRÉSIDENT CORRIGÉE ---
   window.ouvrirDiscussionPresident = function(matricule, nomMembre) {
     membreSelectionneParPresident = matricule;
 
@@ -2144,8 +2159,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
     const q = query(
       collection(db, "messages_prives"),
-      where("matriculeMembre", "==", matricule),
-      orderBy("createdAt", "asc")
+      where("matriculeMembre", "==", matricule)
     );
 
     desabonnerEcouteChat = onSnapshot(q, (snapshot) => {
@@ -2153,9 +2167,14 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       if (!boite) return;
       boite.innerHTML = "";
 
-      snapshot.docs.forEach((docSnap) => {
-        const msg = docSnap.data();
-        const idDoc = docSnap.id;
+      const docsTries = snapshot.docs.map(docSnap => ({ idDoc: docSnap.id, ...docSnap.data() })).sort((a, b) => {
+        const dateA = a.createdAt ? a.createdAt.toDate() : new Date();
+        const dateB = b.createdAt ? b.createdAt.toDate() : new Date();
+        return dateA - dateB;
+      });
+
+      docsTries.forEach((msg) => {
+        const idDoc = msg.idDoc;
         const estPresi = msg.expediteur === "president";
 
         // Marquer comme lu
@@ -2200,6 +2219,8 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       alert("Erreur lors de l'envoi de la réponse : " + err.message);
     }
   };
+
+
 
   // 5. BÉNÉVOLAT
   window.enregistrerBenevole = async function(e) {
