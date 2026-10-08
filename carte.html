@@ -33,53 +33,49 @@
             margin: auto;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             box-sizing: border-box;
-            background: radial-gradient(circle at 50% 30%, #1d3557 0%, #0a1128 100%);
+            background-color: #0a1128 !important; /* Couleur bleue de fond permanente */
             border: 1.5px solid #c5a059;
-        }
-
-        .carte-bg-pattern {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: repeating-radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.05) 0, rgba(197, 160, 89, 0.05) 2px, transparent 2px, transparent 8px);
-            pointer-events: none;
-            z-index: 1;
         }
 
         /* En-tête supérieur */
         .carte-header {
             position: absolute;
-            top: 0.2cm;
-            left: 0.3cm;
-            right: 0.3cm;
+            top: 0.15cm;
+            left: 0.2cm;
+            right: 0.2cm;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             z-index: 3;
         }
 
+        /* 2. En-tête la République Démocratique du Congo : Police 15px */
         .carte-header .title-rdc {
-            font-size: 6.2pt;
+            font-size: 15px !important;
             font-weight: 900;
             color: #d4af37;
             text-transform: uppercase;
-            letter-spacing: 0.3px;
+            line-height: 1.1;
             text-shadow: 0 1px 2px rgba(0,0,0,0.9);
-            white-space: nowrap;
+            width: 55%;
+            text-align: left;
         }
 
+        /* 3. Carte de membre à droite en haut : Police 15px */
         .carte-header .title-badge {
-            font-size: 6.5pt;
+            font-size: 15px !important;
             font-weight: 800;
             color: #ffffff;
             text-transform: uppercase;
-            letter-spacing: 0.3px;
-            white-space: nowrap;
+            line-height: 1.1;
+            text-align: right;
+            width: 42%;
         }
 
         /* Ligne dorée */
         .carte-gold-wave {
             position: absolute;
-            top: 0.8cm;
+            top: 1.05cm;
             left: 0;
             right: 0;
             height: 2px;
@@ -90,51 +86,44 @@
         /* Logo JSD */
         .carte-sceau {
             position: absolute;
-            top: 0.95cm;
-            left: 0.25cm;
-            width: 2.6cm;
-            height: 2.6cm;
+            top: 1.15cm;
+            left: 0.2cm;
+            width: 2.2cm;
+            height: 2.2cm;
             z-index: 3;
             object-fit: contain;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
             border-radius: 50%;
         }
 
-        /* Nom Organisation */
+        /* Nom Organisation : Police 16px */
         .carte-org-name {
             position: absolute;
-            top: 0.95cm;
-            left: 3.1cm;
+            top: 1.15cm;
+            left: 2.5cm;
             right: 0.2cm;
             z-index: 3;
             text-align: left;
         }
 
         .carte-org-name h5 {
-            font-size: 6.2pt;
+            font-size: 16px !important;
             font-weight: 800;
             color: #ffffff;
             margin: 0;
             text-transform: uppercase;
-            line-height: 1.1;
+            line-height: 1.15;
         }
 
-        .carte-org-name p {
-            font-size: 5.8pt;
-            font-weight: 800;
-            color: #d4af37;
-            margin: 0;
-        }
-
-        /* Données Identité */
+        /* Les rubriques d'identité : Police 15px */
         .carte-identite {
             position: absolute;
-            top: 1.7cm;
-            left: 3.1cm;
+            top: 2.3cm;
+            left: 2.5cm;
             right: 0.2cm;
             z-index: 3;
-            font-size: 4.8pt;
-            line-height: 1.25;
+            font-size: 15px !important;
+            line-height: 1.2;
             color: #e0e6ed;
             text-align: left;
         }
@@ -153,10 +142,10 @@
         /* Photo Passeport */
         .carte-photo {
             position: absolute;
-            bottom: 0.25cm;
-            left: 0.3cm;
-            width: 1.3cm;
-            height: 1.6cm;
+            bottom: 0.85cm;
+            left: 0.2cm;
+            width: 2.1cm;
+            height: 2.5cm;
             border: 1.5px solid #d4af37;
             border-radius: 4px;
             object-fit: cover;
@@ -170,36 +159,35 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 1.25cm;
+            height: 0.85cm;
             background: linear-gradient(135deg, #c5a059 0%, #fef1c9 50%, #b38728 100%);
             z-index: 2;
-            clip-path: polygon(0 25%, 100% 0, 100% 100%, 0 100%);
         }
 
-        /* Texte d'assistance */
+        /* Mot d'assistance en bas : Police 10px */
         .carte-assistance {
             position: absolute;
-            bottom: 0.1cm;
-            left: 1.75cm;
-            right: 1.45cm;
-            font-size: 3.6pt;
+            bottom: 0.05cm;
+            left: 0.1cm;
+            right: 1.2cm;
+            font-size: 10px !important;
             font-weight: 700;
             color: #0a1128;
             text-align: center;
-            line-height: 1.15;
+            line-height: 1.1;
             z-index: 4;
         }
 
         /* Conteneur du QR Code */
         .carte-qrcode-container {
             position: absolute;
-            bottom: 0.15cm;
-            right: 0.2cm;
-            width: 1.1cm;
-            height: 1.1cm;
+            bottom: 0.05cm;
+            right: 0.1cm;
+            width: 0.95cm;
+            height: 0.95cm;
             background: #ffffff;
-            padding: 2px;
-            border-radius: 3px;
+            padding: 1px;
+            border-radius: 2px;
             border: 1px solid #0a1128;
             z-index: 4;
             display: flex;
@@ -226,71 +214,54 @@
         }
 
         /* --- FORMAT VERSO (9cm x 6cm) --- */
-.carte-verso-container {
-    width: 9cm;
-    height: 6cm;
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 15px auto 0 auto;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-    box-sizing: border-box;
-    background: #0a1128;
-    border: 1.5px dashed #c5a059;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .carte-verso-container {
+            width: 9cm;
+            height: 6cm;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 15px auto 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            box-sizing: border-box;
+            background: #0a1128;
+            border: 1.5px dashed #c5a059;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.carte-verso-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
-}
+        .carte-verso-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
 
-.carte-verso-placeholder {
-    color: #c5a059;
-    text-align: center;
-    font-size: 8pt;
-    font-weight: 600;
-}
+        .carte-verso-placeholder {
+            color: #c5a059;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 600;
+        }
 
         @media print {
-    /* Masquer tout le reste de la page */
-    body * {
-        visibility: hidden !important;
-    }
-    
-    /* Afficher uniquement la carte principale et le verso */
-    #zoneCarteImpressionPresident,
-    #zoneCarteImpressionPresident *,
-    #cadranVerso,
-    #cadranVerso * {
-        visibility: visible !important;
-    }
-
-    /* Positionner la carte en haut à gauche de la page imprimée */
-    #zoneCarteImpressionPresident, #cadranVerso {
-        position: absolute !important;
-        left: 0 !important;
-        top: 0 !important;
-        margin: 0 !important;
-        box-shadow: none !important;
-    }
-
-    #cadranVerso {
-        top: 6.5cm !important; /* Place le verso juste sous le recto */
-    }
-
-    /* Supprimer les marges par défaut d'impression */
-    @page {
-        size: A4 portrait;
-        margin: 1cm;
-    }
-}
-
-        
+            body * { visibility: hidden !important; }
+            #zoneCarteImpressionPresident,
+            #zoneCarteImpressionPresident *,
+            #cadranVerso,
+            #cadranVerso * {
+                visibility: visible !important;
+            }
+            #zoneCarteImpressionPresident, #cadranVerso {
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+            }
+            #cadranVerso { top: 6.5cm !important; }
+            @page { size: A4 portrait; margin: 1cm; }
+        }
     </style>
 </head>
 <body>
@@ -370,8 +341,6 @@
                                     <input type="file" id="inPhoto" class="form-control form-control-sm bg-secondary text-white border-0" accept="image/*" onchange="chargerPhotoPasseport(event)">
                                 </div>
 
-                                
-
                                 <div class="col-12 mt-4 d-flex gap-2">
                                     <button type="submit" class="btn btn-success fw-bold w-100 py-2">
                                         <i class="bi bi-check-circle-fill me-2"></i> Enregistrer les informations
@@ -391,8 +360,6 @@
                 <h6 class="text-warning fw-bold mb-3">Aperçu Carte de Membre (9 cm × 6 cm)</h6>
                 
                 <div id="carteApercu" class="carte-container">
-                    <div class="carte-bg-pattern"></div>
-
                     <div class="carte-header">
                         <div class="title-rdc">RÉPUBLIQUE DÉMOCRATIQUE DU CONGO</div>
                         <div class="title-badge">CARTE DE MEMBRE</div>
@@ -404,8 +371,7 @@
                     <img id="imgLogoApercu" src="img/logo.jpg" alt="Sceau Officiel JSD" class="carte-sceau" onerror="this.onerror=null; this.src='https://via.placeholder.com/100?text=LOGO+JSD';">
 
                     <div class="carte-org-name">
-                        <h5>JEUNESSE SOCIALE POUR LE DÉVELOPPEMENT</h5>
-                        <p>(JSD)</p>
+                        <h5>JEUNESSE SOCIALE POUR LE DÉVELOPPEMENT (JSD)</h5>
                     </div>
 
                     <div class="carte-identite">
@@ -440,7 +406,7 @@
             </div>
         </div>
 
-        <!-- SECTION 2 : ESPACE PRÉSIDENT (GESTION, SUPPRESSION, ENREGISTREMENT ET IMPRESSION) -->
+        <!-- SECTION 2 : ESPACE PRÉSIDENT -->
         <div id="sectionPresident" class="d-none">
             <div class="card bg-dark text-white border-warning shadow">
                 <div class="card-header bg-warning text-dark fw-bold d-flex justify-content-between align-items-center">
@@ -454,27 +420,25 @@
                     <div class="row g-4">
 
                         <!-- ZONE CADRAN VERSO (9cm x 6cm) -->
-<div class="mt-4 text-center">
-    <h6 class="text-warning fw-bold mb-2"><i class="bi bi-card-back me-1"></i> Verso de la Carte (9cm × 6cm)</h6>
-    
-    <div id="cadranVerso" class="carte-verso-container">
-        <span id="placeholderVerso" class="carte-verso-placeholder">
-            <i class="bi bi-image fs-3 d-block mb-1"></i>
-            Aucun verso chargé (9 cm × 6 cm)
-        </span>
-        <img id="imgVersoAffiche" class="carte-verso-img" alt="Verso Carte JSD">
-    </div>
+                        <div class="mt-4 text-center">
+                            <h6 class="text-warning fw-bold mb-2"><i class="bi bi-card-back me-1"></i> Verso de la Carte (9cm × 6cm)</h6>
+                            
+                            <div id="cadranVerso" class="carte-verso-container">
+                                <span id="placeholderVerso" class="carte-verso-placeholder">
+                                    <i class="bi bi-image fs-3 d-block mb-1"></i>
+                                    Aucun verso chargé (9 cm × 6 cm)
+                                </span>
+                                <img id="imgVersoAffiche" class="carte-verso-img" alt="Verso Carte JSD">
+                            </div>
 
-    <!-- Bouton d'importation d'image -->
-    <div class="mt-2">
-        <input type="file" id="inputImportVerso" accept="image/*" class="d-none" onchange="chargerImageVerso(event)">
-        <button type="button" class="btn btn-sm btn-outline-warning fw-bold" onclick="document.getElementById('inputImportVerso').click()">
-            <i class="bi bi-upload me-1"></i> Importer le Verso
-        </button>
-    </div>
-</div>
-
-                    
+                            <!-- Bouton d'importation d'image -->
+                            <div class="mt-2">
+                                <input type="file" id="inputImportVerso" accept="image/*" class="d-none" onchange="chargerImageVerso(event)">
+                                <button type="button" class="btn btn-sm btn-outline-warning fw-bold" onclick="document.getElementById('inputImportVerso').click()">
+                                    <i class="bi bi-upload me-1"></i> Importer le Verso
+                                </button>
+                            </div>
+                        </div>
 
                         <!-- Liste des cartes -->
                         <div class="col-lg-7">
@@ -529,7 +493,6 @@
         const MDP_PRESIDENT = "ann@s0852";
         let membreSelectionneActuel = null;
 
-        // Base locale
         if (!localStorage.getItem("membresJSD")) {
             localStorage.setItem("membresJSD", JSON.stringify([]));
         }
@@ -538,7 +501,6 @@
             actualiserApercuEtQR();
         });
 
-        // Génération dynamique du QR Code
         function actualiserApercuEtQR() {
             const nom = document.getElementById("inNom").value.trim() || "TSHIBANGU";
             const postnom = document.getElementById("inPostnom").value.trim() || "KALOMBO";
@@ -575,19 +537,6 @@
             }
         }
 
-        function chargerLogoCustom(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    logoJsdActuel = e.target.result;
-                    document.getElementById('imgLogoApercu').src = logoJsdActuel;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Bouton Réinitialiser
         function reinitialiserFormulaireMembre() {
             document.getElementById("formMembre").reset();
             document.getElementById("outPhoto").src = "https://via.placeholder.com/100x120?text=PHOTO";
@@ -596,7 +545,6 @@
             actualiserApercuEtQR();
         }
 
-        // Enregistrer un nouveau membre
         function enregistrerMembre(e) {
             e.preventDefault();
 
@@ -628,7 +576,6 @@
             alert(`Le membre ${nouveauMembre.nom} ${nouveauMembre.prenom} a été enregistré avec succès !`);
         }
 
-        // Navigation Espace Président
         function demanderAccesPresident() {
             const mdp = prompt("Veuillez saisir le mot de passe du Président :");
             if (mdp && mdp.trim() === MDP_PRESIDENT) {
@@ -680,7 +627,6 @@
             });
         }
 
-        // Supprimer un membre
         function supprimerMembre(index) {
             let membres = JSON.parse(localStorage.getItem("membresJSD")) || [];
             const membre = membres[index];
@@ -705,7 +651,6 @@
             }
         }
 
-        // Sélectionner la carte pour le Président
         function chargerCartePourImpression(index) {
             const membres = JSON.parse(localStorage.getItem("membresJSD")) || [];
             const m = membres[index];
@@ -717,7 +662,6 @@
             
             container.innerHTML = `
                 <div id="carteFinalePresident" class="carte-container">
-                    <div class="carte-bg-pattern"></div>
                     <div class="carte-header">
                         <div class="title-rdc">RÉPUBLIQUE DÉMOCRATIQUE DU CONGO</div>
                         <div class="title-badge">CARTE DE MEMBRE</div>
@@ -725,8 +669,7 @@
                     <div class="carte-gold-wave"></div>
                     <img src="${logoJsdActuel}" alt="Logo JSD" class="carte-sceau" onerror="this.onerror=null; this.src='https://via.placeholder.com/100?text=LOGO+JSD';">
                     <div class="carte-org-name">
-                        <h5>JEUNESSE SOCIALE POUR LE DÉVELOPPEMENT</h5>
-                        <p>(JSD)</p>
+                        <h5>JEUNESSE SOCIALE POUR LE DÉVELOPPEMENT (JSD)</h5>
                     </div>
                     <div class="carte-identite">
                         <div><strong>Nom:</strong> <span>${m.nom}</span></div>
@@ -745,7 +688,7 @@
                         Prière aux autorités militaires et civiles d'accorder leur assistance au porteur de cette carte dans l'exercice de ses fonctions, en vertu de l'intérêt social national.
                     </div>
                     <div class="carte-qrcode-container">
-                        <img src="${qrUrl}" alt="QR Code" style="width:100%; height:100%;">
+                        <img src="${qrUrl}" alt="QR Code">
                     </div>
                 </div>
             `;
@@ -753,10 +696,17 @@
             document.getElementById("actionsImpression").classList.remove("d-none");
         }
 
-        // Télécharger l'image sur le téléphone / PC
+        // Téléchargement corrigé sans fond blanc
         function telechargerEtEnregistrerTelephone() {
             const el = document.getElementById("carteFinalePresident");
-            html2canvas(el, { scale: 3, useCORS: true, allowTaint: true }).then(canvas => {
+            if (!el) return;
+
+            html2canvas(el, { 
+                scale: 3, 
+                useCORS: true, 
+                allowTaint: true,
+                backgroundColor: "#0a1128" // Garantit le fond bleu au téléchargement
+            }).then(canvas => {
                 const imageURI = canvas.toDataURL("image/jpeg", 0.95);
                 const a = document.createElement("a");
                 a.href = imageURI;
@@ -767,7 +717,6 @@
             });
         }
 
-        // Imprimer la carte
         function imprimerCarteMembre() {
             const el = document.getElementById("carteFinalePresident");
             el.classList.add("is-printing-carte");
@@ -777,24 +726,21 @@
             }, 300);
         }
 
-        
-        // Fonction pour importer et afficher l'image du Verso
-function chargerImageVerso(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const imgVerso = document.getElementById('imgVersoAffiche');
-            const placeholder = document.getElementById('placeholderVerso');
-            
-            imgVerso.src = e.target.result;
-            imgVerso.style.display = 'block';
-            placeholder.style.display = 'none';
-        };
-        reader.readAsDataURL(file);
-    }
-}
-
+        function chargerImageVerso(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgVerso = document.getElementById('imgVersoAffiche');
+                    const placeholder = document.getElementById('placeholderVerso');
+                    
+                    imgVerso.src = e.target.result;
+                    imgVerso.style.display = 'block';
+                    placeholder.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
     </script>
 </body>
 </html>
