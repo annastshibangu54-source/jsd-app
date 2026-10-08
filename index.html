@@ -2388,6 +2388,50 @@ onSnapshot(collection(db, "avis"), (snapshot) => {
     conteneur.appendChild(item);
   });
 });
+      <!-- ... votre HTML précédent ... -->
+
+  <!-- Placez le code JavaScript tout en bas avant </body> -->
+  <script>
+    // Correction de "Function" en minuscules "function"
+    function imprimerSection(idElement, titreDocument) {
+        const elementAImprimer = document.getElementById(idElement);
+        
+        if (!elementAImprimer) {
+            alert("Zone d'impression introuvable !");
+            return;
+        }
+
+        const fenetreImpression = window.open('', '', 'height=700,width=900');
+
+        fenetreImpression.document.write('<html><head><title>' + titreDocument + '</title>');
+        fenetreImpression.document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">');
+        fenetreImpression.document.write('<style>');
+        fenetreImpression.document.write('body { font-family: Arial, sans-serif; padding: 20px; background-color: #fff; color: #000; }');
+        fenetreImpression.document.write('h2 { text-align: center; margin-bottom: 20px; color: #0a1128; }');
+        fenetreImpression.document.write('.no-print { display: none !important; }');
+        fenetreImpression.document.write('table { width: 100%; border-collapse: collapse; margin-top: 10px; }');
+        fenetreImpression.document.write('th, td { border: 1px solid #dee2e6; padding: 8px; text-align: left; font-size: 12px; }');
+        fenetreImpression.document.write('th { background-color: #f8f9fa !important; font-weight: bold; }');
+        fenetreImpression.document.write('</style>');
+        
+        fenetreImpression.document.write('</head><body>');
+        fenetreImpression.document.write('<h2>' + titreDocument + '</h2>');
+        fenetreImpression.document.write(elementAImprimer.innerHTML);
+        fenetreImpression.document.write('</body></html>');
+
+        fenetreImpression.document.close();
+        fenetreImpression.focus();
+
+        setTimeout(function () {
+            fenetreImpression.print();
+            fenetreImpression.close();
+        }, 500);
+    }
+  </script>
+
+</body>
+</html>
+
 
 
 </script>
