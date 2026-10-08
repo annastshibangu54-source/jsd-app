@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     
-    <!-- HTML2Canvas pour la sauvegarde d'image sur mobile/PC -->
+    <!-- HTML2Canvas pour la sauvegarde d'image -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
@@ -33,7 +33,7 @@
             margin: auto;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             box-sizing: border-box;
-            background-color: #0a1128 !important; /* Couleur bleue de fond permanente */
+            background-color: #0a1128 !important; /* Fond bleu permanent */
             border: 1.5px solid #c5a059;
         }
 
@@ -49,27 +49,27 @@
             z-index: 3;
         }
 
-        /* 2. En-tête la République Démocratique du Congo : Police 15px */
+        /* 2. En-tête RDC : Police 13px */
         .carte-header .title-rdc {
-            font-size: 15px !important;
+            font-size: 13px !important;
             font-weight: 900;
             color: #d4af37;
             text-transform: uppercase;
             line-height: 1.1;
             text-shadow: 0 1px 2px rgba(0,0,0,0.9);
-            width: 55%;
+            width: 58%;
             text-align: left;
         }
 
-        /* 3. Carte de membre à droite en haut : Police 15px */
+        /* 3. Carte de membre à droite : Police 13px */
         .carte-header .title-badge {
-            font-size: 15px !important;
+            font-size: 13px !important;
             font-weight: 800;
             color: #ffffff;
             text-transform: uppercase;
             line-height: 1.1;
             text-align: right;
-            width: 42%;
+            width: 40%;
         }
 
         /* Ligne dorée */
@@ -88,26 +88,26 @@
             position: absolute;
             top: 1.15cm;
             left: 0.2cm;
-            width: 2.2cm;
-            height: 2.2cm;
+            width: 2.1cm;
+            height: 2.1cm;
             z-index: 3;
             object-fit: contain;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
             border-radius: 50%;
         }
 
-        /* Nom Organisation : Police 16px */
+        /* Nom Organisation : Police 15px */
         .carte-org-name {
             position: absolute;
             top: 1.15cm;
-            left: 2.5cm;
+            left: 2.4cm;
             right: 0.2cm;
             z-index: 3;
             text-align: left;
         }
 
         .carte-org-name h5 {
-            font-size: 16px !important;
+            font-size: 15px !important;
             font-weight: 800;
             color: #ffffff;
             margin: 0;
@@ -115,14 +115,14 @@
             line-height: 1.15;
         }
 
-        /* Les rubriques d'identité : Police 15px */
+        /* Données Identité : Police 13px */
         .carte-identite {
             position: absolute;
             top: 2.3cm;
-            left: 2.5cm;
+            left: 2.4cm;
             right: 0.2cm;
             z-index: 3;
-            font-size: 15px !important;
+            font-size: 13px !important;
             line-height: 1.2;
             color: #e0e6ed;
             text-align: left;
@@ -144,8 +144,8 @@
             position: absolute;
             bottom: 0.85cm;
             left: 0.2cm;
-            width: 2.1cm;
-            height: 2.5cm;
+            width: 2.0cm;
+            height: 2.4cm;
             border: 1.5px solid #d4af37;
             border-radius: 4px;
             object-fit: cover;
@@ -164,13 +164,13 @@
             z-index: 2;
         }
 
-        /* Mot d'assistance en bas : Police 10px */
+        /* Mot d'assistance en bas : Police 9px */
         .carte-assistance {
             position: absolute;
             bottom: 0.05cm;
             left: 0.1cm;
-            right: 1.2cm;
-            font-size: 10px !important;
+            right: 1.1cm;
+            font-size: 9px !important;
             font-weight: 700;
             color: #0a1128;
             text-align: center;
@@ -183,8 +183,8 @@
             position: absolute;
             bottom: 0.05cm;
             right: 0.1cm;
-            width: 0.95cm;
-            height: 0.95cm;
+            width: 0.9cm;
+            height: 0.9cm;
             background: #ffffff;
             padding: 1px;
             border-radius: 2px;
@@ -371,7 +371,7 @@
                     <img id="imgLogoApercu" src="img/logo.jpg" alt="Sceau Officiel JSD" class="carte-sceau" onerror="this.onerror=null; this.src='https://via.placeholder.com/100?text=LOGO+JSD';">
 
                     <div class="carte-org-name">
-                        <h5>JEUNESSE SOCIALE POUR LE DÉVELOPPEMENT (JSD)</h5>
+                        <h5>JEUNESSE SOCIALE POUR LE DÉVELOPPEMENT JSD</h5>
                     </div>
 
                     <div class="carte-identite">
@@ -669,7 +669,7 @@
                     <div class="carte-gold-wave"></div>
                     <img src="${logoJsdActuel}" alt="Logo JSD" class="carte-sceau" onerror="this.onerror=null; this.src='https://via.placeholder.com/100?text=LOGO+JSD';">
                     <div class="carte-org-name">
-                        <h5>JEUNESSE SOCIALE POUR LE DÉVELOPPEMENT (JSD)</h5>
+                        <h5>JEUNESSE SOCIALE POUR LE DÉVELOPPEMENT JSD</h5>
                     </div>
                     <div class="carte-identite">
                         <div><strong>Nom:</strong> <span>${m.nom}</span></div>
@@ -696,7 +696,7 @@
             document.getElementById("actionsImpression").classList.remove("d-none");
         }
 
-        // Téléchargement corrigé sans fond blanc
+        /* Fonction de téléchargement garantissant le fond bleu */
         function telechargerEtEnregistrerTelephone() {
             const el = document.getElementById("carteFinalePresident");
             if (!el) return;
@@ -705,7 +705,7 @@
                 scale: 3, 
                 useCORS: true, 
                 allowTaint: true,
-                backgroundColor: "#0a1128" // Garantit le fond bleu au téléchargement
+                backgroundColor: "#0a1128"
             }).then(canvas => {
                 const imageURI = canvas.toDataURL("image/jpeg", 0.95);
                 const a = document.createElement("a");
