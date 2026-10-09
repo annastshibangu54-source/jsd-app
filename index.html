@@ -2607,8 +2607,46 @@ onSnapshot(collection(db, "avis"), (snapshot) => {
     conteneur.appendChild(item);
   });
 });
-      
+    
+// Fonction d'ouverture d'un module spécifique et masquage des autres
+function ouvrirModuleJSD(idSection) {
+    const modules = [
+        'sectionService1', 'sectionService2', 'sectionService3', 'sectionService4',
+        'sectionService5', 'sectionService6', 'sectionService7', 'sectionService8'
+    ];
 
+    // Cacher tous les modules d'abord
+    modules.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('d-none');
+    });
+
+    // Afficher uniquement la section cliquée
+    const cible = document.getElementById(idSection);
+    if (cible) {
+        cible.classList.remove('d-none');
+        cible.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Fonction de fermeture
+function fermerModuleJSD(idSection) {
+    const el = document.getElementById(idSection);
+    if (el) el.classList.add('d-none');
+}
+
+// Fonction globale de traitement des formulaires
+function soumettreModuleJSD(event, nomService) {
+    event.preventDefault();
+    alert(`Merci !\n\nVotre demande pour le service "${nomService}" a été envoyée avec succès à l'équipe JSD.`);
+    event.target.reset();
+    const carteParent = event.target.closest('.card');
+    if (carteParent) {
+        carteParent.classList.add('d-none');
+    }
+}
+
+      
 </script>
     </body>
 </html>
