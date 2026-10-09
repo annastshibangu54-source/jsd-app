@@ -23,6 +23,24 @@
         <!-- Main Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
 
+        <!-- Liens PWA et icônes iOS/Android -->
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#0a1128">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-title" content="JSD App">
+
+        <!-- Enregistrement du Service Worker -->
+        <script>
+          if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+              navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('Service Worker enregistré !', reg))
+                .catch(err => console.log('Erreur SW:', err));
+            });
+          }
+        </script>
+
         <!-- Styles personnalisés -->
         <style>
     /* 1. Titre principal et bouton du carrousel */
@@ -175,25 +193,6 @@
     }
     .conversation-item:hover, .conversation-item.active {
         background-color: #e9ecef;
-        <!-- Liens PWA et icônes iOS/Android -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0a1128">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="JSD App">
-<link rel="apple-touch-icon" href="img/logo.jpg">
-
-<!-- Enregistrement du Service Worker -->
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('Service Worker enregistré !', reg))
-        .catch(err => console.log('Erreur SW:', err));
-    });
-  }
-</script>
-
     }
 </style>
     </head>
@@ -422,308 +421,304 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         <!-- About End -->
 
         <!-- Service Start -->
-<div class="service">
-    <div class="container">
-        <div class="section-header">
-            <h2>Services</h2>
-            <p>L'avenir est une compétence que l'on construit au présent</p>
-        </div>
-        <div class="row">
-            <!-- Service 1 -->
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="service-item">
-                    <div class="service-icon"><img src="img/S1.jpg" alt="photo" class="img-service"></div>
-                    <div class="service-detail">
-                        <h4>
-                            <a href="#sectionService1" class="text-decoration-none" onclick="ouvrirModuleJSD('sectionService1')">
-                                <i class="bi bi-mortarboard-fill me-1"></i>Formation Professionnelle et Renforcement des Capacités :
-                            </a>
-                        </h4>
-                        <p>Ateliers d'apprentissage de métiers, formations pratiques et programmes visant l'autonomisation et l'insertion professionnelles des jeunes.</p>
+        <div class="service">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Services</h2>
+                    <p>L'avenir est une compétence que l'on construit au présent</p>
+                </div>
+                <div class="row">
+                    <!-- Service 1 -->
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="service-item">
+                            <div class="service-icon"><img src="img/S1.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-detail">
+                                <h4>
+                                    <a href="#sectionService1" class="text-decoration-none" onclick="ouvrirModuleJSD('sectionService1')">
+                                        <i class="ion-md-school me-1"></i>Formation Professionnelle et Renforcement des Capacités :
+                                    </a>
+                                </h4>
+                                <p>Ateliers d'apprentissage de métiers, formations pratiques et programmes visant l'autonomisation et l'insertion professionnelles des jeunes.</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Service 2 -->
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="service-item">
-                    <div class="service-icon"><img src="img/S2.jpg" alt="photo" class="img-service"></div>
-                    <div class="service-detail">
-                        <h4>
-                            <a href="#sectionService2" class="text-decoration-none" onclick="ouvrirModuleJSD('sectionService2')">
-                                <i class="bi bi-rocket-takeoff-fill me-1"></i>Projets d'entrepreneuriat et d'auto-prise en charge :
-                            </a>
-                        </h4>
-                        <p>Accompagnement de projets communautaires et soutien aux initiatives entrepreneuriales pour créer des opportunités économiques locales.</p>
+                    <!-- Service 2 -->
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="service-item">
+                            <div class="service-icon"><img src="img/S2.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-detail">
+                                <h4>
+                                    <a href="#sectionService2" class="text-decoration-none" onclick="ouvrirModuleJSD('sectionService2')">
+                                        <i class="ion-md-rocket me-1"></i>Projets d'entrepreneuriat et d'auto-prise en charge :
+                                    </a>
+                                </h4>
+                                <p>Accompagnement de projets communautaires et soutien aux initiatives entrepreneuriales pour créer des opportunités économiques locales.</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Service 3 -->
-
-            <!-- ======================================================== -->
-<!-- ZONE DES MODULES DE FORMULAIRES SERVICES JSD -->
-<!-- ======================================================== -->
-<div class="container my-4">
-
-    <!-- FORMULAIRE 1 : Formation Professionnelle -->
-    <div id="sectionService1" class="card bg-dark text-white border-primary shadow p-4 mb-4 d-none">
-        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 fw-bold"><i class="bi bi-mortarboard-fill me-2"></i>Inscription - Formation Professionnelle</h5>
-            <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService1')"></button>
-        </div>
-        <div class="card-body">
-            <form onsubmit="soumettreModuleJSD(event, 'Formation Professionnelle')">
-                <div class="row g-3">
-                    <div class="col-md-12">
-                        <label class="form-label text-warning fw-bold">Choix du module de formation *</label>
-                        <select class="form-select bg-secondary text-white border-0" required>
-                            <option value="" selected disabled>-- Sélectionnez un métier --</option>
-                            <option value="Informatique & Bureautique">💻 Informatique & Bureautique</option>
-                            <option value="Mécanique & Maintenance">🔧 Mécanique & Maintenance</option>
-                            <option value="Coupe & Couture">✂️ Coupe & Couture / Stylisme</option>
-                            <option value="Infographie & Design">🎨 Infographie & Design Graphique</option>
-                        </select>
+                    <!-- Service 3 -->
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="service-item">
+                            <div class="service-icon"><img src="img/S3.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-detail">
+                                <h4>
+                                    <a href="#sectionService3" class="text-decoration-none" onclick="ouvrirModuleJSD('sectionService3')">
+                                        <i class="ion-md-book me-1"></i>Éducation et Alphabétisation :
+                                    </a>
+                                </h4>
+                                <p>Initiatives de sensibilisation et programmes éducatifs visant à réduire l'analphabétisme et à promouvoir la citoyenneté responsable.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom complet *" required></div>
-                    <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone / WhatsApp *" required></div>
-                    <div class="col-12 text-end"><button type="submit" class="btn btn-primary fw-bold">Valider l'Inscription</button></div>
-                </div>
-            </form>
-        </div>
-    </div>
 
-    <!-- FORMULAIRE 2 : Entrepreneuriat -->
-    <div id="sectionService2" class="card bg-dark text-white border-success shadow p-4 mb-4 d-none">
-        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 fw-bold"><i class="bi bi-rocket-takeoff-fill me-2"></i>Soumission de Projet Entrepreneurial</h5>
-            <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService2')"></button>
-        </div>
-        <div class="card-body">
-            <form onsubmit="soumettreModuleJSD(event, 'Projet Entrepreneurial')">
-                <div class="row g-3">
-                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom du projet / idée *" required></div>
-                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Domaine d'activité *" required></div>
-                    <div class="col-12"><textarea class="form-control bg-secondary text-white border-0" rows="3" placeholder="Résumé du projet et besoins d'accompagnement..." required></textarea></div>
-                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Porteur du projet (Nom) *" required></div>
-                    <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone / WhatsApp *" required></div>
-                    <div class="col-12 text-end"><button type="submit" class="btn btn-success fw-bold">Soumettre le Projet</button></div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- FORMULAIRE 3 : Éducation & Alphabétisation -->
-    <div id="sectionService3" class="card bg-dark text-white border-info shadow p-4 mb-4 d-none">
-        <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 fw-bold"><i class="bi bi-book-half me-2"></i>Programme Éducation & Alphabétisation</h5>
-            <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService3')"></button>
-        </div>
-        <div class="card-body">
-            <form onsubmit="soumettreModuleJSD(event, 'Éducation et Alphabétisation')">
-                <div class="row g-3">
-                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom du participant *" required></div>
-                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Niveau d'étude actuel *" required></div>
-                    <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone de contact *" required></div>
-                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Commune de résidence *" required></div>
-                    <div class="col-12 text-end"><button type="submit" class="btn btn-info text-white fw-bold">S'inscrire au Programme</button></div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- FORMULAIRE 4 : Socioculturel & Sport -->
-    <div id="sectionService4" class="card bg-dark text-white border-warning shadow p-4 mb-4 d-none">
-        <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 fw-bold"><i class="bi bi-trophy-fill me-2"></i>Participation - Activités Socioculturelles & Sportives</h5>
-            <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService4')"></button>
-        </div>
-        <div class="card-body">
-            <form onsubmit="soumettreModuleJSD(event, 'Activités Socioculturelles et Sportives')">
-                <div class="row g-3">
-                    <div class="col-md-12">
-                        <select class="form-select bg-secondary text-white border-0" required>
-                            <option value="" selected disabled>-- Type d'activité --</option>
-                            <option value="Tournoi Sportif">⚽ Tournoi Sportif Communautaire</option>
-                            <option value="Atelier Culturel">🎭 Théâtre & Expression Culturelle</option>
-                            <option value="Événement Jeunesse">🎉 Rencontre & Festival de la Jeunesse</option>
-                        </select>
+                    <!-- Service 4 -->
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="service-item">
+                            <div class="service-icon"><img src="img/S4.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-detail">
+                                <h4>
+                                    <a href="#sectionService4" class="text-decoration-none" onclick="ouvrirModuleJSD('sectionService4')">
+                                        <i class="ion-md-trophy me-1"></i>Activités Socioculturelles et Sportives :
+                                    </a>
+                                </h4>
+                                <p>Organisation d'événements de cohésion, d'activités culturelles et de rencontres sportives pour encadrer la jeunesse et renforcer les liens communautaires.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom ou Équipe *" required></div>
-                    <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone de contact *" required></div>
-                    <div class="col-12 text-end"><button type="submit" class="btn btn-warning text-dark fw-bold">Confirmer ma Participation</button></div>
-                </div>
-            </form>
-        </div>
-    </div>
 
-    <!-- FORMULAIRE 5 : Développement Durable -->
-    <div id="sectionService5" class="card bg-dark text-white border-success shadow p-4 mb-4 d-none">
-        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 fw-bold"><i class="bi bi-globe-americas me-2"></i>Projets Multiservices & Développement Durable</h5>
-            <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService5')"></button>
-        </div>
-        <div class="card-body">
-            <form onsubmit="soumettreModuleJSD(event, 'Projets Multiservices')">
-                <div class="row g-3">
-                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom de l'intervenant / membre *" required></div>
-                    <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone / WhatsApp *" required></div>
-                    <div class="col-12"><textarea class="form-control bg-secondary text-white border-0" rows="3" placeholder="Proposez une initiative ou une action écologique/sociale locale..." required></textarea></div>
-                    <div class="col-12 text-end"><button type="submit" class="btn btn-success fw-bold">Envoyer l'Initiative</button></div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- FORMULAIRE 6 : Santé Communautaire -->
-    <div id="sectionService6" class="card bg-dark text-white border-danger shadow p-4 mb-4 d-none">
-        <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 fw-bold"><i class="bi bi-heart-pulse-fill me-2"></i>Campagne de Sensibilisation & Santé</h5>
-            <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService6')"></button>
-        </div>
-        <div class="card-body">
-            <form onsubmit="soumettreModuleJSD(event, 'Santé Communautaire')">
-                <div class="row g-3">
-                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom & Prénom *" required></div>
-                    <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone *" required></div>
-                    <div class="col-12"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Quartier / Commune *" required></div>
-                    <div class="col-12 text-end"><button type="submit" class="btn btn-danger fw-bold">S'inscrire comme Bénévole / Participant</button></div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- FORMULAIRE 7 : Civisme & Leadership -->
-    <div id="sectionService7" class="card bg-dark text-white border-secondary shadow p-4 mb-4 d-none">
-        <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 fw-bold"><i class="bi bi-person-badge-fill me-2"></i>Atelier Civisme & Leadership Youth</h5>
-            <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService7')"></button>
-        </div>
-        <div class="card-body">
-            <form onsubmit="soumettreModuleJSD(event, 'Leadership & Civisme')">
-                <div class="row g-3">
-                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom complet *" required></div>
-                    <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Numéro WhatsApp *" required></div>
-                    <div class="col-12"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Organisation / Structure (Optionnel)"></div>
-                    <div class="col-12 text-end"><button type="submit" class="btn btn-light fw-bold">Rejoindre la Session</button></div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- FORMULAIRE 8 : Orientation Sociale -->
-    <div id="sectionService8" class="card bg-dark text-white border-primary shadow p-4 mb-4 d-none">
-        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 fw-bold"><i class="bi bi-compass-fill me-2"></i>Demande d'Orientation et d'Accompagnement</h5>
-            <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService8')"></button>
-        </div>
-        <div class="card-body">
-            <form onsubmit="soumettreModuleJSD(event, 'Orientation et Accompagnement Social')">
-                <div class="row g-3">
-                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom complet *" required></div>
-                    <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone / WhatsApp *" required></div>
-                    <div class="col-12"><textarea class="form-control bg-secondary text-white border-0" rows="3" placeholder="Décrivez brièvement vos besoins d'orientation ou d'assistance..." required></textarea></div>
-                    <div class="col-12 text-end"><button type="submit" class="btn btn-primary fw-bold">Demander un Rendez-vous</button></div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-</div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="service-item">
-                    <div class="service-icon"><img src="img/S3.jpg" alt="photo" class="img-service"></div>
-                    <div class="service-detail">
-                        <h4>
-                            <a href="#sectionService3" class="text-decoration-none" onclick="ouvrirModuleJSD('sectionService3')">
-                                <i class="bi bi-book-half me-1"></i>Éducation et Alphabétisation :
-                            </a>
-                        </h4>
-                        <p>Initiatives de sensibilisation et programmes éducatifs visant à réduire l'analphabétisme et à promouvoir la citoyenneté responsable.</p>
+                    <!-- Service 5 -->
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="service-item">
+                            <div class="service-icon"><img src="img/S5.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-detail">
+                                <h4>
+                                    <a href="#sectionService5" class="text-decoration-none" onclick="ouvrirModuleJSD('sectionService5')">
+                                        <i class="ion-md-globe me-1"></i>Projets Multiservices et développement durable :
+                                    </a>
+                                </h4>
+                                <p>Actions communautaires à impact social pour répondre aux besoins locaux et favoriser l'autonomie financière de la structure et de ses membres.</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Service 4 -->
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="service-item">
-                    <div class="service-icon"><img src="img/S4.jpg" alt="photo" class="img-service"></div>
-                    <div class="service-detail">
-                        <h4>
-                            <a href="#sectionService4" class="text-decoration-none" onclick="ouvrirModuleJSD('sectionService4')">
-                                <i class="bi bi-trophy-fill me-1"></i>Activités Socioculturelles et Sportives :
-                            </a>
-                        </h4>
-                        <p>Organisation d'événements de cohésion, d'activités culturelles et de rencontres sportives pour encadrer la jeunesse et renforcer les liens communautaires.</p>
+                    <!-- Service 6 -->
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="service-item">
+                            <div class="service-icon"><img src="img/S6.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-detail">
+                                <h4>
+                                    <a href="#sectionService6" class="text-decoration-none" onclick="ouvrirModuleJSD('sectionService6')">
+                                        <i class="ion-md-heart-dislike me-1"></i>Sensibilisation et Santé communautaire :
+                                    </a>
+                                </h4>
+                                <p>Campagnes d'information sur la santé préventive, la salubrité publique et la lutte contre les fléaux sociaux touchant la jeunesse.</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Service 5 -->
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="service-item">
-                    <div class="service-icon"><img src="img/S5.jpg" alt="photo" class="img-service"></div>
-                    <div class="service-detail">
-                        <h4>
-                            <a href="#sectionService5" class="text-decoration-none" onclick="ouvrirModuleJSD('sectionService5')">
-                                <i class="bi bi-globe-americas me-1"></i>Projets Multiservices et développement durable :
-                            </a>
-                        </h4>
-                        <p>Actions communautaires à impact social pour répondre aux besoins locaux et favoriser l'autonomie financière de la structure et de ses membres.</p>
+                    <!-- Service 7 -->
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="service-item">
+                            <div class="service-icon"><img src="img/S7.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-detail">
+                                <h4>
+                                    <a href="#sectionService7" class="text-decoration-none" onclick="ouvrirModuleJSD('sectionService7')">
+                                        <i class="ion-md-contacts me-1"></i>Encadrement civique et leadership youth :
+                                    </a>
+                                </h4>
+                                <p>Ateliers d'initiation au leadership, au civisme et à la gestion associative pour former des acteurs du changement.</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Service 6 -->
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="service-item">
-                    <div class="service-icon"><img src="img/S6.jpg" alt="photo" class="img-service"></div>
-                    <div class="service-detail">
-                        <h4>
-                            <a href="#sectionService6" class="text-decoration-none" onclick="ouvrirModuleJSD('sectionService6')">
-                                <i class="bi bi-heart-pulse-fill me-1"></i>Sensibilisation et Santé communautaire :
-                            </a>
-                        </h4>
-                        <p>Campagnes d'information sur la santé préventive, la salubrité publique et la lutte contre les fléaux sociaux touchant la jeunesse.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Service 7 -->
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="service-item">
-                    <div class="service-icon"><img src="img/S7.jpg" alt="photo" class="img-service"></div>
-                    <div class="service-detail">
-                        <h4>
-                            <a href="#sectionService7" class="text-decoration-none" onclick="ouvrirModuleJSD('sectionService7')">
-                                <i class="bi bi-person-badge-fill me-1"></i>Encadrement civique et leadership youth :
-                            </a>
-                        </h4>
-                        <p>Ateliers d'initiation au leadership, au civisme et à la gestion associative pour former des acteurs du changement.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Service 8 -->
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="service-item">
-                    <div class="service-icon"><img src="img/S8.jpg" alt="photo" class="img-service"></div>
-                    <div class="service-detail">
-                        <h4>
-                            <a href="#sectionService8" class="text-decoration-none" onclick="ouvrirModuleJSD('sectionService8')">
-                                <i class="bi bi-compass-fill me-1"></i>Orientation et accompagnement social :
-                            </a>
-                        </h4>
-                        <p>Écoute, conseil et assistance pour l'insertion sociale des jeunes vulnérables ou en quête de repères professionnels.</p>
+                    <!-- Service 8 -->
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="service-item">
+                            <div class="service-icon"><img src="img/S8.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-detail">
+                                <h4>
+                                    <a href="#sectionService8" class="text-decoration-none" onclick="ouvrirModuleJSD('sectionService8')">
+                                        <i class="ion-md-compass me-1"></i>Orientation et accompagnement social :
+                                    </a>
+                                </h4>
+                                <p>Écoute, conseil et assistance pour l'insertion sociale des jeunes vulnérables ou en quête de repères professionnels.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!-- Service End -->
+        <!-- Service End -->
 
+        <!-- ZONE DES MODULES DE FORMULAIRES SERVICES JSD (Formulaires masqués au départ) -->
+        <div class="container my-4">
+
+            <!-- FORMULAIRE 1 : Formation Professionnelle -->
+            <div id="sectionService1" class="card bg-dark text-white border-primary shadow p-4 mb-4 d-none">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold"><i class="ion-md-school me-2"></i>Inscription - Formation Professionnelle</h5>
+                    <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService1')"></button>
+                </div>
+                <div class="card-body">
+                    <form onsubmit="soumettreModuleJSD(event, 'Formation Professionnelle')">
+                        <div class="row g-3">
+                            <div class="col-md-12">
+                                <label class="form-label text-warning fw-bold">Choix du module de formation *</label>
+                                <select class="form-select bg-secondary text-white border-0" required>
+                                    <option value="" selected disabled>-- Sélectionnez un métier --</option>
+                                    <option value="Informatique & Bureautique">💻 Informatique & Bureautique</option>
+                                    <option value="Mécanique & Maintenance">🔧 Mécanique & Maintenance</option>
+                                    <option value="Coupe & Couture">✂️ Coupe & Couture / Stylisme</option>
+                                    <option value="Infographie & Design">🎨 Infographie & Design Graphique</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom complet *" required></div>
+                            <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone / WhatsApp *" required></div>
+                            <div class="col-12 text-end"><button type="submit" class="btn btn-primary fw-bold">Valider l'Inscription</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- FORMULAIRE 2 : Entrepreneuriat -->
+            <div id="sectionService2" class="card bg-dark text-white border-success shadow p-4 mb-4 d-none">
+                <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold"><i class="ion-md-rocket me-2"></i>Soumission de Projet Entrepreneurial</h5>
+                    <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService2')"></button>
+                </div>
+                <div class="card-body">
+                    <form onsubmit="soumettreModuleJSD(event, 'Projet Entrepreneurial')">
+                        <div class="row g-3">
+                            <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom du projet / idée *" required></div>
+                            <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Domaine d'activité *" required></div>
+                            <div class="col-12"><textarea class="form-control bg-secondary text-white border-0" rows="3" placeholder="Résumé du projet et besoins d'accompagnement..." required></textarea></div>
+                            <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Porteur du projet (Nom) *" required></div>
+                            <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone / WhatsApp *" required></div>
+                            <div class="col-12 text-end"><button type="submit" class="btn btn-success fw-bold">Soumettre le Projet</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- FORMULAIRE 3 : Éducation & Alphabétisation -->
+            <div id="sectionService3" class="card bg-dark text-white border-info shadow p-4 mb-4 d-none">
+                <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold"><i class="ion-md-book me-2"></i>Programme Éducation & Alphabétisation</h5>
+                    <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService3')"></button>
+                </div>
+                <div class="card-body">
+                    <form onsubmit="soumettreModuleJSD(event, 'Éducation et Alphabétisation')">
+                        <div class="row g-3">
+                            <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom du participant *" required></div>
+                            <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Niveau d'étude actuel *" required></div>
+                            <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone de contact *" required></div>
+                            <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Commune de résidence *" required></div>
+                            <div class="col-12 text-end"><button type="submit" class="btn btn-info text-white fw-bold">S'inscrire au Programme</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- FORMULAIRE 4 : Socioculturel & Sport -->
+            <div id="sectionService4" class="card bg-dark text-white border-warning shadow p-4 mb-4 d-none">
+                <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold"><i class="ion-md-trophy me-2"></i>Participation - Activités Socioculturelles & Sportives</h5>
+                    <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService4')"></button>
+                </div>
+                <div class="card-body">
+                    <form onsubmit="soumettreModuleJSD(event, 'Activités Socioculturelles et Sportives')">
+                        <div class="row g-3">
+                            <div class="col-md-12">
+                                <select class="form-select bg-secondary text-white border-0" required>
+                                    <option value="" selected disabled>-- Type d'activité --</option>
+                                    <option value="Tournoi Sportif">⚽ Tournoi Sportif Communautaire</option>
+                                    <option value="Atelier Culturel">🎭 Théâtre & Expression Culturelle</option>
+                                    <option value="Événement Jeunesse">🎉 Rencontre & Festival de la Jeunesse</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom ou Équipe *" required></div>
+                            <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone de contact *" required></div>
+                            <div class="col-12 text-end"><button type="submit" class="btn btn-warning text-dark fw-bold">Confirmer ma Participation</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- FORMULAIRE 5 : Développement Durable -->
+            <div id="sectionService5" class="card bg-dark text-white border-success shadow p-4 mb-4 d-none">
+                <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold"><i class="ion-md-globe me-2"></i>Projets Multiservices & Développement Durable</h5>
+                    <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService5')"></button>
+                </div>
+                <div class="card-body">
+                    <form onsubmit="soumettreModuleJSD(event, 'Projets Multiservices')">
+                        <div class="row g-3">
+                            <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom de l'intervenant / membre *" required></div>
+                            <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone / WhatsApp *" required></div>
+                            <div class="col-12"><textarea class="form-control bg-secondary text-white border-0" rows="3" placeholder="Proposez une initiative ou une action écologique/sociale locale..." required></textarea></div>
+                            <div class="col-12 text-end"><button type="submit" class="btn btn-success fw-bold">Envoyer l'Initiative</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- FORMULAIRE 6 : Santé Communautaire -->
+            <div id="sectionService6" class="card bg-dark text-white border-danger shadow p-4 mb-4 d-none">
+                <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold"><i class="ion-md-heart me-2"></i>Campagne de Sensibilisation & Santé</h5>
+                    <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService6')"></button>
+                </div>
+                <div class="card-body">
+                    <form onsubmit="soumettreModuleJSD(event, 'Santé Communautaire')">
+                        <div class="row g-3">
+                            <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom & Prénom *" required></div>
+                            <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone *" required></div>
+                            <div class="col-12"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Quartier / Commune *" required></div>
+                            <div class="col-12 text-end"><button type="submit" class="btn btn-danger fw-bold">S'inscrire comme Bénévole / Participant</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- FORMULAIRE 7 : Civisme & Leadership -->
+            <div id="sectionService7" class="card bg-dark text-white border-secondary shadow p-4 mb-4 d-none">
+                <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold"><i class="ion-md-contacts me-2"></i>Atelier Civisme & Leadership Youth</h5>
+                    <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService7')"></button>
+                </div>
+                <div class="card-body">
+                    <form onsubmit="soumettreModuleJSD(event, 'Leadership & Civisme')">
+                        <div class="row g-3">
+                            <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom complet *" required></div>
+                            <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Numéro WhatsApp *" required></div>
+                            <div class="col-12"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Organisation / Structure (Optionnel)"></div>
+                            <div class="col-12 text-end"><button type="submit" class="btn btn-light fw-bold">Rejoindre la Session</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- FORMULAIRE 8 : Orientation Sociale -->
+            <div id="sectionService8" class="card bg-dark text-white border-primary shadow p-4 mb-4 d-none">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold"><i class="ion-md-compass me-2"></i>Demande d'Orientation et d'Accompagnement</h5>
+                    <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService8')"></button>
+                </div>
+                <div class="card-body">
+                    <form onsubmit="soumettreModuleJSD(event, 'Orientation et Accompagnement Social')">
+                        <div class="row g-3">
+                            <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom complet *" required></div>
+                            <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone / WhatsApp *" required></div>
+                            <div class="col-12"><textarea class="form-control bg-secondary text-white border-0" rows="3" placeholder="Décrivez brièvement vos besoins d'orientation ou d'assistance..." required></textarea></div>
+                            <div class="col-12 text-end"><button type="submit" class="btn btn-primary fw-bold">Demander un Rendez-vous</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
 
         <!-- Call To Action Start -->
         <div class="call-to-action">
@@ -1024,57 +1019,56 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         </div>
         <!-- Team End -->
 
-          <!-- Testimonials Start -->
-<div class="testimonials">
-    <div class="container">
-        <div class="section-header text-center">
-            <h2>Avis ou Critiques</h2>
-            <p>Votre satisfaction est notre priorité</p>
-        </div>
+        <!-- Testimonials Start -->
+        <div class="testimonials">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2>Avis ou Critiques</h2>
+                    <p>Votre satisfaction est notre priorité</p>
+                </div>
 
-        <!-- Formulaire de soumission d'avis -->
-        <div class="row mt-4 justify-content-center">
-            <div class="col-md-8">
-                <form id="formAjoutAvis" onsubmit="publierAvis(event)" class="card p-3 bg-light shadow-sm border-0">
-                    <h6>Laissez votre avis ou critique :</h6>
-                    <div class="row g-2">
-                        <div class="col-md-6 mb-2">
-                            <input type="text" id="avisAuteur" class="form-control" placeholder="Votre Nom & Prénom" required>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <input type="text" id="avisRole" class="form-control" placeholder="Votre Titre / Qualité (ex: Membre)" required>
-                        </div>
-                        <div class="col-12 mb-2">
-                            <textarea id="avisMessage" class="form-control" rows="2" placeholder="Saisissez votre message..." required></textarea>
-                        </div>
-                        <div class="col-12 text-end">
-                            <button type="submit" class="btn btn-primary btn-sm fw-bold">Publier mon avis</button>
+                <!-- Formulaire de soumission d'avis -->
+                <div class="row mt-4 justify-content-center">
+                    <div class="col-md-8">
+                        <form id="formAjoutAvis" onsubmit="publierAvis(event)" class="card p-3 bg-light shadow-sm border-0">
+                            <h6>Laissez votre avis ou critique :</h6>
+                            <div class="row g-2">
+                                <div class="col-md-6 mb-2">
+                                    <input type="text" id="avisAuteur" class="form-control" placeholder="Votre Nom & Prénom" required>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <input type="text" id="avisRole" class="form-control" placeholder="Votre Titre / Qualité (ex: Membre)" required>
+                                </div>
+                                <div class="col-12 mb-2">
+                                    <textarea id="avisMessage" class="form-control" rows="2" placeholder="Saisissez votre message..." required></textarea>
+                                </div>
+                                <div class="col-12 text-end">
+                                    <button type="submit" class="btn btn-primary btn-sm fw-bold">Publier mon avis</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Bouton / Section masquée des avis publiés -->
+                <div class="text-center my-4">
+                    <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#sectionListeAvis" aria-expanded="false" aria-controls="sectionListeAvis">
+                        <i class="icon ion-md-chatboxes me-1"></i> Voir tous les avis publiés
+                    </button>
+                </div>
+
+                <div class="collapse mt-3" id="sectionListeAvis">
+                    <div class="card card-body bg-white border-0 shadow-sm">
+                        <h5 class="fw-bold mb-3">Derniers avis publiés :</h5>
+                        <div id="conteneurAvisIndividuels" class="list-group list-group-flush">
+                            <div class="text-center text-muted p-3">Chargement des avis...</div>
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Bouton / Section masquée des avis publiés (S'ouvre au clic) -->
-        <div class="text-center my-4">
-            <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#sectionListeAvis" aria-expanded="false" aria-controls="sectionListeAvis">
-                <i class="icon ion-md-chatboxes me-1"></i> Voir tous les avis publiés
-            </button>
-        </div>
-
-        <div class="collapse mt-3" id="sectionListeAvis">
-            <div class="card card-body bg-white border-0 shadow-sm">
-                <h5 class="fw-bold mb-3">Derniers avis publiés :</h5>
-                <!-- Conteneur d'affichage individuel sans photo -->
-                <div id="conteneurAvisIndividuels" class="list-group list-group-flush">
-                    <div class="text-center text-muted p-3">Chargement des avis...</div>
                 </div>
+
             </div>
         </div>
-
-    </div>
-</div>
-<!-- Testimonials End -->
+        <!-- Testimonials End -->
         
         <!-- Clients Start -->
         <div class="clients">
@@ -1501,7 +1495,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   </div>
 </div>
 
-
         <!-- Contact Start -->
         <div class="contact">
             <div class="container">
@@ -1554,18 +1547,18 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         <div class="row g-4 align-items-center">
             <div class="col-lg-6">
                 <div class="card border-0 shadow-sm p-4 h-100">
-                    <h4 class="fw-bold mb-3 text-dark"><i class="bi bi-heart-fill text-danger me-2"></i>Pourquoi devenir bénévole ?</h4>
+                    <h4 class="fw-bold mb-3 text-dark"><i class="ion-md-heart text-danger me-2"></i>Pourquoi devenir bénévole ?</h4>
                     <p class="text-secondary">En rejoignant la JSD en tant que bénévole, vous participez activement à des projets d'impact social, à l'encadrement des jeunes et au développement communautaire en RDC.</p>
                     
                     <ul class="list-unstyled mt-3">
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Participez à l'organisation de nos événements et formations.</li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Développez vos compétences en gestion de projet et leadership.</li>
-                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Obtenez une attestation officielle d'engagement communautaire.</li>
+                        <li class="mb-2"><i class="ion-md-checkmark-circle text-success me-2"></i> Participez à l'organisation de nos événements et formations.</li>
+                        <li class="mb-2"><i class="ion-md-checkmark-circle text-success me-2"></i> Développez vos compétences en gestion de projet et leadership.</li>
+                        <li class="mb-2"><i class="ion-md-checkmark-circle text-success me-2"></i> Obtenez une attestation officielle d'engagement communautaire.</li>
                     </ul>
 
                     <div class="mt-4">
                         <a href="don-adhesion.html" class="btn btn-primary btn-lg fw-bold w-100 shadow-sm">
-                            <i class="bi bi-person-plus-fill me-2"></i> Devenir Bénévole / Adhérer
+                            <i class="ion-md-person-add me-2"></i> Devenir Bénévole / Adhérer
                         </a>
                     </div>
                 </div>
@@ -1573,7 +1566,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
             <div class="col-lg-6">
                 <div class="card border-0 shadow-sm p-4 h-100 bg-white">
-                    <h4 class="fw-bold mb-3 text-dark"><i class="bi bi-envelope-paper-fill text-primary me-2"></i>Exprimer votre intérêt</h4>
+                    <h4 class="fw-bold mb-3 text-dark"><i class="ion-md-mail me-2 text-primary"></i>Exprimer votre intérêt</h4>
                     
                     <form id="formBenevole" onsubmit="enregistrerBenevole(event)">
                         <div class="mb-3">
@@ -1596,7 +1589,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             </select>
                         </div>
                         <button type="submit" class="btn btn-outline-primary w-100 fw-bold">
-                            <i class="bi bi-send-fill me-1"></i> Envoyer ma candidature
+                            <i class="ion-md-send me-1"></i> Envoyer ma candidature
                         </button>
                     </form>
                 </div>
@@ -1752,6 +1745,40 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   let desabonnerEcouteChat = null;
   let desabonnerEcouteConversations = null;
   let membreSelectionneParPresident = null;
+
+  // Fonctions d'interaction pour la section Services
+  window.ouvrirModuleJSD = function(idSection) {
+      const modules = [
+          'sectionService1', 'sectionService2', 'sectionService3', 'sectionService4',
+          'sectionService5', 'sectionService6', 'sectionService7', 'sectionService8'
+      ];
+
+      modules.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.classList.add('d-none');
+      });
+
+      const cible = document.getElementById(idSection);
+      if (cible) {
+          cible.classList.remove('d-none');
+          cible.scrollIntoView({ behavior: 'smooth' });
+      }
+  };
+
+  window.fermerModuleJSD = function(idSection) {
+      const el = document.getElementById(idSection);
+      if (el) el.classList.add('d-none');
+  };
+
+  window.soumettreModuleJSD = function(event, nomService) {
+      event.preventDefault();
+      alert(`Merci !\n\nVotre demande pour le service "${nomService}" a été envoyée avec succès à l'équipe JSD.`);
+      event.target.reset();
+      const carteParent = event.target.closest('.card');
+      if (carteParent) {
+          carteParent.classList.add('d-none');
+      }
+  };
 
   // Initialisation date
   document.addEventListener("DOMContentLoaded", () => {
@@ -2192,8 +2219,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-
-        // 4. MESSAGERIE PRIVÉE SÉCURISÉE ENTRE LE PRÉSIDENT ET LES MEMBRES
+  // 4. MESSAGERIE PRIVÉE SÉCURISÉE ENTRE LE PRÉSIDENT ET LES MEMBRES
   window.connexionMessagerie = async function() {
     const champMat = document.getElementById("chatMatricule");
     const matSaisi = champMat ? champMat.value.trim() : "";
@@ -2203,7 +2229,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       return;
     }
 
-    // A. Connexion Président via le Code Secret
     if (matSaisi === CODE_SECRET_PRESIDENT) {
       sessionChatMembre = { role: "president" };
       document.getElementById("blocConnexionChat").style.display = "none";
@@ -2213,7 +2238,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       return;
     }
 
-    // B. Connexion Membre via son Matricule
     try {
       const matUpper = matSaisi.toUpperCase();
       let membreTrouve = cacheMembresLocal.find(m => m.matricule === matUpper);
@@ -2263,7 +2287,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     document.getElementById("chatMatricule").value = "";
   };
 
-  // ENVOI ET ÉCOUTE MESSAGE MEMBRE
   window.envoyerMessageMembre = async function(e) {
     if (e) e.preventDefault();
     const txtInput = document.getElementById("texteMsgMembre");
@@ -2288,7 +2311,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // --- NOUVELLE FONCTION ÉCOUTE MEMBRE CORRIGÉE ---
   function ecouterMessagesMembre(matricule) {
     if (desabonnerEcouteChat) desabonnerEcouteChat();
 
@@ -2331,7 +2353,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     });
   }
 
-  // INTERFACE ET GESTION PRÉSIDENT
   function chargerConversationsPresident() {
     if (desabonnerEcouteConversations) desabonnerEcouteConversations();
 
@@ -2344,7 +2365,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 
       const conversationsMap = new Map();
 
-      // Tri local des conversations
       const docsTries = snapshot.docs.map(docSnap => docSnap.data()).sort((a, b) => {
         const dateA = a.createdAt ? a.createdAt.toDate() : new Date();
         const dateB = b.createdAt ? b.createdAt.toDate() : new Date();
@@ -2389,7 +2409,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     });
   }
 
-  // --- NOUVELLE FONCTION OUVRIR DISCUSSION PRÉSIDENT CORRIGÉE ---
   window.ouvrirDiscussionPresident = function(matricule, nomMembre) {
     membreSelectionneParPresident = matricule;
 
@@ -2421,7 +2440,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         const idDoc = msg.idDoc;
         const estPresi = msg.expediteur === "president";
 
-        // Marquer comme lu
         if (!msg.lu && msg.expediteur === "membre") {
           updateDoc(doc(db, "messages_prives", idDoc), { lu: true });
         }
@@ -2463,8 +2481,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       alert("Erreur lors de l'envoi de la réponse : " + err.message);
     }
   };
-
-
 
   // 5. BÉNÉVOLAT
   window.enregistrerBenevole = async function(e) {
@@ -2535,118 +2551,74 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-      // 6. AVIS & CRITIQUES
   // 6. AVIS & CRITIQUES
-window.publierAvis = async function(e) {
-  if (e) e.preventDefault();
-  const auteur = document.getElementById("avisAuteur").value.trim();
-  const role = document.getElementById("avisRole").value.trim();
-  const message = document.getElementById("avisMessage").value.trim();
+  window.publierAvis = async function(e) {
+    if (e) e.preventDefault();
+    const auteur = document.getElementById("avisAuteur").value.trim();
+    const role = document.getElementById("avisRole").value.trim();
+    const message = document.getElementById("avisMessage").value.trim();
 
-  if (!auteur || !message) {
-    alert("Veuillez renseigner votre nom et votre message.");
-    return;
-  }
-
-  try {
-    await addDoc(collection(db, "avis"), {
-      auteur, 
-      role, 
-      message,
-      createdAt: serverTimestamp()
-    });
-    
-    alert("Merci ! Votre avis a été enregistré avec succès.");
-    document.getElementById("formAjoutAvis").reset();
-
-    // Ouvre automatiquement la section contenant les avis au moment de publier
-    const collapseElement = document.getElementById("sectionListeAvis");
-    if (collapseElement && window.bootstrap) {
-      const bsCollapse = new bootstrap.Collapse(collapseElement, { show: true });
-      bsCollapse.show();
-    } else if (collapseElement) {
-      collapseElement.classList.add("show");
+    if (!auteur || !message) {
+      alert("Veuillez renseigner votre nom et votre message.");
+      return;
     }
 
-  } catch (err) {
-    alert("Erreur lors de la publication de votre avis : " + err.message);
-  }
-};
-
-// Écoute en temps réel des avis sans utiliser le carrousel (Affichage individuel propre sans photo)
-onSnapshot(collection(db, "avis"), (snapshot) => {
-  const conteneur = document.getElementById("conteneurAvisIndividuels");
-  if (!conteneur) return;
-
-  conteneur.innerHTML = "";
-
-  if (snapshot.empty) {
-    conteneur.innerHTML = `<div class="text-center text-muted p-3">Aucun avis publié pour le moment.</div>`;
-    return;
-  }
-
-  // Tri par date décroissante (du plus récent au plus ancien)
-  const avisTries = snapshot.docs.map(doc => doc.data()).sort((a, b) => {
-    const dateA = a.createdAt ? a.createdAt.toDate() : new Date();
-    const dateB = b.createdAt ? b.createdAt.toDate() : new Date();
-    return dateB - dateA;
-  });
-
-  avisTries.forEach((a) => {
-    const item = document.createElement("div");
-    item.className = "list-group-item border-bottom py-3 px-2";
-    
-    // Structure sans balise <img>
-    item.innerHTML = `
-      <div class="d-flex w-100 justify-content-between align-items-center mb-1">
-        <h6 class="mb-0 fw-bold text-primary">${a.auteur || 'Anonyme'}</h6>
-        <span class="badge bg-light text-dark border fw-normal">${a.role || 'Visiteur'}</span>
-      </div>
-      <p class="mb-0 text-secondary" style="font-size: 0.95rem;">${a.message || ''}</p>
-    `;
-    conteneur.appendChild(item);
-  });
-});
-    
-// Fonction d'ouverture d'un module spécifique et masquage des autres
-function ouvrirModuleJSD(idSection) {
-    const modules = [
-        'sectionService1', 'sectionService2', 'sectionService3', 'sectionService4',
-        'sectionService5', 'sectionService6', 'sectionService7', 'sectionService8'
-    ];
-
-    // Cacher tous les modules d'abord
-    modules.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.add('d-none');
-    });
-
-    // Afficher uniquement la section cliquée
-    const cible = document.getElementById(idSection);
-    if (cible) {
-        cible.classList.remove('d-none');
-        cible.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-// Fonction de fermeture
-function fermerModuleJSD(idSection) {
-    const el = document.getElementById(idSection);
-    if (el) el.classList.add('d-none');
-}
-
-// Fonction globale de traitement des formulaires
-function soumettreModuleJSD(event, nomService) {
-    event.preventDefault();
-    alert(`Merci !\n\nVotre demande pour le service "${nomService}" a été envoyée avec succès à l'équipe JSD.`);
-    event.target.reset();
-    const carteParent = event.target.closest('.card');
-    if (carteParent) {
-        carteParent.classList.add('d-none');
-    }
-}
-
+    try {
+      await addDoc(collection(db, "avis"), {
+        auteur, 
+        role, 
+        message,
+        createdAt: serverTimestamp()
+      });
       
+      alert("Merci ! Votre avis a été enregistré avec succès.");
+      document.getElementById("formAjoutAvis").reset();
+
+      const collapseElement = document.getElementById("sectionListeAvis");
+      if (collapseElement && window.bootstrap) {
+        const bsCollapse = new bootstrap.Collapse(collapseElement, { show: true });
+        bsCollapse.show();
+      } else if (collapseElement) {
+        collapseElement.classList.add("show");
+      }
+
+    } catch (err) {
+      alert("Erreur lors de la publication de votre avis : " + err.message);
+    }
+  };
+
+  onSnapshot(collection(db, "avis"), (snapshot) => {
+    const conteneur = document.getElementById("conteneurAvisIndividuels");
+    if (!conteneur) return;
+
+    conteneur.innerHTML = "";
+
+    if (snapshot.empty) {
+      conteneur.innerHTML = `<div class="text-center text-muted p-3">Aucun avis publié pour le moment.</div>`;
+      return;
+    }
+
+    const avisTries = snapshot.docs.map(doc => doc.data()).sort((a, b) => {
+      const dateA = a.createdAt ? a.createdAt.toDate() : new Date();
+      const dateB = b.createdAt ? b.createdAt.toDate() : new Date();
+      return dateB - dateA;
+    });
+
+    avisTries.forEach((a) => {
+      const item = document.createElement("div");
+      item.className = "list-group-item border-bottom py-3 px-2";
+      
+      item.innerHTML = `
+        <div class="d-flex w-100 justify-content-between align-items-center mb-1">
+          <h6 class="mb-0 fw-bold text-primary">${a.auteur || 'Anonyme'}</h6>
+          <span class="badge bg-light text-dark border fw-normal">${a.role || 'Visiteur'}</span>
+        </div>
+        <p class="mb-0 text-secondary" style="font-size: 0.95rem;">${a.message || ''}</p>
+      `;
+      conteneur.appendChild(item);
+    });
+  });
 </script>
     </body>
 </html>
+
