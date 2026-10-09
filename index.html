@@ -1492,7 +1492,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                             </select>
                         </div>
                         <button type="submit" class="btn btn-outline-primary w-100 fw-bold">
-                            <i class="ion-md-send me-1"></i> Envoyer ma candidature
+                            <i class="icon ion-md-send me-1"></i> Envoyer ma candidature
                         </button>
                     </form>
                 </div>
@@ -1735,7 +1735,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   }
 
-  // ÉCOUTEUR ET AFFICHAGE EN TEMPS RÉEL DES ÉVÉNEMENTS
+  // ÉCOUTEUR ET AFFICHAGE EN TEMPS RÉEL DES ÉVÉNEMENTS (Correction du filtre 24h)
   onSnapshot(collection(db, "evenements"), (snapshot) => {
     const container = document.getElementById("events-widget-container");
     if (!container) return;
@@ -1748,6 +1748,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       const ev = docSnap.data();
       const idDoc = docSnap.id;
 
+      // Si l'événement a un timestamp et date de plus de 24h, on le masque, sinon on l'affiche
       if (ev.timestamp && (maintenant - ev.timestamp > duree24h)) {
         return; 
       }
@@ -2759,4 +2760,3 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
 </script>
     </body>
 </html>
-
