@@ -419,6 +419,209 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             </div>
         </div>
         <!-- About End -->
+<!-- ============================================================
+     SERVICES + DEMANDES (à coller à la place de tout le bloc
+     <!-- Service Start --> ... <!-- Service End -->)
+     ============================================================ -->
+<style>
+    .service .service-detail h3 { font-size: 17px; line-height: 1.35; }
+    .hover-title:hover { text-decoration: underline; }
+    #sectionDemandesServices, #panneauDemandesPresident { scroll-margin-top: 80px; }
+</style>
+
+<!-- Service Start -->
+        <div class="service">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Services</h2>
+                    <p>L'avenir est une compétence que l'on construit au présent</p>
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="service-item">
+                            <div class="service-icon"><img src="img/S1.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-detail">
+                                <a href="#sectionDemandesServices" class="text-decoration-none" onclick="ouvrirDemandeService('formation'); return false;">
+                                    <h3 class="text-primary fw-bold mb-2 hover-title"><i class="icon ion-md-school me-2"></i>Formation Professionnelle et Renforcement des Capacités :</h3>
+                                </a>
+                                <p class="text-muted">Ateliers d'apprentissage de métiers, formations pratiques et programmes visant l'autonomisation et l'insertion professionnelles des jeunes.</p>
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="ouvrirDemandeService('formation')">Faire une demande</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="service-item">
+                            <div class="service-icon"><img src="img/S2.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-detail">
+                                <a href="#sectionDemandesServices" class="text-decoration-none" onclick="ouvrirDemandeService('entrepreneuriat'); return false;">
+                                    <h3 class="text-primary fw-bold mb-2 hover-title"><i class="icon ion-md-briefcase me-2"></i>Projets d'entrepreneuriat et d'auto-prise en charge :</h3>
+                                </a>
+                                <p class="text-muted">Accompagnement de projets communautaires et soutien aux initiatives entrepreneuriales pour créer des opportunités économiques locales.</p>
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="ouvrirDemandeService('entrepreneuriat')">Faire une demande</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="service-item">
+                            <div class="service-icon"><img src="img/S3.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-detail">
+                                <a href="#sectionDemandesServices" class="text-decoration-none" onclick="ouvrirDemandeService('education'); return false;">
+                                    <h3 class="text-primary fw-bold mb-2 hover-title"><i class="icon ion-md-book me-2"></i>Éducation et Alphabétisation :</h3>
+                                </a>
+                                <p class="text-muted">Initiatives de sensibilisation et programmes éducatifs visant à réduire l'analphabétisme et à promouvoir la citoyenneté responsable.</p>
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="ouvrirDemandeService('education')">Faire une demande</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="service-item">
+                            <div class="service-icon"><img src="img/S4.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-detail">
+                                <a href="#sectionDemandesServices" class="text-decoration-none" onclick="ouvrirDemandeService('socioculturel'); return false;">
+                                    <h3 class="text-primary fw-bold mb-2 hover-title"><i class="icon ion-md-football me-2"></i>Activités Socioculturelles et Sportives :</h3>
+                                </a>
+                                <p class="text-muted">Organisation d'événements de cohésion, d'activités culturelles et de rencontres sportives pour encadrer la jeunesse et renforcer les liens communautaires.</p>
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="ouvrirDemandeService('socioculturel')">Faire une demande</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="service-item">
+                            <div class="service-icon"><img src="img/S5.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-detail">
+                                <a href="#sectionDemandesServices" class="text-decoration-none" onclick="ouvrirDemandeService('multiservices'); return false;">
+                                    <h3 class="text-primary fw-bold mb-2 hover-title"><i class="icon ion-md-construct me-2"></i>Projets Multiservices et de développement durable :</h3>
+                                </a>
+                                <p class="text-muted">Actions communautaires à impact social pour répondre aux besoins locaux et favoriser l'autonomie financière de la structure et de ses membres.</p>
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="ouvrirDemandeService('multiservices')">Faire une demande</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="service-item">
+                            <div class="service-icon"><img src="img/S6.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-detail">
+                                <a href="#sectionDemandesServices" class="text-decoration-none" onclick="ouvrirDemandeService('sante'); return false;">
+                                    <h3 class="text-primary fw-bold mb-2 hover-title"><i class="icon ion-md-medkit me-2"></i>Sensibilisation et Santé communautaire :</h3>
+                                </a>
+                                <p class="text-muted">Campagnes d'information sur la santé préventive, la salubrité publique et la lutte contre les fléaux sociaux touchant la jeunesse.</p>
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="ouvrirDemandeService('sante')">Faire une demande</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="service-item">
+                            <div class="service-icon"><img src="img/S7.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-detail">
+                                <a href="#sectionDemandesServices" class="text-decoration-none" onclick="ouvrirDemandeService('leadership'); return false;">
+                                    <h3 class="text-primary fw-bold mb-2 hover-title"><i class="icon ion-md-people me-2"></i>Encadrement civique et leadership youth :</h3>
+                                </a>
+                                <p class="text-muted">Ateliers d'initiation au leadership, au civisme et à la gestion associative pour forming des acteurs du changement.</p>
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="ouvrirDemandeService('leadership')">Faire une demande</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="service-item">
+                            <div class="service-icon"><img src="img/S8.jpg" alt="photo" class="img-service"></div>
+                            <div class="service-detail">
+                                <a href="#sectionDemandesServices" class="text-decoration-none" onclick="ouvrirDemandeService('orientation'); return false;">
+                                    <h3 class="text-primary fw-bold mb-2 hover-title"><i class="icon ion-md-help-buoy me-2"></i>Orientation et accompagnement social :</h3>
+                                </a>
+                                <p class="text-muted">Écoute, conseil et assistance pour l'insertion sociale des jeunes vulnérables ou en quête de repères professionnels.</p>
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="ouvrirDemandeService('orientation')">Faire une demande</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Bouton sécurisé Président -->
+                <div class="text-center mt-4">
+                    <button type="button" class="btn btn-sm btn-dark" onclick="deverrouillerDemandesServices()">
+                        <i class="icon ion-md-key me-1"></i> Espace Président : Demandes de services
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
+
+        <!-- FORMULAIRE DE DEMANDE DE SERVICE (côté utilisateur) -->
+        <div id="sectionDemandesServices" class="container py-4" style="display: none;">
+            <div class="card shadow-sm border-primary">
+                <div class="card-header bg-primary text-white fw-bold d-flex justify-content-between align-items-center">
+                    <span id="titreServiceChoisi">Demande de service</span>
+                    <button type="button" class="btn btn-sm btn-light" onclick="fermerDemandeService()">Fermer</button>
+                </div>
+                <div class="card-body">
+                    <form id="formDemandeService" onsubmit="enregistrerDemandeService(event)">
+                        <input type="hidden" id="demandeServiceCle">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label font-weight-bold">Nom complet *</label>
+                                <input type="text" id="demandeNom" class="form-control" required placeholder="Ex: Mukendi Jean">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label font-weight-bold">Téléphone / WhatsApp *</label>
+                                <input type="tel" id="demandePhone" class="form-control" required placeholder="+243 ...">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label font-weight-bold">E-mail (facultatif)</label>
+                                <input type="email" id="demandeEmail" class="form-control" placeholder="exemple@mail.com">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label font-weight-bold">Votre demande *</label>
+                                <textarea id="demandeMessage" class="form-control" rows="4" required placeholder="Expliquez votre besoin, votre situation ou votre question..."></textarea>
+                            </div>
+                            <div class="col-12 text-end">
+                                <button type="submit" class="btn btn-primary fw-bold px-4">
+                                    <i class="icon ion-md-send me-1"></i> Envoyer ma demande
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div id="confirmationDemande" class="alert alert-success mt-3" style="display: none;"></div>
+
+                    <hr class="my-4">
+                    <h6 class="fw-bold"><i class="icon ion-md-lock me-1"></i> Suivre ma demande et lire la réponse (confidentiel)</h6>
+                    <div class="row g-2 align-items-center">
+                        <div class="col-md-4">
+                            <input type="text" id="suiviReference" class="form-control" placeholder="Numéro de suivi (ex: SRV-AB12CD)">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="tel" id="suiviPhone" class="form-control" placeholder="Téléphone utilisé dans la demande">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-outline-primary w-100" onclick="suivreDemandeService()">Voir ma réponse</button>
+                        </div>
+                    </div>
+                    <div id="zoneSuiviDemande" class="mt-3" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANNEAU PRÉSIDENT : CONSULTATION ET RÉPONSE AUX DEMANDES (masqué par défaut) -->
+        <div id="panneauDemandesPresident" class="container py-4" style="display: none;">
+            <div class="card shadow-sm border-dark">
+                <div class="card-header bg-dark text-white fw-bold d-flex justify-content-between align-items-center">
+                    <span><i class="icon ion-md-lock me-2"></i> Espace Président : Demandes de services</span>
+                    <button type="button" class="btn btn-sm btn-outline-light" onclick="fermerPanneauDemandes()">Fermer</button>
+                </div>
+                <div class="card-body">
+                    <div id="filtresDemandes" class="mb-3 d-flex flex-wrap" style="gap: 6px;"></div>
+                    <div id="listeDemandesPresident"></div>
+                </div>
+            </div>
+        </div>
 
         <!-- Call To Action Start -->
         <div class="call-to-action">
