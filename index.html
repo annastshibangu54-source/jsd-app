@@ -460,6 +460,177 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             </div>
 
             <!-- Service 3 -->
+
+            <!-- ======================================================== -->
+<!-- ZONE DES MODULES DE FORMULAIRES SERVICES JSD -->
+<!-- ======================================================== -->
+<div class="container my-4">
+
+    <!-- FORMULAIRE 1 : Formation Professionnelle -->
+    <div id="sectionService1" class="card bg-dark text-white border-primary shadow p-4 mb-4 d-none">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 fw-bold"><i class="bi bi-mortarboard-fill me-2"></i>Inscription - Formation Professionnelle</h5>
+            <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService1')"></button>
+        </div>
+        <div class="card-body">
+            <form onsubmit="soumettreModuleJSD(event, 'Formation Professionnelle')">
+                <div class="row g-3">
+                    <div class="col-md-12">
+                        <label class="form-label text-warning fw-bold">Choix du module de formation *</label>
+                        <select class="form-select bg-secondary text-white border-0" required>
+                            <option value="" selected disabled>-- Sélectionnez un métier --</option>
+                            <option value="Informatique & Bureautique">💻 Informatique & Bureautique</option>
+                            <option value="Mécanique & Maintenance">🔧 Mécanique & Maintenance</option>
+                            <option value="Coupe & Couture">✂️ Coupe & Couture / Stylisme</option>
+                            <option value="Infographie & Design">🎨 Infographie & Design Graphique</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom complet *" required></div>
+                    <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone / WhatsApp *" required></div>
+                    <div class="col-12 text-end"><button type="submit" class="btn btn-primary fw-bold">Valider l'Inscription</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FORMULAIRE 2 : Entrepreneuriat -->
+    <div id="sectionService2" class="card bg-dark text-white border-success shadow p-4 mb-4 d-none">
+        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 fw-bold"><i class="bi bi-rocket-takeoff-fill me-2"></i>Soumission de Projet Entrepreneurial</h5>
+            <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService2')"></button>
+        </div>
+        <div class="card-body">
+            <form onsubmit="soumettreModuleJSD(event, 'Projet Entrepreneurial')">
+                <div class="row g-3">
+                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom du projet / idée *" required></div>
+                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Domaine d'activité *" required></div>
+                    <div class="col-12"><textarea class="form-control bg-secondary text-white border-0" rows="3" placeholder="Résumé du projet et besoins d'accompagnement..." required></textarea></div>
+                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Porteur du projet (Nom) *" required></div>
+                    <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone / WhatsApp *" required></div>
+                    <div class="col-12 text-end"><button type="submit" class="btn btn-success fw-bold">Soumettre le Projet</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FORMULAIRE 3 : Éducation & Alphabétisation -->
+    <div id="sectionService3" class="card bg-dark text-white border-info shadow p-4 mb-4 d-none">
+        <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 fw-bold"><i class="bi bi-book-half me-2"></i>Programme Éducation & Alphabétisation</h5>
+            <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService3')"></button>
+        </div>
+        <div class="card-body">
+            <form onsubmit="soumettreModuleJSD(event, 'Éducation et Alphabétisation')">
+                <div class="row g-3">
+                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom du participant *" required></div>
+                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Niveau d'étude actuel *" required></div>
+                    <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone de contact *" required></div>
+                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Commune de résidence *" required></div>
+                    <div class="col-12 text-end"><button type="submit" class="btn btn-info text-white fw-bold">S'inscrire au Programme</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FORMULAIRE 4 : Socioculturel & Sport -->
+    <div id="sectionService4" class="card bg-dark text-white border-warning shadow p-4 mb-4 d-none">
+        <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 fw-bold"><i class="bi bi-trophy-fill me-2"></i>Participation - Activités Socioculturelles & Sportives</h5>
+            <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService4')"></button>
+        </div>
+        <div class="card-body">
+            <form onsubmit="soumettreModuleJSD(event, 'Activités Socioculturelles et Sportives')">
+                <div class="row g-3">
+                    <div class="col-md-12">
+                        <select class="form-select bg-secondary text-white border-0" required>
+                            <option value="" selected disabled>-- Type d'activité --</option>
+                            <option value="Tournoi Sportif">⚽ Tournoi Sportif Communautaire</option>
+                            <option value="Atelier Culturel">🎭 Théâtre & Expression Culturelle</option>
+                            <option value="Événement Jeunesse">🎉 Rencontre & Festival de la Jeunesse</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom ou Équipe *" required></div>
+                    <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone de contact *" required></div>
+                    <div class="col-12 text-end"><button type="submit" class="btn btn-warning text-dark fw-bold">Confirmer ma Participation</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FORMULAIRE 5 : Développement Durable -->
+    <div id="sectionService5" class="card bg-dark text-white border-success shadow p-4 mb-4 d-none">
+        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 fw-bold"><i class="bi bi-globe-americas me-2"></i>Projets Multiservices & Développement Durable</h5>
+            <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService5')"></button>
+        </div>
+        <div class="card-body">
+            <form onsubmit="soumettreModuleJSD(event, 'Projets Multiservices')">
+                <div class="row g-3">
+                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom de l'intervenant / membre *" required></div>
+                    <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone / WhatsApp *" required></div>
+                    <div class="col-12"><textarea class="form-control bg-secondary text-white border-0" rows="3" placeholder="Proposez une initiative ou une action écologique/sociale locale..." required></textarea></div>
+                    <div class="col-12 text-end"><button type="submit" class="btn btn-success fw-bold">Envoyer l'Initiative</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FORMULAIRE 6 : Santé Communautaire -->
+    <div id="sectionService6" class="card bg-dark text-white border-danger shadow p-4 mb-4 d-none">
+        <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 fw-bold"><i class="bi bi-heart-pulse-fill me-2"></i>Campagne de Sensibilisation & Santé</h5>
+            <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService6')"></button>
+        </div>
+        <div class="card-body">
+            <form onsubmit="soumettreModuleJSD(event, 'Santé Communautaire')">
+                <div class="row g-3">
+                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom & Prénom *" required></div>
+                    <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone *" required></div>
+                    <div class="col-12"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Quartier / Commune *" required></div>
+                    <div class="col-12 text-end"><button type="submit" class="btn btn-danger fw-bold">S'inscrire comme Bénévole / Participant</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FORMULAIRE 7 : Civisme & Leadership -->
+    <div id="sectionService7" class="card bg-dark text-white border-secondary shadow p-4 mb-4 d-none">
+        <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 fw-bold"><i class="bi bi-person-badge-fill me-2"></i>Atelier Civisme & Leadership Youth</h5>
+            <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService7')"></button>
+        </div>
+        <div class="card-body">
+            <form onsubmit="soumettreModuleJSD(event, 'Leadership & Civisme')">
+                <div class="row g-3">
+                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom complet *" required></div>
+                    <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Numéro WhatsApp *" required></div>
+                    <div class="col-12"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Organisation / Structure (Optionnel)"></div>
+                    <div class="col-12 text-end"><button type="submit" class="btn btn-light fw-bold">Rejoindre la Session</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FORMULAIRE 8 : Orientation Sociale -->
+    <div id="sectionService8" class="card bg-dark text-white border-primary shadow p-4 mb-4 d-none">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 fw-bold"><i class="bi bi-compass-fill me-2"></i>Demande d'Orientation et d'Accompagnement</h5>
+            <button type="button" class="btn-close btn-close-white" onclick="fermerModuleJSD('sectionService8')"></button>
+        </div>
+        <div class="card-body">
+            <form onsubmit="soumettreModuleJSD(event, 'Orientation et Accompagnement Social')">
+                <div class="row g-3">
+                    <div class="col-md-6"><input type="text" class="form-control bg-secondary text-white border-0" placeholder="Nom complet *" required></div>
+                    <div class="col-md-6"><input type="tel" class="form-control bg-secondary text-white border-0" placeholder="Téléphone / WhatsApp *" required></div>
+                    <div class="col-12"><textarea class="form-control bg-secondary text-white border-0" rows="3" placeholder="Décrivez brièvement vos besoins d'orientation ou d'assistance..." required></textarea></div>
+                    <div class="col-12 text-end"><button type="submit" class="btn btn-primary fw-bold">Demander un Rendez-vous</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
             <div class="col-sm-6 col-md-4 col-lg-3">
                 <div class="service-item">
                     <div class="service-icon"><img src="img/S3.jpg" alt="photo" class="img-service"></div>
