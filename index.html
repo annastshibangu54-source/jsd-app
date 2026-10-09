@@ -1748,7 +1748,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       const ev = docSnap.data();
       const idDoc = docSnap.id;
 
-      // Si l'événement a un timestamp et date de plus de 24h, on le masque, sinon on l'affiche
       if (ev.timestamp && (maintenant - ev.timestamp > duree24h)) {
         return; 
       }
@@ -2490,7 +2489,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   });
 
   // ============================================================
-  // 7. DEMANDES DE SERVICES (8 cartes)
+  // 7. DEMANDES DE SERVICES (8 cartes avec bouton, titre et boîte de suivi par service)
   // ============================================================
   const SERVICES_JSD = {
     formation: "Formation Professionnelle et Renforcement des Capacités",
@@ -2543,7 +2542,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     sec.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Compatibilité avec l'ancien lien de la première carte
   window.afficherSectionFormations = function() { window.ouvrirDemandeService("formation"); };
 
   window.fermerDemandeService = function() {
@@ -2677,11 +2675,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     const liste = document.getElementById("listeDemandesPresident");
     if (!filtres || !liste) return;
 
-    // Conserver les réponses en cours de saisie
     const brouillons = {};
     liste.querySelectorAll("textarea[data-rep-id]").forEach((t) => { brouillons[t.dataset.repId] = t.value; });
 
-    // Boutons de filtre avec compteur de nouvelles demandes
     const nouvellesTotal = srvDemandes.filter((d) => d.statut !== "Répondue").length;
     let html = "<button type='button' class='btn btn-sm " + (srvFiltre === "tous" ? "btn-dark" : "btn-outline-dark") + "' onclick=\"filtrerDemandesServices('tous')\">Toutes (" +
       srvDemandes.length + ")" + (nouvellesTotal ? " <span class='badge bg-danger text-white'>" + nouvellesTotal + "</span>" : "") + "</button>";
@@ -2722,7 +2718,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         "</div></div>";
     }).join("");
 
-    // Restaurer les brouillons non envoyés
     liste.querySelectorAll("textarea[data-rep-id]").forEach((t) => {
       if (brouillons[t.dataset.repId] !== undefined) t.value = brouillons[t.dataset.repId];
     });
