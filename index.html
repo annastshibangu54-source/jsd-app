@@ -218,7 +218,6 @@
                             <a href="#benevolats" class="nav-item nav-link">Bénévolat</a>
                             <a href="pricing.html" class="nav-item nav-link">Tarifs</a>
                             <a href="carte.html" class="nav-item nav-link">Carte de membre</a>
-                            <a href="#sectionDemandesServicesAdmin" class="nav-item nav-link text-warning fw-bold" onclick="deverrouillerDemandesServices()"><i class="icon ion-md-key me-1"></i> Demandes Services</a>
                             <a href="admin-jsd.html" class="nav-item nav-link">Consulter</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
@@ -725,7 +724,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             </div>
 
             <!-- TABLEAU DE GESTION DES DEMANDES DE SERVICES (SÉCURISÉ PRÉSIDENT) -->
-            <div id="sectionDemandesServicesAdmin" class="card shadow-sm border-0 my-4">
+            <div class="card shadow-sm border-0 my-4" id="sectionDemandesServicesAdmin">
                 <div class="card-header bg-primary text-white font-weight-bold d-flex justify-content-between align-items-center">
                     <span><i class="icon ion-md-clipboard me-2"></i> Demandes d'Inscription aux Services & Formations</span>
                     <button class="btn btn-sm btn-outline-light fw-bold" onclick="deverrouillerDemandesServices()">
@@ -1859,12 +1858,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       if (code && code.trim() === CODE_SECRET_PRESIDENT) {
           const zone = document.getElementById("zoneDemandesServicesSecurisee");
           if (zone) zone.style.display = "block";
-          
-          const sectionDoc = document.getElementById("sectionDemandesServicesAdmin");
-          if (sectionDoc) sectionDoc.scrollIntoView({ behavior: 'smooth' });
-
           ecouterDemandesServices();
           alert("Accès autorisé. Tableau des demandes déverrouillé.");
+          zone.scrollIntoView({ behavior: 'smooth' });
       } else if (code !== null) {
           alert("Code secret incorrect.");
       }
