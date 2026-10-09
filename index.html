@@ -1,3 +1,5 @@
+Voici votre code complet mis à jour. La section JavaScript des services de votre ancien code a été remplacée par le script des demandes de services (avec les 8 cartes, la génération de référence de suivi, la consultation utilisateur et le panneau Président filtrable) que nous avions conservé.
+Toutes les autres parties HTML, CSS et JS (Membres, Cotisations, Messagerie privée, Bénévolat, Avis et Événements) sont conservées exactement telles quelles.
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -419,9 +421,9 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
             </div>
         </div>
         <!-- About End -->
+
 <!-- ============================================================
-     SERVICES + DEMANDES (à coller à la place de tout le bloc
-     <!-- Service Start --> ... <!-- Service End -->)
+     SERVICES + DEMANDES
      ============================================================ -->
 <style>
     .service .service-detail h3 { font-size: 17px; line-height: 1.35; }
@@ -1649,160 +1651,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   let desabonnerEcouteConversations = null;
   let membreSelectionneParPresident = null;
 
-  // Fonctions d'interaction pour la section Services
-  window.ouvrirModuleJSD = function(idSection) {
-      const modules = [
-          'sectionService1', 'sectionService2', 'sectionService3', 'sectionService4',
-          'sectionService5', 'sectionService6', 'sectionService7', 'sectionService8'
-      ];
-
-      modules.forEach(id => {
-          const el = document.getElementById(id);
-          if (el) el.classList.add('d-none');
-      });
-
-      const cible = document.getElementById(idSection);
-      if (cible) {
-          cible.classList.remove('d-none');
-          cible.scrollIntoView({ behavior: 'smooth' });
-      }
-  };
-
-  window.fermerModuleJSD = function(idSection) {
-      const el = document.getElementById(idSection);
-      if (el) el.classList.add('d-none');
-  };
-
-  // 1. SOUMISSION DES DEMANDES DE SERVICES DANS FIREBASE
-  window.soumettreModuleJSD = async function(event, nomService) {
-      event.preventDefault();
-      
-      const form = event.target;
-      const inputs = form.querySelectorAll('input, select, textarea');
-      
-      let nom = "";
-      let tel = "";
-      let detail = "";
-
-      inputs.forEach(input => {
-          if (input.type === 'text' && !nom && input.placeholder.toLowerCase().includes('nom')) {
-              nom = input.value.trim();
-          } else if (input.type === 'tel' || input.placeholder.toLowerCase().includes('téléphone') || input.placeholder.toLowerCase().includes('whatsapp')) {
-              tel = input.value.trim();
-          } else if (input.value) {
-              detail += (detail ? " | " : "") + input.value.trim();
-          }
-      });
-
-      if (!nom) nom = inputs[0] ? inputs[0].value : "Anonyme";
-      if (!tel) tel = inputs[1] ? inputs[1].value : "Non renseigné";
-
-      try {
-          await addDoc(collection(db, "demandes_services"), {
-              nom: nom,
-              telephone: tel,
-              service: nomService,
-              details: detail,
-              statut: "En attente",
-              date: new Date().toISOString(),
-              createdAt: serverTimestamp()
-          });
-
-          alert(`Merci ${nom} !\n\nVotre demande pour "${nomService}" a été envoyée avec succès à l'équipe JSD. Le Président ou le chargé de suivi vous contactera sous peu.`);
-          form.reset();
-          
-          const carteParent = form.closest('.card');
-          if (carteParent) carteParent.classList.add('d-none');
-
-      } catch (err) {
-          console.error("Erreur d'enregistrement :", err);
-          alert("Une erreur est survenue lors de l'envoi de votre demande.");
-      }
-  };
-
-  // 2. DÉVERROUILLAGE SÉCURISÉ DU TABLEAU PAR LE PRÉSIDENT
-  window.deverrouillerDemandesServices = function() {
-      const code = prompt("ACCÈS PRÉSIDENT :\nVeuillez saisir le code secret pour consulter les demandes d'inscription :");
-      if (code && code.trim() === CODE_SECRET_PRESIDENT) {
-          const zone = document.getElementById("zoneDemandesServicesSecurisee");
-          if (zone) zone.style.display = "block";
-          ecouterDemandesServices();
-          alert("Accès autorisé. Tableau des demandes déverrouillé.");
-          zone.scrollIntoView({ behavior: 'smooth' });
-      } else if (code !== null) {
-          alert("Code secret incorrect.");
-      }
-  };
-
-  // 3. ÉCOUTE ET AFFICHAGE EN TEMPS RÉEL DES DEMANDES DE SERVICES
-  function ecouterDemandesServices() {
-      onSnapshot(collection(db, "demandes_services"), (snapshot) => {
-          const tbody = document.getElementById("corpsTableauDemandesServices");
-          if (!tbody) return;
-          
-          tbody.innerHTML = "";
-
-          if (snapshot.empty) {
-              tbody.innerHTML = `<tr><td colspan="7" class="text-center text-muted py-3">Aucune demande d'inscription reçue.</td></tr>`;
-              return;
-          }
-
-          const docsTries = snapshot.docs.map(d => ({ idDoc: d.id, ...d.data() })).sort((a, b) => {
-              const dA = a.createdAt ? a.createdAt.toDate() : new Date();
-              const dB = b.createdAt ? b.createdAt.toDate() : new Date();
-              return dB - dA;
-          });
-
-          docsTries.forEach((d) => {
-              const tr = document.createElement("tr");
-              
-              let numClean = (d.telephone || '').replace(/[^0-9]/g, '');
-              if (numClean.startsWith('0')) numClean = '243' + numClean.substring(1);
-
-              const msgWhatsApp = encodeURIComponent(`Bonjour ${d.nom},\nC'est le Président de la JSD. J'ai bien reçu votre demande d'inscription concernant "${d.service}".`);
-
-              tr.innerHTML = `
-                  <td><strong>${d.nom || '-'}</strong></td>
-                  <td>${d.telephone || '-'}</td>
-                  <td><span class="badge bg-primary">${d.service || '-'}</span></td>
-                  <td><small>${d.details || '-'}</small></td>
-                  <td><small>${d.date ? new Date(d.date).toLocaleDateString('fr-FR') : '-'}</small></td>
-                  <td><span class="badge ${d.statut === 'Traité' ? 'bg-success' : 'bg-warning text-dark'}">${d.statut || 'En attente'}</span></td>
-                  <td class="text-center no-print">
-                      <a href="https://wa.me/${numClean}?text=${msgWhatsApp}" target="_blank" class="btn btn-sm btn-success me-1" title="Répondre par WhatsApp">
-                          <i class="ion-logo-whatsapp"></i> WhatsApp
-                      </a>
-                      <button class="btn btn-sm btn-outline-primary me-1" onclick="marquerDemandeTraitee('${d.idDoc}')" title="Marquer comme traité">
-                          <i class="icon ion-md-checkmark"></i>
-                      </button>
-                      <button class="btn btn-sm btn-outline-danger" onclick="supprimerDemandeService('${d.idDoc}')" title="Supprimer">
-                          <i class="icon ion-md-trash"></i>
-                      </button>
-                  </td>
-              `;
-              tbody.appendChild(tr);
-          });
-      });
-  }
-
-  window.marquerDemandeTraitee = async function(id) {
-      try {
-          await updateDoc(doc(db, "demandes_services", id), { statut: "Traité" });
-      } catch (err) {
-          console.error("Erreur de mise à jour :", err);
-      }
-  };
-
-  window.supprimerDemandeService = async function(id) {
-      if (confirm("Supprimer définitivement cette demande ?")) {
-          try {
-              await deleteDoc(doc(db, "demandes_services", id));
-          } catch (err) {
-              console.error("Erreur de suppression :", err);
-          }
-      }
-  };
-
   // Initialisation date
   document.addEventListener("DOMContentLoaded", () => {
     const today = new Date().toISOString().split('T')[0];
@@ -2641,6 +2489,276 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
       conteneur.appendChild(item);
     });
   });
+
+  // ============================================================
+  // 7. DEMANDES DE SERVICES (8 cartes)
+  // ============================================================
+  const SERVICES_JSD = {
+    formation: "Formation Professionnelle et Renforcement des Capacités",
+    entrepreneuriat: "Projets d'entrepreneuriat et d'auto-prise en charge",
+    education: "Éducation et Alphabétisation",
+    socioculturel: "Activités Socioculturelles et Sportives",
+    multiservices: "Projets Multiservices et de développement durable",
+    sante: "Sensibilisation et Santé communautaire",
+    leadership: "Encadrement civique et leadership youth",
+    orientation: "Orientation et accompagnement social"
+  };
+  const SERVICES_COURTS = {
+    formation: "Formation", entrepreneuriat: "Entrepreneuriat", education: "Éducation",
+    socioculturel: "Socioculturel", multiservices: "Multiservices", sante: "Santé",
+    leadership: "Leadership", orientation: "Orientation"
+  };
+
+  let srvDemandes = [];
+  let srvFiltre = "tous";
+  let srvEcouteActive = false;
+  let srvEnvoiEnCours = false;
+
+  function srvEsc(v) {
+    return String(v === undefined || v === null ? "" : v)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+  function srvReference() {
+    const c = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    let r = "";
+    for (let i = 0; i < 6; i++) r += c[Math.floor(Math.random() * c.length)];
+    return "SRV-" + r;
+  }
+  function srvChiffres(t) { return String(t || "").replace(/\D/g, "").slice(-9); }
+  function srvLienWhatsApp(phone) {
+    let d = String(phone || "").replace(/\D/g, "");
+    if (d.startsWith("0")) d = "243" + d.slice(1);
+    return "https://wa.me/" + d;
+  }
+  function srvDate(iso) { return iso ? new Date(iso).toLocaleString("fr-FR") : "-"; }
+
+  // ----- CÔTÉ UTILISATEUR -----
+  window.ouvrirDemandeService = function(cle) {
+    if (!SERVICES_JSD[cle]) return;
+    document.getElementById("demandeServiceCle").value = cle;
+    document.getElementById("titreServiceChoisi").textContent = "Demande : " + SERVICES_JSD[cle];
+    document.getElementById("confirmationDemande").style.display = "none";
+    const sec = document.getElementById("sectionDemandesServices");
+    sec.style.display = "block";
+    sec.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Compatibilité avec l'ancien lien de la première carte
+  window.afficherSectionFormations = function() { window.ouvrirDemandeService("formation"); };
+
+  window.fermerDemandeService = function() {
+    document.getElementById("sectionDemandesServices").style.display = "none";
+  };
+
+  window.enregistrerDemandeService = async function(e) {
+    if (e) e.preventDefault();
+    if (srvEnvoiEnCours) return;
+
+    const cle = document.getElementById("demandeServiceCle").value;
+    const nom = document.getElementById("demandeNom").value.trim();
+    const phone = document.getElementById("demandePhone").value.trim();
+    const email = document.getElementById("demandeEmail").value.trim();
+    const message = document.getElementById("demandeMessage").value.trim();
+
+    if (!SERVICES_JSD[cle]) { alert("Veuillez d'abord choisir un service en touchant son titre."); return; }
+    if (!nom || !phone || !message) { alert("Veuillez remplir votre nom, votre téléphone et votre demande."); return; }
+
+    const reference = srvReference();
+
+    try {
+      srvEnvoiEnCours = true;
+      await addDoc(collection(db, "demandes_services"), {
+        service: cle,
+        serviceTitre: SERVICES_JSD[cle],
+        nom, phone, email, message, reference,
+        statut: "Nouvelle",
+        reponse: "",
+        dateDemande: new Date().toISOString(),
+        timestamp: Date.now(),
+        createdAt: serverTimestamp()
+      });
+
+      const conf = document.getElementById("confirmationDemande");
+      conf.innerHTML = "<strong>Demande envoyée avec succès.</strong><br>Conservez votre numéro de suivi : " +
+        "<span class='badge bg-dark text-white' style='font-size:1rem'>" + reference + "</span><br>" +
+        "<small>Utilisez-le avec votre numéro de téléphone, plus bas, pour lire la réponse du Président.</small>";
+      conf.style.display = "block";
+
+      document.getElementById("formDemandeService").reset();
+      document.getElementById("demandeServiceCle").value = cle;
+      document.getElementById("suiviReference").value = reference;
+      document.getElementById("suiviPhone").value = phone;
+    } catch (err) {
+      console.error("Erreur demande de service :", err);
+      alert("Erreur lors de l'envoi de la demande : " + err.message);
+    } finally {
+      srvEnvoiEnCours = false;
+    }
+  };
+
+  window.suivreDemandeService = async function() {
+    const ref = document.getElementById("suiviReference").value.trim().toUpperCase();
+    const tel = srvChiffres(document.getElementById("suiviPhone").value);
+    const zone = document.getElementById("zoneSuiviDemande");
+
+    if (!ref || !tel) { alert("Veuillez saisir votre numéro de suivi et votre téléphone."); return; }
+
+    try {
+      const snap = await getDocs(query(collection(db, "demandes_services"), where("reference", "==", ref)));
+      let trouvee = null;
+      snap.forEach((d) => {
+        const data = d.data();
+        if (srvChiffres(data.phone) === tel) trouvee = data;
+      });
+
+      zone.style.display = "block";
+      if (!trouvee) {
+        zone.innerHTML = "<div class='alert alert-warning'>Aucune demande trouvée avec ces informations. Vérifiez le numéro de suivi et le téléphone.</div>";
+        return;
+      }
+
+      const repondue = trouvee.statut === "Répondue" && trouvee.reponse;
+      zone.innerHTML =
+        "<div class='card border-" + (repondue ? "success" : "warning") + "'><div class='card-body'>" +
+        "<div class='d-flex justify-content-between flex-wrap'><strong>" + srvEsc(trouvee.serviceTitre) + "</strong>" +
+        "<span class='badge " + (repondue ? "bg-success text-white" : "bg-warning text-dark") + "'>" + (repondue ? "Répondue" : "En attente de réponse") + "</span></div>" +
+        "<small class='text-muted d-block mb-2'>Envoyée le " + srvDate(trouvee.dateDemande) + "</small>" +
+        "<p class='mb-2'><strong>Votre demande :</strong><br>" + srvEsc(trouvee.message) + "</p>" +
+        (repondue
+          ? "<div class='p-3 bg-light border rounded'><strong>Réponse du Président JSD</strong>" +
+            "<small class='text-muted d-block mb-1'>" + srvDate(trouvee.dateReponse) + "</small>" +
+            srvEsc(trouvee.reponse).replace(/\n/g, "<br>") + "</div>"
+          : "<em class='text-muted'>Le Président n'a pas encore répondu. Revenez plus tard avec le même numéro de suivi.</em>") +
+        "</div></div>";
+    } catch (err) {
+      console.error("Erreur de suivi :", err);
+      alert("Erreur lors de la recherche : " + err.message);
+    }
+  };
+
+  // ----- CÔTÉ PRÉSIDENT (sécurisé par le code secret) -----
+  window.deverrouillerDemandesServices = function() {
+    const code = prompt("ACCÈS SÉCURISÉ PRÉSIDENT :\nSaisissez le code secret pour consulter les demandes de services :");
+    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
+      const panneau = document.getElementById("panneauDemandesPresident");
+      panneau.style.display = "block";
+      panneau.scrollIntoView({ behavior: "smooth" });
+      srvDemarrerEcoute();
+    } else if (code !== null) {
+      alert("Accès refusé ! Code secret incorrect.");
+    }
+  };
+
+  window.fermerPanneauDemandes = function() {
+    document.getElementById("panneauDemandesPresident").style.display = "none";
+  };
+
+  function srvDemarrerEcoute() {
+    if (srvEcouteActive) { srvRendre(); return; }
+    srvEcouteActive = true;
+    onSnapshot(collection(db, "demandes_services"), (snapshot) => {
+      srvDemandes = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }))
+        .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+      srvRendre();
+    }, (err) => {
+      console.error("Erreur lecture demandes :", err);
+      srvEcouteActive = false;
+      alert("Lecture des demandes impossible : " + err.message);
+    });
+  }
+
+  window.filtrerDemandesServices = function(cle) {
+    srvFiltre = cle;
+    srvRendre();
+  };
+
+  function srvRendre() {
+    const filtres = document.getElementById("filtresDemandes");
+    const liste = document.getElementById("listeDemandesPresident");
+    if (!filtres || !liste) return;
+
+    // Conserver les réponses en cours de saisie
+    const brouillons = {};
+    liste.querySelectorAll("textarea[data-rep-id]").forEach((t) => { brouillons[t.dataset.repId] = t.value; });
+
+    // Boutons de filtre avec compteur de nouvelles demandes
+    const nouvellesTotal = srvDemandes.filter((d) => d.statut !== "Répondue").length;
+    let html = "<button type='button' class='btn btn-sm " + (srvFiltre === "tous" ? "btn-dark" : "btn-outline-dark") + "' onclick=\"filtrerDemandesServices('tous')\">Toutes (" +
+      srvDemandes.length + ")" + (nouvellesTotal ? " <span class='badge bg-danger text-white'>" + nouvellesTotal + "</span>" : "") + "</button>";
+    Object.keys(SERVICES_JSD).forEach((cle) => {
+      const total = srvDemandes.filter((d) => d.service === cle).length;
+      const nouv = srvDemandes.filter((d) => d.service === cle && d.statut !== "Répondue").length;
+      html += "<button type='button' class='btn btn-sm " + (srvFiltre === cle ? "btn-primary" : "btn-outline-primary") + "' onclick=\"filtrerDemandesServices('" + cle + "')\">" +
+        SERVICES_COURTS[cle] + " (" + total + ")" + (nouv ? " <span class='badge bg-danger text-white'>" + nouv + "</span>" : "") + "</button>";
+    });
+    filtres.innerHTML = html;
+
+    const affichees = srvFiltre === "tous" ? srvDemandes : srvDemandes.filter((d) => d.service === srvFiltre);
+    if (affichees.length === 0) {
+      liste.innerHTML = "<div class='text-center text-muted p-4'>Aucune demande pour cette rubrique.</div>";
+      return;
+    }
+
+    liste.innerHTML = affichees.map((d) => {
+      const repondue = d.statut === "Répondue";
+      return "<div class='card mb-3 " + (repondue ? "border-success" : "border-warning") + "'>" +
+        "<div class='card-header d-flex justify-content-between align-items-center flex-wrap'>" +
+          "<span><strong>" + srvEsc(d.nom) + "</strong> <small class='text-muted'>· " + srvEsc(d.reference) + "</small></span>" +
+          "<span class='badge " + (repondue ? "bg-success text-white" : "bg-warning text-dark") + "'>" + (repondue ? "Répondue" : "Nouvelle") + "</span>" +
+        "</div>" +
+        "<div class='card-body'>" +
+          "<div class='small text-primary fw-bold mb-1'>" + srvEsc(d.serviceTitre) + "</div>" +
+          "<div class='small mb-1'>📞 " + srvEsc(d.phone) + " &nbsp;<a href='" + srvLienWhatsApp(d.phone) + "' target='_blank' rel='noopener' class='btn btn-sm btn-success py-0'>WhatsApp</a>" +
+            (d.email ? " &nbsp;✉ " + srvEsc(d.email) : "") + "</div>" +
+          "<div class='small text-muted mb-2'>Reçue le " + srvDate(d.dateDemande) + "</div>" +
+          "<p class='mb-3 p-2 bg-light rounded'>" + srvEsc(d.message).replace(/\n/g, "<br>") + "</p>" +
+          "<label class='form-label fw-bold'>" + (repondue ? "Modifier la réponse (confidentielle) :" : "Votre réponse (confidentielle) :") + "</label>" +
+          "<textarea class='form-control mb-2' rows='3' data-rep-id='" + d.id + "' placeholder='Écrivez ici la réponse destinée uniquement à ce demandeur...'>" + srvEsc(d.reponse || "") + "</textarea>" +
+          "<div class='d-flex justify-content-between flex-wrap' style='gap:6px'>" +
+            "<button type='button' class='btn btn-sm btn-success fw-bold' onclick=\"repondreDemandeService('" + d.id + "')\">" + (repondue ? "Mettre à jour la réponse" : "Envoyer la réponse") + "</button>" +
+            "<button type='button' class='btn btn-sm btn-outline-danger' onclick=\"supprimerDemandeService('" + d.id + "')\">Supprimer</button>" +
+          "</div>" +
+          (repondue ? "<small class='text-muted d-block mt-2'>Dernière réponse le " + srvDate(d.dateReponse) + "</small>" : "") +
+        "</div></div>";
+    }).join("");
+
+    // Restaurer les brouillons non envoyés
+    liste.querySelectorAll("textarea[data-rep-id]").forEach((t) => {
+      if (brouillons[t.dataset.repId] !== undefined) t.value = brouillons[t.dataset.repId];
+    });
+  }
+
+  window.repondreDemandeService = async function(id) {
+    const champ = document.querySelector("textarea[data-rep-id='" + id + "']");
+    const texte = champ ? champ.value.trim() : "";
+    if (!texte) { alert("Veuillez écrire une réponse avant de l'envoyer."); return; }
+    try {
+      await updateDoc(doc(db, "demandes_services", id), {
+        reponse: texte,
+        statut: "Répondue",
+        dateReponse: new Date().toISOString()
+      });
+      alert("Réponse enregistrée. Le demandeur la verra avec son numéro de suivi.");
+    } catch (err) {
+      console.error("Erreur réponse :", err);
+      alert("Erreur lors de l'envoi de la réponse : " + err.message);
+    }
+  };
+
+  window.supprimerDemandeService = async function(id) {
+    const code = prompt("Saisissez le code secret du Président pour supprimer cette demande :");
+    if (code === null) return;
+    if (code.trim() !== CODE_SECRET_PRESIDENT) { alert("Accès refusé ! Code secret incorrect."); return; }
+    if (!confirm("Supprimer définitivement cette demande ?")) return;
+    try {
+      await deleteDoc(doc(db, "demandes_services", id));
+    } catch (err) {
+      console.error("Erreur suppression :", err);
+      alert("Erreur lors de la suppression : " + err.message);
+    }
+  };
 </script>
     </body>
 </html>
+
