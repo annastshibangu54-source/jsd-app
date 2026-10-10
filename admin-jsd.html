@@ -6,7 +6,7 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="JSD" name="JSD-RDC">
 
-        <!-- Favicon configuré avec le Logo JSD -->
+        <!-- Favicon -->
         <link href="img/logo.jpg" rel="icon" type="image/jpeg">
         <link href="img/logo.jpg" rel="shortcut icon" type="image/jpeg">
         <link href="img/logo.jpg" rel="apple-touch-icon">
@@ -23,7 +23,7 @@
         <!-- Main Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
 
-        <!-- Liens PWA et icônes iOS/Android -->
+        <!-- Liens PWA -->
         <link rel="manifest" href="manifest.json">
         <meta name="theme-color" content="#0a1128">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -43,7 +43,6 @@
 
         <!-- Styles personnalisés -->
         <style>
-    /* 1. Titre principal et bouton du carrousel */
     .header .carousel-content h2,
     .carousel-content h2 {
         color: #4F84C4 !important;
@@ -59,7 +58,6 @@
         padding: 10px 25px !important;
     }
 
-    /* 2. Images et logo */
     img {
         max-width: 100% !important;
         height: auto !important;
@@ -70,7 +68,6 @@
         width: auto !important;
     }
 
-    /* 3. CORRECTION DU FOOTER */
     .footer {
         background: #000000 !important;
         color: #ffffff !important;
@@ -124,14 +121,14 @@
     
     .carousel-content {
         position: relative !important;
-        z-index: 9999 !important;
+        z-index: 999 !important;
         pointer-events: auto !important;
     }
 
     .carousel-content .btn,
     .carousel-content a {
         position: relative !important;
-        z-index: 10000 !important;
+        z-index: 1000 !important;
         pointer-events: auto !important;
         cursor: pointer !important;
     }
@@ -158,7 +155,6 @@
         }
     }
 
-    /* STYLES DE LA MESSAGERIE PRIVÉE SÉCURISÉE */
     .msg-bubble {
         max-width: 75%;
         padding: 10px 14px;
@@ -195,7 +191,6 @@
         background-color: #e9ecef;
     }
 
-    /* STYLES BÉNÉVOLAT */
     .benevolat-section {
         background-color: #f4f6f9;
         padding: 60px 0;
@@ -425,7 +420,7 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
                                 <p>3. Éducation et réinsertion sociale: </p> 
                                 <p>- Lutter contre l'analphabétisme, l'oisiveté et la délinquance juvénile; </p>
                                 <p>4. Développement durable et citoyenneté: </p> 
-                                <p>- Organiser des initiatives communautaires, des projets de travail à impact social et des activités culturelles et sportives. </p>
+                                <p>- Organiser des initiatives communautaires, des projets de travail à impact social et des activités culturelles et sportive. </p>
                             </div>
                              <button type="button" class="btn" onclick="window.location.href='skill.html';"> Nos compétences</button>
                         </div>
@@ -435,9 +430,7 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
         </div>
         <!-- About End -->
 
-        <!-- ============================================================
-             SECTION BÉNÉVOLAT & ENGAGEMENT CITOYEN (ACCUEIL)
-             ============================================================ -->
+        <!-- SECTION BÉNÉVOLAT & ENGAGEMENT CITOYEN -->
         <div class="benevolat-section" id="sectionBenevolat">
             <div class="container">
                 <div class="section-header text-center mb-5">
@@ -499,16 +492,7 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
         </div>
         <!-- Fin Section Bénévolat -->
 
-<!-- ============================================================
-     SERVICES + DEMANDES
-     ============================================================ -->
-<style>
-    .service .service-detail h3 { font-size: 17px; line-height: 1.35; }
-    .hover-title:hover { text-decoration: underline; }
-    #sectionDemandesServices, #panneauDemandesPresident { scroll-margin-top: 80px; }
-</style>
-
-<!-- Service Start -->
+        <!-- Service Start -->
         <div class="service">
             <div class="container">
                 <div class="section-header">
@@ -522,7 +506,7 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
                             <div class="service-icon"><img src="img/S1.jpg" alt="photo" class="img-service"></div>
                             <div class="service-detail">
                                 <a href="#sectionDemandesServices" class="text-decoration-none" onclick="ouvrirDemandeService('formation'); return false;">
-                                    <h3 class="text-primary fw-bold mb-2 hover-title"><i class="icon ion-md-school me-2"></i>Formation Professionnelle et Renforcement des Capacités :</h3>
+                                    <h3 class="text-primary fw-bold mb-2"><i class="icon ion-md-school me-2"></i>Formation Professionnelle et Renforcement des Capacités :</h3>
                                 </a>
                                 <p class="text-muted">Ateliers d'apprentissage de métiers, formations pratiques et programmes visant l'autonomisation et l'insertion professionnelles des jeunes.</p>
                                 <button type="button" class="btn btn-sm btn-outline-primary" onclick="ouvrirDemandeService('formation')">Faire une demande</button>
@@ -535,7 +519,7 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
                             <div class="service-icon"><img src="img/S2.jpg" alt="photo" class="img-service"></div>
                             <div class="service-detail">
                                 <a href="#sectionDemandesServices" class="text-decoration-none" onclick="ouvrirDemandeService('entrepreneuriat'); return false;">
-                                    <h3 class="text-primary fw-bold mb-2 hover-title"><i class="icon ion-md-briefcase me-2"></i>Projets d'entrepreneuriat et d'auto-prise en charge :</h3>
+                                    <h3 class="text-primary fw-bold mb-2"><i class="icon ion-md-briefcase me-2"></i>Projets d'entrepreneuriat et d'auto-prise en charge :</h3>
                                 </a>
                                 <p class="text-muted">Accompagnement de projets communautaires et soutien aux initiatives entrepreneuriales pour créer des opportunités économiques locales.</p>
                                 <button type="button" class="btn btn-sm btn-outline-primary" onclick="ouvrirDemandeService('entrepreneuriat')">Faire une demande</button>
@@ -548,7 +532,7 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
                             <div class="service-icon"><img src="img/S3.jpg" alt="photo" class="img-service"></div>
                             <div class="service-detail">
                                 <a href="#sectionDemandesServices" class="text-decoration-none" onclick="ouvrirDemandeService('education'); return false;">
-                                    <h3 class="text-primary fw-bold mb-2 hover-title"><i class="icon ion-md-book me-2"></i>Éducation et Alphabétisation :</h3>
+                                    <h3 class="text-primary fw-bold mb-2"><i class="icon ion-md-book me-2"></i>Éducation et Alphabétisation :</h3>
                                 </a>
                                 <p class="text-muted">Initiatives de sensibilisation et programmes éducatifs visant à réduire l'analphabétisme et à promouvoir la citoyenneté responsable.</p>
                                 <button type="button" class="btn btn-sm btn-outline-primary" onclick="ouvrirDemandeService('education')">Faire une demande</button>
@@ -561,7 +545,7 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
                             <div class="service-icon"><img src="img/S4.jpg" alt="photo" class="img-service"></div>
                             <div class="service-detail">
                                 <a href="#sectionDemandesServices" class="text-decoration-none" onclick="ouvrirDemandeService('socioculturel'); return false;">
-                                    <h3 class="text-primary fw-bold mb-2 hover-title"><i class="icon ion-md-football me-2"></i>Activités Socioculturelles et Sportives :</h3>
+                                    <h3 class="text-primary fw-bold mb-2"><i class="icon ion-md-football me-2"></i>Activités Socioculturelles et Sportives :</h3>
                                 </a>
                                 <p class="text-muted">Organisation d'événements de cohésion, d'activités culturelles et de rencontres sportives pour encadrer la jeunesse et renforcer les liens communautaires.</p>
                                 <button type="button" class="btn btn-sm btn-outline-primary" onclick="ouvrirDemandeService('socioculturel')">Faire une demande</button>
@@ -574,7 +558,7 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
                             <div class="service-icon"><img src="img/S5.jpg" alt="photo" class="img-service"></div>
                             <div class="service-detail">
                                 <a href="#sectionDemandesServices" class="text-decoration-none" onclick="ouvrirDemandeService('multiservices'); return false;">
-                                    <h3 class="text-primary fw-bold mb-2 hover-title"><i class="icon ion-md-construct me-2"></i>Projets Multiservices et de développement durable :</h3>
+                                    <h3 class="text-primary fw-bold mb-2"><i class="icon ion-md-construct me-2"></i>Projets Multiservices et de développement durable :</h3>
                                 </a>
                                 <p class="text-muted">Actions communautaires à impact social pour répondre aux besoins locaux et favoriser l'autonomie financière de la structure et de ses membres.</p>
                                 <button type="button" class="btn btn-sm btn-outline-primary" onclick="ouvrirDemandeService('multiservices')">Faire une demande</button>
@@ -587,7 +571,7 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
                             <div class="service-icon"><img src="img/S6.jpg" alt="photo" class="img-service"></div>
                             <div class="service-detail">
                                 <a href="#sectionDemandesServices" class="text-decoration-none" onclick="ouvrirDemandeService('sante'); return false;">
-                                    <h3 class="text-primary fw-bold mb-2 hover-title"><i class="icon ion-md-medkit me-2"></i>Sensibilisation et Santé communautaire :</h3>
+                                    <h3 class="text-primary fw-bold mb-2"><i class="icon ion-md-medkit me-2"></i>Sensibilisation et Santé communautaire :</h3>
                                 </a>
                                 <p class="text-muted">Campagnes d'information sur la santé préventive, la salubrité publique et la lutte contre les fléaux sociaux touchant la jeunesse.</p>
                                 <button type="button" class="btn btn-sm btn-outline-primary" onclick="ouvrirDemandeService('sante')">Faire une demande</button>
@@ -600,9 +584,9 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
                             <div class="service-icon"><img src="img/S7.jpg" alt="photo" class="img-service"></div>
                             <div class="service-detail">
                                 <a href="#sectionDemandesServices" class="text-decoration-none" onclick="ouvrirDemandeService('leadership'); return false;">
-                                    <h3 class="text-primary fw-bold mb-2 hover-title"><i class="icon ion-md-people me-2"></i>Encadrement civique et leadership youth :</h3>
+                                    <h3 class="text-primary fw-bold mb-2"><i class="icon ion-md-people me-2"></i>Encadrement civique et leadership youth :</h3>
                                 </a>
-                                <p class="text-muted">Ateliers d'initiation au leadership, au civisme et à la gestion associative pour forming des acteurs du changement.</p>
+                                <p class="text-muted">Ateliers d'initiation au leadership, au civisme et à la gestion associative pour former des acteurs du changement.</p>
                                 <button type="button" class="btn btn-sm btn-outline-primary" onclick="ouvrirDemandeService('leadership')">Faire une demande</button>
                             </div>
                         </div>
@@ -613,7 +597,7 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
                             <div class="service-icon"><img src="img/S8.jpg" alt="photo" class="img-service"></div>
                             <div class="service-detail">
                                 <a href="#sectionDemandesServices" class="text-decoration-none" onclick="ouvrirDemandeService('orientation'); return false;">
-                                    <h3 class="text-primary fw-bold mb-2 hover-title"><i class="icon ion-md-help-buoy me-2"></i>Orientation et accompagnement social :</h3>
+                                    <h3 class="text-primary fw-bold mb-2"><i class="icon ion-md-help-buoy me-2"></i>Orientation et accompagnement social :</h3>
                                 </a>
                                 <p class="text-muted">Écoute, conseil et assistance pour l'insertion sociale des jeunes vulnérables ou en quête de repères professionnels.</p>
                                 <button type="button" class="btn btn-sm btn-outline-primary" onclick="ouvrirDemandeService('orientation')">Faire une demande</button>
@@ -633,7 +617,7 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
         </div>
         <!-- Service End -->
 
-        <!-- FORMULAIRE DE DEMANDE DE SERVICE (côté utilisateur) -->
+        <!-- FORMULAIRE DE DEMANDE DE SERVICE -->
         <div id="sectionDemandesServices" class="container py-4" style="display: none;">
             <div class="card shadow-sm border-primary">
                 <div class="card-header bg-primary text-white fw-bold d-flex justify-content-between align-items-center">
@@ -658,7 +642,7 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
                             </div>
                             <div class="col-12">
                                 <label class="form-label font-weight-bold">Votre demande *</label>
-                                <textarea id="demandeMessage" class="form-control" rows="4" required placeholder="Expliquez votre besoin, votre situation ou votre question..."></textarea>
+                                <textarea id="demandeMessage" class="form-control" rows="4" required placeholder="Expliquez votre besoin..."></textarea>
                             </div>
                             <div class="col-12 text-end">
                                 <button type="submit" class="btn btn-primary fw-bold px-4">
@@ -677,7 +661,7 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
                             <input type="text" id="suiviReference" class="form-control" placeholder="Numéro de suivi (ex: SRV-AB12CD)">
                         </div>
                         <div class="col-md-4">
-                            <input type="tel" id="suiviPhone" class="form-control" placeholder="Téléphone utilisé dans la demande">
+                            <input type="tel" id="suiviPhone" class="form-control" placeholder="Téléphone utilisé">
                         </div>
                         <div class="col-md-4">
                             <button type="button" class="btn btn-outline-primary w-100" onclick="suivreDemandeService()">Voir ma réponse</button>
@@ -688,7 +672,7 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
             </div>
         </div>
 
-        <!-- PANNEAU PRÉSIDENT : CONSULTATION ET RÉPONSE AUX DEMANDES (masqué par défaut) -->
+        <!-- PANNEAU PRÉSIDENT : DEMANDES DE SERVICES -->
         <div id="panneauDemandesPresident" class="container py-4" style="display: none;">
             <div class="card shadow-sm border-dark">
                 <div class="card-header bg-dark text-white fw-bold d-flex justify-content-between align-items-center">
@@ -714,7 +698,7 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
         </div>
         <!-- Call To Action End -->
 
-        <!--Pricing start-->
+        <!-- Pricing start -->
         <div class="pricing">
             <div class="container">
                 <div class="section-header">
@@ -1009,7 +993,6 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
                     <p>Votre satisfaction est notre priorité</p>
                 </div>
 
-                <!-- Formulaire de soumission d'avis -->
                 <div class="row mt-4 justify-content-center">
                     <div class="col-md-8">
                         <form id="formAjoutAvis" onsubmit="publierAvis(event)" class="card p-3 bg-light shadow-sm border-0">
@@ -1032,9 +1015,8 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
                     </div>
                 </div>
 
-                <!-- Bouton / Section masquée des avis publiés -->
                 <div class="text-center my-4">
-                    <button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#sectionListeAvis" aria-expanded="false" aria-controls="sectionListeAvis">
+                    <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target="#sectionListeAvis" aria-expanded="false" aria-controls="sectionListeAvis">
                         <i class="icon ion-md-chatboxes me-1"></i> Voir tous les avis publiés
                     </button>
                 </div>
@@ -1075,434 +1057,365 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
         </div>
         <!-- Clients End -->
 
-<!-- FORMULAIRE ET TABLEAU D'ENREGISTREMENT MEMBRES JSD -->
-<div class="container py-4">
+        <!-- FORMULAIRE ET TABLEAU D'ENREGISTREMENT MEMBRES JSD -->
+        <div class="container py-4">
+          <div class="card mb-4 shadow-sm border-0">
+            <div class="card-header bg-primary text-white font-weight-bold">
+              <i class="icon ion-md-person-add me-2"></i> Formulaire d'Enregistrement d'un Membre
+            </div>
+            <div class="card-body">
+              <form id="formulaireInscription" onsubmit="enregistrerMembre(event)">
+                <div class="row g-3">
+                  <div class="col-md-4">
+                    <label class="form-label font-weight-bold">Nom</label>
+                    <input type="text" id="nomMembre" class="form-control" placeholder="Ex: Mukendi" required>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label font-weight-bold">Postnom</label>
+                    <input type="text" id="prenomMembre" class="form-control" placeholder="Ex: Jean" required>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label font-weight-bold">Prénom</label>
+                    <input type="text" id="postnomMembre" class="form-control" placeholder="Ex: Kabanga">
+                  </div>
+                  
+                  <div class="col-md-3 mt-3">
+                    <label class="form-label font-weight-bold">Sexe</label>
+                    <select id="sexeMembre" class="form-select">
+                      <option value="M">Masculin (M)</option>
+                      <option value="F">Féminin (F)</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3 mt-3">
+                    <label class="form-label font-weight-bold">Date d'adhésion</label>
+                    <input type="date" id="dateAdhesionMembre" class="form-control" required>
+                  </div>
+                  <div class="col-md-3 mt-3">
+                    <label class="form-label font-weight-bold">Téléphone / WhatsApp</label>
+                    <input type="text" id="contactMembre" class="form-control" placeholder="+243 ..." required>
+                  </div>
+                  <div class="col-md-3 mt-3">
+                    <label class="form-label font-weight-bold">Nationalité</label>
+                    <input type="text" id="nationaliteMembre" class="form-control" value="Congolaise" required>
+                  </div>
 
-  <!-- Formulaire d'enregistrement complet -->
-  <div class="card mb-4 shadow-sm border-0">
-    <div class="card-header bg-primary text-white font-weight-bold">
-      <i class="icon ion-md-person-add me-2"></i> Formulaire d'Enregistrement d'un Membre
-    </div>
-    <div class="card-body">
-      <form id="formulaireInscription" onsubmit="enregistrerMembre(event)">
-        <div class="row g-3">
-          <div class="col-md-4">
-            <label class="form-label font-weight-bold">Nom</label>
-            <input type="text" id="nomMembre" class="form-control" placeholder="Ex: Mukendi" required>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label font-weight-bold">Postnom</label>
-            <input type="text" id="prenomMembre" class="form-control" placeholder="Ex: Jean" required>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label font-weight-bold">Prénom</label>
-            <input type="text" id="postnomMembre" class="form-control" placeholder="Ex: Kabanga">
-          </div>
-          
-          <div class="col-md-3 mt-3">
-            <label class="form-label font-weight-bold">Sexe</label>
-            <select id="sexeMembre" class="form-select">
-              <option value="M">Masculin (M)</option>
-              <option value="F">Féminin (F)</option>
-            </select>
-          </div>
-          <div class="col-md-3 mt-3">
-            <label class="form-label font-weight-bold">Date d'adhésion</label>
-            <input type="date" id="dateAdhesionMembre" class="form-control" required>
-          </div>
-          <div class="col-md-3 mt-3">
-            <label class="form-label font-weight-bold">Téléphone / WhatsApp</label>
-            <input type="text" id="contactMembre" class="form-control" placeholder="+243 ..." required>
-          </div>
-          <div class="col-md-3 mt-3">
-            <label class="form-label font-weight-bold">Nationalité</label>
-            <input type="text" id="nationaliteMembre" class="form-control" value="Congolaise" required>
-          </div>
+                  <div class="col-md-4 mt-3">
+                    <label class="form-label font-weight-bold">Province d'origine</label>
+                    <select id="provinceMembre" class="form-select">
+                      <option value="Bas-Uele">Bas-Uele</option>
+                      <option value="Équateur">Équateur</option>
+                      <option value="Haut-Katanga">Haut-Katanga</option>
+                      <option value="Haut-Lomami">Haut-Lomami</option>
+                      <option value="Haut-Uele">Haut-Uele</option>
+                      <option value="Ituri">Ituri</option>
+                      <option value="Kasaï">Kasaï</option>
+                      <option value="Kasaï central">Kasaï central</option>
+                      <option value="Kasaï oriental">Kasaï oriental</option>
+                      <option value="Kinshasa" selected>Kinshasa</option>
+                      <option value="Kongo central">Kongo central</option>
+                      <option value="Kwango">Kwango</option>
+                      <option value="Kwilu">Kwilu</option>
+                      <option value="Lomami">Lomami</option>
+                      <option value="Lualaba">Lualaba</option>
+                      <option value="Mai-Ndombe">Mai-Ndombe</option>
+                      <option value="Maniema">Maniema</option>
+                      <option value="Mongala">Mongala</option>
+                      <option value="Nord-Kivu">Nord-Kivu</option>
+                      <option value="Nord-Ubangi">Nord-Ubangi</option>
+                      <option value="Sankuru">Sankuru</option>
+                      <option value="Sud-Kivu">Sud-Kivu</option>
+                      <option value="Sud-Ubangi">Sud-Ubangi</option>
+                      <option value="Tanganyika">Tanganyika</option>
+                      <option value="Tshopo">Tshopo</option>
+                      <option value="Tshuapa">Tshuapa</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 mt-3">
+                    <label class="form-label font-weight-bold">Commune / Ville</label>
+                    <input type="text" id="localisationMembre" class="form-control" placeholder="Ex: Bandalungwa, Kinshasa">
+                  </div>
+                  <div class="col-md-4 mt-3">
+                    <label class="form-label font-weight-bold">Niveau d'études</label>
+                    <select id="niveauEtudesMembre" class="form-select">
+                      <option value="Secondaire">Secondaire</option>
+                      <option value="Diplômé d'État">Diplômé d'État</option>
+                      <option value="Gradué / Licence">Gradué / Licence</option>
+                      <option value="Master / Doctorat">Master / Doctorat</option>
+                      <option value="Autre">Autre</option>
+                    </select>
+                  </div>
 
-          <div class="col-md-4 mt-3">
-            <label class="form-label font-weight-bold">Province d'origine (26 Provinces RDC)</label>
-            <select id="provinceMembre" class="form-select">
-              <option value="Bas-Uele">Bas-Uele</option>
-              <option value="Équateur">Équateur</option>
-              <option value="Haut-Katanga">Haut-Katanga</option>
-              <option value="Haut-Lomami">Haut-Lomami</option>
-              <option value="Haut-Uele">Haut-Uele</option>
-              <option value="Ituri">Ituri</option>
-              <option value="Kasaï">Kasaï</option>
-              <option value="Kasaï central">Kasaï central</option>
-              <option value="Kasaï oriental">Kasaï oriental</option>
-              <option value="Kinshasa" selected>Kinshasa</option>
-              <option value="Kongo central">Kongo central</option>
-              <option value="Kwango">Kwango</option>
-              <option value="Kwilu">Kwilu</option>
-              <option value="Lomami">Lomami</option>
-              <option value="Lualaba">Lualaba</option>
-              <option value="Mai-Ndombe">Mai-Ndombe</option>
-              <option value="Maniema">Maniema</option>
-              <option value="Mongala">Mongala</option>
-              <option value="Nord-Kivu">Nord-Kivu</option>
-              <option value="Nord-Ubangi">Nord-Ubangi</option>
-              <option value="Sankuru">Sankuru</option>
-              <option value="Sud-Kivu">Sud-Kivu</option>
-              <option value="Sud-Ubangi">Sud-Ubangi</option>
-              <option value="Tanganyika">Tanganyika</option>
-              <option value="Tshopo">Tshopo</option>
-              <option value="Tshuapa">Tshuapa</option>
-            </select>
-          </div>
-          <div class="col-md-4 mt-3">
-            <label class="form-label font-weight-bold">Commune / Ville (Localisation)</label>
-            <input type="text" id="localisationMembre" class="form-control" placeholder="Ex: Bandalungwa, Kinshasa">
-          </div>
-          <div class="col-md-4 mt-3">
-            <label class="form-label font-weight-bold">Niveau d'études</label>
-            <select id="niveauEtudesMembre" class="form-select">
-              <option value="Secondaire">Secondaire</option>
-              <option value="Diplômé d'État">Diplômé d'État</option>
-              <option value="Gradué / Licence">Gradué / Licence</option>
-              <option value="Master / Doctorat">Master / Doctorat</option>
-              <option value="Autre">Autre</option>
-            </select>
-          </div>
+                  <div class="col-md-4 mt-3">
+                    <label class="form-label font-weight-bold">État civil</label>
+                    <select id="etatCivilMembre" class="form-select">
+                      <option value="Célibataire">Célibataire</option>
+                      <option value="Marié(e)">Marié(e)</option>
+                      <option value="Divorcé(e)">Divorcé(e)</option>
+                      <option value="Veuf(ve)">Veuf(ve)</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 mt-3">
+                    <label class="form-label font-weight-bold">Profession</label>
+                    <input type="text" id="professionMembre" class="form-control" placeholder="Ex: Étudiant...">
+                  </div>
+                  <div class="col-md-4 mt-3">
+                    <label class="form-label font-weight-bold">Statut / Catégorie</label>
+                    <select id="statutMembre" class="form-select">
+                      <option value="Membre">Membre Simple</option>
+                      <option value="Membre d'Honneur">Membre d'Honneur</option>
+                      <option value="Président">Président</option>
+                      <option value="Conseiller">Conseiller</option>
+                      <option value="Cadre">Cadre</option>
+                    </select>
+                  </div>
 
-          <div class="col-md-4 mt-3">
-            <label class="form-label font-weight-bold">État civil</label>
-            <select id="etatCivilMembre" class="form-select">
-              <option value="Célibataire">Célibataire</option>
-              <option value="Marié(e)">Marié(e)</option>
-              <option value="Divorcé(e)">Divorcé(e)</option>
-              <option value="Veuf(ve)">Veuf(ve)</option>
-            </select>
-          </div>
-          <div class="col-md-4 mt-3">
-            <label class="form-label font-weight-bold">Profession</label>
-            <input type="text" id="professionMembre" class="form-control" placeholder="Ex: Étudiant, Indépendant...">
-          </div>
-          <div class="col-md-4 mt-3">
-            <label class="form-label font-weight-bold">Statut / Catégorie</label>
-            <select id="statutMembre" class="form-select">
-              <option value="Membre">Membre Simple</option>
-              <option value="Membre d'Honneur">Membre d'Honneur</option>
-              <option value="Président">Président</option>
-              <option value="Conseiller">Conseiller</option>
-              <option value="Cadre">Cadre</option>
-            </select>
-          </div>
-
-          <div class="col-md-12 mt-4 text-end">
-            <button type="submit" class="btn btn-primary px-4 py-2">
-              <i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- SECTION RECHERCHE ET CONSULTATION INDIVIDUELLE -->
-  <div class="card shadow-sm border-0 mb-4">
-    <div class="card-header bg-info text-white font-weight-bold">
-      <i class="icon ion-md-search me-2"></i> Espace Membre : Consulter ma Fiche Personnelle
-    </div>
-    <div class="card-body">
-      <div class="row g-2 align-items-center">
-        <div class="col-md-8">
-          <input type="text" id="rechercheMatriculeMembre" class="form-control" placeholder="Entrez votre Matricule (ex: JSD-2026-XXXX)">
-        </div>
-        <div class="col-md-4">
-          <button type="button" class="btn btn-info text-white w-100" onclick="rechercherFicheMembre()">
-            <i class="icon ion-md-person me-1"></i> Afficher ma fiche
-          </button>
-        </div>
-      </div>
-      <div id="zoneFichePersonnelle" class="mt-3" style="display: none;"></div>
-    </div>
-  </div>
-
-  <!-- ZONE ADMIN / PRÉSIDENT -->
-  <div class="card shadow-sm border-0 mb-4">
-    <div class="card-header bg-dark text-white font-weight-bold d-flex justify-content-between align-items-center">
-      <span><i class="icon ion-md-lock me-2"></i> Administration : Liste Générale des Membres</span>
-      <div>
-        <button class="btn btn-sm btn-outline-light me-2" id="btnImprimerListeMembres" style="display: none;" onclick="imprimerSection('zoneImpressionMembres', 'Liste des Membres - JSD')">
-          <i class="icon ion-md-print me-1"></i> Imprimer la Liste
-        </button>
-        <button class="btn btn-sm btn-outline-light" onclick="deverrouillerTableauPresident()">
-          <i class="icon ion-md-key me-1"></i> Mode Président
-        </button>
-      </div>
-    </div>
-    <div class="card-body p-0" id="conteneurTableauGeneral" style="display: none;">
-      <div class="table-responsive" id="zoneImpressionMembres">
-        <table class="table table-hover align-middle mb-0">
-          <thead class="table-light">
-            <tr>
-              <th>Matricule</th>
-              <th>Nom, Prénom & Postnom</th>
-              <th>Sexe</th>
-              <th>Téléphone</th>
-              <th>Province</th>
-              <th>Statut</th>
-              <th>Date d'adhésion</th>
-              <th class="text-center no-print">Actions</th>
-            </tr>
-          </thead>
-          <tbody id="corpsTableauMembres">
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION COTISATIONS -->
-  <div class="card shadow-sm border-0 mb-4">
-    <div class="card-header bg-success text-white font-weight-bold">
-      <i class="icon ion-md-cash me-2"></i> Gestion des Cotisations (Membres Simples & D'Honneur)
-    </div>
-    <div class="card-body">
-      <form id="formCotisation" onsubmit="enregistrerCotisation(event)">
-        <div class="row g-3">
-          <div class="col-md-3">
-            <label class="form-label font-weight-bold">Matricule / Nom du Membre</label>
-            <input type="text" id="cotisationMembre" class="form-control" placeholder="Ex: JSD-2026-43IC ou Mike" required>
-          </div>
-          <div class="col-md-3">
-            <label class="form-label font-weight-bold">Catégorie</label>
-            <select id="cotisationTypeMembre" class="form-select">
-              <option value="Membre Simple">Membre Simple</option>
-              <option value="Membre d'Honneur">Membre d'Honneur</option>
-            </select>
-          </div>
-          <div class="col-md-2">
-            <label class="form-label font-weight-bold">Montant ($ USD ou FC)</label>
-            <input type="number" id="cotisationMontant" class="form-control" placeholder="Ex: 10" required>
-          </div>
-          <div class="col-md-2">
-            <label class="form-label font-weight-bold">Mode de Paiement</label>
-            <select id="cotisationModePaiement" class="form-select" onchange="gestionAffichageMPesa()">
-              <option value="Cash / Présentiel">Cash / Présentiel</option>
-              <option value="M-Pesa">M-Pesa (+243 836315788)</option>
-            </select>
-          </div>
-          <div class="col-md-2 d-flex align-items-end">
-            <button type="submit" class="btn btn-success w-100 fw-bold">
-              <i class="icon ion-md-checkmark-circle me-1"></i> Soumettre
-            </button>
-          </div>
-        </div>
-
-        <div id="blocAideMPesa" class="alert alert-warning mt-3 p-2 text-dark" style="display: none;">
-          <small>
-            <i class="icon ion-md-information-circle me-1"></i>
-            <strong>Paiement Mobile M-Pesa :</strong> Effectuez votre transfert au numéro <strong>+243 836315788</strong> (Nom : JSD). 
-            Indiquez la référence ou l'ID de la transaction M-Pesa ci-dessous si disponible :
-          </small>
-          <input type="text" id="cotisationRefMPesa" class="form-control form-control-sm mt-1" placeholder="Exemple de référence M-Pesa : 9X87YZA123">
-        </div>
-      </form>
-
-      <div class="d-flex justify-content-between align-items-center mt-4 border-bottom pb-2">
-        <h6 class="fw-bold mb-0">Historique des Cotisations Reçues</h6>
-        <button class="btn btn-sm btn-outline-success" onclick="deverrouillerCotisationsPresident()">
-          <i class="icon ion-md-key me-1"></i> Accès Président / Caissier (Validation)
-        </button>
-      </div>
-
-      <div id="conteneurHistoriqueCotisations" style="display: none;" class="mt-3">
-        <div class="text-end mb-2">
-          <button class="btn btn-sm btn-success" onclick="imprimerSection('zoneImpressionCotisations', 'Historique des Cotisations - JSD')">
-            <i class="icon ion-md-print me-1"></i> Imprimer l'Historique
-          </button>
-        </div>
-        <div class="table-responsive" id="zoneImpressionCotisations">
-          <table class="table table-sm table-hover align-middle mb-0">
-            <thead class="table-light">
-              <tr>
-                <th>Membre</th>
-                <th>Catégorie</th>
-                <th>Montant</th>
-                <th>Mode de paiement</th>
-                <th>Référence / Transaction</th>
-                <th>Statut Caisse</th>
-                <th>Date</th>
-                <th class="no-print">Action Caissier</th>
-              </tr>
-            </thead>
-            <tbody id="corpsTableauCotisations">
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- Formulaire de publication d'événement -->
-<div class="container">
-  <div id="formulairePublicatEvent" class="card shadow-sm p-4 mb-4 border-primary" style="display: none;">
-    <h5 class="fw-bold text-primary mb-3"><i class="icon ion-md-lock me-2"></i> Espace Chargé de Publication (Visibilité 24h)</h5>
-    <div class="row g-3">
-      <div class="col-md-6">
-        <label class="form-label font-weight-bold">Titre de l'événement</label>
-        <input type="text" id="evTitre" class="form-control" placeholder="ex: Conférence Annuelle">
-      </div>
-      <div class="col-md-6">
-        <label class="form-label font-weight-bold">Affiche / Image</label>
-        <input type="file" id="evFichierImage" class="form-control" accept="image/*">
-      </div>
-
-      <div class="col-12">
-        <label class="form-label font-weight-bold">Texte d'accompagnement</label>
-        <textarea id="evDescription" class="form-control" rows="2" placeholder="Saisissez un message ou une légende..."></textarea>
-      </div>
-
-      <div class="col-md-4">
-        <label class="form-label font-weight-bold">Date</label>
-        <input type="text" id="evDate" class="form-control" placeholder="ex: 12 Novembre 2026">
-      </div>
-      <div class="col-md-4">
-        <label class="form-label font-weight-bold">Lieu</label>
-        <input type="text" id="evLieu" class="form-control" placeholder="ex: Siège JSD / Kinshasa">
-      </div>
-      <div class="col-md-4">
-        <label class="form-label font-weight-bold">Nombre de places</label>
-        <input type="number" id="evPlaces" class="form-control" value="50">
-      </div>
-      <div class="col-12 text-end mt-3">
-        <button class="btn btn-secondary me-2" onclick="document.getElementById('formulairePublicatEvent').style.display='none'">Annuler / Fermer</button>
-        <button class="btn btn-success fw-bold" onclick="publierNouvelEvenement()">Publier l'événement</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-    function gestionAffichageMPesa() {
-        var mode = document.getElementById('cotisationModePaiement').value;
-        var bloc = document.getElementById('blocAideMPesa');
-        if (bloc) {
-            bloc.style.display = (mode === 'M-Pesa') ? 'block' : 'none';
-        }
-    }
-
-    function imprimerSection(elementId, titreDoc) {
-        var element = document.getElementById(elementId);
-        if (!element) return;
-        
-        element.classList.add('is-printing');
-        
-        var enteteImpression = document.createElement('div');
-        enteteImpression.className = 'text-center mb-4 is-printing';
-        enteteImpression.innerHTML = '<h3>Jeunesse Sociale pour le Développement (JSD)</h3><p class="text-muted">' + (titreDoc || '') + '</p><hr>';
-        element.insertBefore(enteteImpression, element.firstChild);
-
-        setTimeout(function() {
-            window.print();
-            element.removeChild(enteteImpression);
-            element.classList.remove('is-printing');
-        }, 300);
-    }
-</script>
-
-<!-- SECTION CHAT / MESSAGERIE PRIVÉE SÉCURISÉE -->
-<div class="container my-4">
-  <div class="card shadow-sm border-0">
-    <div class="card-header bg-primary text-white font-weight-bold d-flex justify-content-between align-items-center">
-      <span><i class="icon ion-md-chatboxes me-2"></i> Échange Privé & Confidentiel avec le Président</span>
-      <button id="btnDeconnexionChat" class="btn btn-sm btn-outline-light" style="display: none;" onclick="deconnexionChat()">Déconnexion</button>
-    </div>
-    
-    <div class="card-body">
-      <!-- 1. BLOC DE CONNEXION AU CHAT -->
-      <div id="blocConnexionChat" class="py-3">
-        <h6 class="fw-bold mb-3">
-          <i class="icon ion-md-lock me-2 text-primary"></i>Identifiez-vous pour accéder à la discussion privée :
-        </h6>
-        <div class="row g-2 align-items-center">
-          <div class="col-md-8">
-            <input type="text" id="chatMatricule" class="form-control" placeholder="Entrez votre Matricule Membre (ex: JSD-2026-XXXX) ou Code Secret..." required>
-          </div>
-          <div class="col-md-4">
-            <button type="button" onclick="connexionMessagerie()" class="btn btn-primary w-100 fw-bold">
-              <i class="icon ion-md-key me-1"></i> Accéder au Chat
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2. INTERFACE MEMBRE (Discussion directe avec le Président) -->
-      <div id="interfaceMembreChat" style="display: none;">
-        <div class="alert alert-info py-2 d-flex justify-content-between align-items-center">
-          <span><strong id="nomMembreChatEnCours"></strong> (Matricule: <span id="matMembreChatEnCours"></span>)</span>
-          <span class="badge bg-success">En direct avec le Président JSD</span>
-        </div>
-        <div id="boiteDiscussionMembre" class="chat-box-container mb-3"></div>
-        <form id="formEnvoiMsgMembre" onsubmit="envoyerMessageMembre(event)">
-          <div class="input-group">
-            <input type="text" id="texteMsgMembre" class="form-control" placeholder="Écrivez votre message privé au Président..." required>
-            <button class="btn btn-primary fw-bold" type="submit"><i class="icon ion-md-send me-1"></i> Envoyer</button>
-          </div>
-        </form>
-      </div>
-
-      <!-- 3. INTERFACE PRÉSIDENT (Gestion de toutes les conversations) -->
-      <div id="interfacePresidentChat" style="display: none;">
-        <div class="alert alert-dark py-2">
-          <strong><i class="icon ion-md-person me-1"></i> Espace Présidence JSD :</strong> Sélectionnez une conversation dans la liste de gauche pour lire et répondre aux membres.
-        </div>
-        <div class="row">
-          <div class="col-md-4 border-end">
-            <h6 class="fw-bold text-secondary mb-3">Messages reçus par membre :</h6>
-            <div id="listeConversationsPresident" class="list-group list-group-flush border rounded" style="max-height: 400px; overflow-y: auto;">
-              <!-- Liste dynamique des membres ayant contacté le président -->
+                  <div class="col-md-12 mt-4 text-end">
+                    <button type="submit" class="btn btn-primary px-4 py-2">
+                      <i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
-          <div class="col-md-8">
-            <div id="enTeteConvActivePresident" class="fw-bold text-primary mb-2 border-bottom pb-1" style="display: none;"></div>
-            <div id="boiteDiscussionPresident" class="chat-box-container mb-3">
-              <div class="text-center text-muted mt-5">Veuillez sélectionner un membre à gauche pour afficher la discussion.</div>
+
+          <!-- RECHERCHE FICHE MEMBRE -->
+          <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header bg-info text-white font-weight-bold">
+              <i class="icon ion-md-search me-2"></i> Espace Membre : Consulter ma Fiche Personnelle
             </div>
-            <form id="formEnvoiMsgPresident" onsubmit="envoyerMessagePresident(event)" style="display: none;">
-              <div class="input-group">
-                <input type="text" id="texteMsgPresident" class="form-control" placeholder="Saisissez votre réponse au membre..." required>
-                <button class="btn btn-success fw-bold" type="submit"><i class="icon ion-md-send me-1"></i> Répondre</button>
+            <div class="card-body">
+              <div class="row g-2 align-items-center">
+                <div class="col-md-8">
+                  <input type="text" id="rechercheMatriculeMembre" class="form-control" placeholder="Entrez votre Matricule (ex: JSD-2026-XXXX)">
+                </div>
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-info text-white w-100" onclick="rechercherFicheMembre()">
+                    <i class="icon ion-md-person me-1"></i> Afficher ma fiche
+                  </button>
+                </div>
               </div>
-            </form>
+              <div id="zoneFichePersonnelle" class="mt-3" style="display: none;"></div>
+            </div>
+          </div>
+
+          <!-- ADMIN : LISTE MEMBRES -->
+          <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header bg-dark text-white font-weight-bold d-flex justify-content-between align-items-center">
+              <span><i class="icon ion-md-lock me-2"></i> Administration : Liste Générale des Membres</span>
+              <div>
+                <button class="btn btn-sm btn-outline-light me-2" id="btnImprimerListeMembres" style="display: none;" onclick="imprimerSection('zoneImpressionMembres', 'Liste des Membres - JSD')">
+                  <i class="icon ion-md-print me-1"></i> Imprimer
+                </button>
+                <button class="btn btn-sm btn-outline-light" onclick="deverrouillerTableauPresident()">
+                  <i class="icon ion-md-key me-1"></i> Mode Président
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0" id="conteneurTableauGeneral" style="display: none;">
+              <div class="table-responsive" id="zoneImpressionMembres">
+                <table class="table table-hover align-middle mb-0">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Matricule</th>
+                      <th>Nom & Prénom</th>
+                      <th>Sexe</th>
+                      <th>Téléphone</th>
+                      <th>Province</th>
+                      <th>Statut</th>
+                      <th>Date</th>
+                      <th class="text-center no-print">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="corpsTableauMembres"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- COTISATIONS -->
+          <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header bg-success text-white font-weight-bold">
+              <i class="icon ion-md-cash me-2"></i> Gestion des Cotisations
+            </div>
+            <div class="card-body">
+              <form id="formCotisation" onsubmit="enregistrerCotisation(event)">
+                <div class="row g-3">
+                  <div class="col-md-3">
+                    <label class="form-label font-weight-bold">Matricule / Nom</label>
+                    <input type="text" id="cotisationMembre" class="form-control" placeholder="Ex: JSD-2026-XXXX" required>
+                  </div>
+                  <div class="col-md-3">
+                    <label class="form-label font-weight-bold">Catégorie</label>
+                    <select id="cotisationTypeMembre" class="form-select">
+                      <option value="Membre Simple">Membre Simple</option>
+                      <option value="Membre d'Honneur">Membre d'Honneur</option>
+                    </select>
+                  </div>
+                  <div class="col-md-2">
+                    <label class="form-label font-weight-bold">Montant</label>
+                    <input type="number" id="cotisationMontant" class="form-control" placeholder="10" required>
+                  </div>
+                  <div class="col-md-2">
+                    <label class="form-label font-weight-bold">Paiement</label>
+                    <select id="cotisationModePaiement" class="form-select" onchange="gestionAffichageMPesa()">
+                      <option value="Cash / Présentiel">Cash / Présentiel</option>
+                      <option value="M-Pesa">M-Pesa (+243 836315788)</option>
+                    </select>
+                  </div>
+                  <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-success w-100 fw-bold">Soumettre</button>
+                  </div>
+                </div>
+
+                <div id="blocAideMPesa" class="alert alert-warning mt-3 p-2 text-dark" style="display: none;">
+                  <small>Transfert M-Pesa au <strong>+243 836315788</strong>. Référence de transaction :</small>
+                  <input type="text" id="cotisationRefMPesa" class="form-control form-control-sm mt-1" placeholder="Ex: 9X87YZA123">
+                </div>
+              </form>
+
+              <div class="d-flex justify-content-between align-items-center mt-4 border-bottom pb-2">
+                <h6 class="fw-bold mb-0">Historique des Cotisations</h6>
+                <button class="btn btn-sm btn-outline-success" onclick="deverrouillerCotisationsPresident()">
+                  <i class="icon ion-md-key me-1"></i> Accès Caissier
+                </button>
+              </div>
+
+              <div id="conteneurHistoriqueCotisations" style="display: none;" class="mt-3">
+                <div class="table-responsive" id="zoneImpressionCotisations">
+                  <table class="table table-sm table-hover align-middle mb-0">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Membre</th>
+                        <th>Catégorie</th>
+                        <th>Montant</th>
+                        <th>Mode</th>
+                        <th>Référence</th>
+                        <th>Statut</th>
+                        <th>Date</th>
+                        <th class="no-print">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="corpsTableauCotisations"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-    </div>
-  </div>
-</div>
+        <!-- FORMULAIRE PUBLICATION ÉVÉNEMENT -->
+        <div class="container">
+          <div id="formulairePublicatEvent" class="card shadow-sm p-4 mb-4 border-primary" style="display: none;">
+            <h5 class="fw-bold text-primary mb-3"><i class="icon ion-md-lock me-2"></i> Espace Chargé de Publication (24h)</h5>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label font-weight-bold">Titre</label>
+                <input type="text" id="evTitre" class="form-control" placeholder="Titre de l'événement">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label font-weight-bold">Image / Affiche</label>
+                <input type="file" id="evFichierImage" class="form-control" accept="image/*">
+              </div>
+              <div class="col-12">
+                <label class="form-label font-weight-bold">Description</label>
+                <textarea id="evDescription" class="form-control" rows="2" placeholder="Détails..."></textarea>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label font-weight-bold">Date</label>
+                <input type="text" id="evDate" class="form-control" placeholder="12 Nov 2026">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label font-weight-bold">Lieu</label>
+                <input type="text" id="evLieu" class="form-control" placeholder="Siège JSD">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label font-weight-bold">Places</label>
+                <input type="number" id="evPlaces" class="form-control" value="50">
+              </div>
+              <div class="col-12 text-end mt-3">
+                <button class="btn btn-secondary me-2" onclick="document.getElementById('formulairePublicatEvent').style.display='none'">Fermer</button>
+                <button class="btn btn-success fw-bold" onclick="publierNouvelEvenement()">Publier</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION CHAT / MESSAGERIE PRIVÉE SÉCURISÉE -->
+        <div class="container my-4">
+          <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white font-weight-bold d-flex justify-content-between align-items-center">
+              <span><i class="icon ion-md-chatboxes me-2"></i> Échange Privé avec le Président</span>
+              <button id="btnDeconnexionChat" class="btn btn-sm btn-outline-light" style="display: none;" onclick="deconnexionChat()">Déconnexion</button>
+            </div>
+            <div class="card-body">
+              <div id="blocConnexionChat" class="py-3">
+                <h6 class="fw-bold mb-3"><i class="icon ion-md-lock me-2 text-primary"></i>Identifiez-vous (Matricule ou Code Président) :</h6>
+                <div class="row g-2 align-items-center">
+                  <div class="col-md-8">
+                    <input type="text" id="chatMatricule" class="form-control" placeholder="Ex: JSD-2026-XXXX ou code secret..." required>
+                  </div>
+                  <div class="col-md-4">
+                    <button type="button" onclick="connexionMessagerie()" class="btn btn-primary w-100 fw-bold">Accéder au Chat</button>
+                  </div>
+                </div>
+              </div>
+
+              <div id="interfaceMembreChat" style="display: none;">
+                <div class="alert alert-info py-2 d-flex justify-content-between align-items-center">
+                  <span><strong id="nomMembreChatEnCours"></strong> (<span id="matMembreChatEnCours"></span>)</span>
+                  <span class="badge bg-success">En direct avec le Président</span>
+                </div>
+                <div id="boiteDiscussionMembre" class="chat-box-container mb-3"></div>
+                <form id="formEnvoiMsgMembre" onsubmit="envoyerMessageMembre(event)">
+                  <div class="input-group">
+                    <input type="text" id="texteMsgMembre" class="form-control" placeholder="Votre message..." required>
+                    <button class="btn btn-primary fw-bold" type="submit">Envoyer</button>
+                  </div>
+                </form>
+              </div>
+
+              <div id="interfacePresidentChat" style="display: none;">
+                <div class="alert alert-dark py-2"><strong>Espace Présidence JSD :</strong> Sélectionnez une conversation.</div>
+                <div class="row">
+                  <div class="col-md-4 border-end">
+                    <div id="listeConversationsPresident" class="list-group list-group-flush border rounded" style="max-height: 400px; overflow-y: auto;"></div>
+                  </div>
+                  <div class="col-md-8">
+                    <div id="enTeteConvActivePresident" class="fw-bold text-primary mb-2 border-bottom pb-1" style="display: none;"></div>
+                    <div id="boiteDiscussionPresident" class="chat-box-container mb-3">
+                      <div class="text-center text-muted mt-5">Sélectionnez un membre.</div>
+                    </div>
+                    <form id="formEnvoiMsgPresident" onsubmit="envoyerMessagePresident(event)" style="display: none;">
+                      <div class="input-group">
+                        <input type="text" id="texteMsgPresident" class="form-control" placeholder="Votre réponse..." required>
+                        <button class="btn btn-success fw-bold" type="submit">Répondre</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Contact Start -->
         <div class="contact">
             <div class="container">
                 <div class="section-header">
-                    <h2>Contact </h2>
+                    <h2>Contact</h2>
                     <p>Veuillez nous contacter ici SVP !</p>
                 </div>
-
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form">
                             <form class="contactForm">
                                 <div class="form-row">
-                                    <div class="form-group col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Votre Nom" />
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <input type="email" class="form-control" placeholder="Votre Email" />
-                                    </div>
+                                    <div class="form-group col-sm-6"><input type="text" class="form-control" placeholder="Votre Nom" /></div>
+                                    <div class="form-group col-sm-6"><input type="email" class="form-control" placeholder="Votre Email" /></div>
                                 </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Sujet" />
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control" rows="5" placeholder="Message"></textarea>
-                                </div>
+                                <div class="form-group"><input type="text" class="form-control" placeholder="Sujet" /></div>
+                                <div class="form-group"><textarea class="form-control" rows="5" placeholder="Message"></textarea></div>
                                 <div><button class="btn" type="submit">Envoyer le Message</button></div>
                             </form>
                         </div>
@@ -1528,31 +1441,28 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
                                 <li><i class="ion-ios-arrow-forward"></i> <a href="index.html">Accueil</a></li>
                                 <li><i class="ion-ios-arrow-forward"></i> <a href="about.html">Apropos</a></li>
                                 <li><i class="ion-ios-arrow-forward"></i> <a href="service.html">Nos services</a></li>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="cgu.html">Conditions générales d'utilisation </a></li>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="confidentialite.html">Politique de confidentialité</a></li>
+                                <li><i class="ion-ios-arrow-forward"></i> <a href="cgu.html">CGU</a></li>
+                                <li><i class="ion-ios-arrow-forward"></i> <a href="confidentialite.html">Confidentialité</a></li>
                             </ul>
                         </div>
-
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Liens Utiles</h4>
                             <ul>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="Dos/statut-jsd.pdf" target="_blank">Notre Statut & Règlement Intérieur</a></li>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="don-adhesion.html">Faire un Don / Devenir membre</a></li>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="projet.html">Nos Projets & Activités</a></li>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="rapports-activites.html">Rapports d'activités</a></li>
+                                <li><i class="ion-ios-arrow-forward"></i> <a href="Dos/statut-jsd.pdf" target="_blank">Statut & Règlement</a></li>
+                                <li><i class="ion-ios-arrow-forward"></i> <a href="don-adhesion.html">Faire un Don / Adhésion</a></li>
+                                <li><i class="ion-ios-arrow-forward"></i> <a href="projet.html">Nos Projets</a></li>
+                                <li><i class="ion-ios-arrow-forward"></i> <a href="rapports-activites.html">Rapports</a></li>
                             </ul>
                         </div>
-
                         <div class="col-lg-3 col-md-6 footer-contact">
                             <h4>Contactez-nous</h4>
                             <p>
                                 112 Siège RDC<br>
                                 Kinshasa, BANDALUNGWA<br>
-                                RD Congo <br>
+                                RD Congo<br>
                                 <strong>Phone:</strong> +243 906819993<br>
                                 <strong>Email:</strong> Jeunessesocial52@gmail.com<br>
                             </p>
-
                             <div class="social-links">
                                 <a href="#"><i class="ion-logo-twitter"></i></a>
                                 <a href="https://www.facebook.com/profile.php?id=61558188776060" target="_blank" rel="noopener noreferrer"><i class="ion-logo-facebook"></i></a>
@@ -1560,29 +1470,21 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
                                 <a href="#"><i class="ion-logo-instagram"></i></a>
                                 <a href="#"><i class="ion-logo-googleplus"></i></a>
                             </div>
-
                         </div>
-
                         <div class="col-lg-3 col-md-6 footer-newsletter">
                             <h4>Inscrivez-Vous !</h4>
-                            <p>"Abonnez-vous à notre bulletin d'information pour recevoir toutes nos actualités, nos prochains événements, nos opportunités de formation et suivre l'impact de nos actions sur le terrain."</p>
+                            <p>Abonnez-vous à notre bulletin d'information.</p>
                             <form action="" method="post">
-                                <input type="email" name="email" placeholder="jeunessesocial52@gmail.com" required><input type="submit" value="S'inscrire">
+                                <input type="email" name="email" placeholder="votre@email.com" required><input type="submit" value="S'inscrire">
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
-
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-md-6 copyright">
-                        Président &copy; Mike TSHIBANGU 2026 <a href="">Notre Site JSD</a>. Tous droits réservés à la JSD
-                    </div>
-                    <div class="col-md-6 credit">
-                        JSD <a href="jsd-app.onrender.com">JSDx</a>
-                    </div>
+                    <div class="col-md-6 copyright">Président &copy; Mike TSHIBANGU 2026. Tous droits réservés.</div>
+                    <div class="col-md-6 credit">JSD <a href="jsd-app.onrender.com">JSDx</a></div>
                 </div>
             </div>
         </div>
@@ -1603,1056 +1505,488 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
         <!-- Main Javascript -->
         <script src="js/main.js"></script>
 
-        <!-- SCRIPT FIREBASE UNIQUE ET SÉCURISÉ -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, where, orderBy, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-  // Configuration Firebase officielle JSD
-  const firebaseConfig = {
-    apiKey: "AIzaSyBlGSwEPk6CM4A07SeqmZeuaFxUWMRlESI",
-    authDomain: "jeunesse-social-pour-le-dvelop.firebaseapp.com",
-    projectId: "jeunesse-social-pour-le-dvelop",
-    storageBucket: "jeunesse-social-pour-le-dvelop.firebasestorage.app",
-    messagingSenderId: "728224479628",
-    appId: "1:728224479628:web:c43406a998d184d3a63ea9",
-    measurementId: "G-F81CFLLD55"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  let enEnregistrement = false;
-  const CODE_SECRET_PRESIDENT = "ann@s0852";
-  let cacheMembresLocal = [];
-
-  // Variables globales pour le Chat
-  let sessionChatMembre = null;
-  let desabonnerEcouteChat = null;
-  let desabonnerEcouteConversations = null;
-  let membreSelectionneParPresident = null;
-
-  // Initialisation date
-  document.addEventListener("DOMContentLoaded", () => {
-    const today = new Date().toISOString().split('T')[0];
-    const champDate = document.getElementById("dateAdhesionMembre");
-    if (champDate) champDate.value = today;
-  });
-
-  // 1. PUBLICATION ÉVÉNEMENTS
-  window.toggleFormulaireEvenementSecurise = function() {
-    const codeSaisi = prompt("ACCÈS SÉCURISÉ (Président / Chargé de Communication) :\nVeuillez saisir le code secret pour publier une activité :");
-    
-    if (codeSaisi && codeSaisi.trim() === CODE_SECRET_PRESIDENT) {
-      const el = document.getElementById("formulairePublicatEvent");
-      if (el) {
-        el.style.display = "block";
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else if (codeSaisi !== null) {
-      alert("Accès refusé ! Code secret incorrect.");
-    }
-  };
-
-  window.publierNouvelEvenement = async function() {
-    const titre = document.getElementById("evTitre").value.trim();
-    const desc = document.getElementById("evDescription").value.trim();
-    const dateEv = document.getElementById("evDate").value.trim();
-    const lieu = document.getElementById("evLieu").value.trim();
-    const places = document.getElementById("evPlaces").value;
-    const fichierInput = document.getElementById("evFichierImage");
-
-    if (!titre || !desc) {
-      alert("Veuillez saisir au moins un titre et une description pour l'événement.");
-      return;
-    }
-
-    let imageBase64 = "";
-
-    if (fichierInput && fichierInput.files && fichierInput.files[0]) {
-      const file = fichierInput.files[0];
-      const reader = new FileReader();
-      
-      reader.onload = async function(e) {
-        imageBase64 = e.target.result;
-        await enregistrerEvenementFirebase(titre, desc, dateEv, lieu, places, imageBase64);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      await enregistrerEvenementFirebase(titre, desc, dateEv, lieu, places, "");
-    }
-  };
-
-  async function enregistrerEvenementFirebase(titre, description, date, lieu, places, image) {
-    try {
-      await addDoc(collection(db, "evenements"), {
-        titre, description, date, lieu, places, image,
-        timestamp: Date.now(),
-        createdAt: serverTimestamp()
-      });
-      alert("Événement publié avec succès !");
-      
-      document.getElementById("formulairePublicatEvent").style.display = "none";
-      document.getElementById("evTitre").value = "";
-      document.getElementById("evDescription").value = "";
-      if (document.getElementById("evDate")) document.getElementById("evDate").value = "";
-      if (document.getElementById("evLieu")) document.getElementById("evLieu").value = "";
-      if (document.getElementById("evPlaces")) document.getElementById("evPlaces").value = "";
-      if (document.getElementById("evFichierImage")) document.getElementById("evFichierImage").value = "";
-    } catch (err) {
-      console.error("Erreur d'envoi d'événement :", err);
-      alert("Erreur lors de la publication : " + err.message);
-    }
-  }
-
-  // ÉCOUTEUR ET AFFICHAGE EN TEMPS RÉEL DES ÉVÉNEMENTS
-  onSnapshot(collection(db, "evenements"), (snapshot) => {
-    const container = document.getElementById("events-widget-container");
-    if (!container) return;
-
-    container.innerHTML = "";
-    const maintenant = Date.now();
-    const duree24h = 24 * 60 * 60 * 1000;
-
-    snapshot.docs.forEach((docSnap) => {
-      const ev = docSnap.data();
-      const idDoc = docSnap.id;
-
-      if (ev.timestamp && (maintenant - ev.timestamp > duree24h)) {
-        return; 
-      }
-
-      const col = document.createElement("div");
-      col.className = "col-md-6 col-lg-4 mb-3";
-      col.innerHTML = `
-        <div class="card h-100 shadow-sm border-0">
-          ${ev.image ? `<img src="${ev.image}" class="card-img-top" style="max-height:180px; object-fit:cover;" alt="Affiche">` : ''}
-          <div class="card-body">
-            <h5 class="card-title text-primary fw-bold">${ev.titre || ''}</h5>
-            <p class="card-text text-secondary">${ev.description || ''}</p>
-            <hr>
-            <p class="small mb-1"><strong><i class="icon ion-md-calendar"></i> Date:</strong> ${ev.date || 'Prochainement'}</p>
-            <p class="small mb-1"><strong><i class="icon ion-md-pin"></i> Lieu:</strong> ${ev.lieu || 'Siège JSD'}</p>
-            <p class="small mb-2"><strong><i class="icon ion-md-people"></i> Places:</strong> ${ev.places || 'Illimité'}</p>
-            <button class="btn btn-sm btn-outline-danger w-100 mt-2" onclick="supprimerEvenement('${idDoc}', '${(ev.titre || '').replace(/'/g, "\\'")}')">
-              <i class="icon ion-md-trash"></i> Supprimer (Président)
-            </button>
-          </div>
-        </div>
-      `;
-      container.appendChild(col);
-    });
-  });
-
-  // SUPPRESSION SÉCURISÉE D'UN ÉVÉNEMENT
-  window.supprimerEvenement = async function(idEv, titreEv) {
-    const code = prompt(`ATTENTION : Suppression de l'événement "${titreEv}".\nVeuillez saisir le code secret :`);
-    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
-      if (confirm(`Êtes-vous sûr de vouloir supprimer l'événement : ${titreEv} ?`)) {
-        try {
-          await deleteDoc(doc(db, "evenements", idEv));
-          alert("Événement supprimé avec succès !");
-        } catch (err) {
-          console.error("Erreur de suppression :", err);
-          alert("Erreur lors de la suppression : " + err.message);
-        }
-      }
-    } else if (code !== null) {
-      alert("Accès refusé ! Code secret incorrect.");
-    }
-  };
-
-  // 2. GESTION DES MEMBRES
-  window.enregistrerMembre = async function(event) {
-    if (event) event.preventDefault();
-    if (enEnregistrement) return;
-
-    const form = document.getElementById("formulaireInscription");
-    const idEncours = form ? form.getAttribute("data-id-edition") : null;
-    
-    const nom = document.getElementById("nomMembre").value.trim();
-    const prenom = document.getElementById("prenomMembre").value.trim();
-    const postnom = document.getElementById("postnomMembre").value.trim();
-    const sexe = document.getElementById("sexeMembre").value;
-    const dateAdhesion = document.getElementById("dateAdhesionMembre").value;
-    const contact = document.getElementById("contactMembre").value.trim();
-    const nationalite = document.getElementById("nationaliteMembre").value.trim();
-    const province = document.getElementById("provinceMembre").value;
-    const localisation = document.getElementById("localisationMembre").value.trim() || "Kinshasa, RDC";
-    const niveauEtudes = document.getElementById("niveauEtudesMembre").value;
-    const etatCivil = document.getElementById("etatCivilMembre").value;
-    const profession = document.getElementById("professionMembre").value.trim();
-    const statut = document.getElementById("statutMembre").value;
-
-    if (!nom || !prenom || !contact) {
-      alert("Veuillez remplir les champs obligatoires (Nom, Prénom, Téléphone).");
-      return;
-    }
-
-    try {
-      enEnregistrement = true;
-
-      const membreData = {
-        nom, prenom, postnom, sexe, dateAdhesion, contact,
-        nationalite, province, localisation, niveauEtudes,
-        etatCivil, profession, statut
-      };
-
-      if (idEncours) {
-        await updateDoc(doc(db, "membres", idEncours), membreData);
-        alert("Fiche membre mise à jour avec succès !");
-        form.removeAttribute("data-id-edition");
-        const btnSubmit = form.querySelector("button[type='submit']");
-        if (btnSubmit) btnSubmit.innerHTML = '<i class="icon ion-md-checkmark-circle me-1"></i> Enregistrer';
-      } else {
-        await addDoc(collection(db, "membres"), membreData);
-        alert("Nouveau membre enregistré avec succès !");
-      }
-
-      if (form) form.reset();
-      const today = new Date().toISOString().split('T')[0];
-      if (document.getElementById("dateAdhesionMembre")) document.getElementById("dateAdhesionMembre").value = today;
-
-    } catch (error) {
-      console.error("Erreur Firebase : ", error);
-      alert("Erreur lors de l'opération : " + error.message);
-    } finally {
-      enEnregistrement = false;
-    }
-  };
-
-  window.deverrouillerTableauPresident = function() {
-    const code = prompt("Veuillez saisir le code secret du Président :");
-    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
-      document.getElementById("conteneurTableauGeneral").style.display = "block";
-      document.getElementById("btnImprimerListeMembres").style.display = "inline-block";
-      alert("Accès Président autorisé. La liste générale des membres est accessible.");
-    } else if (code !== null) {
-      alert("Accès refusé ! Code secret incorrect.");
-    }
-  };
-
-  window.deverrouillerCotisationsPresident = function() {
-    const code = prompt("Veuillez saisir le code secret du Président / Caissier pour consulter et valider les cotisations :");
-    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
-      document.getElementById("conteneurHistoriqueCotisations").style.display = "block";
-      alert("Accès autorisé. Historique des cotisations déverrouillé.");
-    } else if (code !== null) {
-      alert("Accès refusé ! Code secret incorrect.");
-    }
-  };
-
-  window.rechercherFicheMembre = function() {
-    const matSaisi = document.getElementById("rechercheMatriculeMembre").value.trim().toUpperCase();
-    const zone = document.getElementById("zoneFichePersonnelle");
-
-    if (!matSaisi) {
-      alert("Veuillez entrer votre matricule.");
-      return;
-    }
-
-    const membre = cacheMembresLocal.find(m => m.matricule === matSaisi);
-
-    if (membre) {
-      zone.style.display = "block";
-      zone.innerHTML = `
-        <div class="card border-info" id="ficheIndividuellePrint">
-          <div class="card-header bg-info text-white font-weight-bold d-flex justify-content-between align-items-center">
-            <span>Fiche Personnelle Membre : ${membre.matricule}</span>
-            <button type="button" class="btn btn-sm btn-light text-info fw-bold no-print" onclick="imprimerSection('ficheIndividuellePrint', 'Fiche Membre ${membre.matricule}')">
-              <i class="icon ion-md-print me-1"></i> Imprimer Ma Fiche
-            </button>
-          </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-6"><strong>Identité :</strong> ${membre.nom} ${membre.prenom} ${membre.postnom || ''}</div>
-              <div class="col-md-3"><strong>Sexe :</strong> ${membre.sexe || '-'}</div>
-              <div class="col-md-3"><strong>Statut :</strong> ${membre.statut || 'Membre'}</div>
-              <div class="col-md-6 mt-2"><strong>Téléphone :</strong> ${membre.contact || '-'}</div>
-              <div class="col-md-6 mt-2"><strong>Nationalité :</strong> ${membre.nationalite || 'Congolaise'}</div>
-              <div class="col-md-6 mt-2"><strong>Province d'origine :</strong> ${membre.province || '-'}</div>
-              <div class="col-md-6 mt-2"><strong>Localisation :</strong> ${membre.localisation || '-'}</div>
-              <div class="col-md-6 mt-2"><strong>Niveau d'études :</strong> ${membre.niveauEtudes || '-'}</div>
-              <div class="col-md-6 mt-2"><strong>État civil :</strong> ${membre.etatCivil || '-'}</div>
-              <div class="col-md-6 mt-2"><strong>Profession :</strong> ${membre.profession || '-'}</div>
-              <div class="col-md-6 mt-2"><strong>Date d'adhésion :</strong> ${membre.dateAdhesion || '-'}</div>
-            </div>
-          </div>
-        </div>
-      `;
-    } else {
-      zone.style.display = "block";
-      zone.innerHTML = `<div class="alert alert-warning">Aucun membre trouvé sous le matricule <strong>${matSaisi}</strong>. Vérifiez votre saisie.</div>`;
-    }
-  };
-
-  window.chargerMembrePourModification = function(idDoc) {
-    const m = cacheMembresLocal.find(item => item.id === idDoc);
-    if (!m) return;
-
-    document.getElementById("nomMembre").value = m.nom || "";
-    document.getElementById("prenomMembre").value = m.prenom || "";
-    document.getElementById("postnomMembre").value = m.postnom || "";
-    document.getElementById("sexeMembre").value = m.sexe || "M";
-    document.getElementById("dateAdhesionMembre").value = m.dateAdhesion || "";
-    document.getElementById("contactMembre").value = m.contact || "";
-    document.getElementById("nationaliteMembre").value = m.nationalite || "Congolaise";
-    document.getElementById("provinceMembre").value = m.province || "Kinshasa";
-    document.getElementById("localisationMembre").value = m.localisation || "";
-    document.getElementById("niveauEtudesMembre").value = m.niveauEtudes || "Diplômé d'État";
-    document.getElementById("etatCivilMembre").value = m.etatCivil || "Célibataire";
-    document.getElementById("professionMembre").value = m.profession || "";
-    document.getElementById("statutMembre").value = m.statut || "Membre";
-
-    const form = document.getElementById("formulaireInscription");
-    form.setAttribute("data-id-edition", idDoc);
-
-    const btnSubmit = form.querySelector("button[type='submit']");
-    if (btnSubmit) {
-      btnSubmit.innerHTML = '<i class="icon ion-md-save me-1"></i> Mettre à jour la fiche';
-    }
-
-    form.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  window.supprimerMembre = async function(idMembre, nomMembre) {
-    const motDePasse = prompt(`ATTENTION : Suppression de "${nomMembre}".\nSeul le Président peut effectuer cette action.\nVeuillez entrer le code secret :`);
-
-    if (motDePasse === null) return;
-
-    if (motDePasse && motDePasse.trim() === CODE_SECRET_PRESIDENT) {
-      if (confirm(`Êtes-vous sûr de vouloir supprimer définitivement le membre : ${nomMembre} ?`)) {
-        try {
-          await deleteDoc(doc(db, "membres", idMembre));
-          alert("Membre supprimé avec succès.");
-        } catch (error) {
-          console.error("Erreur de suppression : ", error);
-          alert("Erreur lors de la suppression : " + error.message);
-        }
-      }
-    } else {
-      alert("Accès refusé ! Code secret incorrect.");
-    }
-  };
-
-  // AFFICHAGE DES MEMBRES EN TEMPS RÉEL
-  onSnapshot(collection(db, "membres"), (snapshot) => {
-    const tbody = document.getElementById("corpsTableauMembres");
-    if (!tbody) return;
-
-    tbody.innerHTML = "";
-    cacheMembresLocal = [];
-
-    snapshot.docs.forEach((docSnap) => {
-      const data = docSnap.data();
-      const idDoc = docSnap.id;
-      const matriculeAuto = "JSD-2026-" + idDoc.substring(0, 4).toUpperCase();
-      
-      const membreObj = { id: idDoc, matricule: matriculeAuto, ...data };
-      cacheMembresLocal.push(membreObj);
-
-      let badgeClass = "bg-info text-white";
-      if (data.statut === "Président") badgeClass = "bg-success text-white";
-      if (data.statut === "Conseiller") badgeClass = "bg-primary text-white";
-      if (data.statut === "Membre d'Honneur") badgeClass = "bg-warning text-dark";
-
-      const nomComplet = `${data.nom || ''} ${data.prenom || ''} ${data.postnom || ''}`.trim();
-
-      const newRow = document.createElement("tr");
-      newRow.innerHTML = `
-        <td><strong>${matriculeAuto}</strong></td>
-        <td>${nomComplet || '-'}</td>
-        <td>${data.sexe || '-'}</td>
-        <td>${data.contact || '-'}</td>
-        <td>${data.province || '-'}</td>
-        <td><span class="badge ${badgeClass} px-2 py-1">${data.statut || 'Membre'}</span></td>
-        <td>${data.dateAdhesion || '-'}</td>
-        <td class="text-center no-print">
-          <button type="button" class="btn btn-sm btn-outline-warning me-1" title="Modifier" 
-            onclick="chargerMembrePourModification('${idDoc}')">
-            <i class="icon ion-md-create"></i> Modifier
-          </button>
-          
-          <button type="button" class="btn btn-sm btn-outline-danger" title="Supprimer" 
-            onclick="supprimerMembre('${idDoc}', '${(data.nom || '').replace(/'/g, "\\'")}')">
-            <i class="icon ion-md-trash"></i> Supprimer
-          </button>
-        </td>
-      `;
-      tbody.appendChild(newRow);
-    });
-  });
-
-  // 3. COTISATIONS
-  window.enregistrerCotisation = async function(e) {
-    if (e) e.preventDefault();
-    const membre = document.getElementById("cotisationMembre").value.trim();
-    const typeMembre = document.getElementById("cotisationTypeMembre").value;
-    const montant = document.getElementById("cotisationMontant").value;
-    const mode = document.getElementById("cotisationModePaiement").value;
-    const ref = document.getElementById("cotisationRefMPesa") ? document.getElementById("cotisationRefMPesa").value.trim() : "";
-
-    if (!membre || !montant) {
-      alert("Veuillez saisir le nom/matricule du membre et le montant.");
-      return;
-    }
-
-    try {
-      await addDoc(collection(db, "cotisations"), {
-        membre, typeMembre, montant, mode, reference: ref,
-        statut: "En attente validation",
-        date: new Date().toISOString(),
-        createdAt: serverTimestamp()
-      });
-      alert("Cotisation soumise avec succès ! En attente de validation par la Caisse.");
-      document.getElementById("formCotisation").reset();
-      document.getElementById("blocAideMPesa").style.display = "none";
-    } catch (err) {
-      console.error("Erreur enregistrement cotisation :", err);
-      alert("Erreur lors de l'enregistrement de la cotisation.");
-    }
-  };
-
-  onSnapshot(collection(db, "cotisations"), (snapshot) => {
-    const tbody = document.getElementById("corpsTableauCotisations");
-    if (!tbody) return;
-
-    tbody.innerHTML = "";
-
-    if (snapshot.empty) {
-      tbody.innerHTML = `<tr><td colspan="8" class="text-center text-muted py-3">Aucune cotisation enregistrée.</td></tr>`;
-      return;
-    }
-
-    snapshot.docs.forEach((docSnap) => {
-      const c = docSnap.data();
-      const idDoc = docSnap.id;
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td><strong>${c.membre || '-'}</strong></td>
-        <td>${c.typeMembre || '-'}</td>
-        <td>${c.montant || '0'} USD</td>
-        <td>${c.mode || '-'}</td>
-        <td>${c.reference || '-'}</td>
-        <td><span class="badge ${c.statut === 'Validé' ? 'bg-success' : 'bg-warning text-dark'}">${c.statut || 'En attente'}</span></td>
-        <td>${c.date ? new Date(c.date).toLocaleDateString('fr-FR') : '-'}</td>
-        <td class="no-print">
-          ${c.statut !== 'Validé' ? `<button class="btn btn-sm btn-success" onclick="validerCotisation('${idDoc}')">Valider</button>` : '<i class="icon ion-md-checkmark text-success"></i>'}
-        </td>
-      `;
-      tbody.appendChild(tr);
-    });
-  });
-
-  window.validerCotisation = async function(idCotisation) {
-    const code = prompt("Entrez le code secret pour valider le paiement :");
-    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
-      try {
-        await updateDoc(doc(db, "cotisations", idCotisation), { statut: "Validé" });
-        alert("Paiement validé avec succès !");
-      } catch (err) {
-        alert("Erreur lors de la validation.");
-      }
-    } else if (code !== null) {
-      alert("Code secret incorrect.");
-    }
-  };
-
-  // 4. MESSAGERIE PRIVÉE SÉCURISÉE ENTRE LE PRÉSIDENT ET LES MEMBRES
-  window.connexionMessagerie = async function() {
-    const champMat = document.getElementById("chatMatricule");
-    const matSaisi = champMat ? champMat.value.trim() : "";
-
-    if (!matSaisi) {
-      alert("Veuillez saisir votre matricule membre ou le code secret du Président.");
-      return;
-    }
-
-    if (matSaisi === CODE_SECRET_PRESIDENT) {
-      sessionChatMembre = { role: "president" };
-      document.getElementById("blocConnexionChat").style.display = "none";
-      document.getElementById("interfacePresidentChat").style.display = "block";
-      document.getElementById("btnDeconnexionChat").style.display = "inline-block";
-      chargerConversationsPresident();
-      return;
-    }
-
-    try {
-      const matUpper = matSaisi.toUpperCase();
-      let membreTrouve = cacheMembresLocal.find(m => m.matricule === matUpper);
-
-      if (!membreTrouve) {
-        const querySnapshot = await getDocs(collection(db, "membres"));
-        querySnapshot.forEach((docSnap) => {
-          const idDoc = docSnap.id;
-          const matAuto = "JSD-2026-" + idDoc.substring(0, 4).toUpperCase();
-          if (matAuto === matUpper) {
-            membreTrouve = { id: idDoc, matricule: matAuto, ...docSnap.data() };
-          }
-        });
-      }
-
-      if (membreTrouve) {
-        sessionChatMembre = membreTrouve;
-        const nomComplet = `${membreTrouve.nom || ''} ${membreTrouve.prenom || ''}`.trim();
-        document.getElementById("nomMembreChatEnCours").textContent = nomComplet || "Membre JSD";
-        document.getElementById("matMembreChatEnCours").textContent = membreTrouve.matricule;
-
-        document.getElementById("blocConnexionChat").style.display = "none";
-        document.getElementById("interfaceMembreChat").style.display = "block";
-        document.getElementById("btnDeconnexionChat").style.display = "inline-block";
-
-        ecouterMessagesMembre(membreTrouve.matricule);
-      } else {
-        alert("Accès refusé ! Matricule non reconnu. Vérifiez votre saisie ou enregistrez-vous comme membre.");
-      }
-    } catch (err) {
-      console.error("Erreur de vérification matricule :", err);
-      alert("Erreur lors de la vérification : " + err.message);
-    }
-  };
-
-  window.deconnexionChat = function() {
-    if (desabonnerEcouteChat) desabonnerEcouteChat();
-    if (desabonnerEcouteConversations) desabonnerEcouteConversations();
-
-    sessionChatMembre = null;
-    membreSelectionneParPresident = null;
-
-    document.getElementById("blocConnexionChat").style.display = "block";
-    document.getElementById("interfaceMembreChat").style.display = "none";
-    document.getElementById("interfacePresidentChat").style.display = "none";
-    document.getElementById("btnDeconnexionChat").style.display = "none";
-    document.getElementById("chatMatricule").value = "";
-  };
-
-  window.envoyerMessageMembre = async function(e) {
-    if (e) e.preventDefault();
-    const txtInput = document.getElementById("texteMsgMembre");
-    const messageTxt = txtInput.value.trim();
-
-    if (!messageTxt || !sessionChatMembre) return;
-
-    try {
-      const nomComplet = `${sessionChatMembre.nom || ''} ${sessionChatMembre.prenom || ''}`.trim() || sessionChatMembre.matricule;
-      await addDoc(collection(db, "messages_prives"), {
-        matriculeMembre: sessionChatMembre.matricule,
-        nomMembre: nomComplet,
-        expediteur: "membre",
-        message: messageTxt,
-        lu: false,
-        createdAt: serverTimestamp()
-      });
-      txtInput.value = "";
-    } catch (err) {
-      console.error("Erreur d'envoi du message :", err);
-      alert("Impossible d'envoyer le message : " + err.message);
-    }
-  };
-
-  function ecouterMessagesMembre(matricule) {
-    if (desabonnerEcouteChat) desabonnerEcouteChat();
-
-    const q = query(
-      collection(db, "messages_prives"),
-      where("matriculeMembre", "==", matricule)
-    );
-
-    desabonnerEcouteChat = onSnapshot(q, (snapshot) => {
-      const boite = document.getElementById("boiteDiscussionMembre");
-      if (!boite) return;
-      boite.innerHTML = "";
-
-      if (snapshot.empty) {
-        boite.innerHTML = `<div class="text-center text-muted mt-5"><i class="icon ion-md-lock me-1"></i> Canal sécurisé ouvert. Écrivez votre message au Président.</div>`;
-        return;
-      }
-
-      const docsTries = snapshot.docs.map(docSnap => docSnap.data()).sort((a, b) => {
-        const dateA = a.createdAt ? a.createdAt.toDate() : new Date();
-        const dateB = b.createdAt ? b.createdAt.toDate() : new Date();
-        return dateA - dateB;
-      });
-
-      docsTries.forEach((msg) => {
-        const div = document.createElement("div");
-        const estMembre = msg.expediteur === "membre";
-
-        div.className = `msg-bubble ${estMembre ? 'msg-envoye' : 'msg-recu'}`;
-        div.innerHTML = `
-          <div class="fw-bold small mb-1">${estMembre ? 'Vous' : 'Président JSD'}</div>
-          <div>${msg.message || ''}</div>
-        `;
-        boite.appendChild(div);
-      });
-
-      boite.scrollTop = boite.scrollHeight;
-    }, (err) => {
-      console.error("Erreur écoute membre :", err);
-    });
-  }
-
-  function chargerConversationsPresident() {
-    if (desabonnerEcouteConversations) desabonnerEcouteConversations();
-
-    const q = query(collection(db, "messages_prives"));
-
-    desabonnerEcouteConversations = onSnapshot(q, (snapshot) => {
-      const liste = document.getElementById("listeConversationsPresident");
-      if (!liste) return;
-      liste.innerHTML = "";
-
-      const conversationsMap = new Map();
-
-      const docsTries = snapshot.docs.map(docSnap => docSnap.data()).sort((a, b) => {
-        const dateA = a.createdAt ? a.createdAt.toDate() : new Date();
-        const dateB = b.createdAt ? b.createdAt.toDate() : new Date();
-        return dateB - dateA;
-      });
-
-      docsTries.forEach((msg) => {
-        const mat = msg.matriculeMembre;
-
-        if (!conversationsMap.has(mat)) {
-          conversationsMap.set(mat, {
-            matricule: mat,
-            nom: msg.nomMembre || mat,
-            dernierMessage: msg.message,
-            nonLu: (!msg.lu && msg.expediteur === "membre") ? 1 : 0
+        <!-- SCRIPT FIREBASE UNIQUE ET GLOBAL -->
+        <script type="module">
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+          import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, where, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+          const firebaseConfig = {
+            apiKey: "AIzaSyBlGSwEPk6CM4A07SeqmZeuaFxUWMRlESI",
+            authDomain: "jeunesse-social-pour-le-dvelop.firebaseapp.com",
+            projectId: "jeunesse-social-pour-le-dvelop",
+            storageBucket: "jeunesse-social-pour-le-dvelop.firebasestorage.app",
+            messagingSenderId: "728224479628",
+            appId: "1:728224479628:web:c43406a998d184d3a63ea9",
+            measurementId: "G-F81CFLLD55"
+          };
+
+          const app = initializeApp(firebaseConfig);
+          const db = getFirestore(app);
+
+          let enEnregistrement = false;
+          const CODE_SECRET_PRESIDENT = "ann@s0852";
+          let cacheMembresLocal = [];
+
+          let sessionChatMembre = null;
+          let desabonnerEcouteChat = null;
+          let desabonnerEcouteConversations = null;
+          let membreSelectionneParPresident = null;
+
+          document.addEventListener("DOMContentLoaded", () => {
+            const today = new Date().toISOString().split('T')[0];
+            const champDate = document.getElementById("dateAdhesionMembre");
+            if (champDate) champDate.value = today;
           });
-        } else if (!msg.lu && msg.expediteur === "membre") {
-          conversationsMap.get(mat).nonLu += 1;
-        }
-      });
 
-      if (conversationsMap.size === 0) {
-        liste.innerHTML = `<div class="p-3 text-muted text-center">Aucune discussion enregistrée.</div>`;
-        return;
-      }
+          window.gestionAffichageMPesa = function() {
+              var mode = document.getElementById('cotisationModePaiement').value;
+              var bloc = document.getElementById('blocAideMPesa');
+              if (bloc) bloc.style.display = (mode === 'M-Pesa') ? 'block' : 'none';
+          };
 
-      conversationsMap.forEach((conv) => {
-        const a = document.createElement("a");
-        a.className = `list-group-item list-group-item-action conversation-item ${membreSelectionneParPresident === conv.matricule ? 'active' : ''}`;
-        a.onclick = () => ouvrirDiscussionPresident(conv.matricule, conv.nom);
+          window.imprimerSection = function(elementId, titreDoc) {
+              var element = document.getElementById(elementId);
+              if (!element) return;
+              element.classList.add('is-printing');
+              var enteteImpression = document.createElement('div');
+              enteteImpression.className = 'text-center mb-4 is-printing';
+              enteteImpression.innerHTML = '<h3>Jeunesse Sociale pour le Développement (JSD)</h3><p class="text-muted">' + (titreDoc || '') + '</p><hr>';
+              element.insertBefore(enteteImpression, element.firstChild);
+              setTimeout(function() {
+                  window.print();
+                  element.removeChild(enteteImpression);
+                  element.classList.remove('is-printing');
+              }, 300);
+          };
 
-        a.innerHTML = `
-          <div class="d-flex w-100 justify-content-between align-items-center">
-            <h6 class="mb-1 text-truncate fw-bold">${conv.nom}</h6>
-            ${conv.nonLu > 0 ? `<span class="badge bg-danger rounded-pill">${conv.nonLu} non lu(s)</span>` : ''}
-          </div>
-          <small class="text-muted d-block text-truncate">${conv.matricule}</small>
-          <small class="text-secondary text-truncate d-block">${conv.dernierMessage || ''}</small>
-        `;
-        liste.appendChild(a);
-      });
-    });
-  }
+          window.toggleFormulaireEvenementSecurise = function() {
+            const codeSaisi = prompt("ACCÈS SÉCURISÉ :\nSaisissez le code secret pour publier une activité :");
+            if (codeSaisi && codeSaisi.trim() === CODE_SECRET_PRESIDENT) {
+              const el = document.getElementById("formulairePublicatEvent");
+              if (el) { el.style.display = "block"; el.scrollIntoView({ behavior: 'smooth' }); }
+            } else if (codeSaisi !== null) {
+              alert("Code secret incorrect.");
+            }
+          };
 
-  window.ouvrirDiscussionPresident = function(matricule, nomMembre) {
-    membreSelectionneParPresident = matricule;
+          window.publierNouvelEvenement = async function() {
+            const titre = document.getElementById("evTitre").value.trim();
+            const desc = document.getElementById("evDescription").value.trim();
+            const dateEv = document.getElementById("evDate").value.trim();
+            const lieu = document.getElementById("evLieu").value.trim();
+            const places = document.getElementById("evPlaces").value;
+            const fichierInput = document.getElementById("evFichierImage");
 
-    const entete = document.getElementById("enTeteConvActivePresident");
-    const form = document.getElementById("formEnvoiMsgPresident");
-    entete.style.display = "block";
-    form.style.display = "block";
-    entete.innerHTML = `<i class="icon ion-md-chatbubbles me-2"></i> Discussion active avec : <strong>${nomMembre}</strong> (${matricule})`;
+            if (!titre || !desc) { alert("Veuillez saisir un titre et une description."); return; }
 
-    if (desabonnerEcouteChat) desabonnerEcouteChat();
+            if (fichierInput && fichierInput.files && fichierInput.files[0]) {
+              const reader = new FileReader();
+              reader.onload = async function(e) {
+                await enregistrerEvenementFirebase(titre, desc, dateEv, lieu, places, e.target.result);
+              };
+              reader.readAsDataURL(fichierInput.files[0]);
+            } else {
+              await enregistrerEvenementFirebase(titre, desc, dateEv, lieu, places, "");
+            }
+          };
 
-    const q = query(
-      collection(db, "messages_prives"),
-      where("matriculeMembre", "==", matricule)
-    );
+          async function enregistrerEvenementFirebase(titre, description, date, lieu, places, image) {
+            try {
+              await addDoc(collection(db, "evenements"), {
+                titre, description, date, lieu, places, image,
+                timestamp: Date.now(),
+                createdAt: serverTimestamp()
+              });
+              alert("Événement publié !");
+              document.getElementById("formulairePublicatEvent").style.display = "none";
+              document.getElementById("evTitre").value = "";
+              document.getElementById("evDescription").value = "";
+            } catch (err) {
+              alert("Erreur : " + err.message);
+            }
+          }
 
-    desabonnerEcouteChat = onSnapshot(q, (snapshot) => {
-      const boite = document.getElementById("boiteDiscussionPresident");
-      if (!boite) return;
-      boite.innerHTML = "";
+          onSnapshot(collection(db, "evenements"), (snapshot) => {
+            const container = document.getElementById("events-widget-container");
+            if (!container) return;
+            container.innerHTML = "";
+            const maintenant = Date.now();
+            const duree24h = 24 * 60 * 60 * 1000;
 
-      const docsTries = snapshot.docs.map(docSnap => ({ idDoc: docSnap.id, ...docSnap.data() })).sort((a, b) => {
-        const dateA = a.createdAt ? a.createdAt.toDate() : new Date();
-        const dateB = b.createdAt ? b.createdAt.toDate() : new Date();
-        return dateA - dateB;
-      });
+            snapshot.docs.forEach((docSnap) => {
+              const ev = docSnap.data();
+              const idDoc = docSnap.id;
+              if (ev.timestamp && (maintenant - ev.timestamp > duree24h)) return;
 
-      docsTries.forEach((msg) => {
-        const idDoc = msg.idDoc;
-        const estPresi = msg.expediteur === "president";
+              const col = document.createElement("div");
+              col.className = "col-md-6 col-lg-4 mb-3";
+              col.innerHTML = `
+                <div class="card h-100 shadow-sm border-0">
+                  ${ev.image ? `<img src="${ev.image}" class="card-img-top" style="max-height:180px; object-fit:cover;" alt="Affiche">` : ''}
+                  <div class="card-body">
+                    <h5 class="card-title text-primary fw-bold">${ev.titre || ''}</h5>
+                    <p class="card-text text-secondary">${ev.description || ''}</p>
+                    <hr>
+                    <p class="small mb-1"><strong>Date:</strong> ${ev.date || 'Prochainement'}</p>
+                    <p class="small mb-1"><strong>Lieu:</strong> ${ev.lieu || 'Siège JSD'}</p>
+                    <button class="btn btn-sm btn-outline-danger w-100 mt-2" onclick="supprimerEvenement('${idDoc}')">Supprimer</button>
+                  </div>
+                </div>
+              `;
+              container.appendChild(col);
+            });
+          });
 
-        if (!msg.lu && msg.expediteur === "membre") {
-          updateDoc(doc(db, "messages_prives", idDoc), { lu: true });
-        }
+          window.supprimerEvenement = async function(idEv) {
+            const code = prompt("Code secret pour supprimer :");
+            if (code && code.trim() === CODE_SECRET_PRESIDENT) {
+              await deleteDoc(doc(db, "evenements", idEv));
+              alert("Supprimé.");
+            }
+          };
 
-        const div = document.createElement("div");
-        div.className = `msg-bubble ${estPresi ? 'msg-envoye' : 'msg-recu'}`;
-        div.innerHTML = `
-          <div class="fw-bold small mb-1">${estPresi ? 'Vous (Président)' : nomMembre}</div>
-          <div>${msg.message || ''}</div>
-        `;
-        boite.appendChild(div);
-      });
+          window.enregistrerMembre = async function(event) {
+            if (event) event.preventDefault();
+            if (enEnregistrement) return;
 
-      boite.scrollTop = boite.scrollHeight;
-    });
+            const nom = document.getElementById("nomMembre").value.trim();
+            const prenom = document.getElementById("prenomMembre").value.trim();
+            const contact = document.getElementById("contactMembre").value.trim();
 
-    chargerConversationsPresident();
-  };
+            if (!nom || !prenom || !contact) { alert("Remplissez les champs obligatoires."); return; }
 
-  window.envoyerMessagePresident = async function(e) {
-    if (e) e.preventDefault();
-    const txtInput = document.getElementById("texteMsgPresident");
-    const messageTxt = txtInput.value.trim();
+            try {
+              enEnregistrement = true;
+              await addDoc(collection(db, "membres"), {
+                nom, prenom,
+                postnom: document.getElementById("postnomMembre").value.trim(),
+                sexe: document.getElementById("sexeMembre").value,
+                dateAdhesion: document.getElementById("dateAdhesionMembre").value,
+                contact,
+                nationalite: document.getElementById("nationaliteMembre").value.trim(),
+                province: document.getElementById("provinceMembre").value,
+                localisation: document.getElementById("localisationMembre").value.trim(),
+                niveauEtudes: document.getElementById("niveauEtudesMembre").value,
+                etatCivil: document.getElementById("etatCivilMembre").value,
+                profession: document.getElementById("professionMembre").value.trim(),
+                statut: document.getElementById("statutMembre").value
+              });
+              alert("Membre enregistré avec succès !");
+              document.getElementById("formulaireInscription").reset();
+            } catch (error) {
+              alert("Erreur : " + error.message);
+            } finally {
+              enEnregistrement = false;
+            }
+          };
 
-    if (!messageTxt || !membreSelectionneParPresident) return;
+          window.deverrouillerTableauPresident = function() {
+            const code = prompt("Code secret du Président :");
+            if (code && code.trim() === CODE_SECRET_PRESIDENT) {
+              document.getElementById("conteneurTableauGeneral").style.display = "block";
+              document.getElementById("btnImprimerListeMembres").style.display = "inline-block";
+              alert("Déverrouillé.");
+            }
+          };
 
-    try {
-      await addDoc(collection(db, "messages_prives"), {
-        matriculeMembre: membreSelectionneParPresident,
-        nomMembre: "Président JSD",
-        expediteur: "president",
-        message: messageTxt,
-        lu: true,
-        createdAt: serverTimestamp()
-      });
-      txtInput.value = "";
-    } catch (err) {
-      console.error("Erreur de réponse du Président :", err);
-      alert("Erreur lors de l'envoi de la réponse : " + err.message);
-    }
-  };
+          window.deverrouillerCotisationsPresident = function() {
+            const code = prompt("Code secret Caissier :");
+            if (code && code.trim() === CODE_SECRET_PRESIDENT) {
+              document.getElementById("conteneurHistoriqueCotisations").style.display = "block";
+              alert("Déverrouillé.");
+            }
+          };
 
-  // 5. AVIS & CRITIQUES
-  window.publierAvis = async function(e) {
-    if (e) e.preventDefault();
-    const auteur = document.getElementById("avisAuteur").value.trim();
-    const role = document.getElementById("avisRole").value.trim();
-    const message = document.getElementById("avisMessage").value.trim();
+          window.rechercherFicheMembre = function() {
+            const matSaisi = document.getElementById("rechercheMatriculeMembre").value.trim().toUpperCase();
+            const zone = document.getElementById("zoneFichePersonnelle");
+            const membre = cacheMembresLocal.find(m => m.matricule === matSaisi);
 
-    if (!auteur || !message) {
-      alert("Veuillez renseigner votre nom et votre message.");
-      return;
-    }
+            zone.style.display = "block";
+            if (membre) {
+              zone.innerHTML = `<div class="card border-info"><div class="card-body"><strong>${membre.matricule}</strong> - ${membre.nom} ${membre.prenom} (${membre.statut})</div></div>`;
+            } else {
+              zone.innerHTML = `<div class="alert alert-warning">Aucun membre trouvé.</div>`;
+            }
+          };
 
-    try {
-      await addDoc(collection(db, "avis"), {
-        auteur, 
-        role, 
-        message,
-        createdAt: serverTimestamp()
-      });
-      
-      alert("Merci ! Votre avis a été enregistré avec succès.");
-      document.getElementById("formAjoutAvis").reset();
+          onSnapshot(collection(db, "membres"), (snapshot) => {
+            const tbody = document.getElementById("corpsTableauMembres");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+            cacheMembresLocal = [];
 
-      const collapseElement = document.getElementById("sectionListeAvis");
-      if (collapseElement && window.bootstrap) {
-        const bsCollapse = new bootstrap.Collapse(collapseElement, { show: true });
-        bsCollapse.show();
-      } else if (collapseElement) {
-        collapseElement.classList.add("show");
-      }
+            snapshot.docs.forEach((docSnap) => {
+              const data = docSnap.data();
+              const idDoc = docSnap.id;
+              const matriculeAuto = "JSD-2026-" + idDoc.substring(0, 4).toUpperCase();
+              cacheMembresLocal.push({ id: idDoc, matricule: matriculeAuto, ...data });
 
-    } catch (err) {
-      alert("Erreur lors de la publication de votre avis : " + err.message);
-    }
-  };
+              const tr = document.createElement("tr");
+              tr.innerHTML = `
+                <td><strong>${matriculeAuto}</strong></td>
+                <td>${data.nom} ${data.prenom}</td>
+                <td>${data.sexe}</td>
+                <td>${data.contact}</td>
+                <td>${data.province}</td>
+                <td><span class="badge bg-info">${data.statut}</span></td>
+                <td>${data.dateAdhesion}</td>
+                <td class="text-center no-print">
+                  <button class="btn btn-sm btn-outline-danger" onclick="supprimerMembre('${idDoc}')">Supprimer</button>
+                </td>
+              `;
+              tbody.appendChild(tr);
+            });
+          });
 
-  onSnapshot(collection(db, "avis"), (snapshot) => {
-    const conteneur = document.getElementById("conteneurAvisIndividuels");
-    if (!conteneur) return;
+          window.supprimerMembre = async function(id) {
+            const code = prompt("Code secret :");
+            if (code === CODE_SECRET_PRESIDENT) {
+              await deleteDoc(doc(db, "membres", id));
+              alert("Supprimé.");
+            }
+          };
 
-    conteneur.innerHTML = "";
+          window.enregistrerCotisation = async function(e) {
+            if (e) e.preventDefault();
+            await addDoc(collection(db, "cotisations"), {
+              membre: document.getElementById("cotisationMembre").value.trim(),
+              typeMembre: document.getElementById("cotisationTypeMembre").value,
+              montant: document.getElementById("cotisationMontant").value,
+              mode: document.getElementById("cotisationModePaiement").value,
+              reference: document.getElementById("cotisationRefMPesa")?.value.trim() || "",
+              statut: "En attente",
+              date: new Date().toISOString()
+            });
+            alert("Cotisation soumise !");
+            document.getElementById("formCotisation").reset();
+          };
 
-    if (snapshot.empty) {
-      conteneur.innerHTML = `<div class="text-center text-muted p-3">Aucun avis publié pour le moment.</div>`;
-      return;
-    }
+          onSnapshot(collection(db, "cotisations"), (snapshot) => {
+            const tbody = document.getElementById("corpsTableauCotisations");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+            snapshot.docs.forEach((docSnap) => {
+              const c = docSnap.data();
+              const tr = document.createElement("tr");
+              tr.innerHTML = `<td>${c.membre}</td><td>${c.typeMembre}</td><td>${c.montant} USD</td><td>${c.mode}</td><td>${c.reference}</td><td>${c.statut}</td><td>-</td><td>-</td>`;
+              tbody.appendChild(tr);
+            });
+          });
 
-    const avisTries = snapshot.docs.map(doc => doc.data()).sort((a, b) => {
-      const dateA = a.createdAt ? a.createdAt.toDate() : new Date();
-      const dateB = b.createdAt ? b.createdAt.toDate() : new Date();
-      return dateB - dateA;
-    });
+          window.connexionMessagerie = async function() {
+            const mat = document.getElementById("chatMatricule").value.trim().toUpperCase();
+            if (mat === CODE_SECRET_PRESIDENT) {
+              sessionChatMembre = { role: "president" };
+              document.getElementById("blocConnexionChat").style.display = "none";
+              document.getElementById("interfacePresidentChat").style.display = "block";
+              document.getElementById("btnDeconnexionChat").style.display = "inline-block";
+              chargerConversationsPresident();
+              return;
+            }
+            const membre = cacheMembresLocal.find(m => m.matricule === mat);
+            if (membre) {
+              sessionChatMembre = membre;
+              document.getElementById("nomMembreChatEnCours").textContent = membre.nom;
+              document.getElementById("matMembreChatEnCours").textContent = membre.matricule;
+              document.getElementById("blocConnexionChat").style.display = "none";
+              document.getElementById("interfaceMembreChat").style.display = "block";
+              document.getElementById("btnDeconnexionChat").style.display = "inline-block";
+              ecouterMessagesMembre(membre.matricule);
+            } else {
+              alert("Matricule non reconnu.");
+            }
+          };
 
-    avisTries.forEach((a) => {
-      const item = document.createElement("div");
-      item.className = "list-group-item border-bottom py-3 px-2";
-      
-      item.innerHTML = `
-        <div class="d-flex w-100 justify-content-between align-items-center mb-1">
-          <h6 class="mb-0 fw-bold text-primary">${a.auteur || 'Anonyme'}</h6>
-          <span class="badge bg-light text-dark border fw-normal">${a.role || 'Visiteur'}</span>
-        </div>
-        <p class="mb-0 text-secondary" style="font-size: 0.95rem;">${a.message || ''}</p>
-      `;
-      conteneur.appendChild(item);
-    });
-  });
+          window.deconnexionChat = function() {
+            if (desabonnerEcouteChat) desabonnerEcouteChat();
+            location.reload();
+          };
 
-  // ============================================================
-  // 6. DEMANDES DE SERVICES (8 cartes avec bouton, titre et boîte de suivi par service)
-  // ============================================================
-  const SERVICES_JSD = {
-    formation: "Formation Professionnelle et Renforcement des Capacités",
-    entrepreneuriat: "Projets d'entrepreneuriat et d'auto-prise en charge",
-    education: "Éducation et Alphabétisation",
-    socioculturel: "Activités Socioculturelles et Sportives",
-    multiservices: "Projets Multiservices et de développement durable",
-    sante: "Sensibilisation et Santé communautaire",
-    leadership: "Encadrement civique et leadership youth",
-    orientation: "Orientation et accompagnement social"
-  };
-  const SERVICES_COURTS = {
-    formation: "Formation", entrepreneuriat: "Entrepreneuriat", education: "Éducation",
-    socioculturel: "Socioculturel", multiservices: "Multiservices", sante: "Santé",
-    leadership: "Leadership", orientation: "Orientation"
-  };
+          window.envoyerMessageMembre = async function(e) {
+            if (e) e.preventDefault();
+            const txt = document.getElementById("texteMsgMembre").value.trim();
+            if (!txt || !sessionChatMembre) return;
+            await addDoc(collection(db, "messages_prives"), {
+              matriculeMembre: sessionChatMembre.matricule,
+              nomMembre: sessionChatMembre.nom,
+              expediteur: "membre",
+              message: txt,
+              lu: false,
+              createdAt: serverTimestamp()
+            });
+            document.getElementById("texteMsgMembre").value = "";
+          };
 
-  let srvDemandes = [];
-  let srvFiltre = "tous";
-  let srvEcouteActive = false;
-  let srvEnvoiEnCours = false;
+          function ecouterMessagesMembre(mat) {
+            if (desabonnerEcouteChat) desabonnerEcouteChat();
+            desabonnerEcouteChat = onSnapshot(query(collection(db, "messages_prives"), where("matriculeMembre", "==", mat)), (snap) => {
+              const boite = document.getElementById("boiteDiscussionMembre");
+              if (!boite) return;
+              boite.innerHTML = "";
+              snap.docs.map(d => d.data()).forEach(msg => {
+                const div = document.createElement("div");
+                div.className = `msg-bubble ${msg.expediteur === 'membre' ? 'msg-envoye' : 'msg-recu'}`;
+                div.innerHTML = `<strong>${msg.expediteur === 'membre' ? 'Vous' : 'Président'}</strong><p class="mb-0">${msg.message}</p>`;
+                boite.appendChild(div);
+              });
+              boite.scrollTop = boite.scrollHeight;
+            });
+          }
 
-  function srvEsc(v) {
-    return String(v === undefined || v === null ? "" : v)
-      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
-  }
-  function srvReference() {
-    const c = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-    let r = "";
-    for (let i = 0; i < 6; i++) r += c[Math.floor(Math.random() * c.length)];
-    return "SRV-" + r;
-  }
-  function srvChiffres(t) { return String(t || "").replace(/\D/g, "").slice(-9); }
-  function srvLienWhatsApp(phone) {
-    let d = String(phone || "").replace(/\D/g, "");
-    if (d.startsWith("0")) d = "243" + d.slice(1);
-    return "https://wa.me/" + d;
-  }
-  function srvDate(iso) { return iso ? new Date(iso).toLocaleString("fr-FR") : "-"; }
+          function chargerConversationsPresident() {
+            onSnapshot(collection(db, "messages_prives"), (snap) => {
+              const liste = document.getElementById("listeConversationsPresident");
+              if (!liste) return;
+              liste.innerHTML = "";
+              const map = new Map();
+              snap.docs.forEach(d => {
+                const m = d.data();
+                map.set(m.matriculeMembre, m.nomMembre);
+              });
+              map.forEach((nom, mat) => {
+                const a = document.createElement("a");
+                a.className = "list-group-item list-group-item-action conversation-item";
+                a.innerHTML = `<strong>${nom}</strong><br><small>${mat}</small>`;
+                a.onclick = () =>ouvrirDiscussionPresident(mat, nom);
+                liste.appendChild(a);
+              });
+            });
+          }
 
-  // ----- CÔTÉ UTILISATEUR -----
-  window.ouvrirDemandeService = function(cle) {
-    if (!SERVICES_JSD[cle]) return;
-    document.getElementById("demandeServiceCle").value = cle;
-    document.getElementById("titreServiceChoisi").textContent = "Demande : " + SERVICES_JSD[cle];
-    document.getElementById("confirmationDemande").style.display = "none";
-    const sec = document.getElementById("sectionDemandesServices");
-    sec.style.display = "block";
-    sec.scrollIntoView({ behavior: "smooth" });
-  };
+          window.ouvrirDiscussionPresident = function(mat, nom) {
+            membreSelectionneParPresident = mat;
+            document.getElementById("enTeteConvActivePresident").style.display = "block";
+            document.getElementById("formEnvoiMsgPresident").style.display = "block";
+            document.getElementById("enTeteConvActivePresident").textContent = `Discussion avec ${nom} (${mat})`;
+            if (desabonnerEcouteChat) desabonnerEcouteChat();
+            desabonnerEcouteChat = onSnapshot(query(collection(db, "messages_prives"), where("matriculeMembre", "==", mat)), (snap) => {
+              const boite = document.getElementById("boiteDiscussionPresident");
+              if (!boite) return;
+              boite.innerHTML = "";
+              snap.docs.map(d => d.data()).forEach(msg => {
+                const div = document.createElement("div");
+                div.className = `msg-bubble ${msg.expediteur === 'president' ? 'msg-envoye' : 'msg-recu'}`;
+                div.innerHTML = `<strong>${msg.expediteur === 'president' ? 'Vous' : nom}</strong><p class="mb-0">${msg.message}</p>`;
+                boite.appendChild(div);
+              });
+              boite.scrollTop = boite.scrollHeight;
+            });
+          };
 
-  window.afficherSectionFormations = function() { window.ouvrirDemandeService("formation"); };
+          window.envoyerMessagePresident = async function(e) {
+            if (e) e.preventDefault();
+            const txt = document.getElementById("texteMsgPresident").value.trim();
+            if (!txt || !membreSelectionneParPresident) return;
+            await addDoc(collection(db, "messages_prives"), {
+              matriculeMembre: membreSelectionneParPresident,
+              nomMembre: "Président JSD",
+              expediteur: "president",
+              message: txt,
+              lu: true,
+              createdAt: serverTimestamp()
+            });
+            document.getElementById("texteMsgPresident").value = "";
+          };
 
-  window.fermerDemandeService = function() {
-    document.getElementById("sectionDemandesServices").style.display = "none";
-  };
+          window.publierAvis = async function(e) {
+            if (e) e.preventDefault();
+            await addDoc(collection(db, "avis"), {
+              auteur: document.getElementById("avisAuteur").value.trim(),
+              role: document.getElementById("avisRole").value.trim(),
+              message: document.getElementById("avisMessage").value.trim(),
+              createdAt: serverTimestamp()
+            });
+            alert("Avis publié !");
+            document.getElementById("formAjoutAvis").reset();
+          };
 
-  window.enregistrerDemandeService = async function(e) {
-    if (e) e.preventDefault();
-    if (srvEnvoiEnCours) return;
+          onSnapshot(collection(db, "avis"), (snapshot) => {
+            const conteneur = document.getElementById("conteneurAvisIndividuels");
+            if (!conteneur) return;
+            conteneur.innerHTML = "";
+            snapshot.docs.forEach(doc => {
+              const a = doc.data();
+              const item = document.createElement("div");
+              item.className = "list-group-item border-bottom py-3";
+              item.innerHTML = `<strong>${a.auteur}</strong> (${a.role})<p class="mb-0 text-secondary">${a.message}</p>`;
+              conteneur.appendChild(item);
+            });
+          });
 
-    const cle = document.getElementById("demandeServiceCle").value;
-    const nom = document.getElementById("demandeNom").value.trim();
-    const phone = document.getElementById("demandePhone").value.trim();
-    const email = document.getElementById("demandeEmail").value.trim();
-    const message = document.getElementById("demandeMessage").value.trim();
+          // Services dynamiques
+          const SERVICES_JSD = {
+            formation: "Formation Professionnelle", entrepreneuriat: "Entrepreneuriat", education: "Éducation",
+            socioculturel: "Socioculturel", multiservices: "Multiservices", sante: "Santé", leadership: "Leadership", orientation: "Orientation"
+          };
 
-    if (!SERVICES_JSD[cle]) { alert("Veuillez d'abord choisir un service en touchant son titre."); return; }
-    if (!nom || !phone || !message) { alert("Veuillez remplir votre nom, votre téléphone et votre demande."); return; }
+          window.ouvrirDemandeService = function(cle) {
+            document.getElementById("demandeServiceCle").value = cle;
+            document.getElementById("titreServiceChoisi").textContent = "Demande : " + SERVICES_JSD[cle];
+            document.getElementById("sectionDemandesServices").style.display = "block";
+            document.getElementById("sectionDemandesServices").scrollIntoView({ behavior: "smooth" });
+          };
 
-    const reference = srvReference();
+          window.fermerDemandeService = function() {
+            document.getElementById("sectionDemandesServices").style.display = "none";
+          };
 
-    try {
-      srvEnvoiEnCours = true;
-      await addDoc(collection(db, "demandes_services"), {
-        service: cle,
-        serviceTitre: SERVICES_JSD[cle],
-        nom, phone, email, message, reference,
-        statut: "Nouvelle",
-        reponse: "",
-        dateDemande: new Date().toISOString(),
-        timestamp: Date.now(),
-        createdAt: serverTimestamp()
-      });
+          window.enregistrerDemandeService = async function(e) {
+            e.preventDefault();
+            const cle = document.getElementById("demandeServiceCle").value;
+            const ref = "SRV-" + Math.random().toString(36).substring(2, 8).toUpperCase();
+            await addDoc(collection(db, "demandes_services"), {
+              service: cle, serviceTitre: SERVICES_JSD[cle],
+              nom: document.getElementById("demandeNom").value.trim(),
+              phone: document.getElementById("demandePhone").value.trim(),
+              email: document.getElementById("demandeEmail").value.trim(),
+              message: document.getElementById("demandeMessage").value.trim(),
+              reference: ref, statut: "Nouvelle", reponse: "", dateDemande: new Date().toISOString()
+            });
+            document.getElementById("confirmationDemande").innerHTML = `Demande envoyée ! Votre référence : <strong>${ref}</strong>`;
+            document.getElementById("confirmationDemande").style.display = "block";
+            document.getElementById("formDemandeService").reset();
+          };
 
-      const conf = document.getElementById("confirmationDemande");
-      conf.innerHTML = "<strong>Demande envoyée avec succès.</strong><br>Conservez votre numéro de suivi : " +
-        "<span class='badge bg-dark text-white' style='font-size:1rem'>" + reference + "</span><br>" +
-        "<small>Utilisez-le avec votre numéro de téléphone, plus bas, pour lire la réponse du Président.</small>";
-      conf.style.display = "block";
+          window.suivreDemandeService = async function() {
+            const ref = document.getElementById("suiviReference").value.trim().toUpperCase();
+            const snap = await getDocs(query(collection(db, "demandes_services"), where("reference", "==", ref)));
+            const zone = document.getElementById("zoneSuiviDemande");
+            zone.style.display = "block";
+            if (!snap.empty) {
+              const data = snap.docs[0].data();
+              zone.innerHTML = `<div class="card p-3 bg-light">Statut : <strong>${data.statut}</strong><br>Réponse : ${data.reponse || 'En attente...'}</div>`;
+            } else {
+              zone.innerHTML = `<div class="alert alert-warning">Référence introuvable.</div>`;
+            }
+          };
 
-      document.getElementById("formDemandeService").reset();
-      document.getElementById("demandeServiceCle").value = cle;
-      document.getElementById("suiviReference").value = reference;
-      document.getElementById("suiviPhone").value = phone;
-    } catch (err) {
-      console.error("Erreur demande de service :", err);
-      alert("Erreur lors de l'envoi de la demande : " + err.message);
-    } finally {
-      srvEnvoiEnCours = false;
-    }
-  };
+          window.deverrouillerDemandesServices = function() {
+            const code = prompt("Code secret Président :");
+            if (code === CODE_SECRET_PRESIDENT) {
+              document.getElementById("panneauDemandesPresident").style.display = "block";
+              document.getElementById("panneauDemandesPresident").scrollIntoView({ behavior: "smooth" });
+              onSnapshot(collection(db, "demandes_services"), (snap) => {
+                const liste = document.getElementById("listeDemandesPresident");
+                liste.innerHTML = "";
+                snap.docs.forEach(docSnap => {
+                  const d = docSnap.data();
+                  const div = document.createElement("div");
+                  div.className = "card mb-2 p-3";
+                  div.innerHTML = `<strong>${d.nom}</strong> (${d.reference})<br>${d.message}<br><button class="btn btn-sm btn-success mt-2" onclick="repondreService('${docSnap.id}')">Répondre</button>`;
+                  liste.appendChild(div);
+                });
+              });
+            }
+          };
 
-  window.suivreDemandeService = async function() {
-    const ref = document.getElementById("suiviReference").value.trim().toUpperCase();
-    const tel = srvChiffres(document.getElementById("suiviPhone").value);
-    const zone = document.getElementById("zoneSuiviDemande");
-
-    if (!ref || !tel) { alert("Veuillez saisir votre numéro de suivi et votre téléphone."); return; }
-
-    try {
-      const snap = await getDocs(query(collection(db, "demandes_services"), where("reference", "==", ref)));
-      let trouvee = null;
-      snap.forEach((d) => {
-        const data = d.data();
-        if (srvChiffres(data.phone) === tel) trouvee = data;
-      });
-
-      zone.style.display = "block";
-      if (!trouvee) {
-        zone.innerHTML = "<div class='alert alert-warning'>Aucune demande trouvée avec ces informations. Vérifiez le numéro de suivi et le téléphone.</div>";
-        return;
-      }
-
-      const repondue = trouvee.statut === "Répondue" && trouvee.reponse;
-      zone.innerHTML =
-        "<div class='card border-" + (repondue ? "success" : "warning") + "'><div class='card-body'>" +
-        "<div class='d-flex justify-content-between flex-wrap'><strong>" + srvEsc(trouvee.serviceTitre) + "</strong>" +
-        "<span class='badge " + (repondue ? "bg-success text-white" : "bg-warning text-dark") + "'>" + (repondue ? "Répondue" : "En attente de réponse") + "</span></div>" +
-        "<small class='text-muted d-block mb-2'>Envoyée le " + srvDate(trouvee.dateDemande) + "</small>" +
-        "<p class='mb-2'><strong>Votre demande :</strong><br>" + srvEsc(trouvee.message) + "</p>" +
-        (repondue
-          ? "<div class='p-3 bg-light border rounded'><strong>Réponse du Président JSD</strong>" +
-            "<small class='text-muted d-block mb-1'>" + srvDate(trouvee.dateReponse) + "</small>" +
-            srvEsc(trouvee.reponse).replace(/\n/g, "<br>") + "</div>"
-          : "<em class='text-muted'>Le Président n'a pas encore répondu. Revenez plus tard avec le même numéro de suivi.</em>") +
-        "</div></div>";
-    } catch (err) {
-      console.error("Erreur de suivi :", err);
-      alert("Erreur lors de la recherche : " + err.message);
-    }
-  };
-
-  // ----- CÔTÉ PRÉSIDENT (sécurisé par le code secret) -----
-  window.deverrouillerDemandesServices = function() {
-    const code = prompt("ACCÈS SÉCURISÉ PRÉSIDENT :\nSaisissez le code secret pour consulter les demandes de services :");
-    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
-      const panneau = document.getElementById("panneauDemandesPresident");
-      panneau.style.display = "block";
-      panneau.scrollIntoView({ behavior: "smooth" });
-      srvDemarrerEcoute();
-    } else if (code !== null) {
-      alert("Accès refusé ! Code secret incorrect.");
-    }
-  };
-
-  window.fermerPanneauDemandes = function() {
-    document.getElementById("panneauDemandesPresident").style.display = "none";
-  };
-
-  function srvDemarrerEcoute() {
-    if (srvEcouteActive) { srvRendre(); return; }
-    srvEcouteActive = true;
-    onSnapshot(collection(db, "demandes_services"), (snapshot) => {
-      srvDemandes = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }))
-        .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
-      srvRendre();
-    }, (err) => {
-      console.error("Erreur lecture demandes :", err);
-      srvEcouteActive = false;
-      alert("Lecture des demandes impossible : " + err.message);
-    });
-  }
-
-  window.filtrerDemandesServices = function(cle) {
-    srvFiltre = cle;
-    srvRendre();
-  };
-
-  function srvRendre() {
-    const filtres = document.getElementById("filtresDemandes");
-    const liste = document.getElementById("listeDemandesPresident");
-    if (!filtres || !liste) return;
-
-    const brouillons = {};
-    liste.querySelectorAll("textarea[data-rep-id]").forEach((t) => { brouillons[t.dataset.repId] = t.value; });
-
-    const nouvellesTotal = srvDemandes.filter((d) => d.statut !== "Répondue").length;
-    let html = "<button type='button' class='btn btn-sm " + (srvFiltre === "tous" ? "btn-dark" : "btn-outline-dark") + "' onclick=\"filtrerDemandesServices('tous')\">Toutes (" +
-      srvDemandes.length + ")" + (nouvellesTotal ? " <span class='badge bg-danger text-white'>" + nouvellesTotal + "</span>" : "") + "</button>";
-    Object.keys(SERVICES_JSD).forEach((cle) => {
-      const total = srvDemandes.filter((d) => d.service === cle).length;
-      const nouv = srvDemandes.filter((d) => d.service === cle && d.statut !== "Répondue").length;
-      html += "<button type='button' class='btn btn-sm " + (srvFiltre === cle ? "btn-primary" : "btn-outline-primary") + "' onclick=\"filtrerDemandesServices('" + cle + "')\">" +
-        SERVICES_COURTS[cle] + " (" + total + ")" + (nouv ? " <span class='badge bg-danger text-white'>" + nouv + "</span>" : "") + "</button>";
-    });
-    filtres.innerHTML = html;
-
-    const affichees = srvFiltre === "tous" ? srvDemandes : srvDemandes.filter((d) => d.service === srvFiltre);
-    if (affichees.length === 0) {
-      liste.innerHTML = "<div class='text-center text-muted p-4'>Aucune demande pour cette rubrique.</div>";
-      return;
-    }
-
-    liste.innerHTML = affichees.map((d) => {
-      const repondue = d.statut === "Répondue";
-      return "<div class='card mb-3 " + (repondue ? "border-success" : "border-warning") + "'>" +
-        "<div class='card-header d-flex justify-content-between align-items-center flex-wrap'>" +
-          "<span><strong>" + srvEsc(d.nom) + "</strong> <small class='text-muted'>· " + srvEsc(d.reference) + "</small></span>" +
-          "<span class='badge " + (repondue ? "bg-success text-white" : "bg-warning text-dark") + "'>" + (repondue ? "Répondue" : "Nouvelle") + "</span>" +
-        "</div>" +
-        "<div class='card-body'>" +
-          "<div class='small text-primary fw-bold mb-1'>" + srvEsc(d.serviceTitre) + "</div>" +
-          "<div class='small mb-1'>📞 " + srvEsc(d.phone) + " &nbsp;<a href='" + srvLienWhatsApp(d.phone) + "' target='_blank' rel='noopener' class='btn btn-sm btn-success py-0'>WhatsApp</a>" +
-            (d.email ? " &nbsp;✉ " + srvEsc(d.email) : "") + "</div>" +
-          "<div class='small text-muted mb-2'>Reçue le " + srvDate(d.dateDemande) + "</div>" +
-          "<p class='mb-3 p-2 bg-light rounded'>" + srvEsc(d.message).replace(/\n/g, "<br>") + "</p>" +
-          "<label class='form-label fw-bold'>" + (repondue ? "Modifier la réponse (confidentielle) :" : "Votre réponse (confidentielle) :") + "</label>" +
-          "<textarea class='form-control mb-2' rows='3' data-rep-id='" + d.id + "' placeholder='Écrivez ici la réponse destinée uniquement à ce demandeur...'>" + srvEsc(d.reponse || "") + "</textarea>" +
-          "<div class='d-flex justify-content-between flex-wrap' style='gap:6px'>" +
-            "<button type='button' class='btn btn-sm btn-success fw-bold' onclick=\"repondreDemandeService('" + d.id + "')\">" + (repondue ? "Mettre à jour la réponse" : "Envoyer la réponse") + "</button>" +
-            "<button type='button' class='btn btn-sm btn-outline-danger' onclick=\"supprimerDemandeService('" + d.id + "')\">Supprimer</button>" +
-          "</div>" +
-          (repondue ? "<small class='text-muted d-block mt-2'>Dernière réponse le " + srvDate(d.dateReponse) + "</small>" : "") +
-        "</div></div>";
-    }).join("");
-
-    liste.querySelectorAll("textarea[data-rep-id]").forEach((t) => {
-      if (brouillons[t.dataset.repId] !== undefined) t.value = brouillons[t.dataset.repId];
-    });
-  }
-
-  window.repondreDemandeService = async function(id) {
-    const champ = document.querySelector("textarea[data-rep-id='" + id + "']");
-    const texte = champ ? champ.value.trim() : "";
-    if (!texte) { alert("Veuillez écrire une réponse avant de l'envoyer."); return; }
-    try {
-      await updateDoc(doc(db, "demandes_services", id), {
-        reponse: texte,
-        statut: "Répondue",
-        dateReponse: new Date().toISOString()
-      });
-      alert("Réponse enregistrée. Le demandeur la verra avec son numéro de suivi.");
-    } catch (err) {
-      console.error("Erreur réponse :", err);
-      alert("Erreur lors de l'envoi de la réponse : " + err.message);
-    }
-  };
-
-  window.supprimerDemandeService = async function(id) {
-    const code = prompt("Saisissez le code secret du Président pour supprimer cette demande :");
-    if (code === null) return;
-    if (code.trim() !== CODE_SECRET_PRESIDENT) { alert("Accès refusé ! Code secret incorrect."); return; }
-    if (!confirm("Supprimer définitivement cette demande ?")) return;
-    try {
-      await deleteDoc(doc(db, "demandes_services", id));
-    } catch (err) {
-      console.error("Erreur suppression :", err);
-      alert("Erreur lors de la suppression : " + err.message);
-    }
-  };
-</script>
+          window.repondreService = async function(id) {
+            const rep = prompt("Votre réponse :");
+            if (rep) {
+              await updateDoc(doc(db, "demandes_services", id), { reponse: rep, statut: "Répondue" });
+              alert("Réponse enregistrée.");
+            }
+          };
+        </script>
     </body>
 </html>
