@@ -571,64 +571,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Pricing start -->
-        <div class="pricing">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Nos Tarifs</h2>
-                    <p>Syllabus & Formations</p>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="price-content">
-                            <div class="price-plan">
-                                <i class="ion-md-home"></i>
-                                <p class="price-title">Métier</p>
-                                <h2 class="price-amount"><span>$</span>15<span>.2</span><span> / usd</span></h2>
-                            </div>
-                            <ul class="price-details">
-                                <li><i class="ion-md-checkmark"></i><strong>Bricolage</strong> et <strong>Transformation</strong></li>
-                                <li><i class="ion-md-checkmark"></i><strong>Orientation professionnelle</strong></li>                             
-                                <li><i class="ion-md-close"></i><strong>Brevet</strong> Avant la formation</li>                
-                            </ul>
-                            <a href="#" class="btn mian-btn price-btn">Acheter maintenant !</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="price-content features-price">
-                            <div class="price-plan">
-                                <i class="ion-md-star"></i>
-                                <p class="price-title">Formation Pro</p>
-                                <h2 class="price-amount"><span>$</span>19<span>.9</span><span> / usd</span></h2>
-                            </div>
-                            <ul class="price-details">
-                                <li><i class="ion-md-checkmark"></i><strong>Management</strong> et <strong>Leadership</strong></li>
-                                <li><i class="ion-md-checkmark"></i><strong>Compétence Travail</strong></li>
-                                <li><i class="ion-md-checkmark"></i><strong>Propreté environnementale</strong> & Salubrité</li>
-                            </ul>
-                            <a href="#" class="btn mian-btn price-btn features-price-btn">Acheter maintenant !</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="price-content">
-                            <div class="price-plan">
-                                <i class="ion-md-gift"></i>
-                                <p class="price-title">Informatique</p>
-                                <h2 class="price-amount"><span>$</span>29<span>.99</span><span> / m</span></h2>
-                            </div>
-                            <ul class="price-details">
-                                <li><i class="ion-md-checkmark"></i><strong>HTML5</strong> et <strong>CSS3</strong></li>
-                                <li><i class="ion-md-checkmark"></i><strong>Programmation</strong></li>                            
-                                <li><i class="ion-md-checkmark"></i><strong>Bureautique</strong> et VBA</li>
-                            </ul>
-                            <a href="#" class="btn mian-btn price-btn">Acheter maintenant !</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Pricing End-->
         
         <!-- Counters Start-->
         <div class="counters">
@@ -1074,7 +1016,7 @@
           window.repondreService = async function(id) {
             const rep = prompt("Votre réponse :");
             if (rep) {
-              await updateDoc(doc(db, "demandes_services", id), { reponse: rep, statut: "Répondue" });
+              await updateDoc(doc(doc(db, "demandes_services", id)), { reponse: rep, statut: "Répondue" });
               alert("Réponse enregistrée.");
             }
           };
