@@ -217,7 +217,8 @@
                             <a href="portfolio.html" class="nav-item nav-link">Portefeuilles</a>
                             <a href="pricing.html" class="nav-item nav-link">Tarifs</a>
                             <a href="carte.html" class="nav-item nav-link">Carte de membre</a>
-                            <a href="#rechercheMatriculeMembre" class="nav-item nav-link" onclick="allerASection('rechercheMatriculeMembre'); return false;">Consulter</a>
+                            <!-- Lien mis à jour pour pointer vers la page admin-jsd.html -->
+                            <a href="admin-jsd.html" class="nav-item nav-link">Consulter</a>
 
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
@@ -2574,28 +2575,6 @@ Ainsi, avons decided de créer ce cadre socioculturel, dénommé « Jeunesse Soc
       alert("Erreur lors de la suppression : " + err.message);
     }
   };
-    function allerASection(idSection) {
-    // 1. Fermer le menu mobile s'il est ouvert
-    var navbarCollapse = document.getElementById('navbarCollapse');
-    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-        $('#navbarCollapse').collapse('hide');
-    }
-
-    // 2. Faire défiler la page jusqu'à la section ciblée
-    var element = document.getElementById(idSection);
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        
-        // 3. Donner le focus au champ de saisie pour que l'utilisateur puisse taper son matricule tout de suite
-        var inputMatricule = document.getElementById('rechercheMatriculeMembre');
-        if (inputMatricule) {
-            setTimeout(function() {
-                inputMatricule.focus();
-            }, 500);
-        }
-    }
-}
-
 </script>
     </body>
 </html>
