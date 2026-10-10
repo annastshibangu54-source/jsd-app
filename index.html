@@ -215,7 +215,6 @@
                             <a href="about.html" class="nav-item nav-link">Apropos</a>
                             <a href="service.html" class="nav-item nav-link">Services</a>
                             <a href="portfolio.html" class="nav-item nav-link">Portefeuilles</a>
-                            <a href="#benevolats" class="nav-item nav-link">Bénévolat</a>
                             <a href="pricing.html" class="nav-item nav-link">Tarifs</a>
                             <a href="carte.html" class="nav-item nav-link">Carte de membre</a>
                             <a href="admin-jsd.html" class="nav-item nav-link">Consulter</a>
@@ -1438,101 +1437,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
         </div>
         <!-- Contact End -->
 
-<!-- Section Rejoindre le réseau / Bénévolat -->
-<section id="benevolats" class="py-5 bg-light">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold text-primary">Rejoindre le Réseau & Bénévolats</h2>
-            <p class="text-muted">Mettez vos compétences au service de la Jeunesse Sociale pour le Développement (JSD)</p>
-            <div class="mx-auto bg-primary" style="height: 3px; width: 60px;"></div>
-        </div>
-
-        <div class="row g-4 align-items-center">
-            <div class="col-lg-6">
-                <div class="card border-0 shadow-sm p-4 h-100">
-                    <h4 class="fw-bold mb-3 text-dark"><i class="ion-md-heart text-danger me-2"></i>Pourquoi devenir bénévole ?</h4>
-                    <p class="text-secondary">En rejoignant la JSD en tant que bénévole, vous participez activement à des projets d'impact social, à l'encadrement des jeunes et au développement communautaire en RDC.</p>
-                    
-                    <ul class="list-unstyled mt-3">
-                        <li class="mb-2"><i class="ion-md-checkmark-circle text-success me-2"></i> Participez à l'organisation de nos événements et formations.</li>
-                        <li class="mb-2"><i class="ion-md-checkmark-circle text-success me-2"></i> Développez vos compétences en gestion de projet et leadership.</li>
-                        <li class="mb-2"><i class="ion-md-checkmark-circle text-success me-2"></i> Obtenez une attestation officielle d'engagement communautaire.</li>
-                    </ul>
-
-                    <div class="mt-4">
-                        <a href="don-adhesion.html" class="btn btn-primary btn-lg fw-bold w-100 shadow-sm">
-                            <i class="ion-md-person-add me-2"></i> Devenir Bénévole / Adhérer
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="card border-0 shadow-sm p-4 h-100 bg-white">
-                    <h4 class="fw-bold mb-3 text-dark"><i class="ion-md-mail me-2 text-primary"></i>Exprimer votre intérêt</h4>
-                    
-                    <form id="formBenevole" onsubmit="enregistrerBenevole(event)">
-                        <div class="mb-3">
-                            <label class="form-label font-weight-bold">Nom complet *</label>
-                            <input type="text" class="form-control" id="benevoleNom" required placeholder="Ex: TSHIBANGU Mike">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label font-weight-bold">Téléphone / WhatsApp *</label>
-                            <input type="tel" class="form-control" id="benevolePhone" required placeholder="Ex: 0906819993">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label font-weight-bold">Domaine de compétence / Intérêt *</label>
-                            <select class="form-select" id="benevoleDomaine" required>
-                                <option value="" selected disabled>Choisir un domaine...</option>
-                                <option value="Informatique & Web">Informatique & Numérique</option>
-                                <option value="Organisation & Logistique">Organisation & Logistique</option>
-                                <option value="Communication & Médias">Communication & Visuels</option>
-                                <option value="Formation & Encadrement">Formation & Encadrement</option>
-                                <option value="Autre">Autre</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-outline-primary w-100 fw-bold">
-                            <i class="icon ion-md-send me-1"></i> Envoyer ma candidature
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- TABLEAU DES BÉNÉVOLES (SÉCURISÉ PAR ACCÈS PRÉSIDENT) -->
-        <div class="row mt-5">
-            <div class="col-12">
-                <div class="card shadow-sm border-0">
-                    <div class="card-header bg-primary text-white font-weight-bold d-flex justify-content-between align-items-center">
-                        <span><i class="icon ion-md-heart me-2"></i> Candidatures au Bénévolat Reçues</span>
-                        <button class="btn btn-sm btn-outline-light fw-bold" onclick="deverrouillerTableauBenevoles()">
-                            <i class="icon ion-md-key me-1"></i> Accès Président / Sécurisé
-                        </button>
-                    </div>
-                    <div class="card-body p-0" id="zoneTableauBenevolesSecurise" style="display: none;">
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle mb-0" id="benevolatTable">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Nom complet</th>
-                                        <th>Téléphone / WhatsApp</th>
-                                        <th>Domaine</th>
-                                        <th>Date</th>
-                                        <th class="no-print">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="corpsTableauBenevoles">
-                                    <!-- Les candidatures Firebase s'afficheront ici après déverrouillage -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
         <!-- Footer Start -->
         <div class="footer">
             <div class="footer-top">
@@ -1556,7 +1460,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
                                 <li><i class="ion-ios-arrow-forward"></i> <a href="don-adhesion.html">Faire un Don / Devenir membre</a></li>
                                 <li><i class="ion-ios-arrow-forward"></i> <a href="projet.html">Nos Projets & Activités</a></li>
                                 <li><i class="ion-ios-arrow-forward"></i> <a href="rapports-activites.html">Rapports d'activités</a></li>
-                                <li><i class="ion-ios-arrow-forward"></i> <a href="#benevolats">Rejoindre le réseau / Bénévolat</a></li>
                             </ul>
                         </div>
 
@@ -1655,19 +1558,6 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     const champDate = document.getElementById("dateAdhesionMembre");
     if (champDate) champDate.value = today;
   });
-
-  // DÉVERROUILLAGE SÉCURISÉ DU TABLEAU DES BÉNÉVOLES PAR CODE SECRET
-  window.deverrouillerTableauBenevoles = function() {
-    const code = prompt("ACCÈS SÉCURISÉ PRÉSIDENT :\nVeuillez saisir le code secret pour consulter la liste des candidatures bénévoles :");
-    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
-      const zone = document.getElementById("zoneTableauBenevolesSecurise");
-      if (zone) zone.style.display = "block";
-      ecouterBenevoles();
-      alert("Accès autorisé. Tableau des candidatures bénévoles déverrouillé.");
-    } else if (code !== null) {
-      alert("Accès refusé ! Code secret incorrect.");
-    }
-  };
 
   // 1. PUBLICATION ÉVÉNEMENTS
   window.toggleFormulaireEvenementSecurise = function() {
@@ -2351,76 +2241,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   };
 
-  // 5. BÉNÉVOLAT
-  window.enregistrerBenevole = async function(e) {
-    if (e) e.preventDefault();
-    const nom = document.getElementById("benevoleNom").value.trim();
-    const phone = document.getElementById("benevolePhone").value.trim();
-    const domaine = document.getElementById("benevoleDomaine").value;
-
-    if (!nom || !phone || !domaine) {
-      alert("Veuillez remplir tous les champs du formulaire de bénévolat.");
-      return;
-    }
-
-    try {
-      await addDoc(collection(db, "benevoles"), {
-        nom, phone, domaine,
-        date: new Date().toISOString(),
-        createdAt: serverTimestamp()
-      });
-      alert("Votre candidature au bénévolat a été envoyée avec succès ! Merci pour votre engagement.");
-      document.getElementById("formBenevole").reset();
-    } catch (err) {
-      console.error("Erreur enregistrement bénévolat :", err);
-      alert("Erreur lors de l'envoi de la candidature.");
-    }
-  };
-
-  function ecouterBenevoles() {
-    onSnapshot(collection(db, "benevoles"), (snapshot) => {
-      const tbody = document.getElementById("corpsTableauBenevoles");
-      if (!tbody) return;
-      tbody.innerHTML = "";
-
-      if (snapshot.empty) {
-        tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">Aucune candidature reçue.</td></tr>`;
-        return;
-      }
-
-      snapshot.docs.forEach((docSnap) => {
-        const b = docSnap.data();
-        const idDoc = docSnap.id;
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td><strong>${b.nom || '-'}</strong></td>
-          <td>${b.phone || '-'}</td>
-          <td><span class="badge bg-primary">${b.domaine || '-'}</span></td>
-          <td>${b.date ? new Date(b.date).toLocaleDateString('fr-FR') : '-'}</td>
-          <td class="no-print">
-            <button class="btn btn-sm btn-outline-danger" onclick="supprimerBenevole('${idDoc}')">
-              <i class="icon ion-md-trash"></i>
-            </button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-    });
-  }
-
-  window.supprimerBenevole = async function(id) {
-    const code = prompt("Saisissez le code secret du Président pour supprimer :");
-    if (code && code.trim() === CODE_SECRET_PRESIDENT) {
-      try {
-        await deleteDoc(doc(db, "benevoles", id));
-        alert("Candidature supprimée.");
-      } catch (err) {
-        alert("Erreur de suppression.");
-      }
-    }
-  };
-
-  // 6. AVIS & CRITIQUES
+  // 5. AVIS & CRITIQUES
   window.publierAvis = async function(e) {
     if (e) e.preventDefault();
     const auteur = document.getElementById("avisAuteur").value.trim();
@@ -2489,7 +2310,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
   });
 
   // ============================================================
-  // 7. DEMANDES DE SERVICES (8 cartes avec bouton, titre et boîte de suivi par service)
+  // 6. DEMANDES DE SERVICES (8 cartes avec bouton, titre et boîte de suivi par service)
   // ============================================================
   const SERVICES_JSD = {
     formation: "Formation Professionnelle et Renforcement des Capacités",
