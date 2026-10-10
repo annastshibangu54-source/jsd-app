@@ -168,6 +168,13 @@
     .benevolat-card:hover {
         transform: translateY(-5px);
     }
+    .admin-item-card {
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .admin-item-card:hover {
+        background-color: #e9ecef !important;
+    }
 </style>
     </head>
 
@@ -336,7 +343,7 @@
                                 <li class="mb-2"><i class="icon ion-md-checkmark-circle text-success me-2"></i><strong>Réseau & Solidarité :</strong> Rejoignez une équipe dynamique et engagée pour la RDC.</li>
                             </ul>
                             <div class="mt-3">
-                                <a href="don-adhesion.html" class="btn btn-primary fw-bold me-2"><i class="icon ion-md-person-add me-1"></i> Postuler comme bénévole</a>
+                                <button type="button" class="btn btn-primary fw-bold me-2" onclick="ouvrirFormulaireBenevole()"><i class="icon ion-md-person-add me-1"></i> Postuler comme bénévole</button>
                                 <a href="#sectionDemandesServices" onclick="ouvrirDemandeService('orientation'); return false;" class="btn btn-outline-secondary">En savoir plus</a>
                             </div>
                         </div>
@@ -377,6 +384,49 @@
             </div>
         </div>
         <!-- Fin Section Bénévolat -->
+
+        <!-- FORMULAIRE CANDIDATURE BÉNÉVOLE -->
+        <div id="sectionFormulaireBenevole" class="container py-4" style="display: none;">
+            <div class="card shadow-sm border-info">
+                <div class="card-header bg-info text-white fw-bold d-flex justify-content-between align-items-center">
+                    <span>Candidature au Bénévolat JSD</span>
+                    <button type="button" class="btn btn-sm btn-light" onclick="document.getElementById('sectionFormulaireBenevole').style.display='none'">Fermer</button>
+                </div>
+                <div class="card-body">
+                    <form id="formCandidatureBenevole" onsubmit="enregistrerBenevole(event)">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label font-weight-bold">Nom complet *</label>
+                                <input type="text" id="benNom" class="form-control" required placeholder="Ex: Jean Paul">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label font-weight-bold">Téléphone / WhatsApp *</label>
+                                <input type="tel" id="benPhone" class="form-control" required placeholder="+243 ...">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label font-weight-bold">Domaine d'intérêt *</label>
+                                <select id="benDomaine" class="form-select" required>
+                                    <option value="Actions de Terrain">Actions de Terrain</option>
+                                    <option value="Encadrement & Formation">Encadrement & Formation</option>
+                                    <option value="Environnement & Salubrité">Environnement & Salubrité</option>
+                                    <option value="Organisation d'événements">Organisation d'événements</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label font-weight-bold">Pourquoi souhaitez-vous devenir bénévole ? *</label>
+                                <textarea id="benMessage" class="form-control" rows="3" required placeholder="Exprimez votre motivation..."></textarea>
+                            </div>
+                            <div class="col-12 text-end">
+                                <button type="submit" class="btn btn-info text-white fw-bold px-4">
+                                    <i class="icon ion-md-send me-1"></i> Soumettre ma candidature
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="confirmationBenevole" class="alert alert-success mt-3" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
 
         <!-- Service Start -->
         <div class="service">
@@ -496,7 +546,7 @@
                 <!-- Bouton sécurisé Président -->
                 <div class="text-center mt-4">
                     <button type="button" class="btn btn-sm btn-dark" onclick="deverrouillerDemandesServices()">
-                        <i class="icon ion-md-key me-1"></i> Espace Président : Demandes de services
+                        <i class="icon ion-md-key me-1"></i> Espace Président : Tableau de Bord
                     </button>
                 </div>
             </div>
@@ -558,16 +608,121 @@
             </div>
         </div>
 
-        <!-- PANNEAU PRÉSIDENT : DEMANDES DE SERVICES -->
+        <!-- TABLEAU DE BORD PRÉSIDENT (Intégré dans votre page) -->
         <div id="panneauDemandesPresident" class="container py-4" style="display: none;">
-            <div class="card shadow-sm border-dark">
+            <div class="card shadow-lg border-dark">
                 <div class="card-header bg-dark text-white fw-bold d-flex justify-content-between align-items-center">
-                    <span><i class="icon ion-md-lock me-2"></i> Espace Président : Demandes de services</span>
+                    <span><i class="icon ion-md-key me-2 text-warning"></i> Tableau de Bord Présidentiel JSD</span>
                     <button type="button" class="btn btn-sm btn-outline-light" onclick="fermerPanneauDemandes()">Fermer</button>
                 </div>
-                <div class="card-body">
-                    <div id="filtresDemandes" class="mb-3 d-flex flex-wrap" style="gap: 6px;"></div>
-                    <div id="listeDemandesPresident"></div>
+                <div class="card-body bg-light">
+                    <!-- Navigation par onglets -->
+                    <ul class="nav nav-tabs nav-fill mb-3" id="tabPresident">
+                        <li class="nav-item">
+                            <button class="nav-link active fw-bold" id="services-tab" onclick="basculerOngletPresident('services')">
+                                <i class="icon ion-md-construct me-1"></i> Demandes de Services
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link fw-bold text-info" id="benevoles-tab" onclick="basculerOngletPresident('benevoles')">
+                                <i class="icon ion-md-heart me-1"></i> Candidatures Bénévoles
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- ONGLET SERVICES -->
+                    <div id="contenuOngletServices" class="row">
+                        <div class="col-md-5 border-end">
+                            <h6 class="fw-bold text-primary mb-3">Sélectionner une demande :</h6>
+                            <div id="listeServicesPresident" class="list-group" style="max-height: 450px; overflow-y: auto;">
+                                <div class="text-center text-muted p-3">Chargement...</div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div id="detailsServicePresident" class="card p-3 shadow-sm bg-white" style="display: none;">
+                                <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+                                    <h5 class="fw-bold text-primary mb-0" id="detServTitre">Détails</h5>
+                                    <span id="detServStatutBadge" class="badge bg-secondary">En attente</span>
+                                </div>
+                                <p><strong>Demandeur :</strong> <span id="detServNom"></span></p>
+                                <p><strong>Téléphone :</strong> <span id="detServPhone"></span> | <strong>Email :</strong> <span id="detServEmail"></span></p>
+                                <p><strong>Référence :</strong> <span id="detServRef" class="badge bg-dark"></span></p>
+                                <div class="p-3 bg-light rounded mb-3">
+                                    <strong>Message :</strong>
+                                    <p id="detServMessage" class="mb-0 text-secondary mt-1"></p>
+                                </div>
+                                <form onsubmit="soumettreReponseService(event)">
+                                    <input type="hidden" id="detServId">
+                                    <div class="mb-2">
+                                        <label class="form-label font-weight-bold">Statut :</label>
+                                        <select id="detServStatutSelect" class="form-select">
+                                            <option value="Approuvée">Approuvée</option>
+                                            <option value="Rejetée">Rejetée</option>
+                                            <option value="En traitement">En traitement</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label font-weight-bold">Réponse officielle :</label>
+                                        <textarea id="detServReponseText" class="form-control" rows="3" required placeholder="Écrivez la réponse..."></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-success w-100 fw-bold">
+                                        <i class="icon ion-md-send me-1"></i> Valider & Transmettre au Demandeur
+                                    </button>
+                                </form>
+                            </div>
+                            <div id="aucunServiceSelectionne" class="text-center text-muted p-5 bg-white rounded shadow-sm">
+                                <i class="icon ion-md-arrow-back display-4 mb-2"></i>
+                                <p>Cliquez sur une demande à gauche pour l'examiner et y répondre.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ONGLET BÉNÉVOLES -->
+                    <div id="contenuOngletBenevoles" class="row" style="display: none;">
+                        <div class="col-md-5 border-end">
+                            <h6 class="fw-bold text-info mb-3">Sélectionner un bénévole :</h6>
+                            <div id="listeBenevolesPresident" class="list-group" style="max-height: 450px; overflow-y: auto;">
+                                <div class="text-center text-muted p-3">Chargement...</div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div id="detailsBenevolePresident" class="card p-3 shadow-sm bg-white" style="display: none;">
+                                <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+                                    <h5 class="fw-bold text-info mb-0" id="detBenNom">Détails Candidat</h5>
+                                    <span id="detBenStatutBadge" class="badge bg-secondary">Nouvelle</span>
+                                </div>
+                                <p><strong>Téléphone :</strong> <span id="detBenPhone"></span></p>
+                                <p><strong>Domaine :</strong> <span id="detBenDomaine" class="badge bg-info text-white"></span></p>
+                                <div class="p-3 bg-light rounded mb-3">
+                                    <strong>Motivation :</strong>
+                                    <p id="detBenMessage" class="mb-0 text-secondary mt-1"></p>
+                                </div>
+                                <form onsubmit="soumettreReponseBenevole(event)">
+                                    <input type="hidden" id="detBenId">
+                                    <div class="mb-2">
+                                        <label class="form-label font-weight-bold">Statut de la candidature :</label>
+                                        <select id="detBenStatutSelect" class="form-select">
+                                            <option value="Approuvée">Approuvée / Retenu(e)</option>
+                                            <option value="Rejetée">Rejetée</option>
+                                            <option value="En étude">En étude</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label font-weight-bold">Message pour le bénévole :</label>
+                                        <textarea id="detBenReponseText" class="form-control" rows="3" required placeholder="Écrivez votre message d'acceptation..."></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-info text-white w-100 fw-bold">
+                                        <i class="icon ion-md-checkmark-circle me-1"></i> Valider & Envoyer
+                                    </button>
+                                </form>
+                            </div>
+                            <div id="aucunBenevoleSelectionne" class="text-center text-muted p-5 bg-white rounded shadow-sm">
+                                <i class="icon ion-md-arrow-back display-4 mb-2"></i>
+                                <p>Cliquez sur un candidat à gauche pour consulter sa motivation.</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -835,6 +990,8 @@
           const db = getFirestore(app);
 
           const CODE_SECRET_PRESIDENT = "ann@s0852";
+          let cacheServicesDocs = [];
+          let cacheBenevolesDocs = [];
 
           window.toggleFormulaireEvenementSecurise = function() {
             const codeSaisi = prompt("ACCÈS SÉCURISÉ :\nSaisissez le code secret pour publier une activité :");
@@ -947,6 +1104,28 @@
             });
           });
 
+          // Bénévolat
+          window.ouvrirFormulaireBenevole = function() {
+            document.getElementById("sectionFormulaireBenevole").style.display = "block";
+            document.getElementById("sectionFormulaireBenevole").scrollIntoView({ behavior: "smooth" });
+          };
+
+          window.enregistrerBenevole = async function(e) {
+            e.preventDefault();
+            await addDoc(collection(db, "benevoles"), {
+              nom: document.getElementById("benNom").value.trim(),
+              phone: document.getElementById("benPhone").value.trim(),
+              domaine: document.getElementById("benDomaine").value,
+              message: document.getElementById("benMessage").value.trim(),
+              statut: "Nouvelle",
+              reponse: "",
+              date: new Date().toISOString()
+            });
+            document.getElementById("confirmationBenevole").textContent = "Votre candidature a été transmise à la présidence !";
+            document.getElementById("confirmationBenevole").style.display = "block";
+            document.getElementById("formCandidatureBenevole").reset();
+          };
+
           // Services dynamiques
           const SERVICES_JSD = {
             formation: "Formation Professionnelle", entrepreneuriat: "Entrepreneuriat", education: "Éducation",
@@ -974,7 +1153,7 @@
               phone: document.getElementById("demandePhone").value.trim(),
               email: document.getElementById("demandeEmail").value.trim(),
               message: document.getElementById("demandeMessage").value.trim(),
-              reference: ref, statut: "Nouvelle", reponse: "", dateDemande: new Date().toISOString()
+              reference: ref, statut: "En attente", reponse: "", dateDemande: new Date().toISOString()
             });
             document.getElementById("confirmationDemande").innerHTML = `Demande envoyée ! Votre référence : <strong>${ref}</strong>`;
             document.getElementById("confirmationDemande").style.display = "block";
@@ -988,37 +1167,161 @@
             zone.style.display = "block";
             if (!snap.empty) {
               const data = snap.docs[0].data();
-              zone.innerHTML = `<div class="card p-3 bg-light">Statut : <strong>${data.statut}</strong><br>Réponse : ${data.reponse || 'En attente...'}</div>`;
+              const badgeClass = data.statut === 'Approuvée' ? 'bg-success' : (data.statut === 'Rejetée' ? 'bg-danger' : 'bg-warning');
+              zone.innerHTML = `<div class="card p-3 bg-light">Statut : <span class="badge ${badgeClass}">${data.statut}</span><br><strong>Réponse :</strong> ${data.reponse || 'En attente...'}</div>`;
             } else {
               zone.innerHTML = `<div class="alert alert-warning">Référence introuvable.</div>`;
             }
           };
 
+          // ACCÈS PRÉSIDENT & TABLEAU DE BORD
           window.deverrouillerDemandesServices = function() {
-            const code = prompt("Code secret Président :");
-            if (code === CODE_SECRET_PRESIDENT) {
+            const code = prompt("ACCÈS PRÉSIDENT :\nEntrez votre code secret :");
+            if (code && code.trim() === CODE_SECRET_PRESIDENT) {
               document.getElementById("panneauDemandesPresident").style.display = "block";
               document.getElementById("panneauDemandesPresident").scrollIntoView({ behavior: "smooth" });
-              onSnapshot(collection(db, "demandes_services"), (snap) => {
-                const liste = document.getElementById("listeDemandesPresident");
-                liste.innerHTML = "";
-                snap.docs.forEach(docSnap => {
-                  const d = docSnap.data();
-                  const div = document.createElement("div");
-                  div.className = "card mb-2 p-3";
-                  div.innerHTML = `<strong>${d.nom}</strong> (${d.reference})<br>${d.message}<br><button class="btn btn-sm btn-success mt-2" onclick="repondreService('${docSnap.id}')">Répondre</button>`;
-                  liste.appendChild(div);
-                });
-              });
+              chargerServicesPresident();
+              chargerBenevolesPresident();
+            } else if (code !== null) {
+              alert("Code secret incorrect.");
             }
           };
 
-          window.repondreService = async function(id) {
-            const rep = prompt("Votre réponse :");
-            if (rep) {
-              await updateDoc(doc(doc(db, "demandes_services", id)), { reponse: rep, statut: "Répondue" });
-              alert("Réponse enregistrée.");
+          window.fermerPanneauDemandes = function() {
+            document.getElementById("panneauDemandesPresident").style.display = "none";
+          };
+
+          window.basculerOngletPresident = function(type) {
+            if (type === 'services') {
+              document.getElementById("contenuOngletServices").style.display = "flex";
+              document.getElementById("contenuOngletBenevoles").style.display = "none";
+              document.getElementById("services-tab").classList.add("active");
+              document.getElementById("benevoles-tab").classList.remove("active");
+            } else {
+              document.getElementById("contenuOngletServices").style.display = "none";
+              document.getElementById("contenuOngletBenevoles").style.display = "flex";
+              document.getElementById("benevoles-tab").classList.add("active");
+              document.getElementById("services-tab").classList.remove("active");
             }
+          };
+
+          function chargerServicesPresident() {
+            onSnapshot(collection(db, "demandes_services"), (snap) => {
+              const liste = document.getElementById("listeServicesPresident");
+              if (!liste) return;
+              liste.innerHTML = "";
+              cacheServicesDocs = [];
+              if (snap.empty) {
+                liste.innerHTML = `<div class="p-3 text-muted">Aucune demande de service.</div>`;
+                return;
+              }
+              snap.docs.forEach(docSnap => {
+                const d = docSnap.data();
+                const idDoc = docSnap.id;
+                cacheServicesDocs.push({ id: idDoc, ...d });
+                const badgeColor = d.statut === 'Approuvée' ? 'bg-success' : (d.statut === 'Rejetée' ? 'bg-danger' : 'bg-warning');
+                
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "list-group-item list-group-item-action admin-item-card mb-1 border rounded";
+                btn.innerHTML = `
+                  <div class="d-flex justify-content-between align-items-center">
+                    <strong>${d.nom}</strong>
+                    <span class="badge ${badgeColor}">${d.statut || 'En attente'}</span>
+                  </div>
+                  <small class="text-primary">${d.serviceTitre || d.service}</small><br>
+                  <small class="text-muted">Réf: ${d.reference}</small>
+                `;
+                btn.onclick = () => afficherDetailServicePresident(idDoc);
+                liste.appendChild(btn);
+              });
+            });
+          }
+
+          window.afficherDetailServicePresident = function(id) {
+            const item = cacheServicesDocs.find(s => s.id === id);
+            if (!item) return;
+            document.getElementById("aucunServiceSelectionne").style.display = "none";
+            document.getElementById("detailsServicePresident").style.display = "block";
+
+            document.getElementById("detServId").value = item.id;
+            document.getElementById("detServTitre").textContent = item.serviceTitre || item.service;
+            document.getElementById("detServNom").textContent = item.nom;
+            document.getElementById("detServPhone").textContent = item.phone;
+            document.getElementById("detServEmail").textContent = item.email || 'N/A';
+            document.getElementById("detServRef").textContent = item.reference;
+            document.getElementById("detServMessage").textContent = item.message;
+            document.getElementById("detServStatutSelect").value = item.statut || 'Approuvée';
+            document.getElementById("detServReponseText").value = item.reponse || '';
+            document.getElementById("detServStatutBadge").textContent = item.statut || 'En attente';
+          };
+
+          window.soumettreReponseService = async function(e) {
+            e.preventDefault();
+            const id = document.getElementById("detServId").value;
+            const statut = document.getElementById("detServStatutSelect").value;
+            const reponse = document.getElementById("detServReponseText").value.trim();
+            if (!id) return;
+            await updateDoc(doc(db, "demandes_services", id), { statut: statut, reponse: reponse });
+            alert("Réponse enregistrée et transmise au demandeur !");
+          };
+
+          function chargerBenevolesPresident() {
+            onSnapshot(collection(db, "benevoles"), (snap) => {
+              const liste = document.getElementById("listeBenevolesPresident");
+              if (!liste) return;
+              liste.innerHTML = "";
+              cacheBenevolesDocs = [];
+              if (snap.empty) {
+                liste.innerHTML = `<div class="p-3 text-muted">Aucune candidature bénévole.</div>`;
+                return;
+              }
+              snap.docs.forEach(docSnap => {
+                const b = docSnap.data();
+                const idDoc = docSnap.id;
+                cacheBenevolesDocs.push({ id: idDoc, ...b });
+                const badgeColor = b.statut === 'Approuvée' ? 'bg-success' : (b.statut === 'Rejetée' ? 'bg-danger' : 'bg-warning');
+
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "list-group-item list-group-item-action admin-item-card mb-1 border rounded";
+                btn.innerHTML = `
+                  <div class="d-flex justify-content-between align-items-center">
+                    <strong>${b.nom}</strong>
+                    <span class="badge ${badgeColor}">${b.statut || 'Nouvelle'}</span>
+                  </div>
+                  <small class="text-info">${b.domaine}</small>
+                `;
+                btn.onclick = () => afficherDetailBenevolePresident(idDoc);
+                liste.appendChild(btn);
+              });
+            });
+          }
+
+          window.afficherDetailBenevolePresident = function(id) {
+            const item = cacheBenevolesDocs.find(b => b.id === id);
+            if (!item) return;
+            document.getElementById("aucunBenevoleSelectionne").style.display = "none";
+            document.getElementById("detailsBenevolePresident").style.display = "block";
+
+            document.getElementById("detBenId").value = item.id;
+            document.getElementById("detBenNom").textContent = item.nom;
+            document.getElementById("detBenPhone").textContent = item.phone;
+            document.getElementById("detBenDomaine").textContent = item.domaine;
+            document.getElementById("detBenMessage").textContent = item.message;
+            document.getElementById("detBenStatutSelect").value = item.statut || 'Approuvée';
+            document.getElementById("detBenReponseText").value = item.reponse || '';
+            document.getElementById("detBenStatutBadge").textContent = item.statut || 'Nouvelle';
+          };
+
+          window.soumettreReponseBenevole = async function(e) {
+            e.preventDefault();
+            const id = document.getElementById("detBenId").value;
+            const statut = document.getElementById("detBenStatutSelect").value;
+            const reponse = document.getElementById("detBenReponseText").value.trim();
+            if (!id) return;
+            await updateDoc(doc(db, "benevoles", id), { statut: statut, reponse: reponse });
+            alert("Candidature bénévole mise à jour !");
           };
         </script>
     </body>
