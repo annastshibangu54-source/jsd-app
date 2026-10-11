@@ -1420,7 +1420,7 @@ Ainsi, avons décidé de créer ce cadre socioculturel, dénommé « Jeunesse So
     }
   }
 
-  // ÉCOUTEUR ET AFFICHAGE EN TEMPS RÉEL DES ÉVÉNEMENTS (Correction du filtre 24h)
+  // ÉCOUTEUR ET AFFICHAGE EN TEMPS RÉEL DES ÉVÉNEMENTS
   onSnapshot(collection(db, "evenements"), (snapshot) => {
     const container = document.getElementById("events-widget-container");
     if (!container) return;
