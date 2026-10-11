@@ -506,20 +506,47 @@
 
     </div>
 
-    <!-- SCRIPT JS PRINCIPAL -->
-    <script>
+    <!-- SCRIPT JS PRINCIPAL (AVEC FIREBASE FIRESTORE EN TEMPS RÉEL) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, doc, deleteDoc, onSnapshot, query, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Configuration Firebase officielle JSD
+        const firebaseConfig = {
+            apiKey: "AIzaSyBlGSwEPk6CM4A07SeqmZeuaFxUWMRlESI",
+            authDomain: "jeunesse-social-pour-le-dvelop.firebaseapp.com",
+            projectId: "jeunesse-social-pour-le-dvelop",
+            storageBucket: "jeunesse-social-pour-le-dvelop.firebasestorage.app",
+            messagingSenderId: "728224479628",
+            appId: "1:728224479628:web:c43406a998d184d3a63ea9",
+            measurementId: "G-F81CFLLD55"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
         let logoJsdActuel = "img/logo.jpg";
         const MDP_PRESIDENT = "ann@s0852";
         let membreSelectionneActuel = null;
         let imageVersoBase64 = null;
-
-        if (!localStorage.getItem("membresJSD")) {
-            localStorage.setItem("membresJSD", JSON.stringify([]));
-        }
+        let cacheMembresFirebase = [];
 
         document.addEventListener("DOMContentLoaded", () => {
             actualiserApercuEtQR();
             
+            // Écoute en temps réel de tous les membres enregistrés par n'importe quel utilisateur sur le cloud
+            onSnapshot(collection(db, "membres_cartes"), (snapshot) => {
+                cacheMembresFirebase = [];
+                snapshot.docs.forEach((docSnap) => {
+                    cacheMembresFirebase.push({ id: docSnap.id, ...docSnap.data() });
+                });
+                
+                // Si l'espace président est ouvert, actualiser la liste automatiquement
+                if (!document.getElementById("sectionPresident").classList.contains("d-none")) {
+                    chargerListeMembresPresident();
+                }
+            });
+
             // Restaurer le verso sauvegardé s'il existe
             const versoSauve = localStorage.getItem("versoCarteJSD");
             if (versoSauve) {
@@ -528,7 +555,7 @@
             }
         });
 
-        function actualiserApercuEtQR() {
+        window.actualiserApercuEtQR = function() {
             const nom = document.getElementById("inNom").value.trim() || "TSHIBANGU";
             const postnom = document.getElementById("inPostnom").value.trim() || "KALOMBO";
             const prenom = document.getElementById("inPrenom").value.trim() || "Mike";
@@ -551,9 +578,9 @@
 
             const qrData = encodeURIComponent(`JSD-RDC|MAT:${matricule}|NOM:${nom} ${postnom} ${prenom}|FONCTION:${fonction}`);
             document.getElementById("imgQrCodeLive").src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${qrData}`;
-        }
+        };
 
-        function chargerPhotoPasseport(event) {
+        window.chargerPhotoPasseport = function(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
@@ -562,25 +589,24 @@
                 };
                 reader.readAsDataURL(file);
             }
-        }
+        };
 
-        function reinitialiserFormulaireMembre() {
+        window.reinitialiserFormulaireMembre = function() {
             document.getElementById("formMembre").reset();
             document.getElementById("outPhoto").src = "https://via.placeholder.com/100x120?text=PHOTO";
             logoJsdActuel = "img/logo.jpg";
             document.getElementById("imgLogoApercu").src = logoJsdActuel;
             actualiserApercuEtQR();
-        }
+        };
 
-        function enregistrerMembre(e) {
+        window.enregistrerMembre = async function(e) {
             e.preventDefault();
 
             const matricule = document.getElementById("inMatricule").value.trim();
-            let membres = JSON.parse(localStorage.getItem("membresJSD")) || [];
 
-            const existe = membres.some(m => m.matricule.toLowerCase() === matricule.toLowerCase());
+            const existe = cacheMembresFirebase.some(m => m.matricule.toLowerCase() === matricule.toLowerCase());
             if (existe) {
-                alert(`Le matricule "${matricule}" est déjà attribué.`);
+                alert(`Le matricule "${matricule}" est déjà attribué dans la base de données.`);
                 return;
             }
 
@@ -594,96 +620,98 @@
                 expiration: document.getElementById("inExpiration").value.trim(),
                 adresse: document.getElementById("inAdresse").value.trim(),
                 email: document.getElementById("inEmail").value.trim(),
-                photo: document.getElementById("outPhoto").src
+                photo: document.getElementById("outPhoto").src,
+                createdAt: Date.now()
             };
 
-            membres.push(nouveauMembre);
-            localStorage.setItem("membresJSD", JSON.stringify(membres));
+            try {
+                await addDoc(collection(db, "membres_cartes"), nouveauMembre);
+                alert(`Le membre ${nouveauMembre.nom} ${nouveauMembre.prenom} a été enregistré et synchronisé avec succès sur le serveur central !`);
+                reinitialiserFormulaireMembre();
+            } catch (err) {
+                console.error("Erreur d'enregistrement Firebase :", err);
+                alert("Erreur lors de l'enregistrement sur le serveur : " + err.message);
+            }
+        };
 
-            alert(`Le membre ${nouveauMembre.nom} ${nouveauMembre.prenom} a été enregistré avec succès !`);
-        }
-
-        function demanderAccesPresident() {
+        window.demanderAccesPresident = function() {
             const mdp = prompt("Veuillez saisir le mot de passe du Président :");
             if (mdp && mdp.trim() === MDP_PRESIDENT) {
                 afficherEspacePresident();
             } else if (mdp !== null) {
                 alert("Accès refusé ! Mot de passe incorrect.");
             }
-        }
+        };
 
-        function afficherEspacePresident() {
+        window.afficherEspacePresident = function() {
             document.getElementById("sectionAccueil").classList.add("d-none");
             document.getElementById("sectionPresident").classList.remove("d-none");
             document.getElementById("btnRetourAccueilNav").classList.remove("d-none");
             chargerListeMembresPresident();
-        }
+        };
 
-        function afficherPageAccueil() {
+        window.afficherPageAccueil = function() {
             document.getElementById("sectionPresident").classList.add("d-none");
             document.getElementById("sectionAccueil").classList.remove("d-none");
             document.getElementById("btnRetourAccueilNav").classList.add("d-none");
-        }
+        };
 
-        function chargerListeMembresPresident() {
+        window.chargerListeMembresPresident = function() {
             const tbody = document.getElementById("listeMembresBody");
             tbody.innerHTML = "";
-            const membres = JSON.parse(localStorage.getItem("membresJSD")) || [];
 
-            if (membres.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="text-center text-muted py-3">Aucune carte dans la base.</td></tr>`;
+            if (cacheMembresFirebase.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="text-center text-muted py-3">Aucune carte dans la base en ligne.</td></tr>`;
                 return;
             }
 
-            membres.forEach((m, idx) => {
+            cacheMembresFirebase.forEach((m, idx) => {
                 const tr = document.createElement("tr");
                 tr.innerHTML = `
                     <td class="fw-bold text-warning">${m.matricule}</td>
-                    <td>${m.nom} ${m.postnom} ${m.prenom}</td>
+                    <td>${m.nom} ${m.postnom || ''} ${m.prenom}</td>
                     <td>${m.fonction || '-'}</td>
                     <td class="text-center">
-                        <button class="btn btn-sm btn-primary fw-bold me-1" onclick="chargerCartePourImpression(${idx})">
+                        <button class="btn btn-sm btn-primary fw-bold me-1" onclick="chargerCartePourImpressionFirebase('${m.id}')">
                             <i class="bi bi-card-heading me-1"></i> Sélectionner
                         </button>
-                        <button class="btn btn-sm btn-danger fw-bold" onclick="supprimerMembre(${idx})">
+                        <button class="btn btn-sm btn-danger fw-bold" onclick="supprimerMembreFirebase('${m.id}', '${m.nom} ${m.prenom}')">
                             <i class="bi bi-trash-fill"></i> Supprimer
                         </button>
                     </td>
                 `;
                 tbody.appendChild(tr);
             });
-        }
+        };
 
-        function supprimerMembre(index) {
-            let membres = JSON.parse(localStorage.getItem("membresJSD")) || [];
-            const membre = membres[index];
-
-            if (confirm(`Confirmez-vous la suppression définitive du membre ${membre.nom} ${membre.prenom} (${membre.matricule}) ?`)) {
-                membres.splice(index, 1);
-                localStorage.setItem("membresJSD", JSON.stringify(membres));
-
-                if (membreSelectionneActuel && membreSelectionneActuel.matricule === membre.matricule) {
-                    membreSelectionneActuel = null;
-                    document.getElementById("zoneCarteImpressionPresident").innerHTML = `
-                        <div class="p-4 border border-secondary rounded bg-dark text-muted mb-3">
-                            <i class="bi bi-arrow-left-square fs-2 d-block mb-2"></i>
-                            Cliquez sur "Sélectionner" dans le tableau pour charger le Recto.
-                        </div>
-                    `;
-                    document.getElementById("actionsImpression").classList.add("d-none");
+        window.supprimerMembreFirebase = async function(docId, nomComplet) {
+            if (confirm(`Confirmez-vous la suppression définitive du membre ${nomComplet} sur le serveur ?`)) {
+                try {
+                    await deleteDoc(doc(db, "membres_cartes", docId));
+                    if (membreSelectionneActuel && membreSelectionneActuel.id === docId) {
+                        membreSelectionneActuel = null;
+                        document.getElementById("zoneCarteImpressionPresident").innerHTML = `
+                            <div class="p-4 border border-secondary rounded bg-dark text-muted mb-3">
+                                <i class="bi bi-arrow-left-square fs-2 d-block mb-2"></i>
+                                Cliquez sur "Sélectionner" dans le tableau pour charger le Recto.
+                            </div>
+                        `;
+                        document.getElementById("actionsImpression").classList.add("d-none");
+                    }
+                    alert("L'enregistrement a été supprimé du serveur.");
+                } catch (err) {
+                    console.error("Erreur de suppression :", err);
+                    alert("Erreur lors de la suppression : " + err.message);
                 }
-
-                chargerListeMembresPresident();
-                alert("L'enregistrement a été supprimé.");
             }
-        }
+        };
 
-        function chargerCartePourImpression(index) {
-            const membres = JSON.parse(localStorage.getItem("membresJSD")) || [];
-            const m = membres[index];
+        window.chargerCartePourImpressionFirebase = function(docId) {
+            const m = cacheMembresFirebase.find(item => item.id === docId);
+            if (!m) return;
             membreSelectionneActuel = m;
 
-            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`JSD-RDC|MAT:${m.matricule}|NOM:${m.nom}${m.postnom} ${m.prenom}\vert{}FONCTION:${m.fonction}`)}`;
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`JSD-RDC|MAT:${m.matricule}|NOM:${m.nom}${m.postnom || ''} ${m.prenom}\vert{}FONCTION:${m.fonction}`)}`;
 
             const container = document.getElementById("zoneCarteImpressionPresident");
             
@@ -700,14 +728,14 @@
                     </div>
                     <div class="carte-identite">
                         <div><strong>Nom:</strong> <span>${m.nom}</span></div>
-                        <div><strong>Postnom:</strong> <span>${m.postnom}</span></div>
+                        <div><strong>Postnom:</strong> <span>${m.postnom || ''}</span></div>
                         <div><strong>Prénom:</strong> <span>${m.prenom}</span></div>
-                        <div><strong>Fonction:</strong> <span>${m.fonction}</span></div>
+                        <div><strong>Fonction:</strong> <span>${m.fonction || ''}</span></div>
                         <div><strong>Matricule:</strong> <span>${m.matricule}</span></div>
-                        <div><strong>Profession:</strong> <span>${m.profession}</span></div>
-                        <div><strong>Adresse:</strong> <span>${m.adresse}</span></div>
-                        <div><strong>E-mail:</strong> <span>${m.email}</span></div>
-                        <div><strong>Expiration:</strong> <span>${m.expiration}</span></div>
+                        <div><strong>Profession:</strong> <span>${m.profession || ''}</span></div>
+                        <div><strong>Adresse:</strong> <span>${m.adresse || ''}</span></div>
+                        <div><strong>E-mail:</strong> <span>${m.email || ''}</span></div>
+                        <div><strong>Expiration:</strong> <span>${m.expiration || ''}</span></div>
                     </div>
                     <img src="${m.photo}" class="carte-photo">
                     <div class="carte-bottom-banner"></div>
@@ -721,9 +749,9 @@
             `;
 
             document.getElementById("actionsImpression").classList.remove("d-none");
-        }
+        };
 
-        function chargerImageVerso(event) {
+        window.chargerImageVerso = function(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
@@ -734,9 +762,9 @@
                 };
                 reader.readAsDataURL(file);
             }
-        }
+        };
 
-        function appliquerVersoVisuel(src) {
+        window.appliquerVersoVisuel = function(src) {
             const imgVerso = document.getElementById('imgVersoAffiche');
             const placeholder = document.getElementById('placeholderVerso');
             
@@ -744,9 +772,9 @@
             imgVerso.style.display = 'block';
             placeholder.style.display = 'none';
             document.getElementById("cadranVerso").style.borderStyle = "solid";
-        }
+        };
 
-        function telechargerEtEnregistrerTelephone() {
+        window.telechargerEtEnregistrerTelephone = function() {
             const el = document.getElementById("carteFinalePresident");
             if (!el) return;
 
@@ -764,15 +792,15 @@
                 a.click();
                 document.body.removeChild(a);
             });
-        }
+        };
 
-        function imprimerCarteMembre() {
+        window.imprimerCarteMembre = function() {
             if (!membreSelectionneActuel) {
                 alert("Veuillez d'abord sélectionner un membre dans le tableau !");
                 return;
             }
             window.print();
-        }
+        };
     </script>
 </body>
 </html>
